@@ -8,6 +8,24 @@ const STEP_CHECK_COUNT := 4
 const WALL_MARGIN := 0.001
 const MAX_SLIDE_ITERATIONS := 3
 
+const FLOOR_SEARCH_RADIUS := 0.02
+
+const FLOOR_OFFSETS := [
+
+	Vector3.ZERO,
+
+	Vector3( FLOOR_SEARCH_RADIUS,0,0),
+	Vector3(-FLOOR_SEARCH_RADIUS,0,0),
+
+	Vector3(0,0, FLOOR_SEARCH_RADIUS),
+	Vector3(0,0,-FLOOR_SEARCH_RADIUS),
+
+	Vector3( FLOOR_SEARCH_RADIUS,0, FLOOR_SEARCH_RADIUS),
+	Vector3(-FLOOR_SEARCH_RADIUS,0, FLOOR_SEARCH_RADIUS),
+	Vector3( FLOOR_SEARCH_RADIUS,0,-FLOOR_SEARCH_RADIUS),
+	Vector3(-FLOOR_SEARCH_RADIUS,0,-FLOOR_SEARCH_RADIUS),
+
+]
 
 static func try_step_up(
 	body: CharacterBody3D,
@@ -135,7 +153,7 @@ static func _try_forward(
 
 
 	return _try_wall_slide(
-
+								
 		body,
 		transform,
 		result["result"]
@@ -213,24 +231,15 @@ static func _try_down(
 
 ) -> StepResult:
 
-	var offsets := [
+	var best_step := StepResult.new()
+	var best_distance := INF
 
-		Vector3.ZERO,
-
-		Vector3( 0.02,0,0),
-		Vector3(-0.02,0,0),
-
-		Vector3(0,0, 0.02),
-		Vector3(0,0,-0.02)
-
-	]
-
-	for offset in offsets:
+	for offset in FLOOR_OFFSETS:
 
 		var candidate = transform
 		candidate.origin += offset
 
-		var down = MotionTester.test_motion(
+		var down := MotionTester.test_motion(
 
 			body,
 			candidate,
@@ -246,15 +255,17 @@ static func _try_down(
 		if !_validate_floor(physics):
 			continue
 
-		var step := StepResult.new()
+		var distance := physics.get_remainder().length()
 
-		step.success = true
-		step.offset = offset - physics.get_remainder()
-		step.normal = physics.get_collision_normal()
+		if distance < best_distance:
 
-		return step
+			best_distance = distance
 
-	return StepResult.new()
+			best_step.success = true
+			best_step.offset = offset - physics.get_remainder()
+			best_step.normal = physics.get_collision_normal()
+
+	return best_step
 
 
 
@@ -264,6 +275,19 @@ static func _validate_floor(
 
 ) -> bool:
 
-	return physics.get_collision_normal().angle_to(
-		Vector3.UP
-	) <= deg_to_rad(MAX_STEP_SLOPE)									
+	var normal := physics.get_collision_normal()
+
+	if normal.angle_to(Vector3.UP) > deg_to_rad(MAX_STEP_SLOPE):
+		return false
+
+	# No aceptar techos.
+
+	if normal.y <= 0:
+		return false
+
+	# Debe existir movimiento hacia abajo.
+
+	if physics.get_travel().y > 0:
+		return false
+
+	return true

@@ -17,6 +17,12 @@ var gravity = 9.8
 
 var camera_enabled := true
 
+@onready var camera_pivot := $CameraPivot
+
+var camera_offset := Vector3.ZERO
+
+const CAMERA_STEP_SPEED := 14.0
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -52,20 +58,50 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
-	var step := StepTester.try_step_up(
-		self,
-		Vector3(
-			velocity.x,
-			0,
-			velocity.z
-		),
-		delta
+	var step_up := StepTester.try_step_up(
+
+	self,
+
+	Vector3(
+		velocity.x,
+		0,
+		velocity.z
+	),
+
+	delta
+
 	)
 
-	if step.success:
-		apply_step(step)
+	if step_up.success:
+		apply_step(step_up)
 		
 	move_and_slide()
+	
+	if direction != Vector3.ZERO:
+
+		var step_down := StepTester.try_step_down(
+
+			self,
+
+			Vector3(
+				velocity.x,
+				0,
+				velocity.z
+			),
+
+			delta
+
+		)
+
+		if step_down.success:
+			apply_step(step_down)
+			
+	camera_offset = camera_offset.lerp(
+	Vector3.ZERO,
+	delta * CAMERA_STEP_SPEED
+	)
+
+	camera_pivot.position = camera_offset
 
 
 func _unhandled_input(event):
@@ -85,7 +121,13 @@ func _unhandled_input(event):
 		)
 
 func apply_step(step: StepResult) -> void:
+
+	if abs(step.offset.y) < 0.01:
+		return
+
 	global_position += step.offset
+
+	camera_offset -= step.offset
 	
 func _input(event):
 

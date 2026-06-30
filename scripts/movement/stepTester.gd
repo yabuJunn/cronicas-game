@@ -27,6 +27,8 @@ const FLOOR_OFFSETS := [
 
 ]
 
+const STEP_DOWN_MARGIN := 0.01
+
 static func try_step_up(
 	body: CharacterBody3D,
 	velocity: Vector3,
@@ -227,7 +229,8 @@ static func _try_down(
 
 	body,
 	transform,
-	height
+	height,
+	is_step_up := true
 
 ) -> StepResult:
 
@@ -254,6 +257,9 @@ static func _try_down(
 
 		if !_validate_floor(physics):
 			continue
+			
+		if physics.get_travel().y > -STEP_DOWN_MARGIN:
+			continue
 
 		var distance := physics.get_remainder().length()
 
@@ -262,8 +268,12 @@ static func _try_down(
 			best_distance = distance
 
 			best_step.success = true
-			best_step.offset = offset - physics.get_remainder()
+			if is_step_up:
+				best_step.offset = offset - physics.get_remainder()
+			else:
+				best_step.offset = offset + physics.get_travel()
 			best_step.normal = physics.get_collision_normal()
+			best_step.is_step_up = is_step_up
 
 	return best_step
 
@@ -291,3 +301,43 @@ static func _validate_floor(
 		return false
 
 	return true
+
+
+# ---------------------- Step Down ---------------------
+
+static func try_step_down(
+
+	body: CharacterBody3D,
+	velocity: Vector3,
+	delta: float
+
+) -> StepResult:
+
+	var step := StepResult.new()
+
+	# Solo cuando estamos en el suelo.
+	if !body.is_on_floor():
+		return step
+
+	# No bajar si estamos saltando.
+	if body.velocity.y > 0.0:
+		return step
+
+	var motion := Vector3(
+		velocity.x,
+		0,
+		velocity.z
+	) * delta
+
+	if motion.length() < 0.01:
+		return step
+
+	var transform := body.global_transform
+	transform.origin += motion
+
+	return _try_down(
+		body,
+		transform,
+		MAX_STEP_HEIGHT,
+		false
+	)

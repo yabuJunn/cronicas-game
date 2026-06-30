@@ -11,9 +11,11 @@ extends CharacterBody3D
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
-const MOUSE_SENSITIVITY = 0.002
+const MOUSE_SENSITIVITY = 0.003
 
 var gravity = 9.8
+
+var camera_enabled := true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -67,6 +69,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event):
+	if !camera_enabled:
+		return
 
 	if event is InputEventMouseMotion:
 
@@ -82,3 +86,14 @@ func _unhandled_input(event):
 
 func apply_step(step: StepResult) -> void:
 	global_position += step.offset
+	
+func _input(event):
+
+	if event.is_action_pressed("ui_cancel_custom"):
+		camera_enabled = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			camera_enabled = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

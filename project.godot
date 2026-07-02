@@ -14,6 +14,10 @@ config/name="Cronicas de un Mundo Perdido"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="D:/General/Godot/cronicas-de-un-mundo-perdido/captures/capture1.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")

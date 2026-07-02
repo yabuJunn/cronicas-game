@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://duadhn4nup6hb"
+path="res://.godot/imported/mist_sea1.map-492bbe6d2cd2db753c0c10815430b64f.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/mist_sea1.map"
+dest_files=["res://.godot/imported/mist_sea1.map-492bbe6d2cd2db753c0c10815430b64f.tres"]
+
+[params]
+

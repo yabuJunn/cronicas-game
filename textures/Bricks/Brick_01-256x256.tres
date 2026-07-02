@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ted15pbp27f"]
+
+[ext_resource type="Texture2D" uid="uid://bi7vhl7r42p5g" path="res://textures/Bricks/Brick_01-256x256.png" id="1_gdpoo"]
+
+[resource]
+albedo_texture = ExtResource("1_gdpoo")
+metallic_specular = 0.0
+texture_filter = 2

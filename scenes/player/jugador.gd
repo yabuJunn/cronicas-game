@@ -8,8 +8,8 @@ extends CharacterBody3D
 #Radio:
 #0.35 m
 
-const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
+const WALK_SPEED = 5.0 # 5.0 Default
+const SPRINT_SPEED = 40 # 8.0 Default
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.003
 
@@ -94,7 +94,7 @@ func _physics_process(delta: float) -> void:
 		)
 
 		if step_down.success:
-			apply_step(step_down)
+			apply_step(step_down)						
 			
 	camera_offset = camera_offset.lerp(
 	Vector3.ZERO,

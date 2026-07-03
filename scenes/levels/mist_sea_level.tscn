@@ -7,8 +7,7 @@
 [ext_resource type="Material" uid="uid://bdlb4ujhaa5cx" path="res://textures/Stone/Stone_05-256x256.tres" id="5_klac0"]
 [ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="5_sch65"]
 [ext_resource type="Material" uid="uid://btjx5x8vdfpei" path="res://textures/Stone/Stone_01-256x256.tres" id="6_klac0"]
-[ext_resource type="Texture2D" uid="uid://usyx3rkucbd4" path="res://textures/Elements/Elements_09-256x256.png" id="7_eolq4"]
-[ext_resource type="Shader" uid="uid://coih501l1qrbm" path="res://shaders/water_shader_v2.gdshader" id="8_eolq4"]
+[ext_resource type="Material" uid="uid://dh1fwdots8woq" path="res://materials/water_shader_material.tres" id="9_eolq4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cciah"]
 _surfaces = [{
@@ -3290,28 +3289,10 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 0.75
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eolq4"]
-render_priority = 0
-shader = ExtResource("8_eolq4")
-shader_parameter/albedo = Color(1, 1, 1, 0.58431375)
-shader_parameter/texture_albedo = ExtResource("7_eolq4")
-shader_parameter/roughness = 1.0
-shader_parameter/specular = 0.5
-shader_parameter/wave_height = 0.25
-shader_parameter/wave_speed = 1.0
-shader_parameter/ripple_amount = 0.025
-shader_parameter/tide_amount = 0.05
-shader_parameter/tide_speed = 0.15
-shader_parameter/water_color = Color(0.62, 0.74, 0.82, 1)
-shader_parameter/water_alpha = 0.72
-shader_parameter/texture_speed = 0.03
-
-[sub_resource type="BoxMesh" id="BoxMesh_cciah"]
-material = SubResource("ShaderMaterial_eolq4")
-size = Vector3(1000, 2.525, 6000)
+[sub_resource type="PlaneMesh" id="PlaneMesh_klac0"]
+material = ExtResource("9_eolq4")
+size = Vector2(300, 700)
 subdivide_width = 10
-subdivide_height = 10
-subdivide_depth = 10
 
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
 
@@ -6548,6 +6529,6 @@ environment = SubResource("Environment_eut8q")
 
 [node name="Water" type="Node3D" parent="." unique_id=1260659188]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Water" unique_id=2125555986]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -451.05914, 4.098711, 0)
-mesh = SubResource("BoxMesh_cciah")
+[node name="WaterPlaneTest" type="MeshInstance3D" parent="Water" unique_id=1160406867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.91719, 5.1754, -0.59033966)
+mesh = SubResource("PlaneMesh_klac0")

@@ -28,6 +28,12 @@ uniform float uv_scale = 1.0;
 uniform sampler2D depth_texture : hint_depth_texture;
 uniform sampler2D screen_texture : hint_screen_texture;
 
+// Foam Settings (NEW)
+uniform vec4 foam_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float foam_distance : hint_range(0.0, 5.0, 0.05) = 0.5; // How far foam extends from shores
+uniform float foam_cutoff : hint_range(0.0, 1.0, 0.01) = 0.4;   // Sharpness cutoff of the foam texture
+uniform float foam_scale : hint_range(0.1, 10.0, 0.1) = 2.0;    // Size of the foam pattern
+
 //Depth Value
 
 uniform float depth_distance : hint_range(0.0, 20.0, 0.1) = 4.0;
@@ -49,6 +55,10 @@ void fragment() {
 	vec2 uv = UV * uv_scale;
 	vec2 uv_movement = movement_direction * TIME * movement_strength;
 	
+	// Sample normal maps
+	vec3 normal_a_tex = texture(normalmap_a, uv + uv_movement).rgb;
+	vec3 normal_b_tex = texture(normalmap_b, uv - uv_movement).rgb;
+	
 	vec3 normalmap = texture(normalmap_a, uv + uv_movement).rgb * normalmap_a_strength;
 	normalmap += texture(normalmap_b, uv - uv_movement).rgb * normalmap_b_strength;
 	
@@ -57,21 +67,42 @@ void fragment() {
 	vec3 screen = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
 	
 	//Get Depth in World Position (Y)
-	
 	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
 	vec4 world = INV_VIEW_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	float depth_texture_y = world.y / world.w;
 	float vertex_y = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).y;
 	
+	// Vertical water thickness (perfectly camera independent)
+	float vertical_thickness = vertex_y - depth_texture_y;
+	
 	//Set Depth Blend and adjust with Beer's Law
 	float depth_blend = clamp((vertex_y - depth_texture_y) / depth_distance, 0.0, 1.0);
 	depth_blend = exp(-depth_blend * beers_law);
+	
+	// --- NEW: Foam Mask Generation ---
+	// Create a stable mask near the shores using vertical thickness
+	float shore_mask = 1.0 - clamp(vertical_thickness / foam_distance, 0.0, 1.0);
+	
+	// Use your existing moving normal maps to distort the foam UV coordinates (makes it look fluid)
+	vec2 foam_uv = uv * foam_scale + (normal_a_tex.xy + normal_b_tex.xy) * 0.05;
+	
+	// We reuse your normal map textures as a procedural foam noise pattern to save performance
+	float foam_noise = texture(normalmap_a, foam_uv + uv_movement).r;
+	
+	// Combine shoreline proximity with noise to create branching sea-foam structures
+	float foam_cutoff_match = step(foam_cutoff, foam_noise * shore_mask);
+	float final_foam_mask = foam_cutoff_match * shore_mask;
 	
 	//Set depth color mix from depth blend and get final color mix using screen texture
 	vec3 depth_color = mix(secondary_color, primary_color, depth_blend).rgb;
 	vec3 final_color = mix(depth_color.rgb, screen, water_transparency);
 	
-	ALBEDO = mix(final_color, screen, depth_blend * (1.0 - basic_fresnel));
+	// Mix base water color with reflections
+	vec3 water_base = mix(final_color, screen, depth_blend * (1.0 - basic_fresnel));
+	
+	// --- NEW: Overlay Foam onto ALBEDO ---
+	ALBEDO = mix(water_base, foam_color.rgb, final_foam_mask);
+	
 	ROUGHNESS = roughness * (1.0 - basic_fresnel);
 	NORMAL_MAP = normalmap;
 }

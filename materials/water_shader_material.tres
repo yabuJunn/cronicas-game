@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dh1fwdots8woq"]
 
-[ext_resource type="Shader" uid="uid://dntg3sgk3p2l7" path="res://shaders/pixelated_water_shader.gdshader" id="1_kchkq"]
+[ext_resource type="Shader" uid="uid://dsghjm10yjdc3" path="res://shaders/water_shader.tres" id="1_kchkq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eolq4"]
 noise_type = 2
@@ -42,5 +42,3 @@ shader_parameter/foam_scale = 2.0
 shader_parameter/depth_distance = 3.5000000521542
 shader_parameter/beers_law = 11.40000016987368
 shader_parameter/water_transparency = 0.02999999932944
-shader_parameter/pixel_density = Vector2(320, 240)
-shader_parameter/color_quantization = 32.0

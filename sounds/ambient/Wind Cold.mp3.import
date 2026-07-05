@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wr1bphafudaa"
+path="res://.godot/imported/Wind Cold.mp3-2ce3130954891b7cd2f0ea785ce87ccf.mp3str"
+
+[deps]
+
+source_file="res://sounds/ambient/Wind Cold.mp3"
+dest_files=["res://.godot/imported/Wind Cold.mp3-2ce3130954891b7cd2f0ea785ce87ccf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

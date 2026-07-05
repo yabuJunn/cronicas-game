@@ -2,12 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_qc4ln"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_0abja"]
+[ext_resource type="CompressedTexture3D" uid="uid://bknn4a6af1nr0" path="res://scenes/levels/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr" id="3_73vye"]
 [ext_resource type="Material" uid="uid://bfvbp485t8l3n" path="res://textures/Stone/Stone_03-256x256.tres" id="3_vww24"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cciah"]
 [ext_resource type="Material" uid="uid://bdlb4ujhaa5cx" path="res://textures/Stone/Stone_05-256x256.tres" id="5_klac0"]
 [ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="5_sch65"]
 [ext_resource type="Material" uid="uid://btjx5x8vdfpei" path="res://textures/Stone/Stone_01-256x256.tres" id="6_klac0"]
+[ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="9_4rjc6"]
 [ext_resource type="Material" uid="uid://dh1fwdots8woq" path="res://materials/water_shader_material.tres" id="9_eolq4"]
+[ext_resource type="PackedScene" uid="uid://67jifxi3j3k5" path="res://scenes/world/falling_sand_particles.tscn" id="10_4rjc6"]
+[ext_resource type="Shader" uid="uid://cn50v6f24wt27" path="res://shaders/sand_fog_shader.gdshader" id="12_56pc5"]
+[ext_resource type="AudioStream" uid="uid://dr2cbgdsj0kt6" path="res://sounds/ambient/kokoreli777-sea-waves-169411.mp3" id="13_exndu"]
+[ext_resource type="AudioStream" uid="uid://de3ka7s4b26tf" path="res://sounds/ambient/pouring-sand-onto-sand-8-seconds-291368.mp3" id="14_exndu"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cciah"]
 _surfaces = [{
@@ -3284,15 +3290,48 @@ fog_mode = 1
 fog_light_color = Color(0.7169005, 0.83304757, 0.8683829, 1)
 fog_density = 1.0
 fog_depth_begin = 5.0
-fog_depth_end = 300.0
+fog_depth_end = 315.9
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0415
+volumetric_fog_albedo = Color(0.8008649, 0.8506746, 0.89978373, 1)
+volumetric_fog_emission = Color(0.19642848, 0.14353913, 0.16480091, 1)
+volumetric_fog_length = 49.45
 adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 0.75
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_klac0"]
 material = ExtResource("9_eolq4")
-size = Vector2(300, 700)
+size = Vector2(500, 700)
 subdivide_width = 10
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_klac0"]
+size = Vector3(17.256958, 83.986176, 530.22986)
+
+[sub_resource type="Gradient" id="Gradient_56pc5"]
+colors = PackedColorArray(0.8879926, 0.88799256, 0.8879925, 1, 0.49747366, 0.49747366, 0.49747366, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pcd7r"]
+gradient = SubResource("Gradient_56pc5")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_exndu"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_exndu"]
+noise = SubResource("FastNoiseLite_exndu")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pcd7r"]
+shader = ExtResource("12_56pc5")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_exndu")
+shader_parameter/noise_scale = 0.31839999194448
+shader_parameter/flatness = 0.90000001341108
+shader_parameter/density = 1.5049999619235002
+shader_parameter/grad_tex = SubResource("GradientTexture1D_pcd7r")
+shader_parameter/emision = Color(0.46221125, 0.36420205, 0.23906821, 1)
+shader_parameter/fog_speed = 0.10000024225000015
+shader_parameter/dust_particles_sharpness = 2.7460000829349998
+shader_parameter/edge_softness = 0.10000000149012
 
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
 
@@ -3303,7 +3342,8 @@ map_settings = ExtResource("2_0abja")
 metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1032259722]
-collision_mask = 0
+collision_layer = 2
+collision_mask = 7
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=167775779]
 mesh = SubResource("ArrayMesh_cciah")
@@ -6516,7 +6556,8 @@ shape = SubResource("ConvexPolygonShape3D_v15an")
 shape = SubResource("ConvexPolygonShape3D_rksnw")
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.297523, 13.623653, 76.64904)
+transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, 10.100292, 10.961552, 10.712173)
+collision_mask = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969109660]
 transform = Transform3D(-0.7301208, -0.4904965, 0.4757486, 0.06111845, 0.64656574, 0.76040596, -0.68057907, 0.5842653, -0.4420928, -91.278076, 18.917465, 0)
@@ -6530,5 +6571,91 @@ environment = SubResource("Environment_eut8q")
 [node name="Water" type="Node3D" parent="." unique_id=1260659188]
 
 [node name="WaterPlaneTest" type="MeshInstance3D" parent="Water" unique_id=1160406867]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.91719, 5.1754, -0.59033966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -179.05463, 5.1754, -0.59033966)
 mesh = SubResource("PlaneMesh_klac0")
+
+[node name="Borders" type="Node3D" parent="." unique_id=714211157]
+
+[node name="BorderBox" type="StaticBody3D" parent="Borders" unique_id=1710159196]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Borders/BorderBox" unique_id=155643237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.83395, 8.044264, 10.7057495)
+shape = SubResource("BoxShape3D_klac0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Borders/BorderBox" unique_id=1098000261]
+transform = Transform3D(-0.009773739, 0, -0.99995226, 0, 1, 0, 0.99995226, 0, -0.009773739, -162.83395, 8.044264, -238.78934)
+shape = SubResource("BoxShape3D_klac0")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Borders/BorderBox" unique_id=1906788192]
+transform = Transform3D(-0.009773739, 0, -0.99995226, 0, 1, 0, 0.99995226, 0, -0.009773739, -162.83395, 8.044264, 259.6383)
+shape = SubResource("BoxShape3D_klac0")
+
+[node name="Fog" type="Node3D" parent="." unique_id=983185032]
+
+[node name="FogVolume" type="FogVolume" parent="Fog" unique_id=855737209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.191, 2.183036, -9.23)
+visible = false
+size = Vector3(277.88773, 2.5817275, 574.2899)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume2" type="FogVolume" parent="Fog" unique_id=1710290517]
+transform = Transform3D(0.907044, 0, -0.42103586, 0, 1.0000001, 0, 0.4210358, 0, 0.9070441, -12.058981, 4.396542, -6.822074)
+size = Vector3(7.0009766, 1.5297241, 23.431519)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume3" type="FogVolume" parent="Fog" unique_id=89084473]
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -16.840527, 4.396542, -21.641273)
+size = Vector3(7.0009766, 1.5297241, 23.431519)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume4" type="FogVolume" parent="Fog" unique_id=2031387074]
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -25.284794, 4.396542, -44.383358)
+size = Vector3(7.0009766, 1.5297241, 23.431519)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume5" type="FogVolume" parent="Fog" unique_id=94840977]
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -33.586056, 4.396542, -57.570297)
+size = Vector3(7.0009766, 1.5297241, 23.431519)
+material = ExtResource("9_4rjc6")
+
+[node name="SandFalling" type="Node3D" parent="." unique_id=179108263]
+
+[node name="FallingSandParticles2" parent="SandFalling" unique_id=1847880853 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.666782, 15.612592, 15.002798)
+
+[node name="FallingSandParticles3" parent="SandFalling" unique_id=508559378 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.71627, 15.612592, 14.214056)
+
+[node name="FallingSandParticles4" parent="SandFalling" unique_id=1466506125 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.062754)
+
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="SandFalling" unique_id=189514432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.127262, 7.49331, 11.643755)
+size = Vector3(8.915344, 2.7910156, 11.05835)
+texture = ExtResource("3_73vye")
+
+[node name="SandDustVolume" type="FogVolume" parent="SandFalling" unique_id=1831795259]
+transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 8.5296955, 13.884433)
+size = Vector3(4.092285, 1.9052924, 4.4836273)
+shape = 0
+material = SubResource("ShaderMaterial_pcd7r")
+
+[node name="AmbientSounds" type="Node3D" parent="." unique_id=339204395]
+
+[node name="SeaSound" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=996946717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.49712, 8.446896, 0)
+stream = ExtResource("13_exndu")
+autoplay = true
+max_distance = 200.97
+parameters/looping = false
+
+[node name="SandFallingSound" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=309643834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.985405, 8.73775, 13.994387)
+stream = ExtResource("14_exndu")
+autoplay = true
+max_distance = 10.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="LevelMusic" type="AudioStreamPlayer3D" parent="." unique_id=88510586]

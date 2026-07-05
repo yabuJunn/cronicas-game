@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://c603q11s3rrf2"]
 
 [ext_resource type="Script" uid="uid://byi2ieieyik82" path="res://scenes/player/jugador.gd" id="1_c8qk1"]
+[ext_resource type="AudioStream" uid="uid://p3644kyejdjx" path="res://sounds/player/concrete-footstep.wav" id="2_168c5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8q00i"]
 radius = 0.35
 height = 1.8
 
 [node name="Jugador" type="CharacterBody3D" unique_id=1311695861]
+collision_mask = 7
 floor_snap_length = 0.4
 script = ExtResource("1_c8qk1")
 
@@ -18,4 +20,21 @@ shape = SubResource("CapsuleShape3D_8q00i")
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=54016625]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5197718, 0)
 
+[node name="AudioListener3D" type="AudioListener3D" parent="CameraPivot" unique_id=1711429352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4938562, 0)
+current = true
+
 [node name="InteractionRay" type="RayCast3D" parent="." unique_id=445702623]
+
+[node name="Steps" type="Node3D" parent="." unique_id=657605063]
+
+[node name="StepsSound" type="AudioStreamPlayer3D" parent="Steps" unique_id=1215306429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22874486, 0)
+stream = ExtResource("2_168c5")
+volume_db = -32.897
+max_db = -0.435
+bus = &"Player"
+
+[node name="StepsTimer" type="Timer" parent="Steps" unique_id=1567165009]
+wait_time = 0.487
+one_shot = true

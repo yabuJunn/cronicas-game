@@ -58,23 +58,26 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
-	var step_up := StepTester.try_step_up(
-
-	self,
-
-	Vector3(
-		velocity.x,
-		0,
-		velocity.z
-	),
-
-	delta
-
-	)
+	var step_up := StepTester.try_step_up(self,Vector3(velocity.x,0,velocity.z),delta)
 
 	if step_up.success:
 		apply_step(step_up)
 		
+	# Verifica si nos estamos moviendo y estamos en el suelo
+	if velocity.length() != 0 and is_on_floor():
+		# ¡Esta es la regla de oro! Solo hacemos algo si el timer llegó a cero
+		if $Steps/StepsTimer.time_left <= 0:
+			$Steps/StepsSound.pitch_scale = randf_range(0.8, 1.2)
+			$Steps/StepsSound.play()
+			
+			# Decidimos cuánto tiempo esperar para el SIGUIENTE paso
+			if Input.is_action_pressed("sprint"):
+				# Si corre, el siguiente paso suena más rápido (ej. cada 0.25 segundos)
+				$Steps/StepsTimer.start(0.25)
+			else:
+				# Si camina, el siguiente paso toma más tiempo (ej. cada 0.5 segundos)
+				$Steps/StepsTimer.start(0.5)
+	
 	move_and_slide()
 	
 	if direction != Vector3.ZERO:

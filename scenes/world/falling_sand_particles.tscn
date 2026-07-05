@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://67jifxi3j3k5"]
+
+[sub_resource type="Gradient" id="Gradient_d157v"]
+offsets = PackedFloat32Array(0.5766773, 1)
+colors = PackedColorArray(0.79607844, 0.7921569, 0.77254903, 0, 0.4911909, 0.49119097, 0.4911908, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4rjou"]
+gradient = SubResource("Gradient_d157v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d157v"]
+lifetime_randomness = 1.0
+direction = Vector3(-0.545, -1, 0)
+spread = 1.608
+initial_velocity_min = 1.5
+initial_velocity_max = 2.5
+orbit_velocity_min = 0.1500001
+orbit_velocity_max = 0.2000001
+gravity = Vector3(0, -1.35, 0)
+damping_min = 1.0
+damping_max = 1.5000001
+scale_min = 0.5
+scale_max = 0.7
+color = Color(0.62352943, 0.60784316, 0.4745098, 1)
+color_ramp = SubResource("GradientTexture1D_4rjou")
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.2
+
+[sub_resource type="Gradient" id="Gradient_4rjou"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sj3ga"]
+gradient = SubResource("Gradient_4rjou")
+fill = 1
+fill_from = Vector2(0.52820516, 0.53162396)
+fill_to = Vector2(0.5623932, 0.26495728)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5m1q"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.28235295)
+albedo_texture = SubResource("GradientTexture2D_sj3ga")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_d157v"]
+material = SubResource("StandardMaterial3D_n5m1q")
+size = Vector2(0.1, 0.1)
+
+[node name="FallingSandParticles" type="GPUParticles3D" unique_id=1847880853]
+layers = 4
+amount = 1000
+lifetime = 6.9799999999999995
+collision_base_size = 0.0
+visibility_aabb = AABB(-8.256088, -40.078907, -0.7879485, 8.356026, 40.179024, 1.491118)
+process_material = SubResource("ParticleProcessMaterial_d157v")
+draw_pass_1 = SubResource("QuadMesh_d157v")

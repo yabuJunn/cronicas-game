@@ -18,10 +18,15 @@ var gravity = 9.8
 var camera_enabled := true
 
 @onready var camera_pivot := $CameraPivot
+@onready var interact_ray := $CameraPivot/Camera3D/InteractionRayCast
+@onready var interact_prompt := $HUD/InteractPrompt
 
 var camera_offset := Vector3.ZERO
 
 const CAMERA_STEP_SPEED := 14.0
+
+# Guardamos el objeto que estamos mirando actualmente
+var current_interactable = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -105,6 +110,29 @@ func _physics_process(delta: float) -> void:
 	)
 
 	camera_pivot.position = camera_offset
+	
+# --- SISTEMA DE DETECCIÓN VISUAL ---
+	
+	# Obtenemos lo que sea que esté tocando el rayo (si no toca nada, es null)
+	var collider = interact_ray.get_collider() if interact_ray.is_colliding() else null
+	
+	# Solo actualizamos las cosas si cambiamos de objetivo
+	if collider != current_interactable:
+		
+		# 1. Apagamos el objeto anterior (si había uno)
+		if current_interactable != null:
+			current_interactable.set_highlight(false)
+			interact_prompt.hide()
+			
+		# 2. Revisamos si el NUEVO objeto que miramos es interactuable
+		if collider != null and collider.is_in_group("interactibleObjects"):
+			current_interactable = collider
+			current_interactable.set_highlight(true)
+			interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
+			interact_prompt.show()
+		else:
+			# Si miramos a una pared normal o al aire
+			current_interactable = null
 
 
 func _unhandled_input(event):
@@ -142,3 +170,13 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			camera_enabled = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+	# Interacción con la tecla E
+	if event.is_action_pressed("interact") and current_interactable != null:
+		
+		# Le decimos al objeto que ejecute su propia lógica de interacción
+		current_interactable.interactuar()
+		
+		# Limpiamos la referencia del jugador y ocultamos la UI
+		current_interactable = null
+		interact_prompt.hide()

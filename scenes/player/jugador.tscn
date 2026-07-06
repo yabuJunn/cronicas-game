@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://byi2ieieyik82" path="res://scenes/player/jugador.gd" id="1_c8qk1"]
 [ext_resource type="AudioStream" uid="uid://p3644kyejdjx" path="res://sounds/player/concrete-footstep.wav" id="2_168c5"]
+[ext_resource type="Script" uid="uid://cxoylpy1de16y" path="res://scenes/player/inventory_window.gd" id="3_yg7j8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8q00i"]
 radius = 0.35
 height = 1.8
 
 [node name="Jugador" type="CharacterBody3D" unique_id=1311695861]
-collision_mask = 7
+collision_mask = 15
 floor_snap_length = 0.4
 script = ExtResource("1_c8qk1")
 
@@ -19,6 +20,10 @@ shape = SubResource("CapsuleShape3D_8q00i")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=54016625]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5197718, 0)
+
+[node name="InteractionRayCast" type="RayCast3D" parent="CameraPivot/Camera3D" unique_id=369483092]
+target_position = Vector3(0, -0.45, -4.97)
+collision_mask = 8
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CameraPivot" unique_id=1711429352]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4938562, 0)
@@ -38,3 +43,65 @@ bus = &"Player"
 [node name="StepsTimer" type="Timer" parent="Steps" unique_id=1567165009]
 wait_time = 0.487
 one_shot = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1105883275]
+
+[node name="InteractPrompt" type="Label" parent="HUD" unique_id=1242293136]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.5
+offset_top = 70.5
+offset_right = 4.5
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InventoryWindow" type="ColorRect" parent="HUD" unique_id=1732622386]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+color = Color(0, 0, 0, 0.16862746)
+script = ExtResource("3_yg7j8")
+
+[node name="ItemsGrid" type="GridContainer" parent="HUD/InventoryWindow" unique_id=1713315689]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 5
+
+[node name="NameText" type="Label" parent="HUD/InventoryWindow" unique_id=1136040833]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -153.0
+offset_right = 122.0
+offset_bottom = -130.0
+grow_vertical = 0
+text = "Object Name"
+
+[node name="DescriptionText" type="Label" parent="HUD/InventoryWindow" unique_id=88419052]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -118.0
+offset_right = 168.0
+offset_bottom = -95.0
+grow_vertical = 0
+text = "Object Description"

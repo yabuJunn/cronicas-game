@@ -14,6 +14,7 @@
 [ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="11_qcc2t"]
 [ext_resource type="Script" uid="uid://c53iy1k21hj3w" path="res://scenes/objects/doorTestFunc.gd" id="11_xtll6"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="11_y2424"]
+[ext_resource type="AudioStream" uid="uid://b2am3bwmbpe88" path="res://sounds/ambient/Stone Moving.mp3" id="12_l22r4"]
 
 [sub_resource type="Environment" id="Environment_xtll6"]
 ambient_light_source = 3
@@ -1217,6 +1218,14 @@ visible = false
 layers = 4
 size = Vector3(2, 2, 10.6015625)
 material = ExtResource("11_qcc2t")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Polvo Puerta" unique_id=1857151406]
+stream = ExtResource("12_l22r4")
+unit_size = 3.62
+pitch_scale = 0.59
+panning_strength = 2.07
+bus = &"Ambient"
+area_mask = 15
 
 [node name="Door" type="Node3D" parent="." unique_id=366402241]
 script = ExtResource("1_hg8qc")

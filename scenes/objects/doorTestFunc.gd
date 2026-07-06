@@ -3,14 +3,19 @@ extends InteractableItem
 # Asigna aquí tu nodo GPUParticles3D desde el Inspector
 @onready var particulas_polvo: GPUParticles3D = $"../../Polvo Puerta"
 @onready var fog_particulas: FogVolume = $"../../Polvo Puerta/Polvo Fog"
+@onready var stoneMovingAudio3D: AudioStreamPlayer3D = $"../../Polvo Puerta/AudioStreamPlayer3D"
 
 # --- CONFIGURACIÓN DEL POLVO ---
 @export var polvo_offset_y: float = 10   # Margen de seguridad para que el polvo no aparezca abajo del suelo
 @export var alto_neblina: float = 3.0     # Qué tan alto (en metros) subirá la nube de FogVolume
 
 # --- CONFIGURACIÓN DE LA NIEBLA (FOG) ---
-@export var densidad_max_niebla: float = 1.5  # Qué tan densa/oscura será la nube de polvo (Tu shader usa 0.99 por defecto)
-@export var tiempo_entrada_niebla: float = 5 # Cuánto tardará en aparecer la niebla por completo
+@export var densidad_max_niebla: float = 1.5  # Qué tan densa/oscura será la nube de polvo
+@export var tiempo_entrada_niebla: float = 5   # Cuánto tardará en aparecer la niebla por completo
+
+# --- CONFIGURACIÓN DEL AUDIO ---
+@export var volumen_max_audio: float = 0.0     # Volumen ideal cuando la puerta se mueve (en decibelios)
+@export var tiempo_fade_audio: float = 0.75    # Duración de las transiciones de entrada y salida del sonido
 
 # El nombre exacto de la llave que abre esta puerta
 @export var llave_requerida: String = "Llave"
@@ -97,14 +102,12 @@ func crear_polvo_en_base() -> void:
 		fog_particulas.size = Vector3(ancho_real, alto_neblina, profundidad_real)
 		
 		if fog_particulas.material:
-			# Duplicamos el ShaderMaterial único de esta puerta
 			fog_particulas.material = fog_particulas.material.duplicate()
 			
 			var tween_entrada = create_tween()
 			
-			# Comprobamos si es tu Shader personalizado o un FogMaterial clásico
 			if fog_particulas.material is ShaderMaterial:
-				fog_particulas.material.set_shader_parameter("density", 0.0) # Iniciamos invisible
+				fog_particulas.material.set_shader_parameter("density", 0.0) 
 				tween_entrada.tween_property(fog_particulas.material, "shader_parameter/density", densidad_max_niebla, tiempo_entrada_niebla)\
 					.set_trans(Tween.TRANS_SINE)\
 					.set_ease(Tween.EASE_OUT)
@@ -133,22 +136,45 @@ func iniciar_animacion_apertura() -> void:
 	var nodo_a_mover = get_parent() if get_parent() != null else self
 	var posicion_final = nodo_a_mover.global_position + Vector3(0, -distancia_bajada, 0)
 	
-	# Tween principal del movimiento de la puerta
+	# --- TWEEN PRINCIPAL (MOVIMIENTO + AUDIO DE LA PUERTA) ---
 	var tween_puerta = create_tween()
+	
+	# Animación física del descenso de la puerta
 	tween_puerta.tween_property(nodo_a_mover, "global_position", posicion_final, tiempo_apertura)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_IN_OUT)
 	
-	# Cuando la puerta termina de bajar por completo:
+	# CONTROL DEL AUDIO (En paralelo con el movimiento de la puerta)
+	if is_instance_valid(stoneMovingAudio3D):
+		stoneMovingAudio3D.volume_db = -80.0 # Empezamos en silencio absoluto
+		stoneMovingAudio3D.play()
+		
+		# Fade In inicial del audio
+		tween_puerta.parallel().tween_property(stoneMovingAudio3D, "volume_db", volumen_max_audio, tiempo_fade_audio)\
+			.set_trans(Tween.TRANS_SINE)\
+			.set_ease(Tween.EASE_OUT)
+		
+		# Fade Out final calculado para terminar justo al detenerse la puerta
+		var retraso_fade_out = tiempo_apertura - tiempo_fade_audio
+		if retraso_fade_out > 0:
+			tween_puerta.parallel().tween_property(stoneMovingAudio3D, "volume_db", -80.0, tiempo_fade_audio)\
+				.set_trans(Tween.TRANS_SINE)\
+				.set_ease(Tween.EASE_IN)\
+				.set_delay(retraso_fade_out)
+	
+	# Cuando la puerta termina de bajar y el audio se apaga por completo:
 	tween_puerta.tween_callback(func():
-		if is_instance_valid(particulas_polvo):
-			particulas_polvo.emitting = false # Deja de generar nuevas partículas
+		# Detener el audio definitivamente por código
+		if is_instance_valid(stoneMovingAudio3D):
+			stoneMovingAudio3D.stop()
 			
-			# Creamos el Tween de limpieza final (FADE OUT SUAVE)
+		if is_instance_valid(particulas_polvo):
+			particulas_polvo.emitting = false 
+			
+			# Creamos el Tween de limpieza final para la niebla (FADE OUT SUAVE)
 			var cleanup_tween = create_tween()
 			var tiempo_desaparicion = particulas_polvo.lifetime
 			
-			# Desvanecer la densidad del shader gradualmente a 0.0
 			if is_instance_valid(fog_particulas) and fog_particulas.material:
 				if fog_particulas.material is ShaderMaterial:
 					cleanup_tween.tween_property(fog_particulas.material, "shader_parameter/density", 0.0, tiempo_desaparicion)\
@@ -159,17 +185,16 @@ func iniciar_animacion_apertura() -> void:
 						.set_trans(Tween.TRANS_SINE)\
 						.set_ease(Tween.EASE_IN)
 			
-			# Guardamos referencias en variables locales seguras
 			var p_polvo = particulas_polvo
 			var n_mover = nodo_a_mover
 			
-			# Cuando la niebla llegue exactamente a cero, limpiamos todo del mapa
+			# Borrado total y definitivo de todo cuando las partículas desaparecen
 			cleanup_tween.tween_callback(func():
 				if is_instance_valid(p_polvo):
 					p_polvo.queue_free()
 				if is_instance_valid(n_mover):
 					n_mover.queue_free()
-				print("Efectos y puerta eliminados del mapa de manera definitiva y limpia.")
+				print("Audio, efectos y puerta eliminados limpiamente del mapa.")
 			)
 		else:
 			nodo_a_mover.queue_free()

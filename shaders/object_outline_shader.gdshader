@@ -1,6 +1,6 @@
 shader_type spatial;
 // render_mode unshaded: no lo afecta la luz.
-// cull_front: solo dibuja la parte trasera (clave para que parezca un borde y no cubra el objeto).
+// cull_front: solo dibuja la 	parte trasera (clave para que parezca un borde y no cubra el objeto).
 render_mode unshaded, cull_front;
 
 uniform vec4 outline_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // Blanco por defecto

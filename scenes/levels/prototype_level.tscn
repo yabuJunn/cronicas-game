@@ -11,8 +11,18 @@
 [ext_resource type="Script" uid="uid://cp8cgdqni6oqh" path="res://scenes/objects/interactible_object.gd" id="9_w2f51"]
 [ext_resource type="Material" uid="uid://b7emn18uq0g50" path="res://materials/interactible_item_default_material_3d.tres" id="10_1qcro"]
 [ext_resource type="Script" uid="uid://bpi01r0mhcswx" path="res://scenes/objects/doorSea.gd" id="11_1qcro"]
+[ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="11_qcc2t"]
 [ext_resource type="Script" uid="uid://c53iy1k21hj3w" path="res://scenes/objects/doorTestFunc.gd" id="11_xtll6"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="11_y2424"]
+
+[sub_resource type="Environment" id="Environment_xtll6"]
+ambient_light_source = 3
+ambient_light_color = Color(0.8879926, 0.88799256, 0.8879925, 1)
+fog_enabled = true
+fog_light_energy = 0.0
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2f51"]
 albedo_texture = ExtResource("3_nbgd6")
@@ -587,6 +597,35 @@ points = PackedVector3Array(25.333334, 33.5, 36, 25.333334, 22, 36, 24.666666, 3
 
 [sub_resource type="BoxMesh" id="BoxMesh_js2ys"]
 
+[sub_resource type="Curve" id="Curve_xtll6"]
+_data = [Vector2(0, 0.20357943), 0.0, 0.0, 0, 0, Vector2(0.20098041, 1), 0.0, 0.0, 0, 0, Vector2(0.79901963, 0.80313206), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_qcc2t"]
+curve = SubResource("Curve_xtll6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l22r4"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 64.756
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -0.8, 0)
+damping_min = 2.0
+damping_max = 3.0000002
+scale_curve = SubResource("CurveTexture_qcc2t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtll6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.3623615, 0.39151636, 0.40443814, 0.957)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xtll6"]
+material = SubResource("StandardMaterial3D_xtll6")
+size = Vector3(0.05, 0.05, 0.05)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_1qcro"]
 _surfaces = [{
 "aabb": AABB(-0.34375, 0.5, -4.40625, 0.71875, 20.25, 9.3125),
@@ -613,6 +652,9 @@ points = PackedVector3Array(0.37269595, 19.961039, 3.486873, -0.3445819, 19.9610
 [sub_resource type="BoxShape3D" id="BoxShape3D_xtll6"]
 
 [node name="Node3D" type="Node3D" unique_id=1007813685]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=624836426]
+environment = SubResource("Environment_xtll6")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=465845234]
 script = ExtResource("1_hg8qc")
@@ -1152,7 +1194,6 @@ mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=175083790]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.092, 0)
-visible = false
 shape = SubResource("BoxShape3D_js2ys")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=161906441]
@@ -1160,6 +1201,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.092359, 0)
 layers = 8
 material_overlay = ExtResource("10_1qcro")
 mesh = SubResource("BoxMesh_js2ys")
+
+[node name="Polvo Puerta" type="GPUParticles3D" parent="." unique_id=131193097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.450787, 10.64391)
+layers = 4
+emitting = false
+amount = 498
+lifetime = 2.55
+process_material = SubResource("ParticleProcessMaterial_l22r4")
+draw_pass_1 = SubResource("BoxMesh_xtll6")
+
+[node name="Polvo Fog" type="FogVolume" parent="Polvo Puerta" unique_id=351215217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30829573, -0.29021263, 0.32279778)
+visible = false
+layers = 4
+size = Vector3(2, 2, 10.6015625)
+material = ExtResource("11_qcc2t")
 
 [node name="Door" type="Node3D" parent="." unique_id=366402241]
 script = ExtResource("1_hg8qc")

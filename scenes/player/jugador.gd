@@ -1,20 +1,15 @@
 extends CharacterBody3D
 
-#Jugador
+# Jugador
+# Altura: 1.80 metros
+# Radio: 0.35 m
 
-#Altura:
-#1.80 metros
-
-#Radio:
-#0.35 m
-
-const WALK_SPEED = 5.0 # 5.0 Default
-const SPRINT_SPEED = 40 # 8.0 Default
+const WALK_SPEED = 5.0 #Default is 5
+const SPRINT_SPEED = 40.0 #Default is 8
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.003
 
 var gravity = 9.8
-
 var camera_enabled := true
 
 @onready var camera_pivot := $CameraPivot
@@ -22,7 +17,6 @@ var camera_enabled := true
 @onready var interact_prompt := $HUD/InteractPrompt
 
 var camera_offset := Vector3.ZERO
-
 const CAMERA_STEP_SPEED := 14.0
 
 # Guardamos el objeto que estamos mirando actualmente
@@ -32,23 +26,12 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
-	var input_dir = Input.get_vector(
-	"move_left",
-	"move_right",
-	"move_forward",
-    "move_back"
-	)
-
-	var direction = (
-		transform.basis *
-		Vector3(input_dir.x, 0, input_dir.y)
-	).normalized()
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	var speed = WALK_SPEED
-
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
-	
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -63,76 +46,65 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
-	var step_up := StepTester.try_step_up(self,Vector3(velocity.x,0,velocity.z),delta)
-
+	var step_up := StepTester.try_step_up(self, Vector3(velocity.x, 0, velocity.z), delta)
 	if step_up.success:
 		apply_step(step_up)
 		
-	# Verifica si nos estamos moviendo y estamos en el suelo
+	# Sonidos de pasos
 	if velocity.length() != 0 and is_on_floor():
-		# ¡Esta es la regla de oro! Solo hacemos algo si el timer llegó a cero
 		if $Steps/StepsTimer.time_left <= 0:
 			$Steps/StepsSound.pitch_scale = randf_range(0.8, 1.2)
 			$Steps/StepsSound.play()
-			
-			# Decidimos cuánto tiempo esperar para el SIGUIENTE paso
 			if Input.is_action_pressed("sprint"):
-				# Si corre, el siguiente paso suena más rápido (ej. cada 0.25 segundos)
 				$Steps/StepsTimer.start(0.25)
 			else:
-				# Si camina, el siguiente paso toma más tiempo (ej. cada 0.5 segundos)
 				$Steps/StepsTimer.start(0.5)
 	
 	move_and_slide()
 	
 	if direction != Vector3.ZERO:
-
-		var step_down := StepTester.try_step_down(
-
-			self,
-
-			Vector3(
-				velocity.x,
-				0,
-				velocity.z
-			),
-
-			delta
-
-		)
-
+		var step_down := StepTester.try_step_down(self, Vector3(velocity.x, 0, velocity.z), delta)
 		if step_down.success:
 			apply_step(step_down)						
 			
-	camera_offset = camera_offset.lerp(
-	Vector3.ZERO,
-	delta * CAMERA_STEP_SPEED
-	)
-
+	camera_offset = camera_offset.lerp(Vector3.ZERO, delta * CAMERA_STEP_SPEED)
 	camera_pivot.position = camera_offset
 	
-# --- SISTEMA DE DETECCIÓN VISUAL ---
-	
-	# Obtenemos lo que sea que esté tocando el rayo (si no toca nada, es null)
+	# --- SISTEMA DE DETECCIÓN VISUAL ---
 	var collider = interact_ray.get_collider() if interact_ray.is_colliding() else null
 	
-	# Solo actualizamos las cosas si cambiamos de objetivo
+	# MEJORA DE SEGURIDAD: Si el objeto es destruido O si se quitó del grupo (ej: al abrir la puerta)
+	if current_interactable != null:
+		if not is_instance_valid(current_interactable) or not current_interactable.is_in_group("interactibleObjects"):
+			current_interactable = null
+			interact_prompt.hide()
+	
 	if collider != current_interactable:
-		
-		# 1. Apagamos el objeto anterior (si había uno)
-		if current_interactable != null:
+		# Apagar el highlight del objeto anterior si aún existe
+		if current_interactable != null and is_instance_valid(current_interactable):
 			current_interactable.set_highlight(false)
 			interact_prompt.hide()
 			
-		# 2. Revisamos si el NUEVO objeto que miramos es interactuable
-		if collider != null and collider.is_in_group("interactibleObjects"):
+		# Detectar el nuevo objeto
+		if collider != null and collider.is_in_group("interactibleObjects") and not collider.is_queued_for_deletion():
 			current_interactable = collider
 			current_interactable.set_highlight(true)
-			interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
+			
+			# --- ASIGNACIÓN DINÁMICA DEL TEXTO DE INTERFAZ (UI) ---
+			if "texto_interaccion" in current_interactable:
+				# Si el objeto define su propio texto personalizado (como tu puerta)
+				interact_prompt.text = current_interactable.texto_interaccion
+			elif "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
+				# Si es un objeto común y corriente que va al inventario (llaves, pociones)
+				interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
+			else:
+				# Texto seguro por defecto por si acaso
+				interact_prompt.text = "[ E ] Interactuar"
+				
 			interact_prompt.show()
 		else:
-			# Si miramos a una pared normal o al aire
 			current_interactable = null
+			interact_prompt.hide()
 
 
 func _unhandled_input(event):
@@ -140,28 +112,19 @@ func _unhandled_input(event):
 		return
 
 	if event is InputEventMouseMotion:
-
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
-
 		$CameraPivot.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
+		$CameraPivot.rotation.x = clamp($CameraPivot.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 
-		$CameraPivot.rotation.x = clamp(
-			$CameraPivot.rotation.x,
-			deg_to_rad(-85),
-			deg_to_rad(85)
-		)
 
 func apply_step(step: StepResult) -> void:
-
 	if abs(step.offset.y) < 0.01:
 		return
-
 	global_position += step.offset
-
 	camera_offset -= step.offset
 	
-func _input(event):
 
+func _input(event):
 	if event.is_action_pressed("ui_cancel_custom"):
 		camera_enabled = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -171,12 +134,12 @@ func _input(event):
 			camera_enabled = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	# Interacción con la tecla E
+	# --- ENTRADA DE INTERACCIÓN (TECLA E) ---
 	if event.is_action_pressed("interact") and current_interactable != null:
-		
-		# Le decimos al objeto que ejecute su propia lógica de interacción
-		current_interactable.interactuar()
-		
-		# Limpiamos la referencia del jugador y ocultamos la UI
-		current_interactable = null
-		interact_prompt.hide()
+		if is_instance_valid(current_interactable):
+			# Llamamos a la función de la clase base o clase hija
+			current_interactable.interactuar()
+			
+			# Limpiamos inmediatamente la interfaz para evitar el "texto fantasma"
+			current_interactable = null
+			interact_prompt.hide()

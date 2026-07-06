@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dpf0u6lshlypa"
+path="res://.godot/imported/seaDoor.map-2ccd8f84c74284f6ff8daf1c5d55a576.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/seaDoor.map"
+dest_files=["res://.godot/imported/seaDoor.map-2ccd8f84c74284f6ff8daf1c5d55a576.tres"]
+
+[params]
+

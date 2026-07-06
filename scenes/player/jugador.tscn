@@ -92,7 +92,6 @@ offset_top = -153.0
 offset_right = 122.0
 offset_bottom = -130.0
 grow_vertical = 0
-text = "Object Name"
 
 [node name="DescriptionText" type="Label" parent="HUD/InventoryWindow" unique_id=88419052]
 layout_mode = 1
@@ -104,4 +103,3 @@ offset_top = -118.0
 offset_right = 168.0
 offset_bottom = -95.0
 grow_vertical = 0
-text = "Object Description"

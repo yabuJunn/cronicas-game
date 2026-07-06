@@ -8,8 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="6_7kxsd"]
 [ext_resource type="Material" uid="uid://m3tshs51n1qq" path="res://textures/Roofs/Roofs_14-256x256.tres" id="6_js2ys"]
 [ext_resource type="Material" uid="uid://cnxa1r88tn32s" path="res://textures/Bricks/Bricks_06-256x256.tres" id="7_cx7x2"]
-[ext_resource type="Shader" uid="uid://cw4477kiepqlg" path="res://shaders/object_outline_shader.gdshader" id="9_cx7x2"]
 [ext_resource type="Script" uid="uid://cp8cgdqni6oqh" path="res://scenes/objects/interactible_object.gd" id="9_w2f51"]
+[ext_resource type="Material" uid="uid://b7emn18uq0g50" path="res://materials/interactible_item_default_material_3d.tres" id="10_1qcro"]
+[ext_resource type="Script" uid="uid://bpi01r0mhcswx" path="res://scenes/objects/doorSea.gd" id="11_1qcro"]
+[ext_resource type="Script" uid="uid://c53iy1k21hj3w" path="res://scenes/objects/doorTestFunc.gd" id="11_xtll6"]
+[ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="11_y2424"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2f51"]
 albedo_texture = ExtResource("3_nbgd6")
@@ -582,17 +585,32 @@ points = PackedVector3Array(25.333334, 33.5, 36, 25.333334, 22, 36, 24.666666, 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_js2ys"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2f51"]
-render_priority = 0
-shader = ExtResource("9_cx7x2")
-shader_parameter/outline_color = Color(1, 1, 1, 0)
-shader_parameter/outline_width = 2.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2424"]
-next_pass = SubResource("ShaderMaterial_w2f51")
-albedo_color = Color(0.36229593, 0.31855088, 0.1680238, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_js2ys"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1qcro"]
+_surfaces = [{
+"aabb": AABB(-0.34375, 0.5, -4.40625, 0.71875, 20.25, 9.3125),
+"attribute_data": PackedByteArray("AABAvQBAF8AAADA9AEAXwAAAMD0AAIC9AABAvQAAgL0AAB0/AACAvQAADb8AAIC9AAANvwBAF8AAAB0/AEAXwAAAHb8AADA9AAAdvwAAQL0AAA0/AABAvQAADT8AADA9AAAdPwAAMD0AAA2/AAAwPQAADb8AAEC9AAAdPwAAQL0AAB2/AEAXwAAADT8AQBfAAAANPwAAgL0AAB2/AACAvQAAQD0AAIC9AAAwvQAAgL0AADC9AEAXwAAAQD0AQBfAfAykPwAAMD18DKQ/AABAvUJVwD8AAEC9QlXAPwAAMD3t2Ig/AABAve3YiD8AADA9hMxIPwAAMD2EzEg/AABAvQAA0L0AACbAAAAsPgAAJsAAAOA+AMAfwAAAHT8AQBfAAAANvwBAF8AAAL6+AMAfwAAAHb8AADA9AAAdvwAAQL0AAA0/AABAvQAADT8AADA9AAAsPgAAMD0AANC9AAAwPQAA0L0AAEC9AAAsPgAAQL0AAB2/AEAXwAAA4L4AwB/AAAAsvgAAJsAAANA9AAAmwAAAvj4AwB/AAAANPwBAF8D4lzm/AABAvfiXOb8AADA9pz6BvwAAMD2nPoG/AABAvZhSur8AAEC9VGSevwAAQL1UZJ6/AAAwPZhSur8AADA9"),
+"format": 34359742487,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAIAAjACQAIAAkACUAJgAnACgAJgAoACkAKgArACwAKgAsAC0ALgAvADAALgAwADEALgAxADIALgAyADMANAA1ADYANAA2ADcAOAA5ADoAOAA6ADsA"),
+"material": ExtResource("11_y2424"),
+"name": "Stone/Stone_11-256x256",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("AADAPgBAl0EAAI3AAACwvgBAl0EAAI3AAACwvgAAAD8AAI3AAADAPgAAAD8AAI3AAACwvgAAAD8AAJ1AAACwvgAAAD8AAI3AAACwvgBAl0EAAI3AAACwvgBAl0EAAJ1AAACwvgAAAD8AAJ1AAADAPgAAAD8AAJ1AAADAPgAAAD8AAI3AAACwvgAAAD8AAI3AAACwvgBAl0EAAJ1AAACwvgBAl0EAAI3AAADAPgBAl0EAAI3AAADAPgBAl0EAAJ1AAADAPgBAl0EAAJ1AAADAPgBAl0EAAI3AAADAPgAAAD8AAI3AAADAPgAAAD8AAJ1AAADAPgAAAD8AAJ1AAACwvgAAAD8AAJ1AAACwvgBAl0EAAJ1AAADAPgBAl0EAAJ1AAACwvgBAl0EAAI3AAADAPgBAl0EAAI3AAADAPgDAn0EAAD7AAACwvgDAn0EAAD7AAADAPgAApkEAAFC/AACwvgAApkEAAFC/AACwvgDAn0EAAD7AAADAPgDAn0EAAD7AAACwvgAApkEAAFC/AACwvgAApkEAAKw/AACwvgDAn0EAAGBAAACwvgBAl0EAAJ1AAACwvgBAl0EAAI3AAACwvgDAn0EAAD7AAACwvgBAl0EAAJ1AAADAPgBAl0EAAJ1AAADAPgBAl0EAAI3AAACwvgBAl0EAAI3AAACwvgAApkEAAKw/AACwvgAApkEAAFC/AADAPgAApkEAAFC/AADAPgAApkEAAKw/AADAPgBAl0EAAJ1AAADAPgDAn0EAAGBAAADAPgAApkEAAKw/AADAPgAApkEAAFC/AADAPgDAn0EAAD7AAADAPgBAl0EAAI3AAADAPgDAn0EAAGBAAACwvgDAn0EAAGBAAACwvgAApkEAAKw/AADAPgAApkEAAKw/AADAPgDAn0EAAGBAAADAPgBAl0EAAJ1AAACwvgBAl0EAAJ1AAACwvgDAn0EAAGBAAADz/wAA/78AAPP/AAD/vwAA8/8AAP+/AADz/wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7/+//9///////7//3///////v//f//////+//9///////9//3////+//3//f////7//f/9/////v/9//3////+/2En+//9//9/YSf7//3//39hJ/v//f//f2En+//9//9+oXf7//39U1ahd/v//f1TVqF3+//9/VNWoXf7//39U1QAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7/+//9///////7//3///////v//f//////+//9///////7//3///////v//f///////f6jd/3+pqv9/qN3/f6mq/3+o3f9/qar/f6jd/3+pqv9/2Mn/f/+f/3/Yyf9//5//f9jJ/3//n/9/2Mn/f/+f")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hhip7"]
+points = PackedVector3Array(0.37267855, 18.90909, 4.9214506, 0.37267855, 0.5, 4.9214506, -0.34459716, 18.90909, 4.9214582, -0.34459716, 0.5, 4.9214582, 0.37278393, 18.90909, -4.4035716, 0.37278393, 0.5, -4.4035716, -0.34449798, 18.90909, -4.403312, -0.34449798, 0.5, -4.403312)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xip0e"]
+points = PackedVector3Array(0.37269595, 19.961039, 3.486873, -0.3445819, 19.961039, 3.4868822, 0.37267974, 18.90909, 4.921453, -0.34459716, 18.90909, 4.9214597, 0.37272024, 20.75, 1.3350013, -0.344559, 20.75, 1.3350099, 0.37274456, 20.75, -0.816833, 0.37278512, 18.90909, -4.4033203, 0.37276888, 19.961052, -2.9687183, -0.34453613, 20.75, -0.81682193, -0.344498, 18.90909, -4.403312, -0.34451324, 19.961052, -2.9687114)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1qcro"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtll6"]
 
 [node name="Node3D" type="Node3D" unique_id=1007813685]
 
@@ -1123,11 +1141,14 @@ shadow_bias = 0.598
 shadow_normal_bias = 1.945
 shadow_blur = 2.351
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=612414149 groups=["interactibleObjects"]]
+[node name="RigidBody3D" type="StaticBody3D" parent="." unique_id=2088345310 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.9616137, 0)
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("9_w2f51")
+item_name = "Llave"
+item_description = "Una llave"
+mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=175083790]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.092, 0)
@@ -1137,5 +1158,46 @@ shape = SubResource("BoxShape3D_js2ys")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=161906441]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.092359, 0)
 layers = 8
-material_overlay = SubResource("StandardMaterial3D_y2424")
+material_overlay = ExtResource("10_1qcro")
 mesh = SubResource("BoxMesh_js2ys")
+
+[node name="Door" type="Node3D" parent="." unique_id=366402241]
+script = ExtResource("1_hg8qc")
+local_map_file = "uid://dpf0u6lshlypa"
+map_settings = ExtResource("2_i8wb4")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="DoorStaticBody" type="StaticBody3D" parent="Door" unique_id=896138191 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.395233, 10.64391)
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("11_xtll6")
+item_name = "Puerta de Piedra"
+item_description = "Puerta"
+mesh = NodePath("entity_0_mesh_instance")
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="Door/DoorStaticBody" unique_id=1322143842 groups=["interactibleObjects"]]
+layers = 8
+material_overlay = ExtResource("10_1qcro")
+mesh = SubResource("ArrayMesh_1qcro")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="Door/DoorStaticBody" unique_id=73094820]
+shape = SubResource("ConvexPolygonShape3D_hhip7")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="Door/DoorStaticBody" unique_id=1980081730]
+shape = SubResource("ConvexPolygonShape3D_xip0e")
+
+[node name="DoorPrueba" type="StaticBody3D" parent="." unique_id=538618640 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.243797, 23.193417, 0)
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("11_1qcro")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoorPrueba" unique_id=252378514]
+layers = 8
+material_overlay = ExtResource("10_1qcro")
+mesh = SubResource("BoxMesh_1qcro")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPrueba" unique_id=1474723149]
+shape = SubResource("BoxShape3D_xtll6")

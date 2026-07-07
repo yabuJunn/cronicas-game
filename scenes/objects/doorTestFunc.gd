@@ -17,6 +17,11 @@ extends InteractableItem
 @export var volumen_max_audio: float = 0.0     # Volumen ideal cuando la puerta se mueve (en decibelios)
 @export var tiempo_fade_audio: float = 0.75    # Duración de las transiciones de entrada y salida del sonido
 
+# --- CONFIGURACIÓN DEL TEMBLOR (SHADER) ---
+@export var shader_temblor: Shader = preload("res://shaders/spatialShakingTrenchbroom.gdshader")
+@export var tiempo_fade_temblor: float = 0.4   # Cuánto tarda en empezar y dejar de vibrar suavemente el bloque
+var material_shader_puerta: ShaderMaterial = null
+
 # El nombre exacto de la llave que abre esta puerta
 @export var llave_requerida: String = "Llave"
 
@@ -51,6 +56,38 @@ func _ready() -> void:
 	super._ready()
 	se_puede_recoger = false
 
+	# Fusionamos el material de TrenchBroom con nuestro Shader de temblor
+	preparar_material_shader()
+
+
+func preparar_material_shader() -> void:
+	if shader_temblor == null:
+		print("ADVERTENCIA: No has asignado el archivo .gdshader en el slot 'shader_temblor' de la puerta.")
+		return
+
+	if mesh and mesh is MeshInstance3D:
+		# 1. Obtenemos el material original con texturas generado por TrenchBroom
+		var mat_trenchbroom = mesh.material_override if mesh.material_override else mesh.get_active_material(0)
+		
+		if mat_trenchbroom and (mat_trenchbroom is StandardMaterial3D or mat_trenchbroom is ORMMaterial3D):
+			# 2. Creamos un contenedor ShaderMaterial vacío en tiempo de ejecución
+			var nuevo_material_combinado = ShaderMaterial.new()
+			nuevo_material_combinado.shader = shader_temblor
+			
+			# 3. EXTRAER TEXTURAS: Si el material de TrenchBroom tiene textura albedo, se la pasamos al Shader
+			if mat_trenchbroom.albedo_texture != null:
+				nuevo_material_combinado.set_shader_parameter("albedo_tex", mat_trenchbroom.albedo_texture)
+			
+			# También copiamos el color base por si acaso
+			nuevo_material_combinado.set_shader_parameter("albedo_color", mat_trenchbroom.albedo_color)
+			
+			# 4. Nos aseguramos de que empiece completamente quieta
+			nuevo_material_combinado.set_shader_parameter("progress", 0.0)
+			
+			# 5. Aplicamos el nuevo material híbrido a la malla
+			mesh.material_override = nuevo_material_combinado
+			material_shader_puerta = nuevo_material_combinado
+
 
 func interactuar() -> void:
 	if esta_abriendose:
@@ -78,25 +115,20 @@ func crear_polvo_en_base() -> void:
 	if mesh == null or mesh.mesh == null:
 		return
 
-	# 1. Calculamos las dimensiones de la puerta usando su caja de colisión/malla (AABB)
 	var aabb: AABB = mesh.mesh.get_aabb()
 	var escala_global = mesh.global_transform.basis.get_scale()
 	var ancho_real = aabb.size.x * escala_global.x
 	var profundidad_real = aabb.size.z * escala_global.z
 	var alto_real = aabb.size.y * escala_global.y
 
-	# 2. Teletransportamos el nodo usando el offset de seguridad
 	var posicion_base = mesh.global_position + Vector3(0, -(alto_real / 2.0) + polvo_offset_y, 0)
 	particulas_polvo.global_position = posicion_base
 	
-	# Sincroniza la posición con los servidores de la GPU al instante
 	particulas_polvo.force_update_transform() 
 
-	# 3. Ajustamos el tamaño de la caja de emisión de partículas
 	if particulas_polvo.process_material is ParticleProcessMaterial:
 		particulas_polvo.process_material.emission_box_extents = Vector3(ancho_real / 2.0, 0.1, profundidad_real / 2.0)
 
-	# 4. CONFIGURACIÓN DINÁMICA DEL FOG VOLUME (FADE IN SUAVE DESDE SHADER)
 	if fog_particulas:
 		fog_particulas.visible = true
 		fog_particulas.size = Vector3(ancho_real, alto_neblina, profundidad_real)
@@ -117,7 +149,6 @@ func crear_polvo_en_base() -> void:
 					.set_trans(Tween.TRANS_SINE)\
 					.set_ease(Tween.EASE_OUT)
 
-	# 5. Forzamos el encendido de las partículas
 	particulas_polvo.emitting = true
 	particulas_polvo.restart() 
 	print("Polvo y Fog activados correctamente.")
@@ -136,25 +167,34 @@ func iniciar_animacion_apertura() -> void:
 	var nodo_a_mover = get_parent() if get_parent() != null else self
 	var posicion_final = nodo_a_mover.global_position + Vector3(0, -distancia_bajada, 0)
 	
-	# --- TWEEN PRINCIPAL (MOVIMIENTO + AUDIO DE LA PUERTA) ---
 	var tween_puerta = create_tween()
 	
-	# Animación física del descenso de la puerta
 	tween_puerta.tween_property(nodo_a_mover, "global_position", posicion_final, tiempo_apertura)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_IN_OUT)
 	
-	# CONTROL DEL AUDIO (En paralelo con el movimiento de la puerta)
+	# CONTROL DEL SHADER DE TEMBLOR (En paralelo con el movimiento)
+	if material_shader_puerta != null:
+		tween_puerta.parallel().tween_property(material_shader_puerta, "shader_parameter/progress", 1.0, tiempo_fade_temblor)\
+			.set_trans(Tween.TRANS_SINE)\
+			.set_ease(Tween.EASE_OUT)
+		
+		var retraso_Detener_temblor = tiempo_apertura - tiempo_fade_temblor
+		if retraso_Detener_temblor > 0:
+			tween_puerta.parallel().tween_property(material_shader_puerta, "shader_parameter/progress", 0.0, tiempo_fade_temblor)\
+				.set_trans(Tween.TRANS_SINE)\
+				.set_ease(Tween.EASE_IN)\
+				.set_delay(retraso_Detener_temblor)
+
+	# CONTROL DEL AUDIO
 	if is_instance_valid(stoneMovingAudio3D):
-		stoneMovingAudio3D.volume_db = -80.0 # Empezamos en silencio absoluto
+		stoneMovingAudio3D.volume_db = -80.0
 		stoneMovingAudio3D.play()
 		
-		# Fade In inicial del audio
 		tween_puerta.parallel().tween_property(stoneMovingAudio3D, "volume_db", volumen_max_audio, tiempo_fade_audio)\
 			.set_trans(Tween.TRANS_SINE)\
 			.set_ease(Tween.EASE_OUT)
 		
-		# Fade Out final calculado para terminar justo al detenerse la puerta
 		var retraso_fade_out = tiempo_apertura - tiempo_fade_audio
 		if retraso_fade_out > 0:
 			tween_puerta.parallel().tween_property(stoneMovingAudio3D, "volume_db", -80.0, tiempo_fade_audio)\
@@ -162,16 +202,16 @@ func iniciar_animacion_apertura() -> void:
 				.set_ease(Tween.EASE_IN)\
 				.set_delay(retraso_fade_out)
 	
-	# Cuando la puerta termina de bajar y el audio se apaga por completo:
 	tween_puerta.tween_callback(func():
-		# Detener el audio definitivamente por código
 		if is_instance_valid(stoneMovingAudio3D):
 			stoneMovingAudio3D.stop()
+			
+		if material_shader_puerta != null:
+			material_shader_puerta.set_shader_parameter("progress", 0.0)
 			
 		if is_instance_valid(particulas_polvo):
 			particulas_polvo.emitting = false 
 			
-			# Creamos el Tween de limpieza final para la niebla (FADE OUT SUAVE)
 			var cleanup_tween = create_tween()
 			var tiempo_desaparicion = particulas_polvo.lifetime
 			
@@ -188,13 +228,12 @@ func iniciar_animacion_apertura() -> void:
 			var p_polvo = particulas_polvo
 			var n_mover = nodo_a_mover
 			
-			# Borrado total y definitivo de todo cuando las partículas desaparecen
 			cleanup_tween.tween_callback(func():
 				if is_instance_valid(p_polvo):
 					p_polvo.queue_free()
 				if is_instance_valid(n_mover):
 					n_mover.queue_free()
-				print("Audio, efectos y puerta eliminados limpiamente del mapa.")
+				print("Efectos finalizados y nodos liberados.")
 			)
 		else:
 			nodo_a_mover.queue_free()

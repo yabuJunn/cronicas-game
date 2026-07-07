@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://c53iy1k21hj3w" path="res://scenes/objects/doorTestFunc.gd" id="3_w6dlj"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cjvfu"]
 [ext_resource type="Material" uid="uid://b7emn18uq0g50" path="res://materials/interactible_item_default_material_3d.tres" id="6_cjvfu"]
+[ext_resource type="AudioStream" uid="uid://xc80vrwbgbcn" path="res://sounds/music/OST - El mar de niebla Abrir Puerta.mp3" id="6_yvroc"]
+[ext_resource type="AudioStream" uid="uid://dib2wvfkr2cqm" path="res://sounds/music/OST - El mar de niebla Normal.mp3" id="7_karsw"]
 
 [sub_resource type="Curve" id="Curve_cjvfu"]
 _data = [Vector2(0, 0.20357943), 0.0, 0.0, 0, 0, Vector2(0.20098041, 1), 0.0, 0.0, 0, 0, Vector2(0.79901963, 0.80313206), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -92,6 +94,8 @@ metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 collision_layer = 10
 collision_mask = 15
 script = ExtResource("3_w6dlj")
+musica_evento_puerta = ExtResource("6_yvroc")
+musica_ambiente_siguiente = ExtResource("7_karsw")
 puerta_id = "seaDoor"
 densidad_max_niebla = 1.0
 volumen_max_audio = 3.065

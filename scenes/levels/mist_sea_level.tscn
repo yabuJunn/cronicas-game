@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://di1d1ewmv5vyc"]
 
+[ext_resource type="Script" uid="uid://cmxadr7oulnyw" path="res://scenes/levels/mist_sea_level.gd" id="1_bvfmd"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_qc4ln"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_0abja"]
+[ext_resource type="AudioStream" uid="uid://dib2wvfkr2cqm" path="res://sounds/music/OST - El mar de niebla Normal.mp3" id="2_yrra7"]
 [ext_resource type="CompressedTexture3D" uid="uid://bknn4a6af1nr0" path="res://scenes/levels/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr" id="3_73vye"]
 [ext_resource type="Material" uid="uid://bfvbp485t8l3n" path="res://textures/Stone/Stone_03-256x256.tres" id="3_vww24"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cciah"]
@@ -11,11 +13,13 @@
 [ext_resource type="Material" uid="uid://dh1fwdots8woq" path="res://materials/water_shader_material.tres" id="9_eolq4"]
 [ext_resource type="PackedScene" uid="uid://67jifxi3j3k5" path="res://scenes/world/falling_sand_particles.tscn" id="10_4rjc6"]
 [ext_resource type="Shader" uid="uid://cn50v6f24wt27" path="res://shaders/sand_fog_shader.gdshader" id="12_56pc5"]
+[ext_resource type="Script" uid="uid://iat6qmkl1fej" path="res://scenes/levels/sea_sounds.gd" id="13_4mwwv"]
 [ext_resource type="AudioStream" uid="uid://dr2cbgdsj0kt6" path="res://sounds/ambient/kokoreli777-sea-waves-169411.mp3" id="13_exndu"]
 [ext_resource type="AudioStream" uid="uid://de3ka7s4b26tf" path="res://sounds/ambient/pouring-sand-onto-sand-8-seconds-291368.mp3" id="14_exndu"]
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="14_qg55o"]
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="15_qg55o"]
 [ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="16_ucu88"]
+[ext_resource type="Script" uid="uid://x0yi02cx4yvl" path="res://scenes/objects/Lights/sea_door_light.gd" id="17_pbm7r"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_exndu"]
 _surfaces = [{
@@ -3287,6 +3291,12 @@ subdivide_width = 10
 [sub_resource type="BoxShape3D" id="BoxShape3D_klac0"]
 size = Vector3(17.256958, 83.986176, 530.22986)
 
+[sub_resource type="FogMaterial" id="FogMaterial_4mwwv"]
+density = 0.3282
+emission = Color(0.66821647, 0.6682165, 0.66821647, 1)
+
+[sub_resource type="FogMaterial" id="FogMaterial_bvfmd"]
+
 [sub_resource type="Gradient" id="Gradient_56pc5"]
 colors = PackedColorArray(0.8879926, 0.88799256, 0.8879925, 1, 0.49747366, 0.49747366, 0.49747366, 1)
 
@@ -3313,6 +3323,8 @@ shader_parameter/dust_particles_sharpness = 2.746000082935
 shader_parameter/edge_softness = 0.10000000149012
 
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
+script = ExtResource("1_bvfmd")
+musica_playa = ExtResource("2_yrra7")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=30706746]
 script = ExtResource("1_qc4ln")
@@ -6523,8 +6535,7 @@ shape = SubResource("ConvexPolygonShape3D_w4jmp")
 shape = SubResource("ConvexPolygonShape3D_6h4f5")
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
-transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, 10.100292, 10.961552, -146.41426)
-collision_mask = 2
+transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -57.238617, 10.551292, 192.05962)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969109660]
 transform = Transform3D(-0.7301208, -0.4904965, 0.4757486, 0.06111845, 0.64656574, 0.76040596, -0.68057907, 0.5842653, -0.4420928, -91.278076, 18.917465, 0)
@@ -6560,62 +6571,265 @@ shape = SubResource("BoxShape3D_klac0")
 
 [node name="Fog" type="Node3D" parent="." unique_id=983185032]
 
-[node name="FogVolume" type="FogVolume" parent="Fog" unique_id=855737209]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.191, 2.183036, -9.23)
-visible = false
-size = Vector3(277.88773, 2.5817275, 574.2899)
-material = ExtResource("9_4rjc6")
+[node name="FogVolumeBig" type="FogVolume" parent="Fog" unique_id=855737209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.00961, 2.6920705, -23.117481)
+layers = 4
+size = Vector3(220.2505, 6.5285497, 602.0649)
+material = SubResource("FogMaterial_4mwwv")
+
+[node name="FogVolumeBig2" type="FogVolume" parent="Fog" unique_id=1420185387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.049284, 2.4418802, -221.06268)
+layers = 4
+size = Vector3(90.34436, 6.0281687, 180.42833)
+material = SubResource("FogMaterial_bvfmd")
 
 [node name="FogVolume2" type="FogVolume" parent="Fog" unique_id=1710290517]
-transform = Transform3D(0.907044, 0, -0.42103586, 0, 1.0000001, 0, 0.4210358, 0, 0.9070441, -12.058981, 4.396542, -6.822074)
+transform = Transform3D(0.907044, 0, -0.42103586, 0, 1.0000001, 0, 0.4210358, 0, 0.9070441, -12.058981, 2.1623492, -6.822074)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
 material = ExtResource("9_4rjc6")
 
+[node name="FogVolume12" type="FogVolume" parent="Fog" unique_id=510148380]
+transform = Transform3D(0.7522884, 0, -0.658834, 0, 1.0000001, 0, 0.65883386, 0, 0.75228846, -15.089018, 2.1623492, 26.295517)
+size = Vector3(7.0009766, 1.5297241, 32.6297)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume14" type="FogVolume" parent="Fog" unique_id=1058816852]
+transform = Transform3D(0.9632703, 0, 0.2685331, 0, 1, 0, -0.26853323, 0, 0.9632705, -15.259401, 2.1623492, 53.265095)
+size = Vector3(7.0009766, 1.5297241, 32.6297)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume15" type="FogVolume" parent="Fog" unique_id=417405908]
+transform = Transform3D(0.9981421, 0, -0.06092664, 0, 1, 0, 0.060926437, 0, 0.99814224, -13.386789, 2.1623492, 70.28926)
+size = Vector3(7.0009766, 1.5297241, 25.327774)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume16" type="FogVolume" parent="Fog" unique_id=1578503329]
+transform = Transform3D(0.8443092, 0, -0.53585637, 0, 1, 0, 0.5358561, 0, 0.8443092, -18.908642, 2.1623492, 88.39133)
+size = Vector3(7.0009766, 1.5297241, 31.35001)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume18" type="FogVolume" parent="Fog" unique_id=1513731963]
+transform = Transform3D(0.9798864, 0, 0.199556, 0, 1, 0, -0.19955617, 0, 0.9798866, -14.114561, 2.1623492, 153.06708)
+size = Vector3(7.0009766, 1.5297241, 31.35001)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume21" type="FogVolume" parent="Fog" unique_id=896979679]
+transform = Transform3D(0.9999955, 0, 0.0030018687, 0, 1, 0, -0.0030020624, 0, 0.99999565, -11.908883, 2.1623492, 190.89165)
+size = Vector3(7.0009766, 1.5297241, 24.417824)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume22" type="FogVolume" parent="Fog" unique_id=937987147]
+transform = Transform3D(0.8278059, 0, -0.5610148, 0, 1, 0, 0.5610146, 0, 0.8278059, -20.299929, 2.1623492, 208.49133)
+size = Vector3(7.0009766, 1.5297241, 39.76449)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume23" type="FogVolume" parent="Fog" unique_id=661044489]
+transform = Transform3D(0.5543362, 0, -0.83229303, 0, 1, 0, 0.8322928, 0, 0.55433613, -41.81167, 2.1623492, 225.75858)
+size = Vector3(7.0009766, 1.5297241, 39.76449)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume19" type="FogVolume" parent="Fog" unique_id=222131483]
+transform = Transform3D(0.50514543, 0, -0.8630345, 0, 1, 0, 0.86303425, 0, 0.5051454, -27.198437, 2.1623492, 177.42735)
+size = Vector3(7.0009766, 1.5297241, 31.35001)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume20" type="FogVolume" parent="Fog" unique_id=889102405]
+transform = Transform3D(0.50514543, 0, -0.8630345, 0, 1, 0, 0.86303425, 0, 0.5051454, -27.198437, 2.1623492, 190.18561)
+size = Vector3(7.0009766, 1.5297241, 31.35001)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume17" type="FogVolume" parent="Fog" unique_id=1777006442]
+transform = Transform3D(0.96937245, 0, 0.24559492, 0, 1, 0, -0.24559511, 0, 0.96937263, -23.324646, 2.1623492, 119.401985)
+size = Vector3(9.498535, 1.5297241, 41.168434)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume13" type="FogVolume" parent="Fog" unique_id=1788372467]
+transform = Transform3D(-0.7050674, 0, -0.70914006, 0, 1, 0, 0.70914006, 0, -0.7050675, -8.4494705, 2.1623492, 9.138071)
+size = Vector3(7.0009766, 1.5297241, 18.825012)
+material = ExtResource("9_4rjc6")
+
 [node name="FogVolume3" type="FogVolume" parent="Fog" unique_id=89084473]
-transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -16.840527, 4.396542, -21.641273)
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -16.840527, 2.1623492, -21.641273)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume4" type="FogVolume" parent="Fog" unique_id=2031387074]
-transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -25.284794, 4.396542, -44.383358)
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -25.284794, 2.1623492, -44.383358)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume5" type="FogVolume" parent="Fog" unique_id=94840977]
-transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -33.586056, 4.396542, -57.570297)
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -33.586056, 2.1623492, -57.570297)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume6" type="FogVolume" parent="Fog" unique_id=1211697451]
+transform = Transform3D(0.8802538, 0, -0.4745031, 0, 1, 0, 0.47450304, 0, 0.880254, -24.525293, 2.1623492, -87.12091)
+size = Vector3(7.0009766, 1.5297241, 35.668884)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume7" type="FogVolume" parent="Fog" unique_id=932175747]
+transform = Transform3D(0.9910695, 0, -0.13334621, 0, 1, 0, 0.13334623, 0, 0.9910697, -36.237526, 2.1623492, -67.779755)
+size = Vector3(13.371765, 1.5297241, 12.156097)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume8" type="FogVolume" parent="Fog" unique_id=188563079]
+transform = Transform3D(0.9881212, 0, -0.1536757, 0, 1, 0, 0.15367573, 0, 0.9881214, -15.881284, 2.1623492, -116.09175)
+size = Vector3(7.0009766, 1.5297241, 40.093292)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume9" type="FogVolume" parent="Fog" unique_id=460172665]
+transform = Transform3D(0.8040228, 0, -0.5945983, 0, 1, 0, 0.59459823, 0, 0.8040229, -0.2340765, 2.1623492, -149.48926)
+size = Vector3(7.0009766, 1.5297241, 40.093292)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume10" type="FogVolume" parent="Fog" unique_id=656985350]
+transform = Transform3D(0.703469, 0, -0.7107258, 0, 1, 0, 0.7107257, 0, 0.7034691, 25.53072, 2.1623492, -178.86887)
+size = Vector3(7.0009766, 1.5297241, 40.093292)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume11" type="FogVolume" parent="Fog" unique_id=625441596]
+transform = Transform3D(0.9920771, 0, -0.1256276, 0, 1, 0, 0.12562758, 0, 0.9920773, 39.891094, 2.1623492, -207.72559)
+size = Vector3(7.0009766, 1.5297241, 40.093292)
 material = ExtResource("9_4rjc6")
 
 [node name="SandFalling" type="Node3D" parent="." unique_id=179108263]
 
-[node name="FallingSandParticles2" parent="SandFalling" unique_id=1847880853 instance=ExtResource("10_4rjc6")]
+[node name="SandFallingObject" type="Node3D" parent="SandFalling" unique_id=1668719366]
+
+[node name="FallingSandParticles2" parent="SandFalling/SandFallingObject" unique_id=1847880853 instance=ExtResource("10_4rjc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.666782, 15.612592, 15.002798)
 
-[node name="FallingSandParticles3" parent="SandFalling" unique_id=508559378 instance=ExtResource("10_4rjc6")]
+[node name="FallingSandParticles3" parent="SandFalling/SandFallingObject" unique_id=508559378 instance=ExtResource("10_4rjc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.71627, 15.612592, 14.214056)
 
-[node name="FallingSandParticles4" parent="SandFalling" unique_id=1466506125 instance=ExtResource("10_4rjc6")]
+[node name="FallingSandParticles4" parent="SandFalling/SandFallingObject" unique_id=1466506125 instance=ExtResource("10_4rjc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.062754)
 
-[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="SandFalling" unique_id=189514432]
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="SandFalling/SandFallingObject" unique_id=189514432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.127262, 7.49331, 11.643755)
 size = Vector3(8.915344, 2.7910156, 11.05835)
 texture = ExtResource("3_73vye")
 
-[node name="SandDustVolume" type="FogVolume" parent="SandFalling" unique_id=1831795259]
+[node name="SandDustVolume" type="FogVolume" parent="SandFalling/SandFallingObject" unique_id=1831795259]
 transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 8.5296955, 13.884433)
 size = Vector3(4.092285, 1.9052924, 4.4836273)
 shape = 0
 material = SubResource("ShaderMaterial_pcd7r")
 
-[node name="AmbientSounds" type="Node3D" parent="." unique_id=339204395]
+[node name="SandFallingObject2" type="Node3D" parent="SandFalling" unique_id=645028915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.95068, 0, 108.008736)
 
-[node name="SeaSound" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=996946717]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.49712, 8.446896, 0)
-stream = ExtResource("13_exndu")
-autoplay = true
-max_distance = 200.97
-parameters/looping = false
+[node name="FallingSandParticles2" parent="SandFalling/SandFallingObject2" unique_id=481652441 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.666782, 15.612592, 15.002798)
+
+[node name="FallingSandParticles3" parent="SandFalling/SandFallingObject2" unique_id=966960989 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.71627, 15.612592, 14.214056)
+
+[node name="FallingSandParticles4" parent="SandFalling/SandFallingObject2" unique_id=255624944 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.062754)
+
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionBox3D" parent="SandFalling/SandFallingObject2" unique_id=1972670843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.127262, 4.675532, 11.643753)
+layers = 15
+size = Vector3(8.915344, 3.9594727, 11.05835)
+
+[node name="SandDustVolume" type="FogVolume" parent="SandFalling/SandFallingObject2" unique_id=962042900]
+transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 6.879568, 13.88443)
+size = Vector3(4.092285, 1.9052924, 4.4836273)
+shape = 0
+material = SubResource("ShaderMaterial_pcd7r")
+
+[node name="SandFallingObject4" type="Node3D" parent="SandFalling" unique_id=805453682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.71618, 0, -80.98397)
+
+[node name="FallingSandParticles2" parent="SandFalling/SandFallingObject4" unique_id=445417530 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.666782, 15.612592, 15.002798)
+
+[node name="FallingSandParticles3" parent="SandFalling/SandFallingObject4" unique_id=535484358 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.71627, 15.612592, 14.214056)
+
+[node name="FallingSandParticles4" parent="SandFalling/SandFallingObject4" unique_id=1904629017 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.062754)
+
+[node name="SandDustVolume" type="FogVolume" parent="SandFalling/SandFallingObject4" unique_id=1465181545]
+transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 6.879568, 13.88443)
+size = Vector3(4.092285, 1.9052924, 4.4836273)
+shape = 0
+material = SubResource("ShaderMaterial_pcd7r")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SandFalling/SandFallingObject4" unique_id=1932196770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2156, 5.089079, 13.354828)
+size = Vector3(3.0810547, 2, 6.13855)
+
+[node name="SandFallingObject5" type="Node3D" parent="SandFalling" unique_id=739088211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.27619, 0, -142.3668)
+
+[node name="FallingSandParticles2" parent="SandFalling/SandFallingObject5" unique_id=352301749 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.666782, 15.612592, 15.002798)
+
+[node name="FallingSandParticles3" parent="SandFalling/SandFallingObject5" unique_id=770633388 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.71627, 15.612592, 14.214056)
+
+[node name="FallingSandParticles4" parent="SandFalling/SandFallingObject5" unique_id=574341920 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.062754)
+
+[node name="SandDustVolume" type="FogVolume" parent="SandFalling/SandFallingObject5" unique_id=1791841821]
+transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 6.879568, 13.88443)
+size = Vector3(4.092285, 1.9052924, 4.4836273)
+shape = 0
+material = SubResource("ShaderMaterial_pcd7r")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SandFalling/SandFallingObject5" unique_id=1932692088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2156, 5.089079, 13.354828)
+size = Vector3(3.0810547, 2, 6.13855)
+
+[node name="SandFallingObject6" type="Node3D" parent="SandFalling" unique_id=717963472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.434511, 0, -198.29636)
+
+[node name="FallingSandParticles2" parent="SandFalling/SandFallingObject6" unique_id=2080163607 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.666782, 15.612592, 15.002798)
+
+[node name="FallingSandParticles3" parent="SandFalling/SandFallingObject6" unique_id=159251108 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.71627, 15.612592, 14.214056)
+
+[node name="FallingSandParticles4" parent="SandFalling/SandFallingObject6" unique_id=1245661366 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.062754)
+
+[node name="SandDustVolume" type="FogVolume" parent="SandFalling/SandFallingObject6" unique_id=1980830747]
+transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 6.879568, 13.88443)
+size = Vector3(4.092285, 1.9052924, 4.4836273)
+shape = 0
+material = SubResource("ShaderMaterial_pcd7r")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SandFalling/SandFallingObject6" unique_id=902661033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2156, 5.608294, 13.354828)
+size = Vector3(3.0810547, 2, 6.13855)
+
+[node name="SandFallingObject3" type="Node3D" parent="SandFalling" unique_id=615685121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.158525, 0, 162.55115)
+
+[node name="FallingSandParticles2" parent="SandFalling/SandFallingObject3" unique_id=685858733 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.666782, 15.612592, 15.002798)
+
+[node name="FallingSandParticles3" parent="SandFalling/SandFallingObject3" unique_id=330689330 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.71627, 15.612592, 14.214056)
+
+[node name="FallingSandParticles4" parent="SandFalling/SandFallingObject3" unique_id=1978027 instance=ExtResource("10_4rjc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.062754)
+
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionBox3D" parent="SandFalling/SandFallingObject3" unique_id=1243845647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.127266, 5.133368, 11.643753)
+layers = 15
+size = Vector3(8.915344, 3.9594727, 11.05835)
+
+[node name="SandDustVolume" type="FogVolume" parent="SandFalling/SandFallingObject3" unique_id=1350338157]
+transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 6.879568, 13.88443)
+size = Vector3(4.092285, 1.9052924, 4.4836273)
+shape = 0
+material = SubResource("ShaderMaterial_pcd7r")
+
+[node name="AmbientSounds" type="Node3D" parent="." unique_id=339204395]
 
 [node name="SandFallingSound" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=309643834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.985405, 8.73775, 13.994387)
@@ -6625,25 +6839,183 @@ max_distance = 10.0
 bus = &"Ambient"
 parameters/looping = true
 
+[node name="SandFallingSound4" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=452934971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.222225, 8.73775, -65.740875)
+stream = ExtResource("14_exndu")
+autoplay = true
+max_distance = 10.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SandFallingSound5" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=1505122644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.843245, 7.5232887, -128.71301)
+stream = ExtResource("14_exndu")
+autoplay = true
+max_distance = 10.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SandFallingSound6" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=875874025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.61848, 7.5232887, -184.58955)
+stream = ExtResource("14_exndu")
+autoplay = true
+max_distance = 10.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SandFallingSound2" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=805558239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6208868, 7.193145, 121.96267)
+stream = ExtResource("14_exndu")
+autoplay = true
+max_distance = 10.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SandFallingSound3" type="AudioStreamPlayer3D" parent="AmbientSounds" unique_id=857115823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.744053, 7.193145, 176.05188)
+stream = ExtResource("14_exndu")
+autoplay = true
+max_distance = 10.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SeaSounds" type="Node3D" parent="AmbientSounds" unique_id=2043856442]
+script = ExtResource("13_4mwwv")
+
+[node name="SeaSound" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=996946717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.181465, 8.446896, 29.838139)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 300.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SeaSound2" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=1905937396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.32612, 16.169365, -115.19221)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 200.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SeaSound3" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=505858003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.68112, 8.446896, 139.09146)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 200.0
+bus = &"Ambient"
+parameters/looping = true
+
+[node name="SeaSound4" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=1281954874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.623615, 8.446896, 179.55022)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound13" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=1849339318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.493443, 11.657115, 221.17525)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound5" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=462633567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.975414, 8.446896, 167.24301)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound6" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=1442388929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.13776, 8.387978, 122.32018)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound7" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=561462591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.886795, 8.446896, 76.69256)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound8" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=2061113996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.886795, 8.446896, -6.9091034)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound12" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=823957858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.886795, 8.446896, -44.139565)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound11" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=1730267421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.886795, 8.446896, 33.72101)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound9" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=1950907373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.886795, 8.446896, -88.78168)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
+[node name="SeaSound10" type="AudioStreamPlayer3D" parent="AmbientSounds/SeaSounds" unique_id=1040856404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9233856, 8.446896, -169.74515)
+stream = ExtResource("13_exndu")
+volume_db = -14.706
+max_distance = 100.0
+bus = &"Ambient"
+attenuation_filter_db = -5.1
+parameters/looping = true
+
 [node name="InteractibleObjects" type="Node3D" parent="." unique_id=1238381481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40187836, 0.9234576, -0.40896606)
 
 [node name="EnergySphere" parent="InteractibleObjects" unique_id=1256466068 instance=ExtResource("14_qg55o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.216942, 5.748065, -146.59024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.216942, 5.6982255, -146.854)
 
 [node name="SeaDoor" parent="InteractibleObjects" unique_id=2143399838 instance=ExtResource("15_qg55o")]
 transform = Transform3D(0.86032414, 0, 0.5097473, 0, 1, 0, -0.5097473, 0, 0.86032414, 37.8697, 8.497828, -6.2730503)
 
 [node name="Pedestal" parent="InteractibleObjects" unique_id=1043176817 instance=ExtResource("16_ucu88")]
-transform = Transform3D(0.84216076, 0, 0.53922653, 0, 1, 0, -0.53922653, 0, 0.84216076, 36.085953, 8.962343, -5.633914)
+transform = Transform3D(0.84216076, 0, 0.53922653, 0, 1, 0, -0.53922653, 0, 0.84216076, 36.085953, 8.645523, -5.633914)
 
 [node name="Ligths" type="Node3D" parent="." unique_id=1100282953]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Ligths" unique_id=1535580138]
+[node name="DoorLight" type="OmniLight3D" parent="Ligths" unique_id=1535580138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.58414, 11.666513, -5.787891)
 layers = 4
 shadow_enabled = true
 shadow_opacity = 0.62
 shadow_blur = 8.258
+script = ExtResource("17_pbm7r")
 
 [node name="LevelMusic" type="AudioStreamPlayer3D" parent="." unique_id=88510586]

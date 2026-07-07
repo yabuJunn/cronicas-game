@@ -14,9 +14,14 @@ config/name="Cronicas de un Mundo Perdido"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://doju3tgmx3m0u"
+
 [autoload]
 
 Inventory="*uid://db5s7xpd84wk1"
+MusicManager="*uid://60pekbby728h"
 
 [editor]
 

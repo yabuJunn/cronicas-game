@@ -1,5 +1,8 @@
 extends InteractableItem
 
+@export var musica_evento_puerta: AudioStream # Canción de suspenso / apertura
+@export var musica_ambiente_siguiente: AudioStream # La música que se quedará después
+
 @export var puerta_id: String = "puerta_principal"
 
 # Asigna aquí tu nodo GPUParticles3D desde el Inspector
@@ -69,6 +72,9 @@ func interactuar() -> void:
 
 # --- FUNCIÓN PÚBLICA: El pedestal llamará a esto ---
 func abrir_puerta() -> void:
+	# Detiene la playa, toca el evento, y cuando acabe el evento, pondrá la música ambiente siguiente
+	MusicManager.reproducir_temporal(musica_evento_puerta, musica_ambiente_siguiente)
+	
 	if esta_abriendose:
 		return
 		

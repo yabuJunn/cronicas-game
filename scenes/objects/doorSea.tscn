@@ -1,0 +1,112 @@
+[gd_scene format=4 uid="uid://da24ji2bt71f0"]
+
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_6s6qr"]
+[ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="1_7fieb"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_7fieb"]
+[ext_resource type="AudioStream" uid="uid://b2am3bwmbpe88" path="res://sounds/ambient/Stone Moving.mp3" id="2_w6dlj"]
+[ext_resource type="Script" uid="uid://c53iy1k21hj3w" path="res://scenes/objects/doorTestFunc.gd" id="3_w6dlj"]
+[ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cjvfu"]
+[ext_resource type="Material" uid="uid://b7emn18uq0g50" path="res://materials/interactible_item_default_material_3d.tres" id="6_cjvfu"]
+
+[sub_resource type="Curve" id="Curve_cjvfu"]
+_data = [Vector2(0, 0.20357943), 0.0, 0.0, 0, 0, Vector2(0.20098041, 1), 0.0, 0.0, 0, 0, Vector2(0.79901963, 0.80313206), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_qcc2t"]
+curve = SubResource("Curve_cjvfu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rpd8k"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 64.756
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -0.8, 0)
+damping_min = 2.0
+damping_max = 3.0000002
+scale_curve = SubResource("CurveTexture_qcc2t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtll6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.3623615, 0.39151636, 0.40443814, 0.957)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvroc"]
+material = SubResource("StandardMaterial3D_xtll6")
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_karsw"]
+_surfaces = [{
+"aabb": AABB(-0.34375, 0.5, -4.40625, 0.71875, 20.25, 9.3125),
+"attribute_data": PackedByteArray("AABAvQBAF8AAADA9AEAXwAAAMD0AAIC9AABAvQAAgL0AAB0/AACAvQAADb8AAIC9AAANvwBAF8AAAB0/AEAXwAAAHb8AADA9AAAdvwAAQL0AAA0/AABAvQAADT8AADA9AAAdPwAAMD0AAA2/AAAwPQAADb8AAEC9AAAdPwAAQL0AAB2/AEAXwAAADT8AQBfAAAANPwAAgL0AAB2/AACAvQAAQD0AAIC9AAAwvQAAgL0AADC9AEAXwAAAQD0AQBfAfAykPwAAMD18DKQ/AABAvUJVwD8AAEC9QlXAPwAAMD3t2Ig/AABAve3YiD8AADA9hMxIPwAAMD2EzEg/AABAvQAA0L0AACbAAAAsPgAAJsAAAOA+AMAfwAAAHT8AQBfAAAANvwBAF8AAAL6+AMAfwAAAHb8AADA9AAAdvwAAQL0AAA0/AABAvQAADT8AADA9AAAsPgAAMD0AANC9AAAwPQAA0L0AAEC9AAAsPgAAQL0AAB2/AEAXwAAA4L4AwB/AAAAsvgAAJsAAANA9AAAmwAAAvj4AwB/AAAANPwBAF8D4lzm/AABAvfiXOb8AADA9pz6BvwAAMD2nPoG/AABAvZhSur8AAEC9VGSevwAAQL1UZJ6/AAAwPZhSur8AADA9"),
+"format": 34359742487,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAIAAjACQAIAAkACUAJgAnACgAJgAoACkAKgArACwAKgAsAC0ALgAvADAALgAwADEALgAxADIALgAyADMANAA1ADYANAA2ADcAOAA5ADoAOAA6ADsA"),
+"material": ExtResource("4_cjvfu"),
+"name": "Stone/Stone_11-256x256",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("AADAPgBAl0EAAI3AAACwvgBAl0EAAI3AAACwvgAAAD8AAI3AAADAPgAAAD8AAI3AAACwvgAAAD8AAJ1AAACwvgAAAD8AAI3AAACwvgBAl0EAAI3AAACwvgBAl0EAAJ1AAACwvgAAAD8AAJ1AAADAPgAAAD8AAJ1AAADAPgAAAD8AAI3AAACwvgAAAD8AAI3AAACwvgBAl0EAAJ1AAACwvgBAl0EAAI3AAADAPgBAl0EAAI3AAADAPgBAl0EAAJ1AAADAPgBAl0EAAJ1AAADAPgBAl0EAAI3AAADAPgAAAD8AAI3AAADAPgAAAD8AAJ1AAADAPgAAAD8AAJ1AAACwvgAAAD8AAJ1AAACwvgBAl0EAAJ1AAADAPgBAl0EAAJ1AAACwvgBAl0EAAI3AAADAPgBAl0EAAI3AAADAPgDAn0EAAD7AAACwvgDAn0EAAD7AAADAPgAApkEAAFC/AACwvgAApkEAAFC/AACwvgDAn0EAAD7AAADAPgDAn0EAAD7AAACwvgAApkEAAFC/AACwvgAApkEAAKw/AACwvgDAn0EAAGBAAACwvgBAl0EAAJ1AAACwvgBAl0EAAI3AAACwvgDAn0EAAD7AAACwvgBAl0EAAJ1AAADAPgBAl0EAAJ1AAADAPgBAl0EAAI3AAACwvgBAl0EAAI3AAACwvgAApkEAAKw/AACwvgAApkEAAFC/AADAPgAApkEAAFC/AADAPgAApkEAAKw/AADAPgBAl0EAAJ1AAADAPgDAn0EAAGBAAADAPgAApkEAAKw/AADAPgAApkEAAFC/AADAPgDAn0EAAD7AAADAPgBAl0EAAI3AAADAPgDAn0EAAGBAAACwvgDAn0EAAGBAAACwvgAApkEAAKw/AADAPgAApkEAAKw/AADAPgDAn0EAAGBAAADAPgBAl0EAAJ1AAACwvgBAl0EAAJ1AAACwvgDAn0EAAGBAAADz/wAA/78AAPP/AAD/vwAA8/8AAP+/AADz/wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7/+//9///////7//3///////v//f//////+//9///////9//3////+//3//f////7//f/9/////v/9//3////+/2En+//9//9/YSf7//3//39hJ/v//f//f2En+//9//9+oXf7//39U1ahd/v//f1TVqF3+//9/VNWoXf7//39U1QAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7/+//9///////7//3///////v//f//////+//9///////7//3///////v//f///////f6jd/3+pqv9/qN3/f6mq/3+o3f9/qar/f6jd/3+pqv9/2Mn/f/+f/3/Yyf9//5//f9jJ/3//n/9/2Mn/f/+f")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lf3v8"]
+points = PackedVector3Array(0.37267855, 18.90909, 4.9214506, 0.37267855, 0.5, 4.9214506, -0.34459716, 18.90909, 4.9214582, -0.34459716, 0.5, 4.9214582, 0.37278393, 18.90909, -4.4035716, 0.37278393, 0.5, -4.4035716, -0.34449798, 18.90909, -4.403312, -0.34449798, 0.5, -4.403312)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f5ekr"]
+points = PackedVector3Array(0.37269595, 19.961039, 3.486873, -0.3445819, 19.961039, 3.4868822, 0.37267974, 18.90909, 4.921453, -0.34459716, 18.90909, 4.9214597, 0.37272024, 20.75, 1.3350013, -0.344559, 20.75, 1.3350099, 0.37274456, 20.75, -0.816833, 0.37278512, 18.90909, -4.4033203, 0.37276888, 19.961052, -2.9687183, -0.34453613, 20.75, -0.81682193, -0.344498, 18.90909, -4.403312, -0.34451324, 19.961052, -2.9687114)
+
+[node name="SeaDoor" type="Node3D" unique_id=2143399838 groups=["interactibleObjects"]]
+
+[node name="Polvo Puerta" type="GPUParticles3D" parent="." unique_id=1489620657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4921002, 0)
+layers = 4
+emitting = false
+amount = 498
+process_material = SubResource("ParticleProcessMaterial_rpd8k")
+draw_pass_1 = SubResource("BoxMesh_yvroc")
+
+[node name="Polvo Fog" type="FogVolume" parent="Polvo Puerta" unique_id=359960275]
+visible = false
+layers = 4
+size = Vector3(2, 2, 10.6015625)
+material = ExtResource("1_7fieb")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Polvo Puerta" unique_id=1315134041]
+stream = ExtResource("2_w6dlj")
+unit_size = 3.62
+pitch_scale = 0.59
+panning_strength = 2.07
+bus = &"Ambient"
+area_mask = 15
+
+[node name="Door" type="Node3D" parent="." unique_id=1637009172]
+script = ExtResource("1_6s6qr")
+local_map_file = "uid://dpf0u6lshlypa"
+map_settings = ExtResource("2_7fieb")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="SeaDoorBody" type="StaticBody3D" parent="Door" unique_id=720233348 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+collision_layer = 10
+collision_mask = 15
+script = ExtResource("3_w6dlj")
+puerta_id = "seaDoor"
+densidad_max_niebla = 1.0
+volumen_max_audio = 3.065
+item_name = "Puerta"
+item_description = "Una puerta"
+se_puede_recoger = false
+mesh = NodePath("entity_0_mesh_instance")
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="Door/SeaDoorBody" unique_id=1356733742]
+layers = 8
+material_overlay = ExtResource("6_cjvfu")
+mesh = SubResource("ArrayMesh_karsw")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="Door/SeaDoorBody" unique_id=1394080409]
+shape = SubResource("ConvexPolygonShape3D_lf3v8")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="Door/SeaDoorBody" unique_id=903327021]
+shape = SubResource("ConvexPolygonShape3D_f5ekr")

@@ -6625,6 +6625,8 @@ max_distance = 10.0
 bus = &"Ambient"
 parameters/looping = true
 
+[node name="LevelMusic" type="AudioStreamPlayer3D" parent="." unique_id=88510586]
+
 [node name="InteractibleObjects" type="Node3D" parent="." unique_id=1238381481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40187836, 0.9234576, -0.40896606)
 
@@ -6636,14 +6638,3 @@ transform = Transform3D(0.86032414, 0, 0.5097473, 0, 1, 0, -0.5097473, 0, 0.8603
 
 [node name="Pedestal" parent="InteractibleObjects" unique_id=1043176817 instance=ExtResource("16_ucu88")]
 transform = Transform3D(0.84216076, 0, 0.53922653, 0, 1, 0, -0.53922653, 0, 0.84216076, 36.085953, 8.962343, -5.633914)
-
-[node name="Ligths" type="Node3D" parent="." unique_id=1100282953]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Ligths" unique_id=1535580138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.58414, 11.666513, -5.787891)
-layers = 4
-shadow_enabled = true
-shadow_opacity = 0.62
-shadow_blur = 8.258
-
-[node name="LevelMusic" type="AudioStreamPlayer3D" parent="." unique_id=88510586]

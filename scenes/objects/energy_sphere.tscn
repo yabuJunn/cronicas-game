@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://qat6org8uyc8"]
+
+[ext_resource type="Script" uid="uid://b0kqmtej7gk0h" path="res://scenes/objects/energy_sphere.gd" id="1_kuvql"]
+[ext_resource type="Texture2D" uid="uid://dq4bk6oapdpl4" path="res://textures/Plaster/Plaster_01-256x256.png" id="2_71eu1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ak8fw"]
+radius = 0.20954734
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kb2x"]
+albedo_texture = ExtResource("2_71eu1")
+emission_enabled = true
+emission = Color(0.2950101, 0.7549114, 0.7611481, 1)
+emission_energy_multiplier = 2.81
+texture_filter = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pcd7r"]
+material = SubResource("StandardMaterial3D_3kb2x")
+radius = 0.2
+height = 0.4
+radial_segments = 8
+rings = 6
+
+[sub_resource type="Gradient" id="Gradient_exndu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dfm00"]
+gradient = SubResource("Gradient_exndu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_exndu"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.9999776
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_dfm00")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80jk7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.29411766, 0.75686276, 0.7607843, 1)
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_exndu"]
+material = SubResource("StandardMaterial3D_80jk7")
+size = Vector2(0.04, 0.04)
+orientation = 2
+
+[node name="EnergySphere" type="StaticBody3D" unique_id=1256466068 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+collision_layer = 10
+collision_mask = 15
+script = ExtResource("1_kuvql")
+item_name = "Esfera de Energía"
+item_description = "Brilla con una egergía poderosa"
+mesh = NodePath("MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1018405947]
+transform = Transform3D(2.555, 0, 0, 0, 2.555, 0, 0, 0, 2.555, 0, 0, 0)
+shape = SubResource("SphereShape3D_ak8fw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=295874428]
+layers = 8
+mesh = SubResource("SphereMesh_pcd7r")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1063834010]
+layers = 8
+light_color = Color(0.29411766, 0.75686276, 0.7607843, 1)
+light_energy = 1.203
+light_volumetric_fog_energy = 7.806
+omni_range = 3.3435197
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="OmniLight3D" unique_id=54742865]
+layers = 8
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_exndu")
+draw_pass_1 = SubResource("PlaneMesh_exndu")

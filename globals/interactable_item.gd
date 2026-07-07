@@ -1,3 +1,4 @@
+# InteractableItem Class
 class_name InteractableItem
 extends Node3D
 
@@ -9,6 +10,16 @@ extends Node3D
 @export var mesh: MeshInstance3D 
 var outline_material: ShaderMaterial
 
+# Propiedad base para que el texto cambie según el objeto (la lee el jugador)
+# Cambia esta parte en tu clase padre:
+var texto_interaccion: String:
+	get:
+		return _obtener_texto_interaccion()
+
+# Esta función actúa como "virtual", los hijos la cambiarán
+func _obtener_texto_interaccion() -> String:
+	return "[ E ] " + item_name
+
 # Ruta de respaldo por si algún objeto de FuncGodot nace vacío
 const RUTA_MATERIAL_BASE = "res://materials/interactible_item_default_material_3d.tres" 
 
@@ -17,18 +28,13 @@ func _ready() -> void:
 		push_warning("Falta asignar la malla en el objeto interactuable: ", name)
 		return
 		
-	# 1. COMPROBACIÓN Y DUPLICADO CRÍTICO
 	if mesh.material_overlay == null:
-		# Si viene de FuncGodot sin material, le cargamos uno nuevo y único
 		var recurso_base = load(RUTA_MATERIAL_BASE)
 		if recurso_base:
 			mesh.material_overlay = recurso_base.duplicate()
 	else:
-		# ¡AQUÍ ESTABA EL TRUCO! Si ya lo traía desde el editor (ExtResource 10_1qcro),
-		# LO DUPLICAMOS por completo para romper el enlace compartido en memoria.
 		mesh.material_overlay = mesh.material_overlay.duplicate()
 			
-	# 2. Ahora que el material es 100% único de este objeto, manejamos su next_pass
 	var mat: Material = mesh.material_overlay
 	
 	if mat != null and mat.next_pass != null:

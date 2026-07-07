@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cflkcun616w88"
+path="res://.godot/imported/pedestal.map-059f48e7ed21d6cbecef4725299d7d9e.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/pedestal.map"
+dest_files=["res://.godot/imported/pedestal.map-059f48e7ed21d6cbecef4725299d7d9e.tres"]
+
+[params]
+

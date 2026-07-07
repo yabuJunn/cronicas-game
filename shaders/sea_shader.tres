@@ -1,9 +1,7 @@
-[gd_resource type="Shader" format=3 uid="uid://dsghjm10yjdc3"]
+[gd_resource type="Shader" format=3 uid="uid://dxb2ikaxbqq6b"]
 
 [resource]
 code = "shader_type spatial;
-
-// Sea shader
 
 // Depth Colors
 uniform vec4 primary_color : source_color;
@@ -31,7 +29,8 @@ uniform float foam_distance : hint_range(0.0, 5.0, 0.05) = 0.5; // Distancia en 
 uniform float foam_cutoff : hint_range(0.0, 1.0, 0.01) = 0.4;   
 uniform float foam_scale : hint_range(0.1, 10.0, 0.1) = 2.0;    
 
-// --- UNIFORMS PARA OLAS VIOLENTAS ---
+// --- NUEVOS UNIFORMS PARA OLAS VIOLENTAS ---
+@export_group(\"Olas Violentas\");
 uniform float ola_velocidad : hint_range(0.1, 5.0, 0.1) = 2.2;
 uniform float ola_amplitud : hint_range(0.0, 3.0, 0.05) = 0.6;    // Qué tan altas son
 uniform float ola_frecuencia : hint_range(0.0, 2.0, 0.05) = 0.4;  // Qué tan juntas están
@@ -55,25 +54,26 @@ void vertex() {
 	vec2 dir = normalize(ola_direccion);
 	float tiempo = TIME * ola_velocidad;
 	
-	// Ola Principal
+	// Ola Principal: Gran masa de agua moviéndose en la dirección del viento
 	float mezcla1 = (VERTEX.x * dir.x + VERTEX.z * dir.y) * ola_frecuencia + tiempo;
+	// Al elevar (1.0 - abs(sin)) creamos crestas extremadamente afiladas ideales para tormentas y low-poly
 	float cresta1 = pow(1.0 - abs(sin(mezcla1)), ola_filo);
 	
-	// Ola Secundaria
+	// Ola Secundaria: Modulador cruzado (perpendicular) para romper la simetría y crear caos
 	vec2 dir_cruzar = vec2(-dir.y, dir.x);
 	float mezcla2 = (VERTEX.x * dir_cruzar.x + VERTEX.z * dir_cruzar.y) * (ola_frecuencia * 1.5) - (tiempo * 1.2);
 	float cresta2 = pow(1.0 - abs(sin(mezcla2)), ola_filo * 0.8);
 	
-	// Micro-choque
+	// Micro-choque: Ruido rápido para que la superficie no sea perfecta
 	float mezcla3 = (VERTEX.x - VERTEX.z) * (ola_frecuencia * 3.0) + (tiempo * 2.5);
 	float cresta3 = sin(mezcla3) * 0.2;
 	
-	// Combinamos todo
+	// Combinamos todo y aplicamos la fuerza global
 	float ola_final = (cresta1 * 1.0 + cresta2 * 0.4 + cresta3 * 0.1) * ola_amplitud;
 	
 	VERTEX.y += ola_final;
 	
-	// Guardamos la altura de la cresta principal
+	// Guardamos la altura de la cresta principal (normalizada 0.0 a 1.0) para usarla en la espuma
 	v_altura_ola = cresta1;
 }
 
@@ -107,14 +107,21 @@ void fragment() {
 	float depth_blend = clamp((vertex_y - depth_texture_y) / depth_distance, 0.0, 1.0);
 	depth_blend = exp(-depth_blend * beers_law);
 	
-	// --- GESTIÓN DE ESPUMA ---
+	// --- GESTIÓN DE ESPUMA (MASCARA COMBINADA) ---
+	// 1. Espuma de Orilla (Existente)
 	float mascara_orilla = 1.0 - clamp(vertical_thickness / foam_distance, 0.0, 1.0);
+	
+	// 2. Nueva Espuma de Cresta (Aparece violentamente en las puntas altas de las olas)
 	float mascara_cresta = clamp((v_altura_ola - espuma_cresta_limite) / (1.0 - espuma_cresta_limite), 0.0, 1.0);
+	
+	// Fusionamos ambas fuentes de espuma (cualquiera de las dos genera espuma)
 	float mascara_espuma_global = max(mascara_orilla, mascara_cresta);
 	
+	// Distorsión fluida usando tus mapas de normales
 	vec2 foam_uv = uv * foam_scale + (normal_a_tex.xy + normal_b_tex.xy) * 0.05;
 	float foam_noise = texture(normalmap_a, foam_uv + uv_movement).r;
 	
+	// Estructura final de la espuma fracturada
 	float foam_cutoff_match = step(foam_cutoff, foam_noise * mascara_espuma_global);
 	float final_foam_mask = foam_cutoff_match * mascara_espuma_global;
 	
@@ -125,7 +132,7 @@ void fragment() {
 	// Mix base water color with reflections
 	vec3 water_base = mix(final_color, screen, depth_blend * (1.0 - basic_fresnel));
 	
-	// Aplicar Color Base y Espuma
+	// --- Aplicar Color Base y Espuma ---
 	ALBEDO = mix(water_base, foam_color.rgb, final_foam_mask);
 	
 	ROUGHNESS = roughness * (1.0 - basic_fresnel);

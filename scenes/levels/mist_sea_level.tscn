@@ -3292,10 +3292,12 @@ subdivide_width = 10
 size = Vector3(17.256958, 83.986176, 530.22986)
 
 [sub_resource type="FogMaterial" id="FogMaterial_4mwwv"]
-density = 0.3282
+density = 0.2
 emission = Color(0.66821647, 0.6682165, 0.66821647, 1)
 
 [sub_resource type="FogMaterial" id="FogMaterial_bvfmd"]
+density = 0.2
+emission = Color(0.7784455, 0.7784455, 0.7784455, 1)
 
 [sub_resource type="Gradient" id="Gradient_56pc5"]
 colors = PackedColorArray(0.8879926, 0.88799256, 0.8879925, 1, 0.49747366, 0.49747366, 0.49747366, 1)
@@ -6549,7 +6551,7 @@ environment = SubResource("Environment_eut8q")
 [node name="Water" type="Node3D" parent="." unique_id=1260659188]
 
 [node name="WaterPlaneTest" type="MeshInstance3D" parent="Water" unique_id=1160406867]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -179.05463, 5.1754, -0.59033966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -179.05463, 5.334732, -0.59033966)
 mesh = SubResource("PlaneMesh_klac0")
 
 [node name="Borders" type="Node3D" parent="." unique_id=714211157]
@@ -6584,112 +6586,117 @@ size = Vector3(90.34436, 6.0281687, 180.42833)
 material = SubResource("FogMaterial_bvfmd")
 
 [node name="FogVolume2" type="FogVolume" parent="Fog" unique_id=1710290517]
-transform = Transform3D(0.907044, 0, -0.42103586, 0, 1.0000001, 0, 0.4210358, 0, 0.9070441, -12.058981, 2.1623492, -6.822074)
+transform = Transform3D(0.907044, 0, -0.42103586, 0, 1.0000001, 0, 0.4210358, 0, 0.9070441, -12.058981, 4.1429677, -6.822074)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume12" type="FogVolume" parent="Fog" unique_id=510148380]
-transform = Transform3D(0.7522884, 0, -0.658834, 0, 1.0000001, 0, 0.65883386, 0, 0.75228846, -15.089018, 2.1623492, 26.295517)
-size = Vector3(7.0009766, 1.5297241, 32.6297)
+transform = Transform3D(0.7522884, 0, -0.658834, 0, 1.0000001, 0, 0.65883386, 0, 0.75228846, -17.08817, 3.9082017, 28.578245)
+size = Vector3(7.0009766, 1.5297241, 26.560944)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume14" type="FogVolume" parent="Fog" unique_id=1058816852]
-transform = Transform3D(0.9632703, 0, 0.2685331, 0, 1, 0, -0.26853323, 0, 0.9632705, -15.259401, 2.1623492, 53.265095)
+transform = Transform3D(0.9632703, 0, 0.2685331, 0, 1, 0, -0.26853323, 0, 0.9632705, -15.259401, 4.1429677, 53.265095)
 size = Vector3(7.0009766, 1.5297241, 32.6297)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume15" type="FogVolume" parent="Fog" unique_id=417405908]
-transform = Transform3D(0.9981421, 0, -0.06092664, 0, 1, 0, 0.060926437, 0, 0.99814224, -13.386789, 2.1623492, 70.28926)
+transform = Transform3D(0.9981421, 0, -0.06092664, 0, 1, 0, 0.060926437, 0, 0.99814224, -13.386789, 4.1429677, 70.28926)
 size = Vector3(7.0009766, 1.5297241, 25.327774)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume16" type="FogVolume" parent="Fog" unique_id=1578503329]
-transform = Transform3D(0.8443092, 0, -0.53585637, 0, 1, 0, 0.5358561, 0, 0.8443092, -18.908642, 2.1623492, 88.39133)
+transform = Transform3D(0.8443092, 0, -0.53585637, 0, 1, 0, 0.5358561, 0, 0.8443092, -18.908642, 4.1429677, 88.39133)
 size = Vector3(7.0009766, 1.5297241, 31.35001)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume18" type="FogVolume" parent="Fog" unique_id=1513731963]
-transform = Transform3D(0.9798864, 0, 0.199556, 0, 1, 0, -0.19955617, 0, 0.9798866, -14.114561, 2.1623492, 153.06708)
+transform = Transform3D(0.9798864, 0, 0.199556, 0, 1, 0, -0.19955617, 0, 0.9798866, -14.114561, 4.1429677, 153.06708)
 size = Vector3(7.0009766, 1.5297241, 31.35001)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume21" type="FogVolume" parent="Fog" unique_id=896979679]
-transform = Transform3D(0.9999955, 0, 0.0030018687, 0, 1, 0, -0.0030020624, 0, 0.99999565, -11.908883, 2.1623492, 190.89165)
+transform = Transform3D(0.9999955, 0, 0.0030018687, 0, 1, 0, -0.0030020624, 0, 0.99999565, -11.908883, 4.1429677, 190.89165)
 size = Vector3(7.0009766, 1.5297241, 24.417824)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume22" type="FogVolume" parent="Fog" unique_id=937987147]
-transform = Transform3D(0.8278059, 0, -0.5610148, 0, 1, 0, 0.5610146, 0, 0.8278059, -20.299929, 2.1623492, 208.49133)
+transform = Transform3D(0.8278059, 0, -0.5610148, 0, 1, 0, 0.5610146, 0, 0.8278059, -20.299929, 4.1429677, 208.49133)
 size = Vector3(7.0009766, 1.5297241, 39.76449)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume23" type="FogVolume" parent="Fog" unique_id=661044489]
-transform = Transform3D(0.5543362, 0, -0.83229303, 0, 1, 0, 0.8322928, 0, 0.55433613, -41.81167, 2.1623492, 225.75858)
+transform = Transform3D(0.5543362, 0, -0.83229303, 0, 1, 0, 0.8322928, 0, 0.55433613, -41.81167, 4.1429677, 225.75858)
 size = Vector3(7.0009766, 1.5297241, 39.76449)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume19" type="FogVolume" parent="Fog" unique_id=222131483]
-transform = Transform3D(0.50514543, 0, -0.8630345, 0, 1, 0, 0.86303425, 0, 0.5051454, -27.198437, 2.1623492, 177.42735)
+transform = Transform3D(0.50514543, 0, -0.8630345, 0, 1, 0, 0.86303425, 0, 0.5051454, -27.198437, 4.1429677, 177.42735)
 size = Vector3(7.0009766, 1.5297241, 31.35001)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume20" type="FogVolume" parent="Fog" unique_id=889102405]
-transform = Transform3D(0.50514543, 0, -0.8630345, 0, 1, 0, 0.86303425, 0, 0.5051454, -27.198437, 2.1623492, 190.18561)
+transform = Transform3D(0.50514543, 0, -0.8630345, 0, 1, 0, 0.86303425, 0, 0.5051454, -27.198437, 4.1429677, 190.18561)
 size = Vector3(7.0009766, 1.5297241, 31.35001)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume17" type="FogVolume" parent="Fog" unique_id=1777006442]
-transform = Transform3D(0.96937245, 0, 0.24559492, 0, 1, 0, -0.24559511, 0, 0.96937263, -23.324646, 2.1623492, 119.401985)
+transform = Transform3D(0.96937245, 0, 0.24559492, 0, 1, 0, -0.24559511, 0, 0.96937263, -23.324646, 4.1429677, 119.401985)
 size = Vector3(9.498535, 1.5297241, 41.168434)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume13" type="FogVolume" parent="Fog" unique_id=1788372467]
-transform = Transform3D(-0.7050674, 0, -0.70914006, 0, 1, 0, 0.70914006, 0, -0.7050675, -8.4494705, 2.1623492, 9.138071)
-size = Vector3(7.0009766, 1.5297241, 18.825012)
+transform = Transform3D(-0.7050674, 0, -0.70914006, 0, 1, 0, 0.70914006, 0, -0.7050675, -11.416072, 4.98987, 8.628053)
+size = Vector3(3.5410156, 1.5297241, 13.898346)
+material = ExtResource("9_4rjc6")
+
+[node name="FogVolume24" type="FogVolume" parent="Fog" unique_id=492155279]
+transform = Transform3D(-0.9965595, 0, -0.082877696, 0, 1, 0, 0.082877785, 0, -0.9965596, -7.801087, 4.8158627, 14.300269)
+size = Vector3(5.2382813, 1.9831238, 7.1871223)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume3" type="FogVolume" parent="Fog" unique_id=89084473]
-transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -16.840527, 2.1623492, -21.641273)
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -16.840527, 4.1429677, -21.641273)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume4" type="FogVolume" parent="Fog" unique_id=2031387074]
-transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -25.284794, 2.1623492, -44.383358)
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -25.284794, 4.1429677, -44.383358)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume5" type="FogVolume" parent="Fog" unique_id=94840977]
-transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -33.586056, 2.1623492, -57.570297)
+transform = Transform3D(0.9134176, 0, 0.40702367, 0, 1.0000001, 0, -0.40702358, 0, 0.91341776, -33.586056, 4.1429677, -57.570297)
 size = Vector3(7.0009766, 1.5297241, 23.431519)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume6" type="FogVolume" parent="Fog" unique_id=1211697451]
-transform = Transform3D(0.8802538, 0, -0.4745031, 0, 1, 0, 0.47450304, 0, 0.880254, -24.525293, 2.1623492, -87.12091)
+transform = Transform3D(0.8802538, 0, -0.4745031, 0, 1, 0, 0.47450304, 0, 0.880254, -24.525293, 4.1429677, -87.12091)
 size = Vector3(7.0009766, 1.5297241, 35.668884)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume7" type="FogVolume" parent="Fog" unique_id=932175747]
-transform = Transform3D(0.9910695, 0, -0.13334621, 0, 1, 0, 0.13334623, 0, 0.9910697, -36.237526, 2.1623492, -67.779755)
+transform = Transform3D(0.9910695, 0, -0.13334621, 0, 1, 0, 0.13334623, 0, 0.9910697, -36.237526, 4.1429677, -67.779755)
 size = Vector3(13.371765, 1.5297241, 12.156097)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume8" type="FogVolume" parent="Fog" unique_id=188563079]
-transform = Transform3D(0.9881212, 0, -0.1536757, 0, 1, 0, 0.15367573, 0, 0.9881214, -15.881284, 2.1623492, -116.09175)
+transform = Transform3D(0.9881212, 0, -0.1536757, 0, 1, 0, 0.15367573, 0, 0.9881214, -15.881284, 4.1429677, -116.09175)
 size = Vector3(7.0009766, 1.5297241, 40.093292)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume9" type="FogVolume" parent="Fog" unique_id=460172665]
-transform = Transform3D(0.8040228, 0, -0.5945983, 0, 1, 0, 0.59459823, 0, 0.8040229, -0.2340765, 2.1623492, -149.48926)
+transform = Transform3D(0.8040228, 0, -0.5945983, 0, 1, 0, 0.59459823, 0, 0.8040229, -0.2340765, 4.1429677, -149.48926)
 size = Vector3(7.0009766, 1.5297241, 40.093292)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume10" type="FogVolume" parent="Fog" unique_id=656985350]
-transform = Transform3D(0.703469, 0, -0.7107258, 0, 1, 0, 0.7107257, 0, 0.7034691, 25.53072, 2.1623492, -178.86887)
+transform = Transform3D(0.703469, 0, -0.7107258, 0, 1, 0, 0.7107257, 0, 0.7034691, 25.53072, 4.1429677, -178.86887)
 size = Vector3(7.0009766, 1.5297241, 40.093292)
 material = ExtResource("9_4rjc6")
 
 [node name="FogVolume11" type="FogVolume" parent="Fog" unique_id=625441596]
-transform = Transform3D(0.9920771, 0, -0.1256276, 0, 1, 0, 0.12562758, 0, 0.9920773, 39.891094, 2.1623492, -207.72559)
+transform = Transform3D(0.9920771, 0, -0.1256276, 0, 1, 0, 0.12562758, 0, 0.9920773, 39.891094, 4.1429677, -207.72559)
 size = Vector3(7.0009766, 1.5297241, 40.093292)
 material = ExtResource("9_4rjc6")
 

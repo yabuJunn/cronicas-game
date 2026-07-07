@@ -5,7 +5,7 @@ extends CharacterBody3D
 # Radio: 0.35 m
 
 const WALK_SPEED = 5.0 #Default is 5
-const SPRINT_SPEED = 40.0 #Default is 8
+const SPRINT_SPEED = 8.0 #Default is 8 Debug 40
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.003
 

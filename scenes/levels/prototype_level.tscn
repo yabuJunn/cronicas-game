@@ -1135,7 +1135,7 @@ collision_layer = 8
 collision_mask = 11
 script = ExtResource("9_w2f51")
 item_name = "LlaveTest"
-item_description = "Una llave"
+item_description = "Una llave [pulse freq=4.0 color=#ff5500]Una llave[/pulse] Una llave"
 item_icon = ExtResource("10_qcc2t")
 ruta_modelo3d = "uid://wksl540jqens"
 mesh = NodePath("MeshInstance3D")

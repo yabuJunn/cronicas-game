@@ -62,7 +62,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-color = Color(0, 0, 0, 0.13800001)
+color = Color(0.34407577, 0.34407574, 0.34407574, 1)
 script = ExtResource("3_yg7j8")
 
 [node name="MainContainer" type="VBoxContainer" parent="HUD/InventoryWindow" unique_id=766489765]
@@ -76,7 +76,7 @@ grow_vertical = 2
 [node name="CarruselPanel" type="ColorRect" parent="HUD/InventoryWindow/MainContainer" unique_id=73611237]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-color = Color(1, 1, 1, 0.49)
+color = Color(0, 0, 0, 1)
 
 [node name="CarruselHBox" type="HBoxContainer" parent="HUD/InventoryWindow/MainContainer/CarruselPanel" unique_id=1163728627]
 layout_mode = 1
@@ -122,7 +122,7 @@ size_flags_vertical = 3
 [node name="InfoPanel" type="ColorRect" parent="HUD/InventoryWindow/MainContainer/InferiorHBox" unique_id=632316063]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.573792, 0.5737919, 0.5737919, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="MargenInterno" type="MarginContainer" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/InfoPanel" unique_id=585706102]
 layout_mode = 0
@@ -132,21 +132,23 @@ offset_bottom = 40.0
 [node name="VBoxInfo" type="VBoxContainer" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/InfoPanel/MargenInterno" unique_id=60915505]
 layout_mode = 2
 
-[node name="NameText" type="Label" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/InfoPanel/MargenInterno/VBoxInfo" unique_id=2029516060]
+[node name="NameText" type="RichTextLabel" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/InfoPanel/MargenInterno/VBoxInfo" unique_id=732711507]
 layout_mode = 2
+bbcode_enabled = true
 text = "Name Object"
 
 [node name="Separator" type="HSeparator" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/InfoPanel/MargenInterno/VBoxInfo" unique_id=1859583351]
 layout_mode = 2
 
-[node name="DescriptionText" type="Label" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/InfoPanel/MargenInterno/VBoxInfo" unique_id=167805658]
+[node name="DescriptionText" type="RichTextLabel" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/InfoPanel/MargenInterno/VBoxInfo" unique_id=339698618]
 layout_mode = 2
+bbcode_enabled = true
 text = "Description Object"
 
 [node name="Visor3DPanel" type="ColorRect" parent="HUD/InventoryWindow/MainContainer/InferiorHBox" unique_id=460436551]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/Visor3DPanel" unique_id=744488833]
 layout_mode = 1

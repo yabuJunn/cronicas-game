@@ -1,10 +1,15 @@
+#Inventory Manager Autoload
+
 extends Node
 
-# Usamos un diccionario para guardar el nombre del objeto y su descripción
+# Ahora guarda: { "Nombre": { "descripcion": String, "icono": Texture2D } }
 var items_recolectados: Dictionary = {}
 
-func agregar_objeto(nombre: String, descripcion: String) -> void:
-	items_recolectados[nombre] = descripcion
+func agregar_objeto(nombre: String, descripcion: String, icono: Texture2D = null) -> void:
+	items_recolectados[nombre] = {
+		"descripcion": descripcion,
+		"icono": icono
+	}
 	print("Objeto recogido: ", nombre)
 
 func tiene_objeto(nombre: String) -> bool:

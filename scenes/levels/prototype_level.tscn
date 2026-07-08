@@ -10,6 +10,8 @@
 [ext_resource type="Material" uid="uid://cnxa1r88tn32s" path="res://textures/Bricks/Bricks_06-256x256.tres" id="7_cx7x2"]
 [ext_resource type="Script" uid="uid://cp8cgdqni6oqh" path="res://scenes/objects/interactible_object.gd" id="9_w2f51"]
 [ext_resource type="Material" uid="uid://b7emn18uq0g50" path="res://materials/interactible_item_default_material_3d.tres" id="10_1qcro"]
+[ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="12_1qcro"]
+[ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="13_xtll6"]
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="14_qcc2t"]
 
 [sub_resource type="Environment" id="Environment_xtll6"]
@@ -1133,6 +1135,7 @@ collision_mask = 11
 script = ExtResource("9_w2f51")
 item_name = "Llave"
 item_description = "Una llave"
+se_puede_recoger = null
 mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=175083790]
@@ -1147,3 +1150,9 @@ mesh = SubResource("BoxMesh_js2ys")
 
 [node name="SeaDoor" parent="." unique_id=2143399838 instance=ExtResource("14_qcc2t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.718857, 12.681274)
+
+[node name="EnergySphere" parent="." unique_id=1256466068 instance=ExtResource("12_1qcro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 23, -7)
+
+[node name="Pedestal" parent="." unique_id=1043176817 instance=ExtResource("13_xtll6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.158941, 21.734081, 9.205422)

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://da5w1ojflrjgt"]
+
+[ext_resource type="Script" uid="uid://cr03vo7aas7by" path="res://scenes/screenshots/3d_screenshots.gd" id="1_sdeym"]
+[ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="1_ut2b3"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ut2b3"]
+
+[sub_resource type="Sky" id="Sky_sch65"]
+sky_material = SubResource("PhysicalSkyMaterial_ut2b3")
+
+[sub_resource type="Environment" id="Environment_sdeym"]
+background_mode = 2
+sky = SubResource("Sky_sch65")
+ambient_light_source = 2
+ambient_light_color = Color(0.4189023, 0.27716428, 0.116780646, 1)
+reflected_light_source = 2
+tonemap_mode = 3
+glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.7169005, 0.83304757, 0.8683829, 1)
+fog_density = 1.0
+fog_depth_begin = 5.0
+fog_depth_end = 315.9
+volumetric_fog_density = 0.0415
+volumetric_fog_albedo = Color(0.8008649, 0.8506746, 0.89978373, 1)
+volumetric_fog_emission = Color(0.19642848, 0.14353913, 0.16480091, 1)
+volumetric_fog_length = 49.45
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 0.75
+
+[node name="3DScreenshots" type="Node3D" unique_id=1406470267]
+script = ExtResource("1_sdeym")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=381845659]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1541453987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.012963742, 0.5943904)
+
+[node name="EnergySphere" parent="SubViewport" unique_id=1256466068 instance=ExtResource("1_ut2b3")]
+transform = Transform3D(0.98833495, 0, -0.15229589, 0, 1, 0, 0.15229589, 0, 0.98833495, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=744884627]
+transform = Transform3D(-0.7301208, -0.4904965, 0.4757486, 0.06111845, 0.64656574, 0.76040596, -0.68057907, 0.5842653, -0.4420928, -91.278076, 18.917465, 0)
+light_color = Color(0.8093096, 0.97609526, 0.934499, 1)
+light_angular_distance = 0.59
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=1300817631]
+environment = SubResource("Environment_sdeym")

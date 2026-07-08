@@ -137,7 +137,7 @@ func iniciar_animacion_apertura() -> void:
 			tween_puerta.parallel().tween_property(material_shader_puerta, "shader_parameter/progress", 0.0, tiempo_fade_temblor).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN).set_delay(retraso_Detener_temblor)
 
 	if is_instance_valid(stoneMovingAudio3D):
-		stoneMovingAudio3D.volume_db = -80.0
+		stoneMovingAudio3D.volume_db = 15
 		stoneMovingAudio3D.play()
 		tween_puerta.parallel().tween_property(stoneMovingAudio3D, "volume_db", volumen_max_audio, tiempo_fade_audio).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		var retraso_fade_out = tiempo_apertura - tiempo_fade_audio

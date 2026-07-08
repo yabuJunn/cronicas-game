@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dy4mywkv2rlm6"
+path="res://.godot/imported/Mysterious Electricity.mp3-46664eaecde017e056ee9071d5a0cd88.mp3str"
+
+[deps]
+
+source_file="res://sounds/ambient/Mysterious Electricity.mp3"
+dest_files=["res://.godot/imported/Mysterious Electricity.mp3-46664eaecde017e056ee9071d5a0cd88.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

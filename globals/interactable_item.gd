@@ -6,6 +6,7 @@ extends Node3D
 @export var item_name: String = "Objeto Desconocido"
 @export_multiline var item_description: String = "Descripción por defecto."
 @export var se_puede_recoger: bool = true
+@export var item_icon: Texture2D
 
 @export var mesh: MeshInstance3D 
 var outline_material: ShaderMaterial
@@ -53,7 +54,7 @@ func set_highlight(active: bool) -> void:
 
 func interactuar() -> void:
 	if se_puede_recoger:
-		Inventory.agregar_objeto(item_name, item_description)
+		Inventory.agregar_objeto(item_name, item_description, item_icon)
 		queue_free()
 	else:
 		print("Has interactuado con: ", item_name, " (Objeto estático)")

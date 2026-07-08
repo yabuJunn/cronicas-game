@@ -3,7 +3,7 @@ extends ColorRect
 # --- CONFIGURACIÓN DE PROPORCIONES (Modificables desde el Inspector) ---
 @export_group("Proporciones UI")
 @export_range(0.1, 0.9) var ratio_ancho_info: float = 0.3     # 0.3 significa 30% para el texto, 70% para el visor
-@export_range(0.05, 0.4) var porcentaje_ancho_botones: float = 0.5 # NUEVO: 0.1 significa que cada botón ocupará el 10% del ancho del carrusel
+@export_range(0.05, 0.4) var porcentaje_ancho_botones: float = 0.05 # NUEVO: 0.1 significa que cada botón ocupará el 10% del ancho del carrusel
 
 # --- CONFIGURACIÓN DE PROPORCIONES (Modificables desde el Inspector) ---
 @export_group("Tiempos de Animación")
@@ -137,7 +137,7 @@ func _ready() -> void:
 	btn_prev.add_theme_stylebox_override("pressed", estilo_boton)
 	btn_next.add_theme_stylebox_override("pressed", estilo_boton)
 	
-	recalcular_proporciones_ui()
+	btn_next.add_theme_stylebox_override("pressed", estilo_boton)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
@@ -154,6 +154,7 @@ func _input(event: InputEvent) -> void:
 
 # --- SISTEMA DINÁMICO RESPONSIVO ---
 # --- SISTEMA DINÁMICO RESPONSIVO ---
+# --- SISTEMA DINÁMICO RESPONSIVO ---
 func recalcular_proporciones_ui() -> void:
 	if not is_node_ready(): return
 	info_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -161,18 +162,22 @@ func recalcular_proporciones_ui() -> void:
 	info_panel.size_flags_stretch_ratio = ratio_ancho_info
 	visor_3d_panel.size_flags_stretch_ratio = 1.0 - ratio_ancho_info
 	
-	# Mantiene el marco estático para que los botones Prev/Next no se peguen
-	var altura = carrusel_panel.size.y if carrusel_panel else 100
-	var ancho_total = carrusel_panel.size.x if carrusel_panel else 800 # Obtenemos el ancho total
+	# Obtenemos ancho y alto. Si Godot nos da 0 (porque está oculto), 
+	# usamos el tamaño base de la pantalla (self.size) como red de seguridad.
+	var altura = carrusel_panel.size.y
+	if altura == 0: altura = self.size.y * 0.5 # Asume que el panel es la mitad de la pantalla
+	
+	var ancho_total = carrusel_panel.size.x
+	if ancho_total == 0: ancho_total = self.size.x
 	
 	# --- NUEVO: Ajuste responsive del Width de los botones ---
 	var ancho_boton = ancho_total * porcentaje_ancho_botones
-	btn_prev.custom_minimum_size.x = ancho_boton
-	btn_next.custom_minimum_size.x = ancho_boton
 	
-	print("btn_prev.custom_minimum_size.x: ", btn_prev.custom_minimum_size.x)
+	btn_prev.custom_minimum_size = Vector2(ancho_boton, btn_prev.custom_minimum_size.y)
+	btn_next.custom_minimum_size = Vector2(ancho_boton, btn_next.custom_minimum_size.y)
 	# ---------------------------------------------------------
 	
+	# Mantiene el marco estático para que los botones Prev/Next no se peguen
 	var old_slots = [
 		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda2,
 		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda1,
@@ -217,6 +222,8 @@ func sincronizar_slots_dinamicos() -> void:
 
 func abrir_inventario() -> void:
 	visible = true
+	recalcular_proporciones_ui()
+	
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	

@@ -35,8 +35,18 @@ const ROTATION_SPEED: float = 0.01
 var style_seleccionado: StyleBoxFlat
 var style_deseleccionado: StyleBoxFlat
 
+# Tweens globales para controlar el ciclo de vida de las animaciones
+var carrusel_tween: Tween
+var name_tween: Tween
+var desc_tween: Tween
+var desc_flicker_tween: Tween
+
 func _ready() -> void:
 	slots = [slot_izq_2, slot_izq_1, slot_centro, slot_der_1, slot_der_2]
+	
+	# Forzamos a que el HBox del carrusel centre sus elementos automáticamente
+	var carrusel_hbox = $MainContainer/CarruselPanel/CarruselHBox
+	carrusel_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	
 	# Conectamos las flechas y el mouse del visor
 	btn_prev.pressed.connect(mover_carrusel.bind(-1))
@@ -52,19 +62,19 @@ func _ready() -> void:
 	style_seleccionado = StyleBoxFlat.new()
 	style_seleccionado.draw_center = false
 	style_seleccionado.border_color = Color.WHITE
-	style_seleccionado.set_border_width_all(3) # Grosor del borde blanco
+	style_seleccionado.set_border_width_all(3)
 	
 	style_deseleccionado = StyleBoxFlat.new()
 	style_deseleccionado.draw_center = false
-	style_deseleccionado.border_color = Color(0.3, 0.3, 0.3, 0.8) # Gris oscuro retro
-	style_deseleccionado.set_border_width_all(2) # Grosor del borde gris
+	style_deseleccionado.border_color = Color(0.3, 0.3, 0.3, 0.8)
+	style_deseleccionado.set_border_width_all(2)
 
-	# Inyectamos un nodo Panel invisible en cada slot para que sirva de marco
+	# Inyectamos el nodo de marco visual a cada slot
 	for slot in slots:
 		if slot:
 			var marco = Panel.new()
 			marco.name = "MarcoVisual"
-			marco.mouse_filter = Control.MOUSE_FILTER_IGNORE # Evita que bloquee clicks
+			marco.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			slot.add_child(marco)
 			marco.set_anchors_preset(Control.PRESET_FULL_RECT)
 	
@@ -91,7 +101,6 @@ func _ready() -> void:
 	description_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	# =================================================================
 
-	# Ejecutamos la primera pasada de calibración
 	recalcular_proporciones_ui()
 
 func _input(event: InputEvent) -> void:
@@ -109,42 +118,23 @@ func _input(event: InputEvent) -> void:
 
 # --- SISTEMA DINÁMICO RESPONSIVO ---
 func recalcular_proporciones_ui() -> void:
+	if not is_node_ready(): return
 	info_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	visor_3d_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	info_panel.size_flags_stretch_ratio = ratio_ancho_info
 	visor_3d_panel.size_flags_stretch_ratio = 1.0 - ratio_ancho_info
 	
-	# Obtenemos la altura real de la banda del carrusel
-	var altura_actual_carrusel = carrusel_panel.size.y
-	
-	# Ajustamos los tamaños diferenciando el centro de los laterales
-	for i in range(slots.size()):
-		var slot = slots[i]
-		if slot:
-			# ¡CRUCIAL!: Evita que el contenedor estire el slot verticalmente.
-			# Al centrarlo, respetará de forma estricta el tamaño cuadrado de custom_minimum_size.
-			slot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-			
-			if i == 2:
-				# El seleccionado (centro) es un cuadrado del 90% de la altura total
-				var tam_centro = altura_actual_carrusel * 0.9
-				slot.custom_minimum_size = Vector2(tam_centro, tam_centro)
-			else:
-				# Los deseleccionados (laterales) son cuadrados del 80% de la altura total
-				var tam_lateral = altura_actual_carrusel * 0.8
-				slot.custom_minimum_size = Vector2(tam_lateral, tam_lateral)
+	# Al redimensionar la ventana NO queremos animaciones locas, solo ajustar tamaños estáticos
+	if visible:
+		actualizar_interfaz(false)
 
 func abrir_inventario() -> void:
 	visible = true
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	recalcular_proporciones_ui()
-	
-	if Inventory.listado_ordenado.size() > 0:
-		indice_actual = clamp(indice_actual, 0, Inventory.listado_ordenado.size() - 1)
-	
-	actualizar_interfaz()
+	# Al abrir el inventario sí queremos que los elementos aparezcan con animación
+	actualizar_interfaz(true)
 
 func cerrar_inventario() -> void:
 	visible = false
@@ -159,47 +149,107 @@ func mover_carrusel(direccion: int) -> void:
 		return
 		
 	indice_actual = posmod(indice_actual + direccion, total_items)
-	actualizar_interfaz()
+	# Al cambiar de objeto, activamos la animación para romper la rigidez de los slots estáticos
+	actualizar_interfaz(true)
 
-func actualizar_interfaz() -> void:
+# --- ACTUALIZACIÓN DE INTERFAZ CON REINICIO DE PROPIEDADES EN CALIENTE ---
+func actualizar_interfaz(animar_cambio: bool = false) -> void:
 	var total_items = Inventory.listado_ordenado.size()
 	
 	if total_items == 0:
 		limpiar_interfaz()
 		return
 
+	indice_actual = clamp(indice_actual, 0, total_items - 1)
+
+	if carrusel_tween and carrusel_tween.is_valid():
+		carrusel_tween.kill()
+	
+	carrusel_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	var altura_actual_carrusel = carrusel_panel.size.y
+
+	# MAPEO DINÁMICO DE ÍNDICES
+	var mapa_slots = [-1, -1, -1, -1, -1]
+	if total_items == 1:
+		mapa_slots[2] = 0 
+	elif total_items == 2:
+		mapa_slots[2] = indice_actual 
+		if indice_actual == 0:
+			mapa_slots[3] = 1 
+		else:
+			mapa_slots[1] = 0 
+	elif total_items == 3:
+		mapa_slots[1] = posmod(indice_actual - 1, total_items)
+		mapa_slots[2] = indice_actual
+		mapa_slots[3] = posmod(indice_actual + 1, total_items)
+	elif total_items == 4:
+		mapa_slots[1] = posmod(indice_actual - 1, total_items)
+		mapa_slots[2] = indice_actual
+		mapa_slots[3] = posmod(indice_actual + 1, total_items)
+		mapa_slots[4] = posmod(indice_actual + 2, total_items)
+	else:
+		for i in range(5):
+			mapa_slots[i] = posmod(indice_actual + (i - 2), total_items)
+
 	for i in range(5):
-		var offset = i - 2
-		var index_real = posmod(indice_actual + offset, total_items)
-		var nombre_item = Inventory.listado_ordenado[index_real]
-		
 		var slot = slots[i]
-		slot.texture = Inventory.items_recolectados[nombre_item]["icono"]
-		slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		
-		# Recuperamos el marco que creamos en el _ready()
+		var item_index = mapa_slots[i]
 		var marco = slot.get_node("MarcoVisual") as Panel
 		
-		# Aplicamos el filtro de selección/deselección visual
-		if i == 2:
-			slot.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		if item_index == -1:
+			slot.visible = false
 			if marco:
-				marco.add_theme_stylebox_override("panel", style_seleccionado)
+				marco.remove_theme_stylebox_override("panel")
 		else:
-			slot.modulate = Color(0.5, 0.5, 0.5, 0.4)
-			if marco:
-				marco.add_theme_stylebox_override("panel", style_deseleccionado)
+			slot.visible = true
+			var nombre_item = Inventory.listado_ordenado[item_index]
+			slot.texture = Inventory.items_recolectados[nombre_item]["icono"]
+			slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			slot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			
+			var tam_objetivo: float
+			var color_objetivo: Color
+			
+			if i == 2: # SLOT CENTRAL
+				tam_objetivo = altura_actual_carrusel * 0.9
+				color_objetivo = Color(1.0, 1.0, 1.0, 1.0)
+				if marco:
+					marco.add_theme_stylebox_override("panel", style_seleccionado)
+				
+				# TRUCO: Si hay un cambio de objeto, encogemos el slot central y bajamos su opacidad
+				# de inmediato para obligar al Tween a animar el crecimiento ("Pop Effect")
+				if animar_cambio:
+					slot.custom_minimum_size = Vector2(altura_actual_carrusel * 0.6, altura_actual_carrusel * 0.6)
+					slot.modulate = Color(1.0, 1.0, 1.0, 0.3)
+			
+			else: # SLOTS LATERALES
+				tam_objetivo = altura_actual_carrusel * 0.8
+				color_objetivo = Color(0.5, 0.5, 0.5, 0.4)
+				if marco:
+					marco.add_theme_stylebox_override("panel", style_deseleccionado)
+				
+				# Ocultamos sutilmente los laterales en el cambio para que hagan un fundido de entrada limpio
+				if animar_cambio:
+					slot.modulate = Color(0.5, 0.5, 0.5, 0.0)
+			
+			# Ahora el Tween sí tiene propiedades de origen cambiadas para procesar durante los 0.2 segundos
+			carrusel_tween.tween_property(slot, "custom_minimum_size", Vector2(tam_objetivo, tam_objetivo), 0.2)
+			carrusel_tween.tween_property(slot, "modulate", color_objetivo, 0.2)
 
 	mostrar_info_central()
 
 func limpiar_interfaz() -> void:
+	if name_tween and name_tween.is_valid(): name_tween.kill()
+	if desc_tween and desc_tween.is_valid(): desc_tween.kill()
+	if desc_flicker_tween and desc_flicker_tween.is_valid(): desc_flicker_tween.kill()
+
 	for slot in slots:
+		slot.visible = false
 		slot.texture = null
 		slot.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		var marco = slot.get_node("MarcoVisual") as Panel
 		if marco:
-			# SOLUCIÓN AL ERROR: En Godot 4 los overrides se eliminan con remove
 			marco.remove_theme_stylebox_override("panel")
 			
 	name_text.text = "VACÍO"
@@ -210,8 +260,9 @@ func mostrar_info_central() -> void:
 	var nombre_seleccionado = Inventory.listado_ordenado[indice_actual]
 	var datos = Inventory.items_recolectados[nombre_seleccionado]
 	
-	var viejo_tween_name = create_tween()
-	viejo_tween_name.kill() 
+	if name_tween and name_tween.is_valid(): name_tween.kill()
+	if desc_tween and desc_tween.is_valid(): desc_tween.kill()
+	if desc_flicker_tween and desc_flicker_tween.is_valid(): desc_flicker_tween.kill()
 	
 	name_text.text = nombre_seleccionado.to_upper()
 	description_text.text = datos["descripcion"]
@@ -245,17 +296,16 @@ func _on_visor_gui_input(event: InputEvent) -> void:
 		model_pivot.rotate_y(-event.relative.x * ROTATION_SPEED)
 		model_pivot.rotate_x(-event.relative.y * ROTATION_SPEED)
 
-# --- EFECTOS VISUALES RETRO ---
+# --- EFECTOS VISUALES RETRO REUTILIZABLES ---
 
 func _animar_nombre_flicker(label: RichTextLabel) -> void:
 	label.modulate.a = 0.0
-	var tween = create_tween()
-	tween.tween_property(label, "modulate:a", 1.0, 0.02)
-	tween.tween_property(label, "modulate:a", 0.2, 0.03)
-	tween.tween_property(label, "modulate:a", 0.9, 0.02)
-	tween.tween_property(label, "modulate:a", 0.0, 0.04)
-	tween.tween_property(label, "modulate:a", 1.0, 0.03)
-
+	name_tween = create_tween()
+	name_tween.tween_property(label, "modulate:a", 1.0, 0.02)
+	name_tween.tween_property(label, "modulate:a", 0.2, 0.03)
+	name_tween.tween_property(label, "modulate:a", 0.9, 0.02)
+	name_tween.tween_property(label, "modulate:a", 0.0, 0.04)
+	name_tween.tween_property(label, "modulate:a", 1.0, 0.03)
 
 func _animar_descripcion_typewriter(label: RichTextLabel) -> void:
 	label.visible_ratio = 0.0
@@ -263,12 +313,12 @@ func _animar_descripcion_typewriter(label: RichTextLabel) -> void:
 	
 	var duracion_escritura = clamp(label.text.length() * 0.015, 0.2, 0.7)
 	
-	var tween_principal = create_tween().set_parallel(true)
-	tween_principal.tween_property(label, "visible_ratio", 1.0, duracion_escritura)
+	desc_tween = create_tween().set_parallel(true)
+	desc_tween.tween_property(label, "visible_ratio", 1.0, duracion_escritura)
 	
-	var tween_flicker = create_tween()
+	desc_flicker_tween = create_tween()
 	var repeticiones = int(duracion_escritura / 0.06)
 	
 	for i in range(repeticiones):
-		tween_flicker.tween_property(label, "modulate:a", 0.4, 0.03)
-		tween_flicker.tween_property(label, "modulate:a", 1.0, 0.03)
+		desc_flicker_tween.tween_property(label, "modulate:a", 0.4, 0.03)
+		desc_flicker_tween.tween_property(label, "modulate:a", 1.0, 0.03)

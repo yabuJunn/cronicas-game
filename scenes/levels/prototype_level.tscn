@@ -1155,6 +1155,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.718857, 12.681274)
 
 [node name="EnergySphere" parent="." unique_id=1256466068 instance=ExtResource("12_1qcro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 23, -7)
+item_name = "Esfera de Energía5"
+
+[node name="EnergySphere2" parent="." unique_id=539239160 instance=ExtResource("12_1qcro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.590052, 23, -7)
+item_name = "Esfera de Energía2"
+
+[node name="EnergySphere3" parent="." unique_id=1433948455 instance=ExtResource("12_1qcro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.598507, 23, -7)
+item_name = "Esfera de Energía4"
+
+[node name="EnergySphere4" parent="." unique_id=206893683 instance=ExtResource("12_1qcro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.023996, 23, -7)
+item_name = "Esfera de Energía3"
+
+[node name="EnergySphere5" parent="." unique_id=994601512 instance=ExtResource("12_1qcro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7010956, 23, -7)
 
 [node name="Pedestal" parent="." unique_id=1043176817 instance=ExtResource("13_xtll6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.158941, 21.734081, 9.205422)

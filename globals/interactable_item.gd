@@ -7,6 +7,8 @@ extends Node3D
 @export_multiline var item_description: String = "Descripción por defecto."
 @export var se_puede_recoger: bool = true
 @export var item_icon: Texture2D
+@export_file("*.tscn") var ruta_modelo3d: String
+
 
 @export var mesh: MeshInstance3D 
 var outline_material: ShaderMaterial
@@ -54,7 +56,14 @@ func set_highlight(active: bool) -> void:
 
 func interactuar() -> void:
 	if se_puede_recoger:
-		Inventory.agregar_objeto(item_name, item_description, item_icon)
+		var modelo_para_inventario: PackedScene = null
+		
+		# Si le asignaste una ruta en el inspector, la cargamos
+		if ruta_modelo3d != "":
+			modelo_para_inventario = load(ruta_modelo3d)
+			
+		# Pasamos el modelo (cargado o nulo) al inventario
+		Inventory.agregar_objeto(item_name, item_description, item_icon, modelo_para_inventario)
 		queue_free()
 	else:
 		print("Has interactuado con: ", item_name, " (Objeto estático)")

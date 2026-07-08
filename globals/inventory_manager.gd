@@ -1,15 +1,17 @@
-#Inventory Manager Autoload
-
 extends Node
 
-# Ahora guarda: { "Nombre": { "descripcion": String, "icono": Texture2D } }
 var items_recolectados: Dictionary = {}
+var listado_ordenado: Array = [] # Necesario para el carrusel
 
-func agregar_objeto(nombre: String, descripcion: String, icono: Texture2D = null) -> void:
+# Ahora pedimos el modelo_3d (la escena empaquetada)
+func agregar_objeto(nombre: String, descripcion: String, icono: Texture2D = null, modelo_3d: PackedScene = null) -> void:
 	items_recolectados[nombre] = {
 		"descripcion": descripcion,
-		"icono": icono
+		"icono": icono,
+		"modelo_3d": modelo_3d
 	}
+	if not listado_ordenado.has(nombre):
+		listado_ordenado.append(nombre)
 	print("Objeto recogido: ", nombre)
 
 func tiene_objeto(nombre: String) -> bool:
@@ -18,6 +20,5 @@ func tiene_objeto(nombre: String) -> bool:
 func remover_objeto(nombre: String) -> void:
 	if items_recolectados.has(nombre):
 		items_recolectados.erase(nombre)
-		print("Objeto removido del inventario: ", nombre)
-	else:
-		print("Advertencia: Se intentó remover '", nombre, "' pero no estaba en el inventario.")
+		listado_ordenado.erase(nombre)
+		print("Objeto removido: ", nombre)

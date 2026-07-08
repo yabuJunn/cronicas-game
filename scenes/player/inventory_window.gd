@@ -4,17 +4,15 @@ extends ColorRect
 @export_group("Proporciones UI")
 @export_range(0.1, 0.9) var ratio_ancho_info: float = 0.3     # 0.3 significa 30% para el texto, 70% para el visor
 
+@export_group("Tiempos de Animación")
+@export_range(0.05, 2.0) var tiempo_abrir: float = 0.2        # Tiempo que tarda en desplegarse el inventario
+@export_range(0.05, 2.0) var tiempo_cambio: float = 0.4       # Tiempo para la transición lateral (ajustado para suavidad)
+
 # --- REFERENCIAS A NODOS ---
 @onready var main_container = $MainContainer
 @onready var carrusel_panel = $MainContainer/CarruselPanel
 @onready var info_panel = $MainContainer/InferiorHBox/InfoPanel
 @onready var visor_3d_panel = $MainContainer/InferiorHBox/Visor3DPanel
-
-@onready var slot_izq_2 = $MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda2
-@onready var slot_izq_1 = $MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda1
-@onready var slot_centro = $MainContainer/CarruselPanel/CarruselHBox/SlotCentro
-@onready var slot_der_1 = $MainContainer/CarruselPanel/CarruselHBox/SlotDerecha1
-@onready var slot_der_2 = $MainContainer/CarruselPanel/CarruselHBox/SlotDerecha2
 
 @onready var name_text = $MainContainer/InferiorHBox/InfoPanel/MargenInterno/VBoxInfo/NameText
 @onready var description_text = $MainContainer/InferiorHBox/InfoPanel/MargenInterno/VBoxInfo/DescriptionText
@@ -26,7 +24,9 @@ extends ColorRect
 @onready var btn_next = $MainContainer/CarruselPanel/CarruselHBox/BtnNext
 
 # --- VARIABLES ---
-var slots: Array = []
+var slots: Array = [] # Ahora almacenará nuestros slots generados dinámicamente
+var items_container: Control # Contenedor dinámico superpuesto
+
 var indice_actual: int = 0
 var arrastrando_modelo: bool = false
 const ROTATION_SPEED: float = 0.01
@@ -42,11 +42,30 @@ var desc_tween: Tween
 var desc_flicker_tween: Tween
 
 func _ready() -> void:
-	slots = [slot_izq_2, slot_izq_1, slot_centro, slot_der_1, slot_der_2]
-	
-	# Forzamos a que el HBox del carrusel centre sus elementos automáticamente
-	var carrusel_hbox = $MainContainer/CarruselPanel/CarruselHBox
-	carrusel_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	# 1. Ocultamos la imagen de los slots estáticos originales
+	# Los mantenemos en el árbol para que el HBoxContainer siga manteniendo
+	# la separación física de los botones Prev y Next a los lados.
+	var old_slots = [
+		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda2,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda1,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotCentro,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotDerecha1,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotDerecha2
+	]
+	for s in old_slots:
+		if s:
+			s.modulate.a = 0.0 # Se vuelven invisibles
+			var marco = s.get_node_or_null("MarcoVisual")
+			if marco: marco.queue_free()
+
+	# 2. Creamos nuestro propio contenedor para mover los slots libremente
+	items_container = Control.new()
+	items_container.name = "ItemsContainer"
+	items_container.set_anchors_preset(Control.PRESET_FULL_RECT)
+	items_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	carrusel_panel.add_child(items_container)
+	# Lo movemos atrás para que los botones de Prev/Next se puedan seguir clickeando
+	carrusel_panel.move_child(items_container, 0)
 	
 	# Conectamos las flechas y el mouse del visor
 	btn_prev.pressed.connect(mover_carrusel.bind(-1))
@@ -69,15 +88,6 @@ func _ready() -> void:
 	style_deseleccionado.border_color = Color(0.3, 0.3, 0.3, 0.8)
 	style_deseleccionado.set_border_width_all(2)
 
-	# Inyectamos el nodo de marco visual a cada slot
-	for slot in slots:
-		if slot:
-			var marco = Panel.new()
-			marco.name = "MarcoVisual"
-			marco.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			slot.add_child(marco)
-			marco.set_anchors_preset(Control.PRESET_FULL_RECT)
-	
 	# =================================================================
 	# ARREGLO DE CONTENEDORES Y RICHTEXTLABELS
 	# =================================================================
@@ -124,17 +134,58 @@ func recalcular_proporciones_ui() -> void:
 	info_panel.size_flags_stretch_ratio = ratio_ancho_info
 	visor_3d_panel.size_flags_stretch_ratio = 1.0 - ratio_ancho_info
 	
-	# Al redimensionar la ventana NO queremos animaciones locas, solo ajustar tamaños estáticos
+	# Mantiene el marco estático para que los botones Prev/Next no se peguen
+	var altura = carrusel_panel.size.y if carrusel_panel else 100
+	var old_slots = [
+		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda2,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda1,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotCentro,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotDerecha1,
+		$MainContainer/CarruselPanel/CarruselHBox/SlotDerecha2
+	]
+	for s in old_slots:
+		if s: s.custom_minimum_size = Vector2(altura * 0.8, altura * 0.8)
+	
 	if visible:
-		actualizar_interfaz(false)
+		actualizar_interfaz("ninguna")
+
+# Genera la cantidad exacta de slots según lo que haya en el inventario
+func sincronizar_slots_dinamicos() -> void:
+	var total_items = Inventory.listado_ordenado.size()
+	
+	# Si cambió la cantidad, reconstruimos los nodos
+	if slots.size() != total_items:
+		for child in items_container.get_children():
+			child.queue_free()
+		slots.clear()
+		
+		for i in range(total_items):
+			var slot = TextureRect.new()
+			slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			
+			var marco = Panel.new()
+			marco.name = "MarcoVisual"
+			marco.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			slot.add_child(marco)
+			marco.set_anchors_preset(Control.PRESET_FULL_RECT)
+			
+			items_container.add_child(slot)
+			slots.append(slot)
+			
+	# Actualizamos texturas para reflejar el estado real
+	for i in range(total_items):
+		var nombre_item = Inventory.listado_ordenado[i]
+		slots[i].texture = Inventory.items_recolectados[nombre_item]["icono"]
 
 func abrir_inventario() -> void:
 	visible = true
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	# Al abrir el inventario sí queremos que los elementos aparezcan con animación
-	actualizar_interfaz(true)
+	sincronizar_slots_dinamicos()
+	actualizar_interfaz("ninguna") # Pre-coloca en posición
+	actualizar_interfaz("abrir")   # Anima aparición
 
 func cerrar_inventario() -> void:
 	visible = false
@@ -149,12 +200,11 @@ func mover_carrusel(direccion: int) -> void:
 		return
 		
 	indice_actual = posmod(indice_actual + direccion, total_items)
-	# Al cambiar de objeto, activamos la animación para romper la rigidez de los slots estáticos
-	actualizar_interfaz(true)
+	actualizar_interfaz("cambio")
 
-# --- ACTUALIZACIÓN DE INTERFAZ CON REINICIO DE PROPIEDADES EN CALIENTE ---
-func actualizar_interfaz(animar_cambio: bool = false) -> void:
-	var total_items = Inventory.listado_ordenado.size()
+# --- ACTUALIZACIÓN DE INTERFAZ INTEGRADA ---
+func actualizar_interfaz(tipo_animacion: String = "ninguna") -> void:
+	var total_items = slots.size()
 	
 	if total_items == 0:
 		limpiar_interfaz()
@@ -162,80 +212,77 @@ func actualizar_interfaz(animar_cambio: bool = false) -> void:
 
 	indice_actual = clamp(indice_actual, 0, total_items - 1)
 
-	if carrusel_tween and carrusel_tween.is_valid():
-		carrusel_tween.kill()
+	if tipo_animacion != "ninguna":
+		if carrusel_tween and carrusel_tween.is_valid():
+			carrusel_tween.kill()
+		carrusel_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
-	carrusel_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	var altura_actual_carrusel = carrusel_panel.size.y
+	# Medidas del carrusel para posicionar
+	var altura = carrusel_panel.size.y
+	var ancho = carrusel_panel.size.x
+	var centro_x = ancho / 2.0
+	var espaciado_x = altura * 0.85 # Separación física entre cada slot
 
-	# MAPEO DINÁMICO DE ÍNDICES
-	var mapa_slots = [-1, -1, -1, -1, -1]
-	if total_items == 1:
-		mapa_slots[2] = 0 
-	elif total_items == 2:
-		mapa_slots[2] = indice_actual 
-		if indice_actual == 0:
-			mapa_slots[3] = 1 
-		else:
-			mapa_slots[1] = 0 
-	elif total_items == 3:
-		mapa_slots[1] = posmod(indice_actual - 1, total_items)
-		mapa_slots[2] = indice_actual
-		mapa_slots[3] = posmod(indice_actual + 1, total_items)
-	elif total_items == 4:
-		mapa_slots[1] = posmod(indice_actual - 1, total_items)
-		mapa_slots[2] = indice_actual
-		mapa_slots[3] = posmod(indice_actual + 1, total_items)
-		mapa_slots[4] = posmod(indice_actual + 2, total_items)
-	else:
-		for i in range(5):
-			mapa_slots[i] = posmod(indice_actual + (i - 2), total_items)
-
-	for i in range(5):
+	for i in range(total_items):
 		var slot = slots[i]
-		var item_index = mapa_slots[i]
 		var marco = slot.get_node("MarcoVisual") as Panel
 		
-		if item_index == -1:
-			slot.visible = false
-			if marco:
-				marco.remove_theme_stylebox_override("panel")
+		# --- MATEMÁTICA DE POSICIÓN CIRCULAR ---
+		var diff = i - indice_actual
+		var half = float(total_items) / 2.0
+		
+		# Forzamos el salto circular (wrap) para la ilusión de bucle infinito
+		if total_items > 2:
+			if diff > half: diff -= total_items
+			elif diff < -half: diff += total_items
+			
+		var es_centro = (diff == 0)
+		
+		# Medidas Objetivo
+		var tam_objetivo = altura * 0.9 if es_centro else altura * 0.7
+		var pos_x_objetivo = centro_x + (diff * espaciado_x) - (tam_objetivo / 2.0)
+		var pos_y_objetivo = (altura - tam_objetivo) / 2.0
+		
+		# Colores y Estilos
+		var color_objetivo = Color(1.0, 1.0, 1.0, 1.0) if es_centro else Color(0.5, 0.5, 0.5, 0.4)
+		if abs(diff) > 2.5: # Si se aleja mucho del centro lo hacemos invisible
+			color_objetivo.a = 0.0
+			
+		slot.visible = true
+		if es_centro:
+			marco.add_theme_stylebox_override("panel", style_seleccionado)
+			slot.move_to_front() # Trae al frente para tapar a los laterales
 		else:
-			slot.visible = true
-			var nombre_item = Inventory.listado_ordenado[item_index]
-			slot.texture = Inventory.items_recolectados[nombre_item]["icono"]
-			slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-			slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			slot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			marco.add_theme_stylebox_override("panel", style_deseleccionado)
+		
+		# --- EJECUCIÓN DE ANIMACIÓN ---
+		if tipo_animacion == "ninguna":
+			slot.size = Vector2(tam_objetivo, tam_objetivo)
+			slot.position = Vector2(pos_x_objetivo, pos_y_objetivo)
+			slot.modulate = color_objetivo
 			
-			var tam_objetivo: float
-			var color_objetivo: Color
+		elif tipo_animacion == "abrir":
+			slot.position = Vector2(pos_x_objetivo, pos_y_objetivo)
+			slot.size = Vector2(tam_objetivo, tam_objetivo)
+			slot.modulate = Color(color_objetivo.r, color_objetivo.g, color_objetivo.b, 0.0)
 			
-			if i == 2: # SLOT CENTRAL
-				tam_objetivo = altura_actual_carrusel * 0.9
-				color_objetivo = Color(1.0, 1.0, 1.0, 1.0)
-				if marco:
-					marco.add_theme_stylebox_override("panel", style_seleccionado)
+			carrusel_tween.tween_property(slot, "modulate", color_objetivo, tiempo_abrir)
+			
+		elif tipo_animacion == "cambio":
+			# EL TRUCO DEL INFINITO: Si el salto posicional de un slot es gigante (recorrió 
+			# todo el layout de golpe porque pasó del final al principio), 
+			# lo teletransportamos fuera de pantalla antes de hacer el tween para que "entre" suavamente.
+			if abs(pos_x_objetivo - slot.position.x) > espaciado_x * 1.5:
+				var dir_salto = sign(pos_x_objetivo - centro_x)
+				var pos_x_inicio = pos_x_objetivo + (dir_salto * espaciado_x)
 				
-				# TRUCO: Si hay un cambio de objeto, encogemos el slot central y bajamos su opacidad
-				# de inmediato para obligar al Tween a animar el crecimiento ("Pop Effect")
-				if animar_cambio:
-					slot.custom_minimum_size = Vector2(altura_actual_carrusel * 0.6, altura_actual_carrusel * 0.6)
-					slot.modulate = Color(1.0, 1.0, 1.0, 0.3)
+				slot.position = Vector2(pos_x_inicio, pos_y_objetivo)
+				slot.size = Vector2(tam_objetivo, tam_objetivo)
+				slot.modulate.a = 0.0 # Nace transparente
 			
-			else: # SLOTS LATERALES
-				tam_objetivo = altura_actual_carrusel * 0.8
-				color_objetivo = Color(0.5, 0.5, 0.5, 0.4)
-				if marco:
-					marco.add_theme_stylebox_override("panel", style_deseleccionado)
-				
-				# Ocultamos sutilmente los laterales en el cambio para que hagan un fundido de entrada limpio
-				if animar_cambio:
-					slot.modulate = Color(0.5, 0.5, 0.5, 0.0)
-			
-			# Ahora el Tween sí tiene propiedades de origen cambiadas para procesar durante los 0.2 segundos
-			carrusel_tween.tween_property(slot, "custom_minimum_size", Vector2(tam_objetivo, tam_objetivo), 0.2)
-			carrusel_tween.tween_property(slot, "modulate", color_objetivo, 0.2)
+			carrusel_tween.tween_property(slot, "position", Vector2(pos_x_objetivo, pos_y_objetivo), tiempo_cambio)
+			carrusel_tween.tween_property(slot, "size", Vector2(tam_objetivo, tam_objetivo), tiempo_cambio)
+			carrusel_tween.tween_property(slot, "modulate", color_objetivo, tiempo_cambio)
 
 	mostrar_info_central()
 
@@ -246,11 +293,6 @@ func limpiar_interfaz() -> void:
 
 	for slot in slots:
 		slot.visible = false
-		slot.texture = null
-		slot.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		var marco = slot.get_node("MarcoVisual") as Panel
-		if marco:
-			marco.remove_theme_stylebox_override("panel")
 			
 	name_text.text = "VACÍO"
 	description_text.text = ""

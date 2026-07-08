@@ -30,7 +30,7 @@ uniform float foam_cutoff : hint_range(0.0, 1.0, 0.01) = 0.4;
 uniform float foam_scale : hint_range(0.1, 10.0, 0.1) = 2.0;    
 
 // --- NUEVOS UNIFORMS PARA OLAS VIOLENTAS ---
-@export_group(\"Olas Violentas\");
+
 uniform float ola_velocidad : hint_range(0.1, 5.0, 0.1) = 2.2;
 uniform float ola_amplitud : hint_range(0.0, 3.0, 0.05) = 0.6;    // Qué tan altas son
 uniform float ola_frecuencia : hint_range(0.0, 2.0, 0.05) = 0.4;  // Qué tan juntas están

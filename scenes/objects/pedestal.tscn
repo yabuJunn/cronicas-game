@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_6wqb0"]
 [ext_resource type="Script" uid="uid://f2ax7bmrpxme" path="res://scenes/objects/seaPedestal.gd" id="3_6wqb0"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="3_brjkw"]
-[ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="4_brjkw"]
+[ext_resource type="Material" uid="uid://b7emn18uq0g50" path="res://materials/interactible_item_default_material_3d.tres" id="4_brjkw"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2g2dl"]
 _surfaces = [{

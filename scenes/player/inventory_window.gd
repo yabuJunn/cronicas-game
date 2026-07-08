@@ -3,10 +3,14 @@ extends ColorRect
 # --- CONFIGURACIÓN DE PROPORCIONES (Modificables desde el Inspector) ---
 @export_group("Proporciones UI")
 @export_range(0.1, 0.9) var ratio_ancho_info: float = 0.3     # 0.3 significa 30% para el texto, 70% para el visor
+@export_range(0.05, 0.4) var porcentaje_ancho_botones: float = 0.5 # NUEVO: 0.1 significa que cada botón ocupará el 10% del ancho del carrusel
 
+# --- CONFIGURACIÓN DE PROPORCIONES (Modificables desde el Inspector) ---
 @export_group("Tiempos de Animación")
 @export_range(0.05, 2.0) var tiempo_abrir: float = 0.2        # Tiempo que tarda en desplegarse el inventario
 @export_range(0.05, 2.0) var tiempo_cambio: float = 0.4       # Tiempo para la transición lateral (ajustado para suavidad)
+
+
 
 # --- REFERENCIAS A NODOS ---
 @onready var main_container = $MainContainer
@@ -111,6 +115,28 @@ func _ready() -> void:
 	description_text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	# =================================================================
 
+	# =================================================================
+	# ESTILOS DE LOS BOTONES DE NAVEGACIÓN (PREV / NEXT)
+	# =================================================================
+	var estilo_boton = StyleBoxFlat.new()
+	estilo_boton.bg_color = Color("0E223A") # Tu color personalizado
+
+	# Crear un estilo ligeramente más claro para cuando pasas el ratón (Hover)
+	var estilo_hover = estilo_boton.duplicate()
+	estilo_hover.bg_color = Color("0E223A").lightened(0.2)
+	
+	
+
+	# Aplicar el estilo a los botones
+	btn_prev.add_theme_stylebox_override("normal", estilo_boton)
+	btn_next.add_theme_stylebox_override("normal", estilo_boton)
+	
+	btn_prev.add_theme_stylebox_override("hover", estilo_hover)
+	btn_next.add_theme_stylebox_override("hover", estilo_hover)
+	
+	btn_prev.add_theme_stylebox_override("pressed", estilo_boton)
+	btn_next.add_theme_stylebox_override("pressed", estilo_boton)
+	
 	recalcular_proporciones_ui()
 
 func _input(event: InputEvent) -> void:
@@ -127,6 +153,7 @@ func _input(event: InputEvent) -> void:
 			mover_carrusel(1)
 
 # --- SISTEMA DINÁMICO RESPONSIVO ---
+# --- SISTEMA DINÁMICO RESPONSIVO ---
 func recalcular_proporciones_ui() -> void:
 	if not is_node_ready(): return
 	info_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -136,6 +163,16 @@ func recalcular_proporciones_ui() -> void:
 	
 	# Mantiene el marco estático para que los botones Prev/Next no se peguen
 	var altura = carrusel_panel.size.y if carrusel_panel else 100
+	var ancho_total = carrusel_panel.size.x if carrusel_panel else 800 # Obtenemos el ancho total
+	
+	# --- NUEVO: Ajuste responsive del Width de los botones ---
+	var ancho_boton = ancho_total * porcentaje_ancho_botones
+	btn_prev.custom_minimum_size.x = ancho_boton
+	btn_next.custom_minimum_size.x = ancho_boton
+	
+	print("btn_prev.custom_minimum_size.x: ", btn_prev.custom_minimum_size.x)
+	# ---------------------------------------------------------
+	
 	var old_slots = [
 		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda2,
 		$MainContainer/CarruselPanel/CarruselHBox/SlotIzquierda1,

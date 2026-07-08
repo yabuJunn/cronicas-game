@@ -222,13 +222,20 @@ func sincronizar_slots_dinamicos() -> void:
 
 func abrir_inventario() -> void:
 	visible = true
+	
+	# --- ESTA ES LA CLAVE ---
+	# Esperamos al siguiente frame para que el contenedor calcule su tamaño real (width/height)
+	await get_tree().process_frame
+	# ------------------------
+	
+	# Ahora que el tamaño es correcto, recalculamos
 	recalcular_proporciones_ui()
 	
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	sincronizar_slots_dinamicos()
-	actualizar_interfaz("ninguna") # Pre-coloca en posición
+	actualizar_interfaz("ninguna") # Ahora, como el tamaño ya es real, se centrará bien
 	actualizar_interfaz("abrir")   # Anima aparición
 
 func cerrar_inventario() -> void:
@@ -343,6 +350,12 @@ func limpiar_interfaz() -> void:
 	_limpiar_visor_3d()
 
 func mostrar_info_central() -> void:
+	# --- SEGURIDAD: Si no hay objetos, no hacemos nada ---
+	if Inventory.listado_ordenado.is_empty() or indice_actual >= Inventory.listado_ordenado.size():
+		_limpiar_visor_3d()
+		return
+	# ----------------------------------------------------
+	
 	var nombre_seleccionado = Inventory.listado_ordenado[indice_actual]
 	var datos = Inventory.items_recolectados[nombre_seleccionado]
 	

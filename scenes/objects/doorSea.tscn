@@ -78,8 +78,8 @@ material = ExtResource("1_7fieb")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Polvo Puerta" unique_id=1315134041]
 stream = ExtResource("2_yvroc")
-volume_db = 0.503
-unit_size = 31.89
+volume_db = -4.529
+unit_size = 74.93
 pitch_scale = 0.59
 panning_strength = 2.07
 bus = &"Ambient"
@@ -98,16 +98,8 @@ script = ExtResource("3_w6dlj")
 musica_evento_puerta = ExtResource("6_yvroc")
 musica_ambiente_siguiente = ExtResource("7_karsw")
 puerta_id = "seaDoor"
-polvo_offset_y = null
-alto_neblina = null
 densidad_max_niebla = 1.0
-tiempo_entrada_niebla = null
 volumen_max_audio = 3.065
-tiempo_fade_audio = null
-shader_temblor = null
-tiempo_fade_temblor = null
-distancia_bajada = null
-tiempo_apertura = null
 item_name = "Puerta"
 item_description = "Una puerta"
 se_puede_recoger = false

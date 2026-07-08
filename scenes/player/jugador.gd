@@ -70,13 +70,13 @@ func _physics_process(delta: float) -> void:
 		
 	# Sonidos de pasos
 	if velocity.length() != 0 and is_on_floor():
-		if $Steps/StepsTimer.time_left <= 0:
-			$Steps/StepsSound.pitch_scale = randf_range(0.8, 1.2)
-			$Steps/StepsSound.play()
+		if $Sounds/Steps/StepsTimer.time_left <= 0:
+			$Sounds/Steps/StepsSound.pitch_scale = randf_range(0.8, 1.2)
+			$Sounds/Steps/StepsSound.play()
 			if Input.is_action_pressed("sprint"):
-				$Steps/StepsTimer.start(0.25)
+				$Sounds/Steps/StepsTimer.start(0.25)
 			else:
-				$Steps/StepsTimer.start(0.5)
+				$Sounds/Steps/StepsTimer.start(0.5)
 	
 	move_and_slide()
 	
@@ -140,6 +140,29 @@ func _input(event):
 	# Si está en cinemática, no permitimos interactuar ni pausar de la forma habitual
 	if controles_bloqueados:
 		return
+
+	if event.is_action_pressed("ui_cancel_custom"):
+		camera_enabled = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			camera_enabled = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+	if event.is_action_pressed("interact") and current_interactable != null:
+		if is_instance_valid(current_interactable):
+			
+			# --- REPRODUCIR SONIDO DE RECOGIDA ---
+			# Validamos que el objeto sea de tipo recogible antes de reproducir el audio
+			if "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
+				miscellaneousSoundsPlayer.stream = pickUpSound
+				miscellaneousSoundsPlayer.play()
+			
+			# Continuamos con la interacción normal (que agregará el item al inventario y hará queue_free)
+			current_interactable.interactuar()
+			current_interactable = null
+			interact_prompt.hide()
 
 	if event.is_action_pressed("ui_cancel_custom"):
 		camera_enabled = false

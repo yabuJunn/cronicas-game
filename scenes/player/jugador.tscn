@@ -109,6 +109,6 @@ one_shot = true
 [node name="MiscellaneousSounds" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1283012174]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22874486, 0)
 stream = ExtResource("2_168c5")
-volume_db = -32.897
+volume_db = -10.566
 max_db = -0.435
 bus = &"Player"

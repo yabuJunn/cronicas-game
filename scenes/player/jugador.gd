@@ -141,40 +141,27 @@ func _input(event):
 	if controles_bloqueados:
 		return
 
+	# Pausar / Liberar ratón
 	if event.is_action_pressed("ui_cancel_custom"):
 		camera_enabled = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+	# Capturar ratón al hacer clic en el juego
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			camera_enabled = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+	# Sistema de interacción
 	if event.is_action_pressed("interact") and current_interactable != null:
 		if is_instance_valid(current_interactable):
 			
 			# --- REPRODUCIR SONIDO DE RECOGIDA ---
-			# Validamos que el objeto sea de tipo recogible antes de reproducir el audio
 			if "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
 				miscellaneousSoundsPlayer.stream = pickUpSound
 				miscellaneousSoundsPlayer.play()
 			
-			# Continuamos con la interacción normal (que agregará el item al inventario y hará queue_free)
-			current_interactable.interactuar()
-			current_interactable = null
-			interact_prompt.hide()
-
-	if event.is_action_pressed("ui_cancel_custom"):
-		camera_enabled = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			camera_enabled = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-	if event.is_action_pressed("interact") and current_interactable != null:
-		if is_instance_valid(current_interactable):
+			# Continuamos con la interacción normal
 			current_interactable.interactuar()
 			current_interactable = null
 			interact_prompt.hide()

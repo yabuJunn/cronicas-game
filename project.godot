@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://doju3tgmx3m0u"
 
 Inventory="*uid://db5s7xpd84wk1"
 MusicManager="*uid://60pekbby728h"
+TransicionGlobal="*uid://dp7ojkhjkw6i6"
 
 [editor]
 

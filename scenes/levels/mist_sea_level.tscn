@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="16_ucu88"]
 [ext_resource type="Script" uid="uid://x0yi02cx4yvl" path="res://scenes/objects/Lights/sea_door_light.gd" id="17_pbm7r"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="21_qu8ma"]
+[ext_resource type="Script" uid="uid://obxfmef2ovdq" path="res://scenes/levels/next_level_area_sea.gd" id="22_dfwsi"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_exndu"]
 _surfaces = [{
@@ -3324,6 +3325,9 @@ shader_parameter/emision = Color(0.46221125, 0.36420205, 0.23906821, 1)
 shader_parameter/fog_speed = 0.10000024225000016
 shader_parameter/dust_particles_sharpness = 2.746000082935
 shader_parameter/edge_softness = 0.10000000149012
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qu8ma"]
+size = Vector3(14.315186, 12.039673, 8.999756)
 
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
 script = ExtResource("1_bvfmd")
@@ -7010,6 +7014,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40187836, 0.9234576, -0.408
 [node name="EnergySphere" parent="InteractibleObjects" unique_id=1256466068 instance=ExtResource("14_qg55o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.216942, 5.6982255, -146.854)
 
+[node name="EnergySphere2" parent="InteractibleObjects" unique_id=629616537 instance=ExtResource("14_qg55o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.216942, 6.1921134, -0.7986746)
+
 [node name="SeaDoor" parent="InteractibleObjects" unique_id=2143399838 instance=ExtResource("15_qg55o")]
 transform = Transform3D(0.86032414, 0, 0.5097473, 0, 1, 0, -0.5097473, 0, 0.86032414, 37.8697, 8.497828, -6.2730503)
 
@@ -7035,3 +7042,13 @@ transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.9985
 gizmo_extents = 10.0
 script = ExtResource("21_qu8ma")
 targetname = "Door"
+
+[node name="NextLevelArea" type="Area3D" parent="." unique_id=1701596315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.92251, 13.7847805, -14.176397)
+collision_layer = 16
+script = ExtResource("22_dfwsi")
+siguiente_nivel_ruta = "uid://b2o8873gyweic"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NextLevelArea" unique_id=1985903699]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.088379, 2.9402466, 0)
+shape = SubResource("BoxShape3D_qu8ma")

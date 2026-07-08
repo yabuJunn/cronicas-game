@@ -92,6 +92,33 @@ func detener(tiempo_fade: float = tiempo_fade_normal) -> void:
 	tween_fade_out.tween_property(active_player, "volume_db", -80.0, tiempo_fade)
 	tween_fade_out.tween_callback(active_player.stop)
 
+# --- NUEVA FUNCIÓN: ELIMINA Y SILENCIA TODA LA MÚSICA CON GARANTÍAS ---
+func quitar_musica(tiempo_fade: float = tiempo_fade_normal) -> void:
+	es_bucle = false
+	musica_retorno = null
+	
+	# Forzamos la muerte de cualquier animación de volumen en proceso
+	if tween_fade_in: tween_fade_in.kill()
+	if tween_fade_out: tween_fade_out.kill()
+	
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	
+	# Apagamos en paralelo lo que sea que esté haciendo ruido
+	if p1.playing:
+		tween.parallel().tween_property(p1, "volume_db", -80.0, tiempo_fade)
+	if p2.playing:
+		tween.parallel().tween_property(p2, "volume_db", -80.0, tiempo_fade)
+		
+	# Al terminar el fade de silencio, liberamos canales y restablecemos volúmenes base
+	tween.tween_callback(func():
+		p1.stop()
+		p2.stop()
+		p1.stream = null
+		p2.stream = null
+		p1.volume_db = 0.0
+		p2.volume_db = 0.0
+	)
+
 func desactivar_loop_interno(cancion: AudioStream) -> void:
 	if cancion == null: return
 	if "loop" in cancion:
@@ -101,16 +128,12 @@ func desactivar_loop_interno(cancion: AudioStream) -> void:
 
 # Nueva función conectada que sabe qué reproductor específico terminó
 func _on_player_finished(player_que_termino: AudioStreamPlayer) -> void:
-	# Solo respondemos si el que terminó es el que el jugador está escuchando actualmente
 	if player_que_termino != active_player:
 		return
 		
 	if es_bucle:
-		# Si es música de ambiente, simplemente se reinicia el loop
 		active_player.play()
 	elif musica_retorno != null:
-		# Si era un evento y terminó, regresamos usando el TIEMPO RÁPIDO (0.3s)
-		# Esto hace que la música ambiente entre de golpe pero de forma limpia, eliminando el vacío.
 		var cancion_a_poner = musica_retorno
 		musica_retorno = null 
 		reproducir(cancion_a_poner, tiempo_fade_rapido)

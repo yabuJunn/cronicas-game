@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="15_qg55o"]
 [ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="16_ucu88"]
 [ext_resource type="Script" uid="uid://x0yi02cx4yvl" path="res://scenes/objects/Lights/sea_door_light.gd" id="17_pbm7r"]
+[ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="21_qu8ma"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_exndu"]
 _surfaces = [{
@@ -3257,12 +3258,12 @@ points = PackedVector3Array(37.464104, 10, -6.3046856, 33.89331, 10, -9.114481, 
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_vww24"]
 
-[sub_resource type="Sky" id="Sky_sch65"]
+[sub_resource type="Sky" id="Sky_yrra7"]
 sky_material = SubResource("PhysicalSkyMaterial_vww24")
 
 [sub_resource type="Environment" id="Environment_eut8q"]
 background_mode = 2
-sky = SubResource("Sky_sch65")
+sky = SubResource("Sky_yrra7")
 ambient_light_source = 2
 ambient_light_color = Color(0.4189023, 0.27716428, 0.116780646, 1)
 reflected_light_source = 2
@@ -7026,3 +7027,11 @@ shadow_blur = 8.258
 script = ExtResource("17_pbm7r")
 
 [node name="LevelMusic" type="AudioStreamPlayer3D" parent="." unique_id=88510586]
+
+[node name="CinemaMarkers" type="Node3D" parent="." unique_id=2081044657]
+
+[node name="CinemaMarkerDoor" type="Marker3D" parent="CinemaMarkers" unique_id=242369393 groups=["cinemaMarkers"]]
+transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.99858993, 0.045445226, 0.85155946, -0.00046140258, 0.52425796, 26.713533, 11.430074, 0.4255377)
+gizmo_extents = 10.0
+script = ExtResource("21_qu8ma")
+targetname = "Door"

@@ -12,9 +12,16 @@ const MOUSE_SENSITIVITY = 0.003
 var gravity = 9.8
 var camera_enabled := true
 
+# --- NUEVA VARIABLE PARA CONTROLAR CINEMÁTICAS ---
+var controles_bloqueados := false
+
 @onready var camera_pivot := $CameraPivot
+@onready var camera_3d := $CameraPivot/Camera3D # <--- NUEVA REFERENCIA DIRECTA
 @onready var interact_ray := $CameraPivot/Camera3D/InteractionRayCast
 @onready var interact_prompt := $HUD/InteractPrompt
+@onready var miscellaneousSoundsPlayer := $Sounds/MiscellaneousSounds
+
+var pickUpSound = preload("res://sounds/player/Pick Up Item.mp3")
 
 var camera_offset := Vector3.ZERO
 const CAMERA_STEP_SPEED := 14.0
@@ -24,8 +31,19 @@ var current_interactable = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Nos añadimos a un grupo para que cualquier objeto del mapa nos encuentre fácil
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
+	# --- SI LOS CONTROLES ESTÁN BLOQUEADOS, FRENAMOS Y LE JUGADORE NO MUEVE NADA ---
+	if controles_bloqueados:
+		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
+		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		move_and_slide()
+		return # Saltamos el resto del proceso de inputs
+
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -73,32 +91,25 @@ func _physics_process(delta: float) -> void:
 	# --- SISTEMA DE DETECCIÓN VISUAL ---
 	var collider = interact_ray.get_collider() if interact_ray.is_colliding() else null
 	
-	# MEJORA DE SEGURIDAD: Si el objeto es destruido O si se quitó del grupo (ej: al abrir la puerta)
 	if current_interactable != null:
 		if not is_instance_valid(current_interactable) or not current_interactable.is_in_group("interactibleObjects"):
 			current_interactable = null
 			interact_prompt.hide()
 	
 	if collider != current_interactable:
-		# Apagar el highlight del objeto anterior si aún existe
 		if current_interactable != null and is_instance_valid(current_interactable):
 			current_interactable.set_highlight(false)
 			interact_prompt.hide()
 			
-		# Detectar el nuevo objeto
 		if collider != null and collider.is_in_group("interactibleObjects") and not collider.is_queued_for_deletion():
 			current_interactable = collider
 			current_interactable.set_highlight(true)
 			
-			# --- ASIGNACIÓN DINÁMICA DEL TEXTO DE INTERFAZ (UI) ---
 			if "texto_interaccion" in current_interactable:
-				# Si el objeto define su propio texto personalizado (como tu puerta)
 				interact_prompt.text = current_interactable.texto_interaccion
 			elif "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
-				# Si es un objeto común y corriente que va al inventario (llaves, pociones)
 				interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
 			else:
-				# Texto seguro por defecto por si acaso
 				interact_prompt.text = "[ E ] Interactuar"
 				
 			interact_prompt.show()
@@ -108,7 +119,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event):
-	if !camera_enabled:
+	# Bloqueamos el movimiento de cámara con el ratón si está la cinemática
+	if !camera_enabled or controles_bloqueados:
 		return
 
 	if event is InputEventMouseMotion:
@@ -125,6 +137,10 @@ func apply_step(step: StepResult) -> void:
 	
 
 func _input(event):
+	# Si está en cinemática, no permitimos interactuar ni pausar de la forma habitual
+	if controles_bloqueados:
+		return
+
 	if event.is_action_pressed("ui_cancel_custom"):
 		camera_enabled = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -134,12 +150,43 @@ func _input(event):
 			camera_enabled = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	# --- ENTRADA DE INTERACCIÓN (TECLA E) ---
 	if event.is_action_pressed("interact") and current_interactable != null:
 		if is_instance_valid(current_interactable):
-			# Llamamos a la función de la clase base o clase hija
 			current_interactable.interactuar()
-			
-			# Limpiamos inmediatamente la interfaz para evitar el "texto fantasma"
 			current_interactable = null
 			interact_prompt.hide()
+
+
+# =============================================================================
+# --- FUNCIÓN GLOBAL DE CINEMÁTICA TRIGERIABLE ---
+# =============================================================================
+func ejecutar_cinematica(transform_destino: Transform3D, duracion_total: float = 4.0) -> void:
+	if controles_bloqueados:
+		return
+		
+	controles_bloqueados = true
+	interact_prompt.hide()
+	if current_interactable != null:
+		current_interactable.set_highlight(false)
+	
+	# Guardamos la posición y rotación LOCAL original de la cámara para el regreso impecable
+	var original_local_transform = camera_3d.transform
+	
+	# Calculamos tiempos (1s para ir, 1s para volver, el resto se queda fija)
+	var tiempo_transicion := 2
+	var tiempo_espera = max(0.1, duracion_total - (tiempo_transicion * 2.0))
+	
+	# Creamos la cadena de animaciones con Tween
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	
+	# 1. Viaje hacia la posición de la cinemática en el mundo entero
+	tween.tween_property(camera_3d, "global_transform", transform_destino, tiempo_transicion)
+	
+	# 2. Mantener la toma fija observando la acción
+	tween.tween_interval(tiempo_espera)
+	
+	# 3. Regreso suave a los ojos del jugador (usamos local para asegurar que encaje perfecto)
+	tween.tween_property(camera_3d, "transform", original_local_transform, tiempo_transicion)
+	
+	# 4. Al terminar todo, devolvemos el control completo
+	tween.tween_callback(func(): controles_bloqueados = false)

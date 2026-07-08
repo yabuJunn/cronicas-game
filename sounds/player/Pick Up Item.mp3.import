@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wvg6bdl8nulx"
+path="res://.godot/imported/Pick Up Item.mp3-9c95355a5aab895dbfd04aa4dc32faea.mp3str"
+
+[deps]
+
+source_file="res://sounds/player/Pick Up Item.mp3"
+dest_files=["res://.godot/imported/Pick Up Item.mp3-9c95355a5aab895dbfd04aa4dc32faea.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

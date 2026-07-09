@@ -14,17 +14,17 @@ var camera_enabled := true
 
 var controles_bloqueados := false
 var was_on_floor := true 
-var last_velocity_y := 0.0 # <--- NUEVA VARIABLE: Guarda la velocidad antes de tocar el suelo
+var last_velocity_y := 0.0 # Guarda la velocidad antes de tocar el suelo
 
 # --- CONFIGURACIÓN DE HEAD BOB Y RESPIRACIÓN ---
 @export_group("Head Bob & Respiración")
 const BOB_FREQ_WALK = 10.0        # Frecuencia al caminar (velocidad del bamboleo)
-const BOB_AMP_WALK_V = 0.03       # Amplitud vertical al caminar (qué tanto sube/baja)
-const BOB_AMP_WALK_H = 0.02       # Amplitud horizontal al caminar (qué tanto va a los lados)
+const BOB_AMP_WALK_V = 0.04       # Amplitud vertical al caminar (qué tanto sube/baja)
+const BOB_AMP_WALK_H = 0.03       # Amplitud horizontal al caminar (qué tanto va a los lados)
 
 const BOB_FREQ_SPRINT = 14.0      # Frecuencia al correr (más rápida)
-const BOB_AMP_SPRINT_V = 0.06     # Amplitud vertical al correr (más notable)
-const BOB_AMP_SPRINT_H = 0.04     # Amplitud horizontal al correr
+const BOB_AMP_SPRINT_V = 0.07     # Amplitud vertical al correr (más notable)
+const BOB_AMP_SPRINT_H = 0.05     # Amplitud horizontal al correr
 
 const BREATH_FREQ = 2.0           # Velocidad de la respiración (más bajo = más lento/relajado)
 const BREATH_AMP = 0.035          # Amplitud de la respiración (0.015 = 1.5 centímetros de vaivén)
@@ -49,10 +49,13 @@ const CAMERA_STEP_SPEED := 14.0
 
 # Guardamos el objeto que estamos mirando actualmente
 var current_interactable = null
+var default_camera_pos := Vector3.ZERO # <--- NUEVA VARIABLE: Guarda la posición de tus ojos del editor
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	add_to_group("player")
+	# Guardamos la posición exacta que le diste en el Inspector a la altura de los ojos
+	default_camera_pos = camera_3d.position 
 
 func _physics_process(delta: float) -> void:
 	# --- SI LOS CONTROLES ESTÁN BLOQUEADOS, FRENAMOS Y LE JUGADORE NO MUEVE NADA ---
@@ -101,18 +104,15 @@ func _physics_process(delta: float) -> void:
 				$Sounds/Steps/StepsTimer.start(0.5)
 	
 	# <--- GUARDAR VELOCIDAD ANTES DEL IMPACTO --->
-	# move_and_slide() reinicia velocity.y a 0 cuando tocas el suelo.
-	# Necesitamos saber qué tan rápido caías justo antes de chocar.
 	last_velocity_y = velocity.y 
 	
 	move_and_slide()
 	
 	# DETECCIÓN DE ATERRIZAJE (CORREGIDA)
 	if is_on_floor() and not was_on_floor:
-		# Filtro: Solo aterrizajes fuertes. Ignora micro-caídas de escalones.
-		if last_velocity_y < -2.5: 
+		if last_velocity_y < -3.5: 
 			landingSoundPlayer.play()
-			landing_bounce = -0.15 # Hunde la cámara bruscamente 15 centímetros
+			landing_bounce = -0.25
 	
 	was_on_floor = is_on_floor()
 	
@@ -200,14 +200,15 @@ func _input(event):
 
 
 # =============================================================================
-# --- FUNCIÓN INTERNA: CÁLCULO DEL HEAD BOB PROCESADO ---
+# --- FUNCIÓN INTERNA: CÁLCULO DEL HEAD BOB PROCESADO (CORREGIDO) ---
 # =============================================================================
 func _update_head_bob(delta: float) -> void:
 	if controles_bloqueados:
-		camera_3d.position = camera_3d.position.lerp(Vector3.ZERO, delta * 10.0)
+		camera_3d.position = camera_3d.position.lerp(default_camera_pos, delta * 10.0)
 		return
 
-	var target_pos = Vector3.ZERO
+	# Iniciamos en la posición base del editor en lugar de Vector3.ZERO
+	var target_pos = default_camera_pos
 	var velocidad_horizontal = Vector2(velocity.x, velocity.z).length()
 
 	# --- SI EL JUGADOR ESTÁ EN EL SUELO ---
@@ -221,19 +222,18 @@ func _update_head_bob(delta: float) -> void:
 
 			bob_time += delta * freq
 			
-			target_pos.y = sin(bob_time * 2.0) * amp_v
-			target_pos.x = cos(bob_time) * amp_h
+			# Sumamos el desfase a la posición original
+			target_pos.y += sin(bob_time * 2.0) * amp_v
+			target_pos.x += cos(bob_time) * amp_h
 		else:
-			# REPOSO: Simulación de Respiración Organica
+			# REPOSO: Simulación de Respiración Orgánica
 			breath_time += delta * BREATH_FREQ
 			
-			target_pos.y = sin(breath_time) * BREATH_AMP
-			target_pos.x = 0.0 # No hay movimiento lateral al respirar
+			target_pos.y += sin(breath_time) * BREATH_AMP
 	
 	# --- SI EL JUGADOR ESTÁ EN EL AIRE (Salto y Caída) ---
 	else:
-		target_pos.y = clamp(velocity.y * 0.015, -0.08, 0.05)
-		target_pos.x = 0.0
+		target_pos.y += clamp(velocity.y * 0.015, -0.08, 0.05)
 
 	# --- IMPACTO DE ATERRIZAJE ---
 	landing_bounce = lerp(landing_bounce, 0.0, delta * 10.0)

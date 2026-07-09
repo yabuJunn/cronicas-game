@@ -166,6 +166,7 @@ func _input(event):
 			
 			# --- REPRODUCIR SONIDO DE RECOGIDA ---
 			if "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
+				miscellaneousSoundsPlayer.pitch_scale = 1.0 
 				miscellaneousSoundsPlayer.stream = pickUpSound
 				miscellaneousSoundsPlayer.play()
 			

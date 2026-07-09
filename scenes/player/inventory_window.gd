@@ -45,6 +45,11 @@ var name_tween: Tween
 var desc_tween: Tween
 var desc_flicker_tween: Tween
 
+#Sounds
+@onready var miscellaneousSoundsPlayer : AudioStreamPlayer3D = $"../../Sounds/MiscellaneousSounds"
+var openInventorySound = preload("res://sounds/player/Inventory Open Sound.mp3")
+
+
 func _ready() -> void:
 	# 1. Ocultamos la imagen de los slots estáticos originales
 	# Los mantenemos en el árbol para que el HBoxContainer siga manteniendo
@@ -221,24 +226,30 @@ func sincronizar_slots_dinamicos() -> void:
 		slots[i].texture = Inventory.items_recolectados[nombre_item]["icono"]
 
 func abrir_inventario() -> void:
+	# Ajustamos el tono hacia arriba (agudo) para abrir
+	miscellaneousSoundsPlayer.pitch_scale = 1.0
+	miscellaneousSoundsPlayer.stream = openInventorySound
+	miscellaneousSoundsPlayer.play()
+	
 	visible = true
 	
-	# --- ESTA ES LA CLAVE ---
-	# Esperamos al siguiente frame para que el contenedor calcule su tamaño real (width/height)
+	# Esperamos al siguiente frame para que el contenedor calcule su tamaño
 	await get_tree().process_frame
-	# ------------------------
 	
-	# Ahora que el tamaño es correcto, recalculamos
 	recalcular_proporciones_ui()
-	
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	sincronizar_slots_dinamicos()
-	actualizar_interfaz("ninguna") # Ahora, como el tamaño ya es real, se centrará bien
-	actualizar_interfaz("abrir")   # Anima aparición
+	actualizar_interfaz("ninguna") 
+	actualizar_interfaz("abrir")
 
 func cerrar_inventario() -> void:
+	# Ajustamos el tono hacia abajo (grave) para cerrar
+	miscellaneousSoundsPlayer.pitch_scale = 0.8 
+	miscellaneousSoundsPlayer.stream = openInventorySound
+	miscellaneousSoundsPlayer.play()
+	
 	visible = false
 	arrastrando_modelo = false
 	get_tree().paused = false

@@ -14,6 +14,7 @@ var camera_enabled := true
 
 var controles_bloqueados := false
 var was_on_floor := true 
+var last_velocity_y := 0.0 # <--- NUEVA VARIABLE: Guarda la velocidad antes de tocar el suelo
 
 # --- CONFIGURACIÓN DE HEAD BOB Y RESPIRACIÓN ---
 @export_group("Head Bob & Respiración")
@@ -99,12 +100,19 @@ func _physics_process(delta: float) -> void:
 			else:
 				$Sounds/Steps/StepsTimer.start(0.5)
 	
+	# <--- GUARDAR VELOCIDAD ANTES DEL IMPACTO --->
+	# move_and_slide() reinicia velocity.y a 0 cuando tocas el suelo.
+	# Necesitamos saber qué tan rápido caías justo antes de chocar.
+	last_velocity_y = velocity.y 
+	
 	move_and_slide()
 	
-	# DETECCIÓN DE ATERRIZAJE
+	# DETECCIÓN DE ATERRIZAJE (CORREGIDA)
 	if is_on_floor() and not was_on_floor:
-		landingSoundPlayer.play()
-		landing_bounce = -0.15 # <--- IMPACTO: Hunde la cámara bruscamente 15 centímetros
+		# Filtro: Solo aterrizajes fuertes. Ignora micro-caídas de escalones.
+		if last_velocity_y < -2.5: 
+			landingSoundPlayer.play()
+			landing_bounce = -0.15 # Hunde la cámara bruscamente 15 centímetros
 	
 	was_on_floor = is_on_floor()
 	

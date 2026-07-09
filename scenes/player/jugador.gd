@@ -15,8 +15,26 @@ var camera_enabled := true
 var controles_bloqueados := false
 var was_on_floor := true 
 
+# --- CONFIGURACIÓN DE HEAD BOB Y RESPIRACIÓN ---
+@export_group("Head Bob & Respiración")
+const BOB_FREQ_WALK = 10.0        # Frecuencia al caminar (velocidad del bamboleo)
+const BOB_AMP_WALK_V = 0.03       # Amplitud vertical al caminar (qué tanto sube/baja)
+const BOB_AMP_WALK_H = 0.02       # Amplitud horizontal al caminar (qué tanto va a los lados)
+
+const BOB_FREQ_SPRINT = 14.0      # Frecuencia al correr (más rápida)
+const BOB_AMP_SPRINT_V = 0.06     # Amplitud vertical al correr (más notable)
+const BOB_AMP_SPRINT_H = 0.04     # Amplitud horizontal al correr
+
+const BREATH_FREQ = 2.0           # Velocidad de la respiración (más bajo = más lento/relajado)
+const BREATH_AMP = 0.035          # Amplitud de la respiración (0.015 = 1.5 centímetros de vaivén)
+
+var bob_time := 0.0               # Acumulador de tiempo para las ondas seno/coseno de movimiento
+var breath_time := 0.0            # Acumulador de tiempo exclusivo para la respiración
+var landing_bounce := 0.0         # Controla el impacto elástico al caer al suelo
+# ---------------------------------
+
 @onready var camera_pivot := $CameraPivot
-@onready var camera_3d := $CameraPivot/Camera3D # <--- NUEVA REFERENCIA DIRECTA
+@onready var camera_3d := $CameraPivot/Camera3D
 @onready var interact_ray := $CameraPivot/Camera3D/InteractionRayCast
 @onready var interact_prompt := $HUD/InteractPrompt
 @onready var miscellaneousSoundsPlayer := $Sounds/MiscellaneousSounds
@@ -33,7 +51,6 @@ var current_interactable = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	# Nos añadimos a un grupo para que cualquier objeto del mapa nos encuentre fácil
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
@@ -44,7 +61,8 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 		move_and_slide()
-		return # Saltamos el resto del proceso de inputs
+		_update_head_bob(delta) # Mantiene suavidad incluso bloqueado
+		return
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -83,8 +101,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	# DETECCIÓN DE ATERRIZAJE
 	if is_on_floor() and not was_on_floor:
 		landingSoundPlayer.play()
+		landing_bounce = -0.15 # <--- IMPACTO: Hunde la cámara bruscamente 15 centímetros
 	
 	was_on_floor = is_on_floor()
 	
@@ -95,6 +115,9 @@ func _physics_process(delta: float) -> void:
 			
 	camera_offset = camera_offset.lerp(Vector3.ZERO, delta * CAMERA_STEP_SPEED)
 	camera_pivot.position = camera_offset
+	
+	# --- PROCESAR EL MOVIMIENTO DEL HEAD BOB ---
+	_update_head_bob(delta)
 	
 	# --- SISTEMA DE DETECCIÓN VISUAL ---
 	var collider = interact_ray.get_collider() if interact_ray.is_colliding() else null
@@ -127,7 +150,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event):
-	# Bloqueamos el movimiento de cámara con el ratón si está la cinemática
 	if !camera_enabled or controles_bloqueados:
 		return
 
@@ -145,40 +167,74 @@ func apply_step(step: StepResult) -> void:
 	
 
 func _input(event):
-	# Si está en cinemática, no permitimos interactuar ni pausar de la forma habitual
 	if controles_bloqueados:
 		return
 
-	# Pausar / Liberar ratón
 	if event.is_action_pressed("ui_cancel_custom"):
 		camera_enabled = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	# Capturar ratón al hacer clic en el juego
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			camera_enabled = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	# Sistema de interacción
 	if event.is_action_pressed("interact") and current_interactable != null:
 		if is_instance_valid(current_interactable):
-			
-			# --- REPRODUCIR SONIDO DE RECOGIDA ---
 			if "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
 				miscellaneousSoundsPlayer.pitch_scale = 1.0 
 				miscellaneousSoundsPlayer.stream = pickUpSound
 				miscellaneousSoundsPlayer.play()
 			
-			# Continuamos con la interacción normal
 			current_interactable.interactuar()
 			current_interactable = null
 			interact_prompt.hide()
 
 
 # =============================================================================
-# --- FUNCIÓN GLOBAL DE CINEMÁTICA TRIGERIABLE ---
+# --- FUNCIÓN INTERNA: CÁLCULO DEL HEAD BOB PROCESADO ---
 # =============================================================================
+func _update_head_bob(delta: float) -> void:
+	if controles_bloqueados:
+		camera_3d.position = camera_3d.position.lerp(Vector3.ZERO, delta * 10.0)
+		return
+
+	var target_pos = Vector3.ZERO
+	var velocidad_horizontal = Vector2(velocity.x, velocity.z).length()
+
+	# --- SI EL JUGADOR ESTÁ EN EL SUELO ---
+	if is_on_floor():
+		if velocidad_horizontal > 0.1:
+			# MOVIMIENTO: Caminando o Corriendo
+			var es_corriendo = Input.is_action_pressed("sprint")
+			var freq = BOB_FREQ_SPRINT if es_corriendo else BOB_FREQ_WALK
+			var amp_v = BOB_AMP_SPRINT_V if es_corriendo else BOB_AMP_WALK_V
+			var amp_h = BOB_AMP_SPRINT_H if es_corriendo else BOB_AMP_WALK_H
+
+			bob_time += delta * freq
+			
+			target_pos.y = sin(bob_time * 2.0) * amp_v
+			target_pos.x = cos(bob_time) * amp_h
+		else:
+			# REPOSO: Simulación de Respiración Organica
+			breath_time += delta * BREATH_FREQ
+			
+			target_pos.y = sin(breath_time) * BREATH_AMP
+			target_pos.x = 0.0 # No hay movimiento lateral al respirar
+	
+	# --- SI EL JUGADOR ESTÁ EN EL AIRE (Salto y Caída) ---
+	else:
+		target_pos.y = clamp(velocity.y * 0.015, -0.08, 0.05)
+		target_pos.x = 0.0
+
+	# --- IMPACTO DE ATERRIZAJE ---
+	landing_bounce = lerp(landing_bounce, 0.0, delta * 10.0)
+	target_pos.y += landing_bounce
+
+	# --- INTERPOLACIÓN Y APLICACIÓN FINAL ---
+	camera_3d.position = camera_3d.position.lerp(target_pos, delta * 12.0)
+
+
 func ejecutar_cinematica(transform_destino: Transform3D, duracion_total: float = 4.0) -> void:
 	if controles_bloqueados:
 		return
@@ -188,24 +244,12 @@ func ejecutar_cinematica(transform_destino: Transform3D, duracion_total: float =
 	if current_interactable != null:
 		current_interactable.set_highlight(false)
 	
-	# Guardamos la posición y rotación LOCAL original de la cámara para el regreso impecable
 	var original_local_transform = camera_3d.transform
-	
-	# Calculamos tiempos (1s para ir, 1s para volver, el resto se queda fija)
 	var tiempo_transicion := 2
 	var tiempo_espera = max(0.1, duracion_total - (tiempo_transicion * 2.0))
-	
-	# Creamos la cadena de animaciones con Tween
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	
-	# 1. Viaje hacia la posición de la cinemática en el mundo entero
 	tween.tween_property(camera_3d, "global_transform", transform_destino, tiempo_transicion)
-	
-	# 2. Mantener la toma fija observando la acción
 	tween.tween_interval(tiempo_espera)
-	
-	# 3. Regreso suave a los ojos del jugador (usamos local para asegurar que encaje perfecto)
 	tween.tween_property(camera_3d, "transform", original_local_transform, tiempo_transicion)
-	
-	# 4. Al terminar todo, devolvemos el control completo
 	tween.tween_callback(func(): controles_bloqueados = false)

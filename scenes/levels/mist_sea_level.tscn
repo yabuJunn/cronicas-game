@@ -19,7 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="14_qg55o"]
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="15_qg55o"]
 [ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="16_ucu88"]
+[ext_resource type="PackedScene" uid="uid://72dm5ghxynsa" path="res://scenes/objects/world/small_rock.tscn" id="17_edxf3"]
 [ext_resource type="Script" uid="uid://x0yi02cx4yvl" path="res://scenes/objects/Lights/sea_door_light.gd" id="17_pbm7r"]
+[ext_resource type="PackedScene" uid="uid://d2kafqc0wirdv" path="res://scenes/objects/world/rock.tscn" id="18_avg1o"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="21_qu8ma"]
 [ext_resource type="Script" uid="uid://obxfmef2ovdq" path="res://scenes/levels/next_level_area_sea.gd" id="22_dfwsi"]
 
@@ -7010,15 +7012,17 @@ parameters/looping = true
 
 [node name="Objects" type="Node3D" parent="." unique_id=1850369265]
 
+[node name="small_rock" parent="Objects" unique_id=1437757904 instance=ExtResource("17_edxf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.991641, 197.85641)
+
+[node name="rock" parent="Objects" unique_id=1734990633 instance=ExtResource("18_avg1o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.24401, 199.18794)
+
 [node name="InteractibleObjects" type="Node3D" parent="." unique_id=1238381481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40187836, 0.9234576, -0.40896606)
 
 [node name="EnergySphere" parent="InteractibleObjects" unique_id=1256466068 instance=ExtResource("14_qg55o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.216942, 5.6982255, -146.854)
-
-[node name="EnergySphere2" parent="InteractibleObjects" unique_id=1266094150 instance=ExtResource("14_qg55o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.08821, 10.3134575, 192.15709)
-visible = false
 
 [node name="SeaDoor" parent="InteractibleObjects" unique_id=2143399838 instance=ExtResource("15_qg55o")]
 transform = Transform3D(0.86032414, 0, 0.5097473, 0, 1, 0, -0.5097473, 0, 0.86032414, 37.8697, 8.497828, -6.2730503)

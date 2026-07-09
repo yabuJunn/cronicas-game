@@ -1,8 +1,8 @@
 class_name StepTester
 extends RefCounted
 
-const MAX_STEP_HEIGHT := 0.5
-const MAX_STEP_SLOPE := 50.0
+const MAX_STEP_HEIGHT := 0.6
+const MAX_STEP_SLOPE := 60.0
 
 const STEP_CHECK_COUNT := 4
 const WALL_MARGIN := 0.001

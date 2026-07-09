@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://byi2ieieyik82" path="res://scenes/player/jugador.gd" id="1_c8qk1"]
 [ext_resource type="AudioStream" uid="uid://p3644kyejdjx" path="res://sounds/player/concrete-footstep.wav" id="2_168c5"]
 [ext_resource type="Script" uid="uid://cxoylpy1de16y" path="res://scenes/player/inventory_window.gd" id="3_yg7j8"]
+[ext_resource type="AudioStream" uid="uid://ptjrafpkf735" path="res://sounds/player/Jump Sound.mp3" id="4_s8rxn"]
+[ext_resource type="AudioStream" uid="uid://cp6akttc54eap" path="res://sounds/player/Landing Sound.mp3" id="5_xsyj2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8q00i"]
 radius = 0.35
@@ -164,7 +166,7 @@ own_world_3d = true
 world_3d = SubResource("World3D_yg7j8")
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(574, 524)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="HUD/InventoryWindow/MainContainer/InferiorHBox/Visor3DPanel/SubViewportContainer/SubViewport" unique_id=1440161562]
@@ -195,4 +197,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22874486, 0)
 stream = ExtResource("2_168c5")
 volume_db = -10.566
 max_db = -0.435
+bus = &"Player"
+
+[node name="Jump" type="Node3D" parent="Sounds" unique_id=1879586006]
+
+[node name="JumpSound" type="AudioStreamPlayer3D" parent="Sounds/Jump" unique_id=2145499065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22043645, 0)
+stream = ExtResource("4_s8rxn")
+bus = &"Player"
+
+[node name="LandingSound" type="AudioStreamPlayer3D" parent="Sounds/Jump" unique_id=1864061154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22043645, 0)
+stream = ExtResource("5_xsyj2")
 bus = &"Player"

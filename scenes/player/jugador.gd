@@ -5,21 +5,23 @@ extends CharacterBody3D
 # Radio: 0.35 m
 
 const WALK_SPEED = 5.0 #Default is 5
-const SPRINT_SPEED = 50.0 #Default is 8 Debug 40
-const JUMP_VELOCITY = 4.5
+const SPRINT_SPEED = 9 #Default is 9
+const JUMP_VELOCITY = 6 #Default is 6
 const MOUSE_SENSITIVITY = 0.003
 
 var gravity = 9.8
 var camera_enabled := true
 
-# --- NUEVA VARIABLE PARA CONTROLAR CINEMÁTICAS ---
 var controles_bloqueados := false
+var was_on_floor := true 
 
 @onready var camera_pivot := $CameraPivot
 @onready var camera_3d := $CameraPivot/Camera3D # <--- NUEVA REFERENCIA DIRECTA
 @onready var interact_ray := $CameraPivot/Camera3D/InteractionRayCast
 @onready var interact_prompt := $HUD/InteractPrompt
 @onready var miscellaneousSoundsPlayer := $Sounds/MiscellaneousSounds
+@onready var jumpSoundPlayer: AudioStreamPlayer3D = $Sounds/Jump/JumpSound
+@onready var landingSoundPlayer: AudioStreamPlayer3D = $Sounds/Jump/LandingSound
 
 var pickUpSound = preload("res://sounds/player/Pick Up Item.mp3")
 
@@ -56,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		jumpSoundPlayer.play()
 		
 	if direction:
 		velocity.x = direction.x * speed
@@ -79,6 +82,11 @@ func _physics_process(delta: float) -> void:
 				$Sounds/Steps/StepsTimer.start(0.5)
 	
 	move_and_slide()
+	
+	if is_on_floor() and not was_on_floor:
+		landingSoundPlayer.play()
+	
+	was_on_floor = is_on_floor()
 	
 	if direction != Vector3.ZERO:
 		var step_down := StepTester.try_step_down(self, Vector3(velocity.x, 0, velocity.z), delta)

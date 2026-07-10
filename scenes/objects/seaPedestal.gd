@@ -45,6 +45,9 @@ func interactuar() -> void:
 		set_highlight(false)
 		if is_in_group("interactibleObjects"):
 			remove_from_group("interactibleObjects")
+			
+		# --- NUEVO: ACTIVAR EFECTO DE ENERGÍA ---
+		aplicar_shader_energia()
 		
 		# --- DISPARAR CINEMÁTICA AUTOMÁTICA EN EL JUGADOR ---
 		var jugador = get_tree().get_first_node_in_group("player")
@@ -81,7 +84,6 @@ func interactuar() -> void:
 func _buscar_por_id(id_buscado: String) -> Marker3D:
 	var marcadores = get_tree().get_nodes_in_group("cinemaMarkers")
 	for marcador in marcadores:
-		# Verificamos si tiene la propiedad 'targetname' (o 'id') y si coincide
 		if "targetname" in marcador and marcador.targetname == id_buscado:
 			return marcador
 		elif "id" in marcador and marcador.id == id_buscado:
@@ -94,3 +96,38 @@ func desactivar_colisiones_recursivo(nodo: Node) -> void:
 		nodo.disabled = true
 	for hijo in nodo.get_children():
 		desactivar_colisiones_recursivo(hijo)
+
+# --- NUEVO: CREACIÓN DINÁMICA DEL SHADER DE ENERGÍA ---
+func aplicar_shader_energia() -> void:
+	if not mesh:
+		return
+		
+	var shader = Shader.new()
+	shader.code = """
+	shader_type spatial;
+	render_mode blend_add, unshaded, depth_draw_never;
+
+	// El color exacto #4bc1c2 convertido a valores RGB de Godot
+	uniform vec4 color_energia : source_color = vec4(0.294, 0.757, 0.761, 1.0);
+	uniform float velocidad_pulso = 2.5;
+	uniform float potencia_fresnel = 3.0;
+
+	void fragment() {
+		// Efecto Fresnel: Brillo dominante en los bordes de la geometría
+		float fresnel = pow(1.0 - dot(NORMAL, VIEW), potencia_fresnel);
+		
+		// Pulsación matemática usando el tiempo interno del motor
+		float pulso = mix(0.15, 0.55, sin(TIME * velocidad_pulso) * 0.5 + 0.5);
+		
+		// Combinamos una base de tinte leve (0.2) con el brillo del borde (fresnel)
+		vec3 brillo_final = color_energia.rgb * (fresnel * 0.8 + 0.2) * pulso;
+		
+		ALBEDO = brillo_final;
+	}
+	"""
+	
+	var material_shader = ShaderMaterial.new()
+	material_shader.shader = shader
+	
+	# Se aplica como overlay para conservar intactas las texturas y materiales inferiores
+	mesh.material_overlay = material_shader

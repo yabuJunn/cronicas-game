@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://c62sk6j3203tb"]
 
-[ext_resource type="Material" uid="uid://8up7f34w5a7o" path="res://materials/retro_tree_material.tres" id="1_fv8wu"]
+[ext_resource type="Shader" uid="uid://4t0s25cmbpa8" path="res://shaders/retro_wind_shader.gdshader" id="1_7q77c"]
+[ext_resource type="Texture2D" uid="uid://nnt3n5q1ge8s" path="res://objs/tree_pack_1.1/textures/tree01.png" id="2_r8ocy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnb2a"]
 resource_name = "tree01"
@@ -42,6 +43,24 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_j611y")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7tg7y"]
+render_priority = 0
+shader = ExtResource("1_7q77c")
+shader_parameter/albedo_tex = ExtResource("2_r8ocy")
+shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/velocidad_viento = 2.0
+shader_parameter/fuerza_viento = 0.15
+shader_parameter/frequency_viento = 0.5
+shader_parameter/desincronizar_arboles = true
+shader_parameter/altura_minima_hojas = 2.0
+shader_parameter/radio_minimo_hojas = 0.15
+shader_parameter/niveles_sombra = 3
+shader_parameter/nitidez_sombra = 0.5
+shader_parameter/tinte_sombra = Color(0.35, 0.38, 0.45, 1)
+shader_parameter/desaturacion = 0.25
+shader_parameter/aclarar_textura = 0.15
+shader_parameter/activar_depuracion_visual = false
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fv8wu"]
 height = 11.273071
 radius = 0.26123047
@@ -50,8 +69,9 @@ radius = 0.26123047
 
 [node name="TreeMesh" type="MeshInstance3D" parent="." unique_id=1895292507]
 transform = Transform3D(1, 0, 0, 0, 1, 1.6292067e-07, 0, -1.6292067e-07, 1, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_kglb7")
-surface_material_override/0 = ExtResource("1_fv8wu")
+surface_material_override/0 = SubResource("ShaderMaterial_7tg7y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1975954743]
 transform = Transform3D(1, 0, 0, 0, 1, 1.6292067e-07, 0, -1.6292067e-07, 1, 0, 5.6099243, -9.1397266e-07)

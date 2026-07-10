@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="13_xtll6"]
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="14_qcc2t"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="15_l22r4"]
+[ext_resource type="PackedScene" uid="uid://c62sk6j3203tb" path="res://scenes/objects/world/tree_1.tscn" id="16_2g36m"]
 
 [sub_resource type="Environment" id="Environment_xtll6"]
 ambient_light_source = 3
@@ -1186,3 +1187,15 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -9.075592, 
 gizmo_extents = 10.0
 script = ExtResource("15_l22r4")
 targetname = "Door"
+
+[node name="Tree1" parent="." unique_id=1822797697 instance=ExtResource("16_2g36m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.042559, 21.924063, 0)
+
+[node name="Tree2" parent="." unique_id=459589690 instance=ExtResource("16_2g36m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.891735, 21.924063, 1.3030958)
+
+[node name="Tree3" parent="." unique_id=955108185 instance=ExtResource("16_2g36m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.582897, 21.924063, -1.6689725)
+
+[node name="Tree4" parent="." unique_id=546825256 instance=ExtResource("16_2g36m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.332327, 21.924063, 0.91981936)

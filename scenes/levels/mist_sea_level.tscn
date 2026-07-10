@@ -7023,6 +7023,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40187836, 0.9234576, -0.408
 
 [node name="EnergySphere" parent="InteractibleObjects" unique_id=1256466068 instance=ExtResource("14_qg55o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.216942, 5.6982255, -146.854)
+item_description = "Brilla con una energía poderosa"
 
 [node name="SeaDoor" parent="InteractibleObjects" unique_id=2143399838 instance=ExtResource("15_qg55o")]
 transform = Transform3D(0.86032414, 0, 0.5097473, 0, 1, 0, -0.5097473, 0, 0.86032414, 37.8697, 8.497828, -6.2730503)

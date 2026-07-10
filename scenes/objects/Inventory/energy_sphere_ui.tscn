@@ -11,8 +11,8 @@ texture_filter = 0
 
 [sub_resource type="SphereMesh" id="SphereMesh_pcd7r"]
 material = SubResource("StandardMaterial3D_3kb2x")
-radius = 0.2
-height = 0.4
+radius = 0.4
+height = 0.8
 radial_segments = 8
 rings = 6
 
@@ -56,7 +56,7 @@ layers = 8
 light_color = Color(0.29411766, 0.75686276, 0.7607843, 1)
 light_energy = 1.203
 light_volumetric_fog_energy = 7.806
-omni_range = 3.3435197
+omni_range = 0.48951265
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="OmniLight3D" unique_id=54742865]
 layers = 8

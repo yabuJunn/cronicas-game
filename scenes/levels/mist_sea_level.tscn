@@ -5988,6 +5988,13 @@ transform = Transform3D(-0.7301208, -0.4904965, 0.4757486, 0.06111845, 0.6465657
 light_color = Color(0.8093096, 0.97609526, 0.934499, 1)
 light_angular_distance = 0.59
 shadow_enabled = true
+shadow_bias = 0.04
+shadow_normal_bias = 2.5
+shadow_transmittance_bias = 0.0
+directional_shadow_split_2 = 0.25
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 0.85
+directional_shadow_max_distance = 80.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=300962325]
 environment = SubResource("Environment_eut8q")

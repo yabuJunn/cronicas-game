@@ -69,7 +69,7 @@ radius = 0.26123047
 
 [node name="TreeMesh" type="MeshInstance3D" parent="." unique_id=1895292507]
 transform = Transform3D(1, 0, 0, 0, 1, 1.6292067e-07, 0, -1.6292067e-07, 1, 0, 0, 0)
-cast_shadow = 0
+cast_shadow = 2
 mesh = SubResource("ArrayMesh_kglb7")
 surface_material_override/0 = SubResource("ShaderMaterial_7tg7y")
 

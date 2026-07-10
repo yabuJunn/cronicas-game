@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="12_1qcro"]
 [ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="13_xtll6"]
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="14_qcc2t"]
+[ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="15_l22r4"]
 
 [sub_resource type="Environment" id="Environment_xtll6"]
 ambient_light_source = 3
@@ -1179,3 +1180,9 @@ item_description = "Brilla con una energía poderosa"
 
 [node name="Pedestal" parent="." unique_id=1043176817 instance=ExtResource("13_xtll6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.158941, 21.734081, 9.205422)
+
+[node name="CinemaMarkerDoor" type="Marker3D" parent="." unique_id=1327477475 groups=["cinemaMarkers"]]
+transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.99858993, 0.045445226, 0.85155946, -0.00046140258, 0.52425796, 26.713533, 11.430074, 0.4255377)
+gizmo_extents = 10.0
+script = ExtResource("15_l22r4")
+targetname = "Door"

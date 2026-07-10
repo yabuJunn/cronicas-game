@@ -27,7 +27,7 @@ TransicionGlobal="*uid://dp7ojkhjkw6i6"
 [editor]
 
 movie_writer/video_quality=0.47
-movie_writer/movie_file="D:/General/Godot/cronicas-de-un-mundo-perdido/captures/capture1.avi"
+movie_writer/movie_file="D:/General/Godot/cronicas-de-un-mundo-perdido/captures/capture.avi"
 movie_writer/fps=30
 run/main_run_args="sdf"
 

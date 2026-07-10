@@ -15,7 +15,7 @@ seamless = true
 
 [resource]
 shader = ExtResource("1_2vn1g")
-shader_parameter/density = 0.9999999747
+shader_parameter/density = 0.59929998483771
 shader_parameter/albedo = Color(0.86036915, 0.8603692, 0.8603692, 1)
 shader_parameter/emission = Color(0.89642835, 0.8892327, 0.8554433, 1)
 shader_parameter/height_falloff = 0.0

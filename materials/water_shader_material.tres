@@ -1,6 +1,16 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dh1fwdots8woq"]
 
-[ext_resource type="Shader" uid="uid://dsghjm10yjdc3" path="res://shaders/water_shader.tres" id="1_kchkq"]
+[ext_resource type="Shader" uid="uid://dxb2ikaxbqq6b" path="res://shaders/sea_shader.tres" id="1_kchkq"]
+
+[sub_resource type="Gradient" id="Gradient_kchkq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0626r"]
+noise_type = 2
+frequency = 0.0037
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g5vjn"]
+noise = SubResource("FastNoiseLite_0626r")
+color_ramp = SubResource("Gradient_kchkq")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eolq4"]
 noise_type = 2
@@ -27,7 +37,7 @@ render_priority = 0
 shader = ExtResource("1_kchkq")
 shader_parameter/primary_color = Color(0.13295484, 0.52586424, 0.7581263, 1)
 shader_parameter/secondary_color = Color(0.097672574, 0.19408539, 0.35526028, 1)
-shader_parameter/roughness = 1.3
+shader_parameter/roughness = 0.2
 shader_parameter/normalmap_a = SubResource("NoiseTexture2D_4rjc6")
 shader_parameter/normalmap_b = SubResource("NoiseTexture2D_56pc5")
 shader_parameter/normalmap_a_strength = 0.5
@@ -36,15 +46,18 @@ shader_parameter/movement_direction = Vector2(0.2, 0.1)
 shader_parameter/movement_strength = 0.12
 shader_parameter/uv_scale = 1.0
 shader_parameter/foam_color = Color(1.1872249, 1.1947982, 1.2057594, 1)
-shader_parameter/foam_distance = 0.80000001192096
-shader_parameter/foam_cutoff = 0.0
-shader_parameter/foam_scale = 2.0
-shader_parameter/ola_velocidad = 0.40000000596048
-shader_parameter/ola_amplitud = 0.15000000223518
-shader_parameter/ola_frecuencia = 0.4
-shader_parameter/ola_filo = 2.5
-shader_parameter/ola_direccion = Vector2(1, 0.3)
-shader_parameter/espuma_cresta_limite = 0.01999999955296
-shader_parameter/depth_distance = 4.0
-shader_parameter/beers_law = 11.40000016987368
-shader_parameter/water_transparency = 0.05
+shader_parameter/foam_distance = 3.85000005736962
+shader_parameter/foam_cutoff = 0.25999999418848
+shader_parameter/foam_scale = 10.0
+shader_parameter/ola_velocidad = 1.10000001639132
+shader_parameter/ola_amplitud = 9.60000014305152
+shader_parameter/ola_frecuencia = 0.08000000380000001
+shader_parameter/ola_filo = 1.0
+shader_parameter/ola_direccion = Vector2(-1, 0.3)
+shader_parameter/espuma_cresta_limite = 0.999999977648
+shader_parameter/suavizado_normales = 4.0
+shader_parameter/mascara_orilla = SubResource("NoiseTexture2D_g5vjn")
+shader_parameter/escala_mascara_orilla = 0.005
+shader_parameter/depth_distance = 20.0
+shader_parameter/beers_law = 12.0
+shader_parameter/water_transparency = 0.01999999955296

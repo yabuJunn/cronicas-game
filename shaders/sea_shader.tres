@@ -25,56 +25,92 @@ uniform sampler2D screen_texture : hint_screen_texture;
 
 // Foam Settings
 uniform vec4 foam_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float foam_distance : hint_range(0.0, 5.0, 0.05) = 0.5; // Distancia en la orilla
+uniform float foam_distance : hint_range(0.0, 5.0, 0.05) = 0.5; 
 uniform float foam_cutoff : hint_range(0.0, 1.0, 0.01) = 0.4;   
 uniform float foam_scale : hint_range(0.1, 10.0, 0.1) = 2.0;    
 
-// --- NUEVOS UNIFORMS PARA OLAS VIOLENTAS ---
-
+// --- TUNING DE OLAS MODIFICADO PARA GRANDES SWELLS ---
 uniform float ola_velocidad : hint_range(0.1, 5.0, 0.1) = 2.2;
-uniform float ola_amplitud : hint_range(0.0, 3.0, 0.05) = 0.6;    // Qué tan altas son
-uniform float ola_frecuencia : hint_range(0.0, 2.0, 0.05) = 0.4;  // Qué tan juntas están
-uniform float ola_filo : hint_range(1.0, 5.0, 0.1) = 2.5;         // Agresividad/pico de la cresta
-uniform vec2 ola_direccion = vec2(1.0, 0.3);                      // Hacia dónde empuja el mar
-uniform float espuma_cresta_limite : hint_range(0.0, 1.0, 0.01) = 0.65; // Qué tan alta debe ser la ola para sacar espuma
+uniform float ola_amplitud : hint_range(0.0, 15.0, 0.05) = 3.5;    // Rango ampliado hasta 15.0 para olas gigantes
+uniform float ola_frecuencia : hint_range(0.001, 2.0, 0.001) = 0.12; // Rango mínimo reducido a 0.001 para olas ultra anchas
+uniform float ola_filo : hint_range(1.0, 5.0, 0.1) = 1.0;         // 1.0 = Onda Seno perfecta. Valores más altos afilan la cresta.
+uniform vec2 ola_direccion = vec2(1.0, 0.3);                      
+uniform float espuma_cresta_limite : hint_range(0.0, 1.0, 0.01) = 0.55; 
+
+// --- CONTROL DE GEOMETRÍA ---
+uniform float suavizado_normales : hint_range(0.05, 4.0, 0.05) = 0.8; 
+
+// --- SISTEMA DE CALMA EN LA ORILLA ---
+group_uniforms Calma_Costa;
+uniform sampler2D mascara_orilla : hint_default_white; 
+uniform float escala_mascara_orilla = 0.005; 
 
 // Depth Value
 uniform float depth_distance : hint_range(0.0, 20.0, 0.1) = 4.0;
 uniform float beers_law : hint_range(0.0, 20.0, 0.1) = 12.0;
 uniform float water_transparency : hint_range(0.0, 1.0, 0.01) = 0.05;
 
-// Comunicación de altura entre Vertex y Fragment
 varying float v_altura_ola;
 
 float fresnel(float amount, vec3 normal, vec3 view) {
 	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
 }
 
-void vertex() {
+// --- FUNCIÓN DE CÁLCULO DE OLA SUAVIZADA ---
+vec3 calcular_desplazamiento_ola(vec2 pos_xz, float tiempo, float peso, out float out_cresta) {
 	vec2 dir = normalize(ola_direccion);
-	float tiempo = TIME * ola_velocidad;
 	
-	// Ola Principal: Gran masa de agua moviéndose en la dirección del viento
-	float mezcla1 = (VERTEX.x * dir.x + VERTEX.z * dir.y) * ola_frecuencia + tiempo;
-	// Al elevar (1.0 - abs(sin)) creamos crestas extremadamente afiladas ideales para tormentas y low-poly
-	float cresta1 = pow(1.0 - abs(sin(mezcla1)), ola_filo);
+	// Ola Principal (Base Senoidal pura de 0.0 a 1.0)
+	float mezcla1 = (pos_xz.x * dir.x + pos_xz.y * dir.y) * ola_frecuencia + tiempo;
+	float cresta1 = pow(sin(mezcla1) * 0.5 + 0.5, ola_filo);
 	
-	// Ola Secundaria: Modulador cruzado (perpendicular) para romper la simetría y crear caos
+	// Ola Secundaria Cruzada
 	vec2 dir_cruzar = vec2(-dir.y, dir.x);
-	float mezcla2 = (VERTEX.x * dir_cruzar.x + VERTEX.z * dir_cruzar.y) * (ola_frecuencia * 1.5) - (tiempo * 1.2);
-	float cresta2 = pow(1.0 - abs(sin(mezcla2)), ola_filo * 0.8);
+	float mezcla2 = (pos_xz.x * dir_cruzar.x + pos_xz.y * dir_cruzar.y) * (ola_frecuencia * 1.5) - (tiempo * 1.2);
+	float cresta2 = pow(sin(mezcla2) * 0.5 + 0.5, max(1.0, ola_filo * 0.8));
 	
-	// Micro-choque: Ruido rápido para que la superficie no sea perfecta
-	float mezcla3 = (VERTEX.x - VERTEX.z) * (ola_frecuencia * 3.0) + (tiempo * 2.5);
-	float cresta3 = sin(mezcla3) * 0.2;
+	// Micro-ruido armónico
+	float mezcla3 = (pos_xz.x - pos_xz.y) * (ola_frecuencia * 3.0) + (tiempo * 2.5);
+	float cresta3 = sin(mezcla3) * 0.5 + 0.5;
 	
-	// Combinamos todo y aplicamos la fuerza global
-	float ola_final = (cresta1 * 1.0 + cresta2 * 0.4 + cresta3 * 0.1) * ola_amplitud;
+	// IMPORTANTE: Restamos 0.5 para que la ola oscile ARRIBA Y ABAJO de su posición original de forma simétrica
+	float altura_y = ((cresta1 - 0.5) * 1.0 + (cresta2 - 0.5) * 0.25 + (cresta3 - 0.5) * 0.05) * ola_amplitud * peso;
+	out_cresta = cresta1 * peso;
 	
-	VERTEX.y += ola_final;
+	// Desplazamiento horizontal controlado orgánicamente por el valor de ola_filo
+	float empuje_h = cos(mezcla1) * ola_amplitud * 0.2 * (ola_filo * 0.3) * peso;
 	
-	// Guardamos la altura de la cresta principal (normalizada 0.0 a 1.0) para usarla en la espuma
-	v_altura_ola = cresta1;
+	return vec3(
+		-dir.x * empuje_h,
+		altura_y,
+		-dir.y * empuje_h
+	);
+}
+
+void vertex() {
+	float tiempo = TIME * ola_velocidad;
+	vec2 world_xz = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
+	float peso_orilla = texture(mascara_orilla, world_xz * escala_mascara_orilla).r;
+	
+	float delta = suavizado_normales; 
+	float cresta_dummy;
+	float cresta_local; 
+	
+	vec3 desplazo_actual = calcular_desplazamiento_ola(VERTEX.xz, tiempo, peso_orilla, cresta_local);
+	vec3 desplazo_x = calcular_desplazamiento_ola(VERTEX.xz + vec2(delta, 0.0), tiempo, peso_orilla, cresta_dummy);
+	vec3 desplazo_z = calcular_desplazamiento_ola(VERTEX.xz + vec2(0.0, delta), tiempo, peso_orilla, cresta_dummy);
+	
+	v_altura_ola = cresta_local;
+	
+	vec3 p_actual = VERTEX + desplazo_actual;
+	vec3 p_x = VERTEX + vec3(delta, 0.0, 0.0) + desplazo_x;
+	vec3 p_z = VERTEX + vec3(0.0, 0.0, delta) + desplazo_z;
+	
+	vec3 tangente = p_x - p_actual;
+	vec3 binormal = p_z - p_actual;
+	
+	NORMAL = normalize(cross(binormal, tangente));
+	VERTEX = p_actual;
 }
 
 void fragment() {
@@ -83,56 +119,41 @@ void fragment() {
 	vec2 uv = UV * uv_scale;
 	vec2 uv_movement = movement_direction * TIME * movement_strength;
 	
-	// Sample normal maps
 	vec3 normal_a_tex = texture(normalmap_a, uv + uv_movement).rgb;
 	vec3 normal_b_tex = texture(normalmap_b, uv - uv_movement).rgb;
 	
 	vec3 normalmap = texture(normalmap_a, uv + uv_movement).rgb * normalmap_a_strength;
 	normalmap += texture(normalmap_b, uv - uv_movement).rgb * normalmap_b_strength;
 	
-	// Get Depth and Screen Textures
 	float depth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
 	vec3 screen = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
 	
-	// Get Depth in World Position (Y)
 	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
 	vec4 world = INV_VIEW_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	float depth_texture_y = world.y / world.w;
 	float vertex_y = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).y;
 	
-	// Vertical water thickness
 	float vertical_thickness = vertex_y - depth_texture_y;
 	
-	// Set Depth Blend and adjust with Beer's Law
 	float depth_blend = clamp((vertex_y - depth_texture_y) / depth_distance, 0.0, 1.0);
 	depth_blend = exp(-depth_blend * beers_law);
 	
-	// --- GESTIÓN DE ESPUMA (MASCARA COMBINADA) ---
-	// 1. Espuma de Orilla (Existente)
-	float mascara_orilla = 1.0 - clamp(vertical_thickness / foam_distance, 0.0, 1.0);
-	
-	// 2. Nueva Espuma de Cresta (Aparece violentamente en las puntas altas de las olas)
+	// --- GESTIÓN DE ESPUMA ---
+	float mascara_orilla_depth = 1.0 - clamp(vertical_thickness / foam_distance, 0.0, 1.0);
 	float mascara_cresta = clamp((v_altura_ola - espuma_cresta_limite) / (1.0 - espuma_cresta_limite), 0.0, 1.0);
+	float mascara_espuma_global = max(mascara_orilla_depth, mascara_cresta);
 	
-	// Fusionamos ambas fuentes de espuma (cualquiera de las dos genera espuma)
-	float mascara_espuma_global = max(mascara_orilla, mascara_cresta);
-	
-	// Distorsión fluida usando tus mapas de normales
 	vec2 foam_uv = uv * foam_scale + (normal_a_tex.xy + normal_b_tex.xy) * 0.05;
 	float foam_noise = texture(normalmap_a, foam_uv + uv_movement).r;
 	
-	// Estructura final de la espuma fracturada
 	float foam_cutoff_match = step(foam_cutoff, foam_noise * mascara_espuma_global);
 	float final_foam_mask = foam_cutoff_match * mascara_espuma_global;
 	
-	// Set depth color mix
 	vec3 depth_color = mix(secondary_color, primary_color, depth_blend).rgb;
 	vec3 final_color = mix(depth_color.rgb, screen, water_transparency);
 	
-	// Mix base water color with reflections
-	vec3 water_base = mix(final_color, screen, depth_blend * (1.0 - basic_fresnel));
+	vec3 water_base = mix(final_color, screen, basic_fresnel * depth_blend);
 	
-	// --- Aplicar Color Base y Espuma ---
 	ALBEDO = mix(water_base, foam_color.rgb, final_foam_mask);
 	
 	ROUGHNESS = roughness * (1.0 - basic_fresnel);

@@ -1182,7 +1182,7 @@ item_description = "Brilla con una energía poderosa"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.158941, 21.734081, 9.205422)
 
 [node name="CinemaMarkerDoor" type="Marker3D" parent="." unique_id=1327477475 groups=["cinemaMarkers"]]
-transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.99858993, 0.045445226, 0.85155946, -0.00046140258, 0.52425796, 26.713533, 11.430074, 0.4255377)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -9.075592, 25.967094, 12.703778)
 gizmo_extents = 10.0
 script = ExtResource("15_l22r4")
 targetname = "Door"

@@ -8,12 +8,12 @@ const WALK_SPEED = 5.0 #Default is 5
 const SPRINT_SPEED = 9 #Default is 9
 const JUMP_VELOCITY = 6 #Default is 6
 const MOUSE_SENSITIVITY = 0.003
-
 var gravity = 9.8
-var camera_enabled := true
 
+var camera_enabled := true
 var controles_bloqueados := false
-var was_on_floor := true 
+var was_on_floor := true
+var en_cinematica := false
 var last_velocity_y := 0.0 # Guarda la velocidad antes de tocar el suelo
 
 # --- CONFIGURACIÓN DE HEAD BOB Y RESPIRACIÓN ---
@@ -58,14 +58,23 @@ func _ready() -> void:
 	default_camera_pos = camera_3d.position 
 
 func _physics_process(delta: float) -> void:
-	# --- SI LOS CONTROLES ESTÁN BLOQUEADOS, FRENAMOS Y LE JUGADORE NO MUEVE NADA ---
+	
+	if en_cinematica:
+		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
+		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		move_and_slide()
+		return # ¡CORTE! Salimos de la función aquí para que nadie altere la cámara
+	
+	# --- SI SOLO ESTÁN BLOQUEADOS LOS CONTROLES (MENÚS, DIÁLOGOS, ETC.) ---
 	if controles_bloqueados:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 		move_and_slide()
-		_update_head_bob(delta) # Mantiene suavidad incluso bloqueado
+		_update_head_bob(delta) 
 		return
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -244,20 +253,29 @@ func _update_head_bob(delta: float) -> void:
 
 
 func ejecutar_cinematica(transform_destino: Transform3D, duracion_total: float = 4.0) -> void:
-	if controles_bloqueados:
+	if en_cinematica:
 		return
 		
+	en_cinematica = true # Activamos el estado de película
 	controles_bloqueados = true
 	interact_prompt.hide()
 	if current_interactable != null:
 		current_interactable.set_highlight(false)
 	
 	var original_local_transform = camera_3d.transform
-	var tiempo_transicion := 2
+	var tiempo_transicion : float = 2.0 # Forzado a float para evitar fallos de cálculo
 	var tiempo_espera = max(0.1, duracion_total - (tiempo_transicion * 2.0))
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	
+	# Transición hacia el objetivo
 	tween.tween_property(camera_3d, "global_transform", transform_destino, tiempo_transicion)
+	# Tiempo de espera en el objetivo (Ahora sí se respetará por completo)
 	tween.tween_interval(tiempo_espera)
+	# Transición de regreso a los ojos del jugador
 	tween.tween_property(camera_3d, "transform", original_local_transform, tiempo_transicion)
-	tween.tween_callback(func(): controles_bloqueados = false)
+	
+	# Al finalizar, devolvemos el control total
+	tween.tween_callback(func(): 
+		en_cinematica = false
+		controles_bloqueados = false
+	)

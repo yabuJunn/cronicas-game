@@ -195,16 +195,20 @@ func abrir_inventario() -> void:
 	miscellaneousSoundsPlayer.pitch_scale = 1.0
 	miscellaneousSoundsPlayer.stream = openInventorySound
 	miscellaneousSoundsPlayer.play()
-	visible = true
 	
+	# 1. Lo volvemos visible e inmediatamente creamos los slots
+	visible = true
+	sincronizar_slots_dinamicos()
+	
+	# 2. Esperamos a que Godot procese el nuevo diseño y asigne los tamaños reales
 	await get_tree().process_frame
 	
+	# 3. Ahora que el tamaño NO es cero, recalculamos la UI
 	recalcular_proporciones_ui()
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	sincronizar_slots_dinamicos()
-	actualizar_interfaz("ninguna") 
+	# Levantamos la interfaz directamente con la animación de apertura
 	actualizar_interfaz("abrir")
 
 func cerrar_inventario() -> void:
@@ -240,6 +244,8 @@ func actualizar_interfaz(tipo_animacion: String = "ninguna") -> void:
 	
 	var altura = carrusel_panel.size.y
 	var ancho = carrusel_panel.size.x
+	if altura == 0: altura = self.size.y * 0.5
+	if ancho == 0: ancho = self.size.x
 	var centro_x = ancho / 2.0
 	var espaciado_x = altura * 0.85
 
@@ -270,6 +276,9 @@ func actualizar_interfaz(tipo_animacion: String = "ninguna") -> void:
 			slot.move_to_front()
 		else:
 			marco.add_theme_stylebox_override("panel", style_deseleccionado)
+		
+
+
 		
 		if tipo_animacion == "ninguna":
 			slot.size = Vector2(tam_objetivo, tam_objetivo)

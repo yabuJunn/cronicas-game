@@ -1,0 +1,757 @@
+[gd_scene format=3 uid="uid://dx1r5d1kp4lk0"]
+
+[ext_resource type="PackedScene" uid="uid://bpdddgyyg2rpc" path="res://scenes/levels/maps/Whispering_forest_map.scn" id="1_dl5xd"]
+[ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="2_5tvve"]
+[ext_resource type="PackedScene" uid="uid://drnq43px0vd8k" path="res://scenes/levels/whisper_forest_cliff.tscn" id="3_0scc7"]
+[ext_resource type="PackedScene" uid="uid://bkvg0mv2fsciu" path="res://scenes/objects/world/houses/VillageHouse1.tscn" id="4_anfc4"]
+[ext_resource type="Shader" uid="uid://b3fm0ispndsjh" path="res://shaders/river_shader.tres" id="5_dnt3s"]
+[ext_resource type="Script" uid="uid://8ewcp6y5t36e" path="res://addons/ScatterShot/zone.gd" id="6_jxsfi"]
+[ext_resource type="Script" uid="uid://1b47ci4ks7ew" path="res://addons/ScatterShot/layer.gd" id="7_scla1"]
+[ext_resource type="Script" uid="uid://dyltpy7s15mtf" path="res://addons/ScatterShot/pattern.gd" id="8_rws65"]
+[ext_resource type="Script" uid="uid://jhw5h6gwpjmr" path="res://addons/ScatterShot/collection.gd" id="8_scla1"]
+[ext_resource type="MeshLibrary" uid="uid://dql2y2bcrp4gf" path="res://library/trees_library.tres" id="9_a1d46"]
+[ext_resource type="Script" uid="uid://gwqrknegmc0e" path="res://addons/ScatterShot/collection_meshes.gd" id="10_ywa0e"]
+[ext_resource type="PackedScene" uid="uid://d2kafqc0wirdv" path="res://scenes/objects/world/rock.tscn" id="12_s4sqn"]
+[ext_resource type="Shader" uid="uid://7fl4xglihyyk" path="res://shaders/fog_shader.gdshader" id="12_ywa0e"]
+[ext_resource type="PackedScene" uid="uid://bthajwnrlyacy" path="res://scenes/objects/world/rocks/rock_pillar_1.tscn" id="13_ean77"]
+[ext_resource type="PackedScene" uid="uid://cw5o5ubhuqlu7" path="res://scenes/objects/world/houses/tower_outskirts.tscn" id="14_to654"]
+[ext_resource type="Texture2D" uid="uid://csjvikkqvd7at" path="res://textures/Dirt/Dirt_18-256x256.png" id="16_py8g7"]
+[ext_resource type="Shader" uid="uid://drrfn1usmqlnm" path="res://shaders/dirt_path_shader.gdshader" id="16_yws86"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
+ground_color = Color(0.19165215, 0.504012, 0.6223743, 1)
+
+[sub_resource type="Sky" id="Sky_yrra7"]
+sky_material = SubResource("PhysicalSkyMaterial_5tvve")
+
+[sub_resource type="Environment" id="Environment_0scc7"]
+background_mode = 2
+background_color = Color(0.361864, 0.647419, 0.75454575, 1)
+sky = SubResource("Sky_yrra7")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.1
+reflected_light_source = 2
+tonemap_mode = 3
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.7262446, 0.8981704, 0.9501453, 1)
+fog_depth_curve = 2.9281712
+fog_depth_begin = 30.0
+fog_depth_end = 200.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0548
+volumetric_fog_albedo = Color(0.3898493, 0.6642744, 0.7293618, 1)
+volumetric_fog_emission = Color(0.0930867, 0.22663963, 0.24753043, 1)
+volumetric_fog_gi_inject = 0.32
+volumetric_fog_anisotropy = 0.8
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 0.75
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eolq4"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dnt3s"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_eolq4")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_73vye"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_28v4x"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_73vye")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dnt3s"]
+render_priority = 0
+shader = ExtResource("5_dnt3s")
+shader_parameter/primary_color = Color(0.015555763, 0.42336515, 0.64103556, 1)
+shader_parameter/secondary_color = Color(0.1352495, 0.4672677, 0.62296396, 1)
+shader_parameter/roughness = 0.075
+shader_parameter/normalmap_a = SubResource("NoiseTexture2D_dnt3s")
+shader_parameter/normalmap_b = SubResource("NoiseTexture2D_28v4x")
+shader_parameter/normalmap_a_strength = 0.4
+shader_parameter/normalmap_b_strength = 0.2
+shader_parameter/movement_direction = Vector2(0, 1)
+shader_parameter/movement_strength = 0.02
+shader_parameter/uv_scale = 10.0
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/foam_distance = 6.80000010132816
+shader_parameter/foam_cutoff = 0.43999999016512
+shader_parameter/foam_scale = 3.0
+shader_parameter/ola_velocidad = 8.5000001266602
+shader_parameter/ola_amplitud = 0.86999998055376
+shader_parameter/ola_frecuencia = 1.3000000193715602
+shader_parameter/ola_filo = 1.0
+shader_parameter/ola_direccion = Vector2(0, 1)
+shader_parameter/ola_curvatura_amplitud = 0.5
+shader_parameter/ola_curvatura_frecuencia = 0.25999999605114
+shader_parameter/rio_direccion = Vector2(0, 1)
+shader_parameter/rio_velocidad = 1.0000000149012
+shader_parameter/rio_escala_ancho = 5.0000000670554
+shader_parameter/rio_escala_largo = 6.40000008791708
+shader_parameter/rio_distorsion = 1.999999955296
+shader_parameter/rio_onditas_color = Color(1, 1, 1, 1)
+shader_parameter/rio_transparencia = 0.28999999351792
+shader_parameter/rio_grosor_borde = 0.02999999932944
+shader_parameter/suavizado_normales = 2.0
+shader_parameter/escala_mascara_orilla = 0.005
+shader_parameter/depth_distance = 2.5
+shader_parameter/water_transparency = 0.05999999865888
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_anfc4"]
+material = SubResource("ShaderMaterial_dnt3s")
+size = Vector2(100, 900)
+subdivide_width = 127
+subdivide_depth = 145
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a1d46"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ywa0e"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_a1d46")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s4sqn"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ean77"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_s4sqn")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_to654"]
+render_priority = 0
+shader = ExtResource("5_dnt3s")
+shader_parameter/primary_color = Color(0.015555763, 0.42336515, 0.64103556, 1)
+shader_parameter/secondary_color = Color(0.1352495, 0.4672677, 0.62296396, 1)
+shader_parameter/roughness = 0.15
+shader_parameter/normalmap_a = SubResource("NoiseTexture2D_ywa0e")
+shader_parameter/normalmap_b = SubResource("NoiseTexture2D_ean77")
+shader_parameter/normalmap_a_strength = 0.4
+shader_parameter/normalmap_b_strength = 0.2
+shader_parameter/movement_direction = Vector2(0, 1)
+shader_parameter/movement_strength = 0.02
+shader_parameter/uv_scale = 1.0
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/foam_distance = 0.4
+shader_parameter/foam_cutoff = 0.3999999910592
+shader_parameter/foam_scale = 0.10000000149012
+shader_parameter/ola_velocidad = 2.0
+shader_parameter/ola_amplitud = 0.08
+shader_parameter/ola_frecuencia = 0.5000000074506
+shader_parameter/ola_filo = 1.0
+shader_parameter/ola_direccion = Vector2(0, 1)
+shader_parameter/ola_curvatura_amplitud = 0.5
+shader_parameter/ola_curvatura_frecuencia = 0.1
+shader_parameter/rio_direccion = Vector2(0, 1)
+shader_parameter/rio_velocidad = 2.35000003501782
+shader_parameter/rio_escala_ancho = 17.10000024735992
+shader_parameter/rio_escala_largo = 3.70000004768384
+shader_parameter/rio_distorsion = 1.999999955296
+shader_parameter/rio_onditas_color = Color(1, 1, 1, 1)
+shader_parameter/rio_transparencia = 0.22999999485904
+shader_parameter/rio_grosor_borde = 0.02999999932944
+shader_parameter/suavizado_normales = 2.0
+shader_parameter/escala_mascara_orilla = 0.005
+shader_parameter/depth_distance = 2.0000000298024
+shader_parameter/water_transparency = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_py8g7"]
+material = SubResource("ShaderMaterial_to654")
+size = Vector2(13.775, 38.26)
+subdivide_width = 127
+subdivide_depth = 145
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ywa0e"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s4sqn"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_ywa0e")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ean77"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_to654"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_ean77")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_py8g7"]
+render_priority = 0
+shader = ExtResource("5_dnt3s")
+shader_parameter/primary_color = Color(0.015555763, 0.42336515, 0.64103556, 1)
+shader_parameter/secondary_color = Color(0.1352495, 0.4672677, 0.62296396, 1)
+shader_parameter/roughness = 0.075
+shader_parameter/normalmap_a = SubResource("NoiseTexture2D_s4sqn")
+shader_parameter/normalmap_b = SubResource("NoiseTexture2D_to654")
+shader_parameter/normalmap_a_strength = 0.4
+shader_parameter/normalmap_b_strength = 0.2
+shader_parameter/movement_direction = Vector2(0, 1)
+shader_parameter/movement_strength = 0.02
+shader_parameter/uv_scale = 1.0
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/foam_distance = 6.80000010132816
+shader_parameter/foam_cutoff = 0.43999999016512
+shader_parameter/foam_scale = 3.0
+shader_parameter/ola_velocidad = 1.10000001639132
+shader_parameter/ola_amplitud = 0.48999998904752
+shader_parameter/ola_frecuencia = 1.3000000193715602
+shader_parameter/ola_filo = 1.0
+shader_parameter/ola_direccion = Vector2(0, 1)
+shader_parameter/ola_curvatura_amplitud = 0.5
+shader_parameter/ola_curvatura_frecuencia = 0.25999999605114
+shader_parameter/rio_direccion = Vector2(0, 1)
+shader_parameter/rio_velocidad = 1.0000000149012
+shader_parameter/rio_escala_ancho = 5.0000000670554
+shader_parameter/rio_escala_largo = 6.40000008791708
+shader_parameter/rio_distorsion = 1.999999955296
+shader_parameter/rio_onditas_color = Color(1, 1, 1, 1)
+shader_parameter/rio_transparencia = 0.28999999351792
+shader_parameter/rio_grosor_borde = 0.02999999932944
+shader_parameter/suavizado_normales = 2.0
+shader_parameter/escala_mascara_orilla = 0.005
+shader_parameter/depth_distance = 2.5
+shader_parameter/water_transparency = 0.05999999865888
+
+[sub_resource type="QuadMesh" id="QuadMesh_a1d46"]
+material = SubResource("ShaderMaterial_py8g7")
+size = Vector2(11.255, 14.915)
+subdivide_width = 7
+subdivide_depth = 7
+orientation = 1
+
+[sub_resource type="Resource" id="Resource_s4sqn"]
+script = ExtResource("10_ywa0e")
+mesh_library = ExtResource("9_a1d46")
+mesh_proportions = Array[int]([10])
+collision_user_data = null
+metadata/_custom_type_script = "uid://gwqrknegmc0e"
+
+[sub_resource type="Resource" id="Resource_rws65"]
+script = ExtResource("7_scla1")
+collections = Array[ExtResource("8_scla1")]([SubResource("Resource_s4sqn")])
+raycast_mask = 15
+metadata/_custom_type_script = "uid://1b47ci4ks7ew"
+
+[sub_resource type="Resource" id="Resource_a1d46"]
+script = ExtResource("8_rws65")
+layers = Array[ExtResource("7_scla1")]([SubResource("Resource_rws65")])
+metadata/_custom_type_script = "uid://dyltpy7s15mtf"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_to654"]
+noise_type = 3
+frequency = 0.0211
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_py8g7"]
+width = 274
+height = 238
+depth = 275
+noise = SubResource("FastNoiseLite_to654")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yws86"]
+shader = ExtResource("12_ywa0e")
+shader_parameter/density = 0.32429999179521
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = Color(0.3882353, 0.6627451, 0.7294118, 1)
+shader_parameter/height_falloff = 0.0
+shader_parameter/edge_fade = 7.695
+shader_parameter/movement_speed = Vector3(0, 0.845, 0)
+shader_parameter/noise_scale = 10.755
+shader_parameter/edge_distortion_strength = 0.0
+shader_parameter/edge_speed_multiplier = Vector3(5.01, 5.98, 6.17)
+shader_parameter/edge_detail_scale = 3.0
+shader_parameter/wave_amplitude = 1.4
+shader_parameter/wave_speed = 2.73
+shader_parameter/wave_direction = Vector2(1, 1)
+shader_parameter/wave_frequency = 1.5
+shader_parameter/organic_amplitude = 0.5550000263625
+shader_parameter/organic_scale = 0.05
+shader_parameter/organic_speed = 0.2
+shader_parameter/density_texture = SubResource("NoiseTexture3D_py8g7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_py8g7"]
+frequency = 0.0474
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_s4sqn"]
+noise = SubResource("FastNoiseLite_py8g7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ean77"]
+shader = ExtResource("12_ywa0e")
+shader_parameter/density = 0.32419999179774
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = Color(0.3882353, 0.6627451, 0.7294118, 1)
+shader_parameter/height_falloff = 0.67
+shader_parameter/edge_fade = 0.1
+shader_parameter/movement_speed = Vector3(4.195, 0, 1.44)
+shader_parameter/noise_scale = 1.0
+shader_parameter/edge_distortion_strength = 1.970000093575
+shader_parameter/edge_speed_multiplier = Vector3(2, 3, 2)
+shader_parameter/edge_detail_scale = 3.0
+shader_parameter/wave_amplitude = 2.065
+shader_parameter/wave_speed = 3.375
+shader_parameter/wave_direction = Vector2(1, 1)
+shader_parameter/wave_frequency = 3.02
+shader_parameter/organic_amplitude = 1.5
+shader_parameter/organic_scale = 0.05
+shader_parameter/organic_speed = 0.2
+shader_parameter/density_texture = SubResource("NoiseTexture3D_s4sqn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yws86"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eaukh"]
+noise = SubResource("FastNoiseLite_yws86")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvxio"]
+render_priority = 0
+shader = ExtResource("16_yws86")
+shader_parameter/texture_albedo = ExtResource("16_py8g7")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_eaukh")
+shader_parameter/noise_scale = 1.0
+shader_parameter/path_width = 0.499999988824
+shader_parameter/edge_softness = 0.2
+shader_parameter/edge_distortion = 0.3
+shader_parameter/patch_holes = 0.1
+shader_parameter/use_90_deg_bend = false
+shader_parameter/bend_right = false
+shader_parameter/curve_amplitude = -4.2499999143181
+shader_parameter/curve_frequency = 0.32000001450147997
+shader_parameter/curve_phase = -1.5700003150862694
+shader_parameter/intersection_fade = 0.00999999977648
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_to654"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eaukh"]
+render_priority = 0
+shader = ExtResource("16_yws86")
+shader_parameter/texture_albedo = ExtResource("16_py8g7")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_eaukh")
+shader_parameter/noise_scale = 1.0
+shader_parameter/path_width = 0.50999998860048
+shader_parameter/edge_softness = 0.2
+shader_parameter/edge_distortion = 0.3
+shader_parameter/patch_holes = 0.1
+shader_parameter/use_90_deg_bend = true
+shader_parameter/bend_right = true
+shader_parameter/curve_amplitude = 0.0
+shader_parameter/curve_frequency = 0.1
+shader_parameter/curve_phase = 0.0
+shader_parameter/intersection_fade = 0.1
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_xvxio"]
+code = "//Info: Este shader debe usarse con boxMesh 1m x 1m x 1m y modificar el tamaño con scale
+
+shader_type spatial;
+// depth_test_disabled: Evita que el motor oculte las caras traseras cuando el suelo está dentro del cubo.
+// depth_draw_never: Evita conflictos de profundidad con otros materiales transparentes.
+render_mode blend_mix, depth_draw_never, depth_test_disabled, cull_front, diffuse_burley, specular_disabled;
+
+// --- TEXTURA DEL CAMINO ---
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform vec4 path_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// --- RUIDO ORGÁNICO ---
+uniform sampler2D noise_texture : hint_default_white, repeat_enable; 
+uniform float noise_scale : hint_range(0.1, 20.0, 0.1) = 1.0;
+
+// --- CONTROL DE BORDES (ANCHO Y DESVANECIDO) ---
+uniform float path_width : hint_range(0.0, 1.0, 0.01) = 0.8; 
+uniform float edge_softness : hint_range(0.01, 1.0, 0.01) = 0.2; 
+uniform float edge_distortion : hint_range(0.0, 1.0, 0.01) = 0.3; 
+
+// --- HUECOS / PARCHES ---
+uniform float patch_holes : hint_range(0.0, 1.0, 0.01) = 0.1; 
+
+// --- CURVATURA MATEMÁTICA ---
+group_uniforms Curvatura_Camino;
+// Amplitud de la curva en metros. Si es 0.0, el camino es 100% recto (modular).
+uniform float curve_amplitude : hint_range(-10.0, 10.0, 0.05) = 0.0;
+// Cuántas curvas ocurren a lo largo del camino.
+uniform float curve_frequency : hint_range(0.01, 1.0, 0.001) = 0.1;
+// Desplaza la curva a lo largo del eje Z (ideal para conectar segmentos).
+uniform float curve_phase : hint_range(-6.28, 6.28, 0.01) = 0.0;
+
+// --- INTEGRACIÓN VOLUMÉTRICA ---
+uniform sampler2D depth_texture : hint_depth_texture;
+// Determina qué tan rápido se difumina el camino si el terreno sale por el techo o el piso del cubo
+uniform float intersection_fade : hint_range(0.01, 0.5, 0.01) = 0.1; 
+
+// --- UVs ---
+uniform vec3 uv1_scale = vec3(1.0, 1.0, 1.0);
+uniform vec3 uv1_offset = vec3(0.0, 0.0, 0.0);
+
+// Variables que se calculan en Vertex y se envían a Fragment
+varying mat4 inv_modelview_matrix;
+varying vec3 world_scale;
+
+void vertex() {
+	// MODELVIEW_MATRIX nos lleva de Local a Vista. Su inversa nos lleva directo de Vista a Local.
+	inv_modelview_matrix = inverse(MODELVIEW_MATRIX);
+	
+	// Obtenemos la escala del nodo en el mundo para el auto-tiling de la textura
+	world_scale = vec3(
+		length(MODEL_MATRIX[0].xyz), 
+		length(MODEL_MATRIX[1].xyz), 
+		length(MODEL_MATRIX[2].xyz)
+	);
+}
+
+void fragment() {
+	// 1. Obtener la profundidad del terreno de fondo
+	float depth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
+	
+	// 2. Reconstruir NDC (Normalized Device Coordinates)
+	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
+	
+	// 3. Pasar de NDC a Espacio de Vista (View Space)
+	vec4 view_pos = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	view_pos.xyz /= view_pos.w;
+	
+	// 4. Pasar de Vista a Espacio Local del Cubo
+	vec3 local_pos = (inv_modelview_matrix * vec4(view_pos.xyz, 1.0)).xyz;
+	
+	// 5. Comprobar si el terreno está dentro de los límites del cubo (de -0.5 a 0.5 en ejes locales)
+	vec3 bounds = step(abs(local_pos), vec3(0.5));
+	float in_bounds = bounds.x * bounds.y * bounds.z;
+	
+	// Si el terreno está fuera de las dimensiones del cubo, no dibujamos nada
+	if (in_bounds < 0.5) {
+		discard;
+	}
+
+	// === CÁLCULO DE LA CURVATURA EN METROS (ESPACIO MUNDO) ===
+	float world_x = local_pos.x * world_scale.x;
+	float world_z = local_pos.z * world_scale.z;
+	
+	// Calculamos la desviación usando una función Seno basada en la posición Z del mundo
+	float curve_offset = sin(world_z * curve_frequency + curve_phase) * curve_amplitude;
+
+	// 6. Proyección Plana deformada por la curva (UV Wrapping)
+	// Restamos curve_offset a world_x para que la textura \"siga\" la curva del camino
+	vec2 projected_uv = vec2(world_x - curve_offset, world_z);
+	vec2 final_uv = projected_uv * uv1_scale.xy + uv1_offset.xy;
+
+	// 7. Muestreo de Texturas
+	vec4 albedo_tex = texture(texture_albedo, final_uv);
+	float noise = texture(noise_texture, final_uv * noise_scale).r;
+	
+	// 8. El centro del camino se calcula restando el offset de la curva
+	float dist_center_world = abs(world_x - curve_offset);
+	// Normalizamos la distancia de vuelta al tamaño (escala) de nuestro cubo
+	float dist_center = dist_center_world / (world_scale.x * 0.5);
+	
+	// 9. Deformar el borde sumando ruido
+	float distorted_dist = dist_center + (noise - 0.5) * edge_distortion;
+	
+	// 10. Generar máscaras (Bordes orgánicos y parches)
+	float edge_mask = 1.0 - smoothstep(path_width - edge_softness, path_width, distorted_dist);
+	float hole_mask = smoothstep(patch_holes - 0.1, patch_holes + 0.1, noise);
+	
+	// 11. Desvanecido suave en los límites verticales (Techo y Piso del cubo)
+	float edge_y = 0.5 - abs(local_pos.y);
+	float vertical_fade = smoothstep(0.0, intersection_fade, edge_y);
+	
+	// 12. Mezcla y Salida final
+	ALBEDO = albedo_tex.rgb * path_color.rgb;
+	
+	// Fusionamos todas las máscaras para controlar la opacidad
+	ALPHA = edge_mask * hole_mask * vertical_fade * albedo_tex.a * path_color.a;
+	ROUGHNESS = 1.0;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_etlwe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5hvef"]
+noise = SubResource("FastNoiseLite_etlwe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymrg4"]
+render_priority = 0
+shader = SubResource("Shader_xvxio")
+shader_parameter/texture_albedo = ExtResource("16_py8g7")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5hvef")
+shader_parameter/noise_scale = 1.0
+shader_parameter/path_width = 0.8
+shader_parameter/edge_softness = 0.2
+shader_parameter/edge_distortion = 0.3
+shader_parameter/patch_holes = 0.1
+shader_parameter/curve_amplitude = 0.0
+shader_parameter/curve_frequency = 0.1
+shader_parameter/curve_phase = 0.0
+shader_parameter/intersection_fade = 0.00999999977648
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1640846100]
+environment = SubResource("Environment_0scc7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1387043691]
+transform = Transform3D(-0.8660254, -0.29106152, 0.40655044, 0, 0.81310076, 0.582123, -0.50000006, 0.5041333, -0.7041659, 0, 0, 0)
+layers = 6
+light_energy = 0.431
+light_volumetric_fog_energy = 0.148
+shadow_enabled = true
+
+[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("2_5tvve")]
+transform = Transform3D(0.9999912, -0.00387477, -0.001636593, 0.0038747536, 0.9999925, -1.3145242e-05, 0.0016366317, 6.8214663e-06, 0.9999987, -47.553417, -8.266783, -225.8274)
+
+[node name="Maps" type="Node3D" parent="." unique_id=1249707242]
+
+[node name="WhisperingForestMap" parent="Maps" unique_id=1316323218 instance=ExtResource("1_dl5xd")]
+
+[node name="WhisperForestCliff" parent="Maps" unique_id=1066206994 instance=ExtResource("3_0scc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 461.47485, -201.01, 32.141037)
+
+[node name="VillageHouse1" parent="Maps" unique_id=692108529 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.93527114, 0, -0.3539319, 0, 1, 0, 0.3539319, 0, -0.93527114, 123.905914, -0.40653062, 0)
+
+[node name="Water" type="Node3D" parent="." unique_id=682240070]
+
+[node name="MainRiver" type="MeshInstance3D" parent="Water" unique_id=2083654522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0946045, -13.655638, 62.9498)
+layers = 2
+mesh = SubResource("PlaneMesh_anfc4")
+
+[node name="WaterFall1" type="MeshInstance3D" parent="Water" unique_id=1230186907]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -10.231371, -1.4738264, 425.69156)
+layers = 2
+mesh = SubResource("PlaneMesh_py8g7")
+
+[node name="WaterFallTop" type="MeshInstance3D" parent="Water" unique_id=1709229874]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -9.617632, 17.80367, 433.50827)
+layers = 2
+mesh = SubResource("QuadMesh_a1d46")
+
+[node name="WorldObjects" type="Node3D" parent="." unique_id=326087452]
+
+[node name="ScatterObjects" type="Node3D" parent="WorldObjects" unique_id=228513466]
+
+[node name="ScatterShotZone" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1988366634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185.78265, -5.2934027, 79.890526)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+shape = 1
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="Rocks" type="Node3D" parent="WorldObjects" unique_id=637036486]
+
+[node name="rock" parent="WorldObjects/Rocks" unique_id=1734990633 instance=ExtResource("12_s4sqn")]
+transform = Transform3D(1.0155711, -0.3373157, -0.59620345, 0, 1.0661857, -0.60321885, 0.6850113, 0.50009114, 0.88390803, -8.846625, 17.619629, 425.95618)
+
+[node name="rock3" parent="WorldObjects/Rocks" unique_id=1469538293 instance=ExtResource("12_s4sqn")]
+transform = Transform3D(1.36, 0, 0, 0, 0.3894942, 1.6088716, 0, -0.9101617, 0.68849987, -11.833749, 17.626614, 425.99557)
+
+[node name="rock4" parent="WorldObjects/Rocks" unique_id=23410911 instance=ExtResource("12_s4sqn")]
+transform = Transform3D(-1.3083562, -0.12286116, 1.0969441, -0.8137709, 0.35078582, -1.6712343, -0.11404307, -1.0935625, -0.6593286, -13.429536, 17.350597, 425.95618)
+
+[node name="rock7" parent="WorldObjects/Rocks" unique_id=761159877 instance=ExtResource("12_s4sqn")]
+transform = Transform3D(1.85, 0, 0, 0, 1.7, 0, 0, 0, 1, -6.837451, 17.619629, 425.95618)
+
+[node name="RiverRocksBridge" type="Node3D" parent="WorldObjects/Rocks" unique_id=1183916229]
+
+[node name="RockPillar1" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1407871613 instance=ExtResource("13_ean77")]
+transform = Transform3D(0.34384438, 0, 1.331285, 0, 1.2196194, 0, -1.1458751, 0, 0.39948058, -3.0964522, -14.060744, -262.6656)
+
+[node name="RockPillar9" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=794742862 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.1236006, 0, -0.4947164, 0, 1.209933, 0, 0.498897, 0, 1.1141852, 2.3536224, -13.684214, -258.37872)
+
+[node name="RockPillar2" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=465652024 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.0235286, 0, -1.0034552, 0, 1.2421979, 0, 1.173086, 0, 0.875524, -16.313526, -13.109674, -263.1351)
+
+[node name="RockPillar8" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1961620433 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.3363, 0, 0, 0, 1.2896786, 0, 0, 0, 1.2723747, -8.890699, -14.512524, -264.68274)
+
+[node name="RockPillar3" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1729627734 instance=ExtResource("13_ean77")]
+transform = Transform3D(0.65699786, 0, 1.1490012, 0, 1.180027, 0, -0.80728346, 0, 0.93510056, -22.64178, -13.456148, -260.90637)
+
+[node name="RockPillar6" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1035078178 instance=ExtResource("13_ean77")]
+transform = Transform3D(1, 0, 0, 0, 1.2786762, 0, 0, 0, 1, -12.976175, -14.739713, -253.02522)
+
+[node name="RockPillar7" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=794053975 instance=ExtResource("13_ean77")]
+transform = Transform3D(1, 0, 0, 0, 1.303948, 0, 0, 0, 1, -2.301969, -16.098003, -248.95198)
+
+[node name="RockPillar4" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1690127604 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.498133, 0.00711753, -0.42981255, -0.00064877176, 1.1786952, 0.01695266, 0.6137084, -0.016128642, 1.0492398, 8.001764, -13.822946, -256.27856)
+
+[node name="RockPillar5" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=2037833180 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.2353044, 0, 0, 0, 1.2483809, 0, 0, 0, 1.301137, -27.562407, -14.10341, -256.73022)
+
+[node name="RockPillar10" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=904528095 instance=ExtResource("13_ean77")]
+transform = Transform3D(0.9331708, 0, 1.2042601, 0, 1, 0, -1.2723119, 0, 0.8832585, 12.874586, -14.10341, -252.6762)
+
+[node name="Houses" type="Node3D" parent="WorldObjects" unique_id=2114144763]
+
+[node name="TowerOutskirts" parent="WorldObjects/Houses" unique_id=1042315724 instance=ExtResource("14_to654")]
+transform = Transform3D(-0.0074139643, 0, 0.5999542, 0, 0.6, 0, -0.5999542, 0, -0.0074139643, -60.40749, -9.049847, -229.35297)
+
+[node name="OutskirtsTowerLigths" type="Node3D" parent="WorldObjects/Houses/TowerOutskirts" unique_id=546378766]
+transform = Transform3D(-0.020594347, 0, -1.6665395, 0, 1.6666666, 0, 1.6665395, 0, -0.020594347, -383.46985, 15.083077, 95.9481)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=1097443377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.004326, 0, -227.84492)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 2.089
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=777571716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.216866, -3.174891, -227.84492)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 2.089
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=821201432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.857235, -5.7674093, -229.55821)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 2.089
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=1378627943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.946766, -5.7674093, -225.43007)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 2.089
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=1217378407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.12567, 4.229887, -227.84492)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 2.089
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=1253639456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.87151, 5.6600556, -227.87003)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 2.089
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=720234003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.91175, 7.617665, -232.00461)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 2.089
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=826554462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.229767, 13.335114, -224.3459)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 6.736985
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=1962767228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.119385, 13.341567, -229.18907)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 6.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 6.736985
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=398435582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.605247, 13.673293, -234.01602)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 3.041
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 6.736985
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="WorldObjects/Houses/TowerOutskirts/OutskirtsTowerLigths" unique_id=1962682540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.62878, 13.425551, -229.37286)
+layers = 6
+light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
+light_energy = 3.041
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 6.736985
+
+[node name="Fog" type="Node3D" parent="." unique_id=2045019420]
+
+[node name="WaterfallFog1" type="FogVolume" parent="Fog" unique_id=1596969328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.624551, 1.4384403, 425.95517)
+layers = 6
+size = Vector3(11.443115, 34.867798, 2)
+material = SubResource("ShaderMaterial_yws86")
+
+[node name="RiverFog" type="FogVolume" parent="Fog" unique_id=1381793016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.269119, -15.300236, -12.735001)
+layers = 2
+size = Vector3(78.357574, 8.316406, 693.2748)
+material = SubResource("ShaderMaterial_ean77")
+
+[node name="Ligths" type="Node3D" parent="." unique_id=1228484181]
+
+[node name="Paths" type="Node3D" parent="." unique_id=1707030482]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Paths" unique_id=1891806536]
+transform = Transform3D(8.359033, 0, 15.1570015, 0, 0.7042601, 0, -10.694841, 0, 11.846634, -45.223087, -8.715191, -223.10197)
+layers = 2
+material_override = SubResource("ShaderMaterial_xvxio")
+mesh = SubResource("BoxMesh_to654")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Paths" unique_id=1707180100]
+transform = Transform3D(6.1581283, 0, 7.8789244, 0, 0.704, 0, -7.8789244, 0, 6.1581283, -48.480915, -8.715191, -216.34032)
+layers = 2
+material_override = SubResource("ShaderMaterial_eaukh")
+mesh = SubResource("BoxMesh_to654")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Paths" unique_id=978325873]
+transform = Transform3D(-0.025869867, 0, 1.83567, 0, 0.99999994, 0, -2.205631, 0, -0.0215306, -52.88595, -8.575244, -229.40102)
+layers = 2
+material_override = SubResource("ShaderMaterial_ymrg4")
+mesh = SubResource("BoxMesh_to654")

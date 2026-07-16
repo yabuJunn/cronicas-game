@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgcv04k7dtyuf"
+path="res://.godot/imported/OST - Mist Sea Open Door.mp3-cd7fa7a2c79284792bcdd53c220e7961.mp3str"
+
+[deps]
+
+source_file="res://sounds/music/OST - Mist Sea Open Door.mp3"
+dest_files=["res://.godot/imported/OST - Mist Sea Open Door.mp3-cd7fa7a2c79284792bcdd53c220e7961.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

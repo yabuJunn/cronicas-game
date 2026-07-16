@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://eajikeh554iw"
+path="res://.godot/imported/whispering_forest_cliff.map-d207508afa467af858771548f4a4b5e9.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/whispering_forest_cliff.map"
+dest_files=["res://.godot/imported/whispering_forest_cliff.map-d207508afa467af858771548f4a4b5e9.tres"]
+
+[params]
+

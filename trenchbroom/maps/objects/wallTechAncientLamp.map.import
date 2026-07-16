@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cgggnvp0qqbug"
+path="res://.godot/imported/wallTechAncientLamp.map-495162e89f66c380f7c4e6aaa95a8653.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/wallTechAncientLamp.map"
+dest_files=["res://.godot/imported/wallTechAncientLamp.map-495162e89f66c380f7c4e6aaa95a8653.tres"]
+
+[params]
+

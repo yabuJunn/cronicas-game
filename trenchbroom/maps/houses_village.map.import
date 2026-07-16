@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://6ksfcscitsbx"
+path="res://.godot/imported/houses_village.map-878e2283fcf11b27bad13bb27b5b5730.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/houses_village.map"
+dest_files=["res://.godot/imported/houses_village.map-878e2283fcf11b27bad13bb27b5b5730.tres"]
+
+[params]
+

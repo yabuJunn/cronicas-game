@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cmxadr7oulnyw" path="res://scenes/levels/mist_sea_level.gd" id="1_bvfmd"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_qc4ln"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_0abja"]
-[ext_resource type="AudioStream" uid="uid://dib2wvfkr2cqm" path="res://sounds/music/OST - El mar de niebla Normal.mp3" id="2_yrra7"]
+[ext_resource type="AudioStream" uid="uid://bjd6itlfpw0xm" path="res://sounds/music/OST - Mist Sea.mp3" id="2_i1rk8"]
 [ext_resource type="CompressedTexture3D" uid="uid://bknn4a6af1nr0" path="res://scenes/levels/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr" id="3_73vye"]
 [ext_resource type="Material" uid="uid://bfvbp485t8l3n" path="res://textures/Stone/Stone_03-256x256.tres" id="3_vww24"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cciah"]
@@ -3116,7 +3116,7 @@ size = Vector3(14.315186, 12.039673, 8.999756)
 
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
 script = ExtResource("1_bvfmd")
-musica_playa = ExtResource("2_yrra7")
+musica_playa = ExtResource("2_i1rk8")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=30706746]
 script = ExtResource("1_qc4ln")
@@ -6917,8 +6917,6 @@ shadow_enabled = true
 shadow_opacity = 0.62
 shadow_blur = 8.258
 script = ExtResource("17_pbm7r")
-
-[node name="LevelMusic" type="AudioStreamPlayer3D" parent="." unique_id=88510586]
 
 [node name="CinemaMarkers" type="Node3D" parent="." unique_id=2081044657]
 

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://b4yrli2olxm87"
+path="res://.godot/imported/towerOutskirts.5.map-7193855af8dbd94a707795e9c8f36aa9.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/houses/autosave/towerOutskirts.5.map"
+dest_files=["res://.godot/imported/towerOutskirts.5.map-7193855af8dbd94a707795e9c8f36aa9.tres"]
+
+[params]
+

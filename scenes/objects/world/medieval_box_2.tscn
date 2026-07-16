@@ -1,0 +1,38 @@
+[gd_scene format=4 uid="uid://d3crj1f6d000r"]
+
+[ext_resource type="Texture2D" uid="uid://d17fag5832p4g" path="res://textures/kenney_retro-textures-fantasy/timber_square_clay.png" id="1_7lm7w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6k3x"]
+albedo_texture = ExtResource("1_7lm7w")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jc43v"]
+_surfaces = [{
+"aabb": AABB(-1, -0.5, 0, 1, 1, 1),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAAAAAACAPwAAgL8AAIA/AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgL8AAIA/AACAvwAAgD8AAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAA"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": SubResource("StandardMaterial3D_f6k3x"),
+"name": "kenney_retro-textures-fantasy/timber_square_clay",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAAD8AAAAAAACAvwAAAD8AAAAAAACAvwAAAL8AAAAAAAAAAAAAAL8AAAAAAACAvwAAAL8AAIA/AACAvwAAAL8AAAAAAACAvwAAAD8AAAAAAACAvwAAAD8AAIA/AACAvwAAAL8AAIA/AAAAAAAAAL8AAIA/AAAAAAAAAL8AAAAAAACAvwAAAL8AAAAAAACAvwAAAD8AAIA/AACAvwAAAD8AAAAAAAAAAAAAAD8AAAAAAAAAAAAAAD8AAIA/AAAAAAAAAD8AAIA/AAAAAAAAAD8AAAAAAAAAAAAAAL8AAAAAAAAAAAAAAL8AAIA/AAAAAAAAAL8AAIA/AACAvwAAAL8AAIA/AACAvwAAAD8AAIA/AAAAAAAAAD8AAIA///////9//////////3//////////f/////////9///8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//v////3//f/+/////f/9//7////9//3//v/9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fr0x1"]
+points = PackedVector3Array(0, 0.5, 1, 0, -0.5, 1, -1, 0.5, 1, -1, -0.5, 1, 0, 0.5, 0, 0, -0.5, 0, -1, 0.5, 0, -1, -0.5, 0)
+
+[node name="MedievalBox2" type="Node3D" unique_id=203957198]
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="." unique_id=90624951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50593776, 0, -0.48307392)
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="entity_0_worldspawn" unique_id=1666667639]
+mesh = SubResource("ArrayMesh_jc43v")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="entity_0_worldspawn" unique_id=1220380212]
+shape = SubResource("ConvexPolygonShape3D_fr0x1")

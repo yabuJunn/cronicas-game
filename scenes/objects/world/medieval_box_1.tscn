@@ -1,0 +1,40 @@
+[gd_scene format=4 uid="uid://cc8v0tgfookqg"]
+
+[ext_resource type="Texture2D" uid="uid://bat825s2gn0sx" path="res://textures/kenney_retro-textures-fantasy/timber_square_clay_diagonal.png" id="1_vqhad"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umv7l"]
+albedo_texture = ExtResource("1_vqhad")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_24obp"]
+_surfaces = [{
+"aabb": AABB(-1, -0.5, 0, 1, 1, 1),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAAAAAACAPwAAgL8AAIA/AACAvwAAAAAAAIA/AACAPwAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgL8AAIA/AACAvwAAgD8AAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAA"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": SubResource("StandardMaterial3D_umv7l"),
+"name": "kenney_retro-textures-fantasy/timber_square_clay_diagonal",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAAD8AAAAAAACAvwAAAD8AAAAAAACAvwAAAL8AAAAAAAAAAAAAAL8AAAAAAACAvwAAAL8AAIA/AACAvwAAAL8AAAAAAACAvwAAAD8AAAAAAACAvwAAAD8AAIA/AACAvwAAAL8AAIA/AAAAAAAAAL8AAIA/AAAAAAAAAL8AAAAAAACAvwAAAL8AAAAAAACAvwAAAD8AAIA/AACAvwAAAD8AAAAAAAAAAAAAAD8AAAAAAAAAAAAAAD8AAIA/AAAAAAAAAD8AAIA/AAAAAAAAAD8AAAAAAAAAAAAAAL8AAAAAAAAAAAAAAL8AAIA/AAAAAAAAAL8AAIA/AACAvwAAAL8AAIA/AACAvwAAAD8AAIA/AAAAAAAAAD8AAIA///////9//////////3//////////f/////////9///8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//v////3//f/+/////f/9//7////9//3//v/9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xlge7"]
+points = PackedVector3Array(0, 0.5, 1, 0, -0.5, 1, -1, 0.5, 1, -1, -0.5, 1, 0, 0.5, 0, 0, -0.5, 0, -1, 0.5, 0, -1, -0.5, 0)
+
+[node name="MedievalBox1" type="Node3D" unique_id=203957198]
+
+[node name="MedievalBoxStaticBody" type="StaticBody3D" parent="." unique_id=1827520491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52603114, 0, -0.4821566)
+collision_layer = 2
+collision_mask = 15
+
+[node name="MedievalBoxMesh" type="MeshInstance3D" parent="MedievalBoxStaticBody" unique_id=2073589743]
+layers = 2
+mesh = SubResource("ArrayMesh_24obp")
+
+[node name="MedievalBoxCollision" type="CollisionShape3D" parent="MedievalBoxStaticBody" unique_id=1204742365]
+shape = SubResource("ConvexPolygonShape3D_xlge7")

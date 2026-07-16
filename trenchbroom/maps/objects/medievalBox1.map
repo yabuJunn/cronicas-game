@@ -1,0 +1,16 @@
+// Game: cronicas-de-un-mundo-perdido
+// Format: Valve
+// entity 0
+{
+"mapversion" "220"
+"classname" "worldspawn"
+// brush 0
+{
+( 0 -32 -16 ) ( 0 -31 -16 ) ( 0 -32 -15 ) kenney_retro-textures-fantasy/timber_square_clay_diagonal [ 0 0 1.0000000000000002 -32 ] [ 0 -1.0000000000000002 0 0 ] 0 0.5 0.5
+( 0 -32 -16 ) ( 0 -32 -15 ) ( 1 -32 -16 ) kenney_retro-textures-fantasy/timber_square_clay_diagonal [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 32 ] 0 0.5 0.5
+( 0 -32 -16 ) ( 1 -32 -16 ) ( 0 -31 -16 ) kenney_retro-textures-fantasy/timber_square_clay_diagonal [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 32 0 16 ) ( 32 1 16 ) ( 33 0 16 ) kenney_retro-textures-fantasy/timber_square_clay_diagonal [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 32 0 16 ) ( 33 0 16 ) ( 32 0 17 ) kenney_retro-textures-fantasy/timber_square_clay_diagonal [ 1.0000000000000002 0 0 0 ] [ 0 0 1.0000000000000002 -32 ] 0 0.5 0.5
+( 32 0 16 ) ( 32 0 17 ) ( 32 1 16 ) kenney_retro-textures-fantasy/timber_square_clay_diagonal [ 0 0 -1.0000000000000002 32 ] [ 0 -1.0000000000000002 0 0 ] 0 0.5 0.5
+}
+}

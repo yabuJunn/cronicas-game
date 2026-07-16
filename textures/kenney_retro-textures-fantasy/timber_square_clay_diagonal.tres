@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bnupbxanhn4we"]
+
+[ext_resource type="Texture2D" uid="uid://bat825s2gn0sx" path="res://textures/kenney_retro-textures-fantasy/timber_square_clay_diagonal.png" id="1_ec6nb"]
+
+[resource]
+albedo_texture = ExtResource("1_ec6nb")
+metallic_specular = 0.0
+texture_filter = 2

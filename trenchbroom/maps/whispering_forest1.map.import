@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cebcyvgq2lyj5"
+path="res://.godot/imported/whispering_forest1.map-b1a8418e324ef0c4467acfdd4a681be2.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/whispering_forest1.map"
+dest_files=["res://.godot/imported/whispering_forest1.map-b1a8418e324ef0c4467acfdd4a681be2.tres"]
+
+[params]
+

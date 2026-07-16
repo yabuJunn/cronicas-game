@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://kkur7j7m7t73"
+path="res://.godot/imported/whispering_forest_cliff-crash.map-6af3ad487789087b73ff66c36a30a6f1.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/whispering_forest_cliff-crash.map"
+dest_files=["res://.godot/imported/whispering_forest_cliff-crash.map-6af3ad487789087b73ff66c36a30a6f1.tres"]
+
+[params]
+

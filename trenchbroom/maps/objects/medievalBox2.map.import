@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://boif00gsaxwlh"
+path="res://.godot/imported/medievalBox2.map-4a20ca64e89bcfc4b5e75699dd05d7b1.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/medievalBox2.map"
+dest_files=["res://.godot/imported/medievalBox2.map-4a20ca64e89bcfc4b5e75699dd05d7b1.tres"]
+
+[params]
+

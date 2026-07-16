@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cl0elca4nfah0"
+path="res://.godot/imported/rockPillar1.map-303fd17e5632bea15892c73eb5112503.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/rockPillar1.map"
+dest_files=["res://.godot/imported/rockPillar1.map-303fd17e5632bea15892c73eb5112503.tres"]
+
+[params]
+

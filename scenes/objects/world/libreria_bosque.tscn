@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dd7b3ubybcjd2"]
+
+[ext_resource type="PackedScene" uid="uid://c62sk6j3203tb" path="res://scenes/objects/world/tree_1.tscn" id="1_jwq48"]
+
+[node name="LibreriaBosque" type="Node3D" unique_id=964973666]
+
+[node name="Tree1" parent="." unique_id=1822797697 instance=ExtResource("1_jwq48")]

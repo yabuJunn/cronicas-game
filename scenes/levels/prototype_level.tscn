@@ -17,14 +17,33 @@
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="15_l22r4"]
 [ext_resource type="PackedScene" uid="uid://c62sk6j3203tb" path="res://scenes/objects/world/tree_1.tscn" id="16_2g36m"]
 
-[sub_resource type="Environment" id="Environment_xtll6"]
-ambient_light_source = 3
-ambient_light_color = Color(0.8879926, 0.88799256, 0.8879925, 1)
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2g36m"]
+
+[sub_resource type="Sky" id="Sky_5u6e4"]
+sky_material = SubResource("PhysicalSkyMaterial_2g36m")
+
+[sub_resource type="Environment" id="Environment_j4ohs"]
+background_mode = 2
+sky = SubResource("Sky_5u6e4")
+ambient_light_source = 2
+ambient_light_color = Color(0.4189023, 0.27716428, 0.116780646, 1)
+reflected_light_source = 2
+tonemap_mode = 3
+glow_enabled = true
 fog_enabled = true
-fog_light_energy = 0.0
-fog_sky_affect = 0.0
+fog_mode = 1
+fog_light_color = Color(0.7169005, 0.83304757, 0.8683829, 1)
+fog_density = 1.0
+fog_depth_begin = 5.0
+fog_depth_end = 315.9
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
+volumetric_fog_density = 0.0415
+volumetric_fog_albedo = Color(0.8008649, 0.8506746, 0.89978373, 1)
+volumetric_fog_emission = Color(0.19642848, 0.14353913, 0.16480091, 1)
+volumetric_fog_length = 49.45
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2f51"]
 albedo_texture = ExtResource("3_nbgd6")
@@ -601,8 +620,8 @@ points = PackedVector3Array(25.333334, 33.5, 36, 25.333334, 22, 36, 24.666666, 3
 
 [node name="Node3D" type="Node3D" unique_id=1007813685]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=624836426]
-environment = SubResource("Environment_xtll6")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1806420690]
+environment = SubResource("Environment_j4ohs")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=465845234]
 script = ExtResource("1_hg8qc")
@@ -1183,7 +1202,7 @@ item_description = "Brilla con una energía poderosa"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.158941, 21.734081, 9.205422)
 
 [node name="CinemaMarkerDoor" type="Marker3D" parent="." unique_id=1327477475 groups=["cinemaMarkers"]]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -9.075592, 25.967094, 12.703778)
+transform = Transform3D(-0.061222784, 0, -0.99812406, 0, 0.9999999, 0, 0.99812406, 0, -0.06122279, -9.075592, 25.967094, 12.703778)
 gizmo_extents = 10.0
 script = ExtResource("15_l22r4")
 targetname = "Door"

@@ -1,0 +1,242 @@
+[gd_resource type="Shader" format=3 uid="uid://b3fm0ispndsjh"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_always, cull_back, diffuse_lambert, specular_disabled;
+// Colores del Río y Orillas
+uniform vec4 primary_color : source_color;     // Color del centro/fondo del río
+uniform vec4 secondary_color : source_color;   // Color del agua en la orilla (poco profunda)
+uniform float roughness = 0.15;
+
+// Wave Normal Maps (Micro-relieve)
+uniform sampler2D normalmap_a : hint_normal;
+uniform sampler2D normalmap_b : hint_normal;
+uniform float normalmap_a_strength : hint_range(0.0, 1.0, 0.01) = 0.4;
+uniform float normalmap_b_strength : hint_range(0.0, 1.0, 0.01) = 0.2;
+uniform vec2 movement_direction = vec2(0.1, 0.3);
+uniform float movement_strength = 0.15;
+
+// UV Settings
+uniform float uv_scale = 1.0;
+
+// Texturas de Godot
+uniform sampler2D depth_texture : hint_depth_texture;
+uniform sampler2D screen_texture : hint_screen_texture;
+
+// Ajustes de Espuma en Obstáculos y Orillas
+uniform vec4 foam_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float foam_distance : hint_range(0.0, 10.0, 0.05) = 0.4; 
+uniform float foam_cutoff : hint_range(0.0, 1.0, 0.01) = 0.4;   
+uniform float foam_scale : hint_range(0.1, 10.0, 0.1) = 3.0;    
+
+// --- TUNING DE OLAS VERTICALES ESCALA RÍO ---
+group_uniforms Movimiento_Agua;
+uniform float ola_velocidad : hint_range(0.1, 10.0, 0.1) = 2.0;    
+uniform float ola_amplitud : hint_range(0.0, 10.0, 0.01) = 0.08;     
+uniform float ola_frecuencia : hint_range(0.1, 20.0, 0.1) = 8.0;    
+uniform float ola_filo : hint_range(1.0, 3.0, 0.1) = 1.0;          
+uniform vec2 ola_direccion = vec2(0.0, -1.0);                       
+
+// --- PARÁMETROS PARA CURVAR LOS FRENTES DE ONDA ---
+uniform float ola_curvatura_amplitud : hint_range(0.0, 2.0, 0.01) = 0.5;  
+uniform float ola_curvatura_frecuencia : hint_range(0.05, 2.0, 0.01) = 0.1; 
+
+// --- SISTEMA DE MALLA GEOMÉTRICA HUECA (VORONOI BORDERS) ---
+group_uniforms Efecto_Rio_Estilizado;
+uniform vec2 rio_direccion = vec2(0.0, -1.0);                     
+uniform float rio_velocidad : hint_range(0.0, 10.0, 0.05) = 2.0;   
+uniform float rio_escala_ancho : hint_range(0.5, 50.0, 0.1) = 10.0;  
+uniform float rio_escala_largo : hint_range(0.5, 50.0, 0.1) = 10.0;  
+uniform float rio_distorsion : hint_range(0.0, 2.0, 0.01) = 0.4;    
+uniform vec4 rio_onditas_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); 
+uniform float rio_transparencia : hint_range(0.0, 1.0, 0.01) = 0.5; 
+uniform float rio_grosor_borde : hint_range(0.01, 0.4, 0.01) = 0.06; 
+
+// --- CONTROL DE GEOMETRÍA ---
+uniform float suavizado_normales : hint_range(0.05, 2.0, 0.05) = 0.4; 
+
+// --- SISTEMA DE CALMA EN LA ORILLA ---
+group_uniforms Calma_Costa;
+uniform sampler2D mascara_orilla : hint_default_white; 
+uniform float escala_mascara_orilla = 0.005; 
+
+// Profundidad del fondo del Río
+group_uniforms Transparencia_Profundidad;
+uniform float depth_distance : hint_range(0.1, 15.0, 0.1) = 2.5;    
+uniform float water_transparency : hint_range(0.0, 1.0, 0.01) = 0.1;
+
+varying float v_altura_ola;
+varying float v_is_horizontal; // Detecta si el mesh está horizontal o vertical
+
+float fresnel(float amount, vec3 normal, vec3 view) {
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
+}
+
+vec2 rio_hash(vec2 p) {
+	p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+	return fract(sin(p) * 43758.5453123);
+}
+
+float calcular_voronoi_bordes(vec2 uv) {
+	vec2 p = floor(uv);
+	vec2 f = fract(uv);
+	
+	vec2 mg, mr;
+	float md = 8.0;
+	
+	for(int j = -1; j <= 1; j++) {
+		for(int i = -1; i <= 1; i++) {
+			vec2 g = vec2(float(i), float(j));
+			vec2 o = rio_hash(p + g);
+			vec2 r = g + o - f;
+			float d = dot(r, r);
+			if(d < md) {
+				md = d;
+				mr = r;
+				mg = g;
+			}
+		}
+	}
+	
+	md = 8.0;
+	for(int j = -1; j <= 1; j++) {
+		for(int i = -1; i <= 1; i++) {
+			vec2 g = mg + vec2(float(i), float(j));
+			vec2 o = rio_hash(p + g);
+			vec2 r = g + o - f;
+			if(dot(mr - r, mr - r) > 0.00001) {
+				float d = dot(0.5 * (mr + r), normalize(r - mr));
+				md = min(md, d);
+			}
+		}
+	}
+	return md;
+}
+
+vec3 calcular_desplazamiento_ola(vec2 pos_xz, float tiempo, float peso, out float out_cresta) {
+	vec2 dir = normalize(ola_direccion);
+	vec2 dir_perpendicular = vec2(-dir.y, dir.x);
+	
+	float onda_transversal = sin(dot(pos_xz, dir_perpendicular) * ola_curvatura_frecuencia);
+	float desfase_curvo = onda_transversal * ola_curvatura_amplitud;
+	
+	float mezcla1 = (pos_xz.x * dir.x + pos_xz.y * dir.y) * ola_frecuencia + tiempo + desfase_curvo;
+	float cresta1 = pow(sin(mezcla1) * 0.5 + 0.5, ola_filo);
+	
+	float mezcla2 = (pos_xz.x * dir.x + pos_xz.y * dir.y) * (ola_frecuencia * 1.5) - (tiempo * 1.3) + (desfase_curvo * 0.3);
+	float cresta2 = sin(mezcla2) * 0.5 + 0.5;
+	
+	float altura_y = ((cresta1 - 0.5) * 1.0 + (cresta2 - 0.5) * 0.2) * ola_amplitud * peso;
+	out_cresta = cresta1 * peso;
+	
+	return vec3(0.0, altura_y, 0.0);
+}
+
+void vertex() {
+	vec3 original_normal = NORMAL;
+	
+	// Analizamos el vector \"Up\" en base a la rotación del objeto en el mundo
+	vec3 world_normal = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	float is_horizontal = clamp(dot(world_normal, vec3(0.0, 1.0, 0.0)), 0.0, 1.0);
+	is_horizontal = smoothstep(0.3, 0.7, is_horizontal);
+	v_is_horizontal = is_horizontal;
+	
+	float tiempo = TIME * ola_velocidad;
+	vec2 world_xz = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
+	float peso_orilla = texture(mascara_orilla, world_xz * escala_mascara_orilla).r;
+	
+	// Si es vertical (cascada), el peso de la ola geométrica será 0 para evitar distorsión
+	float peso_final = peso_orilla * is_horizontal;
+	
+	float delta = suavizado_normales; 
+	float cresta_dummy;
+	float cresta_local; 
+	
+	vec3 desplazo_actual = calcular_desplazamiento_ola(VERTEX.xz, tiempo, peso_final, cresta_local);
+	vec3 desplazo_x = calcular_desplazamiento_ola(VERTEX.xz + vec2(delta, 0.0), tiempo, peso_final, cresta_dummy);
+	vec3 desplazo_z = calcular_desplazamiento_ola(VERTEX.xz + vec2(0.0, delta), tiempo, peso_final, cresta_dummy);
+	
+	v_altura_ola = cresta_local;
+	
+	vec3 p_actual = VERTEX + desplazo_actual;
+	vec3 p_x = VERTEX + vec3(delta, 0.0, 0.0) + desplazo_x;
+	vec3 p_z = VERTEX + vec3(0.0, 0.0, delta) + desplazo_z;
+	
+	vec3 tangente = p_x - p_actual;
+	vec3 binormal = p_z - p_actual;
+	
+	vec3 normal_calculada = normalize(cross(binormal, tangente));
+	
+	// Si el plano es plano, suavizamos las normales. Si es una cascada vertical, respetamos la normal original del importado
+	vec3 horizontal_normal = normalize(mix(normal_calculada, vec3(0.0, 1.0, 0.0), 0.35));
+	NORMAL = mix(original_normal, horizontal_normal, is_horizontal);
+	
+	VERTEX = p_actual;
+}
+
+void fragment() {
+	float basic_fresnel = fresnel(3.0, NORMAL, VIEW);
+	
+	vec2 uv = UV * uv_scale;
+	vec2 uv_movement = movement_direction * TIME * movement_strength;
+	
+	vec3 normal_a_tex = texture(normalmap_a, uv + uv_movement).rgb;
+	vec3 normal_b_tex = texture(normalmap_b, uv - uv_movement).rgb;
+	
+	vec3 normalmap = texture(normalmap_a, uv + uv_movement).rgb * normalmap_a_strength;
+	normalmap += texture(normalmap_b, uv - uv_movement).rgb * normalmap_b_strength;
+	
+	float depth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
+	vec3 screen = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
+	
+	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
+	
+	// MÉTODO HORIZONTAL: Espesor en el eje Y (Para el Río plano)
+	vec4 world = INV_VIEW_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	float depth_texture_y = world.y / world.w;
+	float vertex_y = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).y;
+	float vertical_thickness = vertex_y - depth_texture_y;
+	
+	// MÉTODO VERTICAL: Espesor según profundidad de la cámara (Para la Cascada)
+	vec4 view_bg_pos = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	float depth_bg_eye = -view_bg_pos.z / view_bg_pos.w;
+	float depth_pixel_eye = -VERTEX.z;
+	float eye_thickness = depth_bg_eye - depth_pixel_eye;
+	
+	// Elegimos de forma fluida el espesor ideal según la orientación
+	float espesor_final = mix(max(0.0, eye_thickness), max(0.0, vertical_thickness), v_is_horizontal);
+	
+	float factor_profundidad = clamp(espesor_final / depth_distance, 0.0, 1.0);
+	float mascara_espuma_global = 1.0 - clamp(espesor_final / foam_distance, 0.0, 1.0);
+	
+	vec2 foam_uv = uv * foam_scale + (normal_a_tex.xy + normal_b_tex.xy) * 0.05;
+	float foam_noise = texture(normalmap_a, foam_uv + uv_movement).r;
+	
+	float foam_cutoff_match = step(foam_cutoff, foam_noise * mascara_espuma_global);
+	float final_foam_mask = foam_cutoff_match * mascara_espuma_global;
+	
+	vec3 depth_color = mix(secondary_color, primary_color, factor_profundidad).rgb;
+	vec3 final_color = mix(depth_color, screen, water_transparency);
+	
+	vec3 reflejo_cielo = mix(primary_color.rgb, vec3(1.0, 1.0, 1.0), 0.35);
+	vec3 water_base = mix(final_color, reflejo_cielo, basic_fresnel * 0.4 * factor_profundidad);
+	
+	vec2 dir_flujo = normalize(rio_direccion);
+	vec2 dir_perpendicular = vec2(-dir_flujo.y, dir_flujo.x);
+	
+	float coord_flujo = dot(uv, dir_flujo) * rio_escala_largo + (TIME * rio_velocidad);
+	float coord_perpendicular = dot(uv, dir_perpendicular) * rio_escala_ancho;
+	vec2 uv_rio_celular = vec2(coord_perpendicular, coord_flujo);
+	
+	uv_rio_celular += (normal_a_tex.xy - 0.5) * rio_distorsion; 
+	
+	float distancia_borde = calcular_voronoi_bordes(uv_rio_celular);
+	float patron_malla = smoothstep(rio_grosor_borde + 0.02, rio_grosor_borde, distancia_borde);
+	
+	vec3 water_con_rio = mix(water_base, rio_onditas_color.rgb, patron_malla * rio_transparencia);
+	
+	ALBEDO = mix(water_con_rio, foam_color.rgb, final_foam_mask);
+	
+	ROUGHNESS = roughness * (1.0 - basic_fresnel);
+	NORMAL_MAP = normalmap;
+}"

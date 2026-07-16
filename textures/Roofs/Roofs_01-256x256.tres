@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ccswjeeqc7eq7"]
+
+[ext_resource type="Texture2D" uid="uid://cpwmycxukcm6d" path="res://textures/Roofs/Roofs_01-256x256.png" id="1_d3poc"]
+
+[resource]
+albedo_texture = ExtResource("1_d3poc")
+metallic_specular = 0.0
+texture_filter = 2

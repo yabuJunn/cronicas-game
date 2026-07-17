@@ -26,7 +26,7 @@ points = PackedVector3Array(0.24999996, 0.50000006, 0.62500006, 0.25000003, 0.5,
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v1fmo"]
 points = PackedVector3Array(0.0625, 0.375, 0.3125, 0.0625, 0.3125, 0.3125, -0.1875, 0.375, 0.3125, -0.1875, 0.3125, 0.3125, 0.0625, 0.375, 0.1875, 0.0625, 0.3125, 0.1875, -0.1875, 0.375, 0.1875, -0.1875, 0.3125, 0.1875)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avo61"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmdys"]
 transparency = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(1, 1, 1, 0.9137255)
@@ -37,7 +37,7 @@ emission_energy_multiplier = 0.55
 emission_texture = ExtResource("4_rmdys")
 
 [sub_resource type="SphereMesh" id="SphereMesh_62750"]
-material = SubResource("StandardMaterial3D_avo61")
+material = SubResource("StandardMaterial3D_rmdys")
 height = 0.5
 radial_segments = 8
 rings = 4

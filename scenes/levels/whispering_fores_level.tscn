@@ -15,9 +15,12 @@
 [ext_resource type="Shader" uid="uid://7fl4xglihyyk" path="res://shaders/fog_shader.gdshader" id="12_ywa0e"]
 [ext_resource type="PackedScene" uid="uid://bthajwnrlyacy" path="res://scenes/objects/world/rocks/rock_pillar_1.tscn" id="13_ean77"]
 [ext_resource type="PackedScene" uid="uid://cw5o5ubhuqlu7" path="res://scenes/objects/world/houses/tower_outskirts.tscn" id="14_to654"]
+[ext_resource type="Script" uid="uid://cau2r3unnyel3" path="res://scenes/objects/interactible_objects/rocks_bridge_to_move.gd" id="14_xvxio"]
+[ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/rock_bridge_switch.tscn" id="16_etlwe"]
 [ext_resource type="PackedScene" uid="uid://1t40lxq11773" path="res://scenes/world/paths/straigth_path.tscn" id="16_py8g7"]
 [ext_resource type="PackedScene" uid="uid://ddw7fgwbdlruc" path="res://scenes/world/paths/l_curve_left_path.tscn" id="18_xvxio"]
 [ext_resource type="PackedScene" uid="uid://62ksdb7unp2t" path="res://scenes/world/paths/curved_large_straigth_path.tscn" id="19_xvxio"]
+[ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="22_ymrg4"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
 ground_color = Color(0.19165215, 0.504012, 0.6223743, 1)
@@ -333,7 +336,7 @@ light_volumetric_fog_energy = 0.148
 shadow_enabled = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("2_5tvve")]
-transform = Transform3D(0.9999912, -0.00387477, -0.001636593, 0.0038747536, 0.9999925, -1.3145242e-05, 0.0016366317, 6.8214663e-06, 0.9999987, -256.69513, -8.266783, -316.7029)
+transform = Transform3D(0.9992571, 0.026594441, -0.027896851, -0.02581561, 0.9992769, 0.027917018, 0.028619098, -0.027176103, 0.9992209, -48.031532, -3.8799853, -241.83255)
 
 [node name="Maps" type="Node3D" parent="." unique_id=1249707242]
 
@@ -403,8 +406,9 @@ transform = Transform3D(1, 0, 0, 0, 1.2786762, 0, 0, 0, 1, -17.101713, -13.22581
 [node name="RockPillar7" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=794053975 instance=ExtResource("13_ean77")]
 transform = Transform3D(1, 0, 0, 0, 1.303948, 0, 0, 0, 1, -2.301969, -14.853395, -248.95198)
 
-[node name="RocksToMove" type="Node3D" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1657057655]
+[node name="RocksToMove" type="Node3D" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1657057655 groups=["interactibleObjects"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.291, 0)
+script = ExtResource("14_xvxio")
 
 [node name="RockPillar1" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=1407871613 instance=ExtResource("13_ean77")]
 transform = Transform3D(0.34384438, 0, 1.331285, 0, 1.2196194, 0, -1.1458751, 0, 0.39948058, -3.0964522, -14.060744, -262.6656)
@@ -540,6 +544,11 @@ light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 distance_fade_enabled = true
 omni_range = 6.736985
+
+[node name="InteractibleObjects" type="Node3D" parent="WorldObjects" unique_id=775300750]
+
+[node name="RockBridgeSwitch" parent="WorldObjects/InteractibleObjects" unique_id=1903263336 instance=ExtResource("16_etlwe")]
+transform = Transform3D(0.8584949, 0, -0.5128223, 0, 1, 0, 0.5128223, 0, 0.8584949, -64.19944, 10.507372, -233.03899)
 
 [node name="Fog" type="Node3D" parent="." unique_id=2045019420]
 
@@ -693,3 +702,10 @@ transform = Transform3D(-1.7909412, 0, -10.370431, 0, 5, 0, 3.953243, 0, -4.6981
 
 [node name="StraigthPath7" parent="Paths" unique_id=1890508463 instance=ExtResource("16_py8g7")]
 transform = Transform3D(-4.1391773, 0, 1.6852696, 0, 4.9999995, 0, -1.3049188, 0, -5.3456416, -28.910307, -8.837664, -252.31407)
+
+[node name="CinemaMarkers" type="Node3D" parent="." unique_id=1917427133]
+
+[node name="CinemaMarkerDoor" type="Marker3D" parent="CinemaMarkers" unique_id=1187951900 groups=["cinemaMarkers"]]
+transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.99858993, 0.045445226, 0.85155946, -0.00046140258, 0.52425796, -52.674202, 11.430074, -229.19246)
+gizmo_extents = 10.0
+script = ExtResource("22_ymrg4")

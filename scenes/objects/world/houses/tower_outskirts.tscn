@@ -3454,7 +3454,7 @@ transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 7.56
 transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 7.567586, 11.765821, 0.19300485)
 
 [node name="BedSingle1" parent="TowerObjects" unique_id=1057544546 instance=ExtResource("9_7tfvl")]
-transform = Transform3D(1.8960755, 0, 1.6293857, 0, 2.5, 0, -1.6293857, 0, 1.8960755, 4.9084673, 32.109787, 5.714292)
+transform = Transform3D(1.8960755, 0, 1.6293857, 0, 2.5, 0, -1.6293857, 0, 1.8960755, 4.9084673, 31.426807, 5.714292)
 
 [node name="MedievalBox3" parent="TowerObjects" unique_id=203957198 instance=ExtResource("10_j25od")]
 transform = Transform3D(1.7417418, 0.0018014839, -0.98302203, 0, 1.9999967, 0.0036651893, 0.9830237, -0.0031919067, 1.7417389, -1.7267482, 2.4609637, -5.929909)

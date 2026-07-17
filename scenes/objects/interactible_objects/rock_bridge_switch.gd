@@ -9,52 +9,63 @@ extends InteractableItem
 
 # --- CONFIGURACIÓN DE ACTIVACIÓN ---
 @export_group("Configuración de Activación")
-@export var llave_requerida: String = "EnergyBattery"
+@export var llave_requerida: String = "Esfera de Energía"
 @export var target_id: String = "RockBridgeForest" 
 
 @export var texto_sin_llave: String = "Falta llave"
 @export var texto_con_llave: String = "Activar artefacto misterioso"
 
-@onready var ligthBulb: MeshInstance3D = $LigthBulb
-@onready var omniLight: OmniLight3D = $LigthBulb/OmniLight3D
-@onready var particles: GPUParticles3D = $LigthBulb/OmniLight3D/GPUParticles3D
+@onready var placedEnergySphere: StaticBody3D = $EnergySphere
+var energySphereAudio: AudioStreamPlayer3D
+
 var ya_activado: bool = false
-var material_bombilla: StandardMaterial3D
 
 func _obtener_texto_interaccion() -> String:
 	if ya_activado:
 		return "El interruptor ya ha sido activado"
+	if Inventory.tiene_objeto(llave_requerida):
+		return "[ E ] activar"
 	else:
-		return "[ E ] activar" 
+		return "No tienes nada que parezca activar esto"
 
 func _ready() -> void:
 	print(self, ": Rocks Bridge Switch")
 	super._ready() 
+	getEnergySphereAudio()
 	se_puede_recoger = false
-	material_bombilla = ligthBulb.get_active_material(0)
-	material_bombilla.emission_enabled = false
-	material_bombilla.albedo_color = "#FFFFFF"
-	omniLight.visible = false
-	particles.emitting = false
+	
+	if placedEnergySphere:
+		# 1. La sacamos del grupo para que el script del jugador no la tome en cuenta
+		if placedEnergySphere.is_in_group("interactibleObjects"):
+			placedEnergySphere.remove_from_group("interactibleObjects")
+		
+		# 2. Apagamos sus capas de colisión (así el Raycast pasa de largo como si fuera aire)
+		placedEnergySphere.collision_layer = 0
+		placedEnergySphere.collision_mask = 0
+		
+		# 3. Le borramos el material overlay para que el shader de outline no actúe jamás
+		if placedEnergySphere.mesh:
+			placedEnergySphere.mesh.material_overlay = null
+	
+	placedEnergySphere.visible = false
+	if energySphereAudio:
+		energySphereAudio.playing = false
+	else:
+		print("Error on sphereAudio: ", energySphereAudio)
+	
 
 func interactuar() -> void:
 	if ya_activado:
 		return
-	
-	
 
 	ya_activado = true
-	#Inventory.remover_objeto(llave_requerida)
-		
-	material_bombilla.emission_enabled = true
-	material_bombilla.albedo_color = "#4bc1c2"
-	omniLight.visible = true
-	particles.emitting = true
+	Inventory.remover_objeto(llave_requerida)
+	placedEnergySphere.visible = true
+	energySphereAudio.playing = true
 		
 	set_highlight(false)
 	if is_in_group("interactibleObjects"):
 		remove_from_group("interactibleObjects")
-			
 		
 	# --- DISPARAR CINEMÁTICA AUTOMÁTICA EN EL JUGADOR ---
 	var jugador = get_tree().get_first_node_in_group("player")
@@ -64,13 +75,9 @@ func interactuar() -> void:
 			jugador.ejecutar_cinematica(marcador.global_transform, tiempo_escena)
 		else:
 			push_warning("Advertencia: No se encontró ningún CinemaMarker con el ID: ", camera_marker_id)
-
-		
 		
 		# --- CONEXIÓN AUTOMÁTICA CON LA PUERTA ---
 		get_tree().call_group("RockBridgeForest", "verificar_y_levantar", target_id)
-		
-	
 
 # --- FUNCIÓN AUXILIAR PARA BUSCAR EL MARCADOR EN EL MAPA ---
 func _buscar_por_id(id_buscado: String) -> Marker3D:
@@ -81,3 +88,8 @@ func _buscar_por_id(id_buscado: String) -> Marker3D:
 		elif "id" in marcador and marcador.id == id_buscado:
 			return marcador
 	return null
+
+func getEnergySphereAudio():
+	for child in $EnergySphere.get_children():
+		if child is AudioStreamPlayer3D:
+			energySphereAudio = child

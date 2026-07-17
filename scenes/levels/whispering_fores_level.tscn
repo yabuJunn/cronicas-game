@@ -530,6 +530,15 @@ hardness = 1.0
 rect_size = Vector2(45.756138, 21.707338)
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
+[node name="ScatterShotZoneRect28" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1918519368]
+transform = Transform3D(0.010681216, 0, -0.999943, 0, 1, 0, 0.999943, 0, 0.010681216, -64.43422, 13.47105, -200.39227)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 21.707338)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
 [node name="ScatterShotZoneRect20" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=628767404]
 transform = Transform3D(-0.12682225, 0, -0.99192554, 0, 1, 0, 0.99192554, 0, -0.12682225, -37.713066, 13.47105, -171.48293)
 script = ExtResource("6_jxsfi")

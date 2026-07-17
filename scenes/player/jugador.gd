@@ -136,7 +136,7 @@ func _physics_process(delta: float) -> void:
 	# --- PROCESAR EL MOVIMIENTO DEL HEAD BOB ---
 	_update_head_bob(delta)
 	
-	# --- SISTEMA DE DETECCIÓN VISUAL ---
+	# --- SISTEMA DE DETECCIÓN VISUAL (ACTUALIZADO) ---
 	var collider = interact_ray.get_collider() if interact_ray.is_colliding() else null
 	
 	if current_interactable != null:
@@ -144,6 +144,7 @@ func _physics_process(delta: float) -> void:
 			current_interactable = null
 			interact_prompt.hide()
 	
+	# Manejamos los cambios de foco (entrar o salir de un objeto con la mirada)
 	if collider != current_interactable:
 		if current_interactable != null and is_instance_valid(current_interactable):
 			current_interactable.set_highlight(false)
@@ -152,18 +153,19 @@ func _physics_process(delta: float) -> void:
 		if collider != null and collider.is_in_group("interactibleObjects") and not collider.is_queued_for_deletion():
 			current_interactable = collider
 			current_interactable.set_highlight(true)
-			
-			if "texto_interaccion" in current_interactable:
-				interact_prompt.text = current_interactable.texto_interaccion
-			elif "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
-				interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
-			else:
-				interact_prompt.text = "[ E ] Interactuar"
-				
 			interact_prompt.show()
 		else:
 			current_interactable = null
 			interact_prompt.hide()
+
+	# ¡NUEVO! Si estamos enfocando activamente a un objeto, actualizamos el texto de la UI en cada frame
+	if current_interactable != null and is_instance_valid(current_interactable):
+		if "texto_interaccion" in current_interactable:
+			interact_prompt.text = current_interactable.texto_interaccion
+		elif "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
+			interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
+		else:
+			interact_prompt.text = "[ E ] Interactuar"
 
 
 func _unhandled_input(event):

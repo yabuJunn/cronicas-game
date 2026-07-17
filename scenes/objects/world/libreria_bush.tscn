@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d1isnjdo6pqub"]
+
+[ext_resource type="PackedScene" uid="uid://b0m04w82qvxf4" path="res://scenes/objects/world/forest_bush.tscn" id="1_ua1u0"]
+
+[node name="LibreriaBush" type="Node3D" unique_id=964973666]
+
+[node name="ForestBush" parent="." unique_id=1999338418 instance=ExtResource("1_ua1u0")]

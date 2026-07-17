@@ -3,11 +3,16 @@
 shader_type spatial;
 // depth_test_disabled: Evita que el motor oculte las caras traseras cuando el suelo está dentro del cubo.
 // depth_draw_never: Evita conflictos de profundidad con otros materiales transparentes.
-render_mode blend_mix, depth_draw_never, depth_test_disabled, cull_front, diffuse_burley, specular_disabled;
+// unshaded: Desactiva por completo las luces y sombras, garantizando un color plano, idéntico y perfecto en cualquier terreno.
+render_mode blend_mix, depth_draw_never, depth_test_disabled, cull_front, unshaded;
 
 // --- TEXTURA DEL CAMINO ---
 uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
 uniform vec4 path_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// --- AJUSTE DE ILUMINACIÓN GLOBAL (MULTIPLICADOR) ---
+// Usa este color para mimetizar el camino con la iluminación de tu mundo (ej. azulado para la noche, amarillento para el atardecer).
+uniform vec4 global_tint : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 
 // --- RUIDO ORGÁNICO ---
 uniform sampler2D noise_texture : hint_default_white, repeat_enable; 
@@ -42,8 +47,6 @@ uniform float intersection_fade : hint_range(0.01, 0.5, 0.01) = 0.1;
 uniform vec3 uv1_scale = vec3(1.0, 1.0, 1.0);
 uniform vec3 uv1_offset = vec3(0.0, 0.0, 0.0);
 
-// Constante matemática necesaria para los giros circulares
-//const float PI = 3.14159265359;
 
 // Variables que se calculan en Vertex y se envían a Fragment
 varying mat4 inv_modelview_matrix;
@@ -90,8 +93,6 @@ void fragment() {
 
 	if (use_90_deg_bend) {
 		// === MÁGICA CURVA DE 90 GRADOS (Giro Modular) ===
-		// Definimos el pivote de rotación en la esquina correspondiente del cubo
-		vec2 pivot = bend_right ? vec2(0.5, 0.5) : vec2(-0.5, 0.5);
 		vec2 U;
 		
 		// Calculamos vectores locales asegurándonos de que queden en cuadrantes positivos para simplificar
@@ -153,9 +154,10 @@ void fragment() {
 	float vertical_fade = smoothstep(0.0, intersection_fade, edge_y);
 	
 	// 11. Mezcla y Salida final
-	ALBEDO = albedo_tex.rgb * path_color.rgb;
+	// Multiplicamos por global_tint para integrar el color de iluminación global de tu escena.
+	ALBEDO = albedo_tex.rgb * path_color.rgb * global_tint.rgb;
 	
-	// Fusionamos todas las máscaras para controlar la opacidad
-	ALPHA = edge_mask * hole_mask * vertical_fade * albedo_tex.a * path_color.a;
+	// Fusionamos todas las máscaras para controlar la opacidad (también multiplicando por el alfa de global_tint)
+	ALPHA = edge_mask * hole_mask * vertical_fade * albedo_tex.a * path_color.a * global_tint.a;
 	ROUGHNESS = 1.0;
 }

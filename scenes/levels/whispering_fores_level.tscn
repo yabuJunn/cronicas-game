@@ -15,8 +15,9 @@
 [ext_resource type="Shader" uid="uid://7fl4xglihyyk" path="res://shaders/fog_shader.gdshader" id="12_ywa0e"]
 [ext_resource type="PackedScene" uid="uid://bthajwnrlyacy" path="res://scenes/objects/world/rocks/rock_pillar_1.tscn" id="13_ean77"]
 [ext_resource type="PackedScene" uid="uid://cw5o5ubhuqlu7" path="res://scenes/objects/world/houses/tower_outskirts.tscn" id="14_to654"]
-[ext_resource type="Texture2D" uid="uid://csjvikkqvd7at" path="res://textures/Dirt/Dirt_18-256x256.png" id="16_py8g7"]
-[ext_resource type="Shader" uid="uid://drrfn1usmqlnm" path="res://shaders/dirt_path_shader.gdshader" id="16_yws86"]
+[ext_resource type="PackedScene" uid="uid://1t40lxq11773" path="res://scenes/world/paths/straigth_path.tscn" id="16_py8g7"]
+[ext_resource type="PackedScene" uid="uid://ddw7fgwbdlruc" path="res://scenes/world/paths/l_curve_left_path.tscn" id="18_xvxio"]
+[ext_resource type="PackedScene" uid="uid://62ksdb7unp2t" path="res://scenes/world/paths/curved_large_straigth_path.tscn" id="19_xvxio"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
 ground_color = Color(0.19165215, 0.504012, 0.6223743, 1)
@@ -30,13 +31,14 @@ background_color = Color(0.361864, 0.647419, 0.75454575, 1)
 sky = SubResource("Sky_yrra7")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.1
+ambient_light_energy = 0.32
 reflected_light_source = 2
 tonemap_mode = 3
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.7262446, 0.8981704, 0.9501453, 1)
+fog_light_color = Color(0.44725227, 0.76184994, 0.84916157, 1)
+fog_density = 1.0
 fog_depth_curve = 2.9281712
 fog_depth_begin = 30.0
 fog_depth_end = 200.0
@@ -318,197 +320,6 @@ shader_parameter/organic_scale = 0.05
 shader_parameter/organic_speed = 0.2
 shader_parameter/density_texture = SubResource("NoiseTexture3D_s4sqn")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_yws86"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eaukh"]
-noise = SubResource("FastNoiseLite_yws86")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvxio"]
-render_priority = 0
-shader = ExtResource("16_yws86")
-shader_parameter/texture_albedo = ExtResource("16_py8g7")
-shader_parameter/path_color = Color(1, 1, 1, 1)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_eaukh")
-shader_parameter/noise_scale = 1.0
-shader_parameter/path_width = 0.499999988824
-shader_parameter/edge_softness = 0.2
-shader_parameter/edge_distortion = 0.3
-shader_parameter/patch_holes = 0.1
-shader_parameter/use_90_deg_bend = false
-shader_parameter/bend_right = false
-shader_parameter/curve_amplitude = -4.2499999143181
-shader_parameter/curve_frequency = 0.32000001450147997
-shader_parameter/curve_phase = -1.5700003150862694
-shader_parameter/intersection_fade = 0.00999999977648
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-
-[sub_resource type="BoxMesh" id="BoxMesh_to654"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eaukh"]
-render_priority = 0
-shader = ExtResource("16_yws86")
-shader_parameter/texture_albedo = ExtResource("16_py8g7")
-shader_parameter/path_color = Color(1, 1, 1, 1)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_eaukh")
-shader_parameter/noise_scale = 1.0
-shader_parameter/path_width = 0.50999998860048
-shader_parameter/edge_softness = 0.2
-shader_parameter/edge_distortion = 0.3
-shader_parameter/patch_holes = 0.1
-shader_parameter/use_90_deg_bend = true
-shader_parameter/bend_right = true
-shader_parameter/curve_amplitude = 0.0
-shader_parameter/curve_frequency = 0.1
-shader_parameter/curve_phase = 0.0
-shader_parameter/intersection_fade = 0.1
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-
-[sub_resource type="Shader" id="Shader_xvxio"]
-code = "//Info: Este shader debe usarse con boxMesh 1m x 1m x 1m y modificar el tamaño con scale
-
-shader_type spatial;
-// depth_test_disabled: Evita que el motor oculte las caras traseras cuando el suelo está dentro del cubo.
-// depth_draw_never: Evita conflictos de profundidad con otros materiales transparentes.
-render_mode blend_mix, depth_draw_never, depth_test_disabled, cull_front, diffuse_burley, specular_disabled;
-
-// --- TEXTURA DEL CAMINO ---
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
-uniform vec4 path_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-
-// --- RUIDO ORGÁNICO ---
-uniform sampler2D noise_texture : hint_default_white, repeat_enable; 
-uniform float noise_scale : hint_range(0.1, 20.0, 0.1) = 1.0;
-
-// --- CONTROL DE BORDES (ANCHO Y DESVANECIDO) ---
-uniform float path_width : hint_range(0.0, 1.0, 0.01) = 0.8; 
-uniform float edge_softness : hint_range(0.01, 1.0, 0.01) = 0.2; 
-uniform float edge_distortion : hint_range(0.0, 1.0, 0.01) = 0.3; 
-
-// --- HUECOS / PARCHES ---
-uniform float patch_holes : hint_range(0.0, 1.0, 0.01) = 0.1; 
-
-// --- CURVATURA MATEMÁTICA ---
-group_uniforms Curvatura_Camino;
-// Amplitud de la curva en metros. Si es 0.0, el camino es 100% recto (modular).
-uniform float curve_amplitude : hint_range(-10.0, 10.0, 0.05) = 0.0;
-// Cuántas curvas ocurren a lo largo del camino.
-uniform float curve_frequency : hint_range(0.01, 1.0, 0.001) = 0.1;
-// Desplaza la curva a lo largo del eje Z (ideal para conectar segmentos).
-uniform float curve_phase : hint_range(-6.28, 6.28, 0.01) = 0.0;
-
-// --- INTEGRACIÓN VOLUMÉTRICA ---
-uniform sampler2D depth_texture : hint_depth_texture;
-// Determina qué tan rápido se difumina el camino si el terreno sale por el techo o el piso del cubo
-uniform float intersection_fade : hint_range(0.01, 0.5, 0.01) = 0.1; 
-
-// --- UVs ---
-uniform vec3 uv1_scale = vec3(1.0, 1.0, 1.0);
-uniform vec3 uv1_offset = vec3(0.0, 0.0, 0.0);
-
-// Variables que se calculan en Vertex y se envían a Fragment
-varying mat4 inv_modelview_matrix;
-varying vec3 world_scale;
-
-void vertex() {
-	// MODELVIEW_MATRIX nos lleva de Local a Vista. Su inversa nos lleva directo de Vista a Local.
-	inv_modelview_matrix = inverse(MODELVIEW_MATRIX);
-	
-	// Obtenemos la escala del nodo en el mundo para el auto-tiling de la textura
-	world_scale = vec3(
-		length(MODEL_MATRIX[0].xyz), 
-		length(MODEL_MATRIX[1].xyz), 
-		length(MODEL_MATRIX[2].xyz)
-	);
-}
-
-void fragment() {
-	// 1. Obtener la profundidad del terreno de fondo
-	float depth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
-	
-	// 2. Reconstruir NDC (Normalized Device Coordinates)
-	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
-	
-	// 3. Pasar de NDC a Espacio de Vista (View Space)
-	vec4 view_pos = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	view_pos.xyz /= view_pos.w;
-	
-	// 4. Pasar de Vista a Espacio Local del Cubo
-	vec3 local_pos = (inv_modelview_matrix * vec4(view_pos.xyz, 1.0)).xyz;
-	
-	// 5. Comprobar si el terreno está dentro de los límites del cubo (de -0.5 a 0.5 en ejes locales)
-	vec3 bounds = step(abs(local_pos), vec3(0.5));
-	float in_bounds = bounds.x * bounds.y * bounds.z;
-	
-	// Si el terreno está fuera de las dimensiones del cubo, no dibujamos nada
-	if (in_bounds < 0.5) {
-		discard;
-	}
-
-	// === CÁLCULO DE LA CURVATURA EN METROS (ESPACIO MUNDO) ===
-	float world_x = local_pos.x * world_scale.x;
-	float world_z = local_pos.z * world_scale.z;
-	
-	// Calculamos la desviación usando una función Seno basada en la posición Z del mundo
-	float curve_offset = sin(world_z * curve_frequency + curve_phase) * curve_amplitude;
-
-	// 6. Proyección Plana deformada por la curva (UV Wrapping)
-	// Restamos curve_offset a world_x para que la textura \"siga\" la curva del camino
-	vec2 projected_uv = vec2(world_x - curve_offset, world_z);
-	vec2 final_uv = projected_uv * uv1_scale.xy + uv1_offset.xy;
-
-	// 7. Muestreo de Texturas
-	vec4 albedo_tex = texture(texture_albedo, final_uv);
-	float noise = texture(noise_texture, final_uv * noise_scale).r;
-	
-	// 8. El centro del camino se calcula restando el offset de la curva
-	float dist_center_world = abs(world_x - curve_offset);
-	// Normalizamos la distancia de vuelta al tamaño (escala) de nuestro cubo
-	float dist_center = dist_center_world / (world_scale.x * 0.5);
-	
-	// 9. Deformar el borde sumando ruido
-	float distorted_dist = dist_center + (noise - 0.5) * edge_distortion;
-	
-	// 10. Generar máscaras (Bordes orgánicos y parches)
-	float edge_mask = 1.0 - smoothstep(path_width - edge_softness, path_width, distorted_dist);
-	float hole_mask = smoothstep(patch_holes - 0.1, patch_holes + 0.1, noise);
-	
-	// 11. Desvanecido suave en los límites verticales (Techo y Piso del cubo)
-	float edge_y = 0.5 - abs(local_pos.y);
-	float vertical_fade = smoothstep(0.0, intersection_fade, edge_y);
-	
-	// 12. Mezcla y Salida final
-	ALBEDO = albedo_tex.rgb * path_color.rgb;
-	
-	// Fusionamos todas las máscaras para controlar la opacidad
-	ALPHA = edge_mask * hole_mask * vertical_fade * albedo_tex.a * path_color.a;
-	ROUGHNESS = 1.0;
-}"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_etlwe"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5hvef"]
-noise = SubResource("FastNoiseLite_etlwe")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymrg4"]
-render_priority = 0
-shader = SubResource("Shader_xvxio")
-shader_parameter/texture_albedo = ExtResource("16_py8g7")
-shader_parameter/path_color = Color(1, 1, 1, 1)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_5hvef")
-shader_parameter/noise_scale = 1.0
-shader_parameter/path_width = 0.8
-shader_parameter/edge_softness = 0.2
-shader_parameter/edge_distortion = 0.3
-shader_parameter/patch_holes = 0.1
-shader_parameter/curve_amplitude = 0.0
-shader_parameter/curve_frequency = 0.1
-shader_parameter/curve_phase = 0.0
-shader_parameter/intersection_fade = 0.00999999977648
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-
 [node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1640846100]
@@ -522,7 +333,7 @@ light_volumetric_fog_energy = 0.148
 shadow_enabled = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("2_5tvve")]
-transform = Transform3D(0.9999912, -0.00387477, -0.001636593, 0.0038747536, 0.9999925, -1.3145242e-05, 0.0016366317, 6.8214663e-06, 0.9999987, -47.553417, -8.266783, -225.8274)
+transform = Transform3D(0.9999912, -0.00387477, -0.001636593, 0.0038747536, 0.9999925, -1.3145242e-05, 0.0016366317, 6.8214663e-06, 0.9999987, -256.69513, -8.266783, -316.7029)
 
 [node name="Maps" type="Node3D" parent="." unique_id=1249707242]
 
@@ -556,11 +367,12 @@ mesh = SubResource("QuadMesh_a1d46")
 [node name="ScatterObjects" type="Node3D" parent="WorldObjects" unique_id=228513466]
 
 [node name="ScatterShotZone" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1988366634]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185.78265, -5.2934027, 79.890526)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.36945, -3.298588, 93.330765)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
-density = 0.10000000000000007
+density = -0.54
 shape = 1
+circle_radius = 10.240524
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
 [node name="Rocks" type="Node3D" parent="WorldObjects" unique_id=637036486]
@@ -579,34 +391,43 @@ transform = Transform3D(1.85, 0, 0, 0, 1.7, 0, 0, 0, 1, -6.837451, 17.619629, 42
 
 [node name="RiverRocksBridge" type="Node3D" parent="WorldObjects/Rocks" unique_id=1183916229]
 
-[node name="RockPillar1" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1407871613 instance=ExtResource("13_ean77")]
-transform = Transform3D(0.34384438, 0, 1.331285, 0, 1.2196194, 0, -1.1458751, 0, 0.39948058, -3.0964522, -14.060744, -262.6656)
-
-[node name="RockPillar9" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=794742862 instance=ExtResource("13_ean77")]
-transform = Transform3D(1.1236006, 0, -0.4947164, 0, 1.209933, 0, 0.498897, 0, 1.1141852, 2.3536224, -13.684214, -258.37872)
-
-[node name="RockPillar2" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=465652024 instance=ExtResource("13_ean77")]
-transform = Transform3D(1.0235286, 0, -1.0034552, 0, 1.2421979, 0, 1.173086, 0, 0.875524, -16.313526, -13.109674, -263.1351)
-
-[node name="RockPillar8" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1961620433 instance=ExtResource("13_ean77")]
-transform = Transform3D(1.3363, 0, 0, 0, 1.2896786, 0, 0, 0, 1.2723747, -8.890699, -14.512524, -264.68274)
-
-[node name="RockPillar3" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1729627734 instance=ExtResource("13_ean77")]
-transform = Transform3D(0.65699786, 0, 1.1490012, 0, 1.180027, 0, -0.80728346, 0, 0.93510056, -22.64178, -13.456148, -260.90637)
-
 [node name="RockPillar6" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1035078178 instance=ExtResource("13_ean77")]
-transform = Transform3D(1, 0, 0, 0, 1.2786762, 0, 0, 0, 1, -12.976175, -14.739713, -253.02522)
+transform = Transform3D(1, 0, 0, 0, 1.2786762, 0, 0, 0, 1, -12.976175, -16.164358, -253.02522)
+
+[node name="RockPillar11" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=40713920 instance=ExtResource("13_ean77")]
+transform = Transform3D(1, 0, 0, 0, 1.2786762, 0, 0, 0, 1, -4.3964577, -16.490612, -275.69226)
+
+[node name="RockPillar12" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=884435925 instance=ExtResource("13_ean77")]
+transform = Transform3D(1, 0, 0, 0, 1.2786762, 0, 0, 0, 1, -17.101713, -13.225811, -279.88434)
 
 [node name="RockPillar7" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=794053975 instance=ExtResource("13_ean77")]
-transform = Transform3D(1, 0, 0, 0, 1.303948, 0, 0, 0, 1, -2.301969, -16.098003, -248.95198)
+transform = Transform3D(1, 0, 0, 0, 1.303948, 0, 0, 0, 1, -2.301969, -14.853395, -248.95198)
 
-[node name="RockPillar4" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1690127604 instance=ExtResource("13_ean77")]
+[node name="RocksToMove" type="Node3D" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=1657057655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.291, 0)
+
+[node name="RockPillar1" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=1407871613 instance=ExtResource("13_ean77")]
+transform = Transform3D(0.34384438, 0, 1.331285, 0, 1.2196194, 0, -1.1458751, 0, 0.39948058, -3.0964522, -14.060744, -262.6656)
+
+[node name="RockPillar9" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=794742862 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.1236006, 0, -0.4947164, 0, 1.209933, 0, 0.498897, 0, 1.1141852, 2.3536224, -13.684214, -258.37872)
+
+[node name="RockPillar2" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=465652024 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.0235286, 0, -1.0034552, 0, 1.2421979, 0, 1.173086, 0, 0.875524, -16.313526, -13.109674, -263.1351)
+
+[node name="RockPillar8" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=1961620433 instance=ExtResource("13_ean77")]
+transform = Transform3D(1.3363, 0, 0, 0, 1.2896786, 0, 0, 0, 1.2723747, -8.890699, -14.512524, -264.68274)
+
+[node name="RockPillar3" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=1729627734 instance=ExtResource("13_ean77")]
+transform = Transform3D(0.65699786, 0, 1.1490012, 0, 1.180027, 0, -0.80728346, 0, 0.93510056, -22.64178, -13.456148, -260.90637)
+
+[node name="RockPillar4" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=1690127604 instance=ExtResource("13_ean77")]
 transform = Transform3D(1.498133, 0.00711753, -0.42981255, -0.00064877176, 1.1786952, 0.01695266, 0.6137084, -0.016128642, 1.0492398, 8.001764, -13.822946, -256.27856)
 
-[node name="RockPillar5" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=2037833180 instance=ExtResource("13_ean77")]
+[node name="RockPillar5" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=2037833180 instance=ExtResource("13_ean77")]
 transform = Transform3D(1.2353044, 0, 0, 0, 1.2483809, 0, 0, 0, 1.301137, -27.562407, -14.10341, -256.73022)
 
-[node name="RockPillar10" parent="WorldObjects/Rocks/RiverRocksBridge" unique_id=904528095 instance=ExtResource("13_ean77")]
+[node name="RockPillar10" parent="WorldObjects/Rocks/RiverRocksBridge/RocksToMove" unique_id=904528095 instance=ExtResource("13_ean77")]
 transform = Transform3D(0.9331708, 0, 1.2042601, 0, 1, 0, -1.2723119, 0, 0.8832585, 12.874586, -14.10341, -252.6762)
 
 [node name="Houses" type="Node3D" parent="WorldObjects" unique_id=2114144763]
@@ -738,20 +559,137 @@ material = SubResource("ShaderMaterial_ean77")
 
 [node name="Paths" type="Node3D" parent="." unique_id=1707030482]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Paths" unique_id=1891806536]
-transform = Transform3D(8.359033, 0, 15.1570015, 0, 0.7042601, 0, -10.694841, 0, 11.846634, -45.223087, -8.715191, -223.10197)
-layers = 2
-material_override = SubResource("ShaderMaterial_xvxio")
-mesh = SubResource("BoxMesh_to654")
+[node name="CurvedLargeStraigthPath" parent="Paths" unique_id=958646733 instance=ExtResource("19_xvxio")]
+transform = Transform3D(8, 0, 0, 0, 5.4675546, 0, 0, 0, 80, -48.476, -7.412509, -185.461)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Paths" unique_id=1707180100]
-transform = Transform3D(6.1581283, 0, 7.8789244, 0, 0.704, 0, -7.8789244, 0, 6.1581283, -48.480915, -8.715191, -216.34032)
-layers = 2
-material_override = SubResource("ShaderMaterial_eaukh")
-mesh = SubResource("BoxMesh_to654")
+[node name="CurvedLargeStraigthPath21" parent="Paths" unique_id=928121199 instance=ExtResource("19_xvxio")]
+transform = Transform3D(5.7411222, 0, -21.693295, 0, 5.468, 0, 5.5713115, 0, 22.354494, -40.43142, -7.41779, -240.05626)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Paths" unique_id=978325873]
-transform = Transform3D(-0.025869867, 0, 1.83567, 0, 0.99999994, 0, -2.205631, 0, -0.0215306, -52.88595, -8.575244, -229.40102)
-layers = 2
-material_override = SubResource("ShaderMaterial_ymrg4")
-mesh = SubResource("BoxMesh_to654")
+[node name="CurvedLargeStraigthPath2" parent="Paths" unique_id=955200825 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.9825597, 0, -5.279621, 0, 5.467555, 0, 0.5279621, 0, 79.8256, -57.089, -8.004, -98.268)
+
+[node name="CurvedLargeStraigthPath3" parent="Paths" unique_id=525157253 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.9825597, 0, -5.2796216, 0, 10, 0, 0.52796215, 0, 79.8256, -62.375, -6.948, -18.562)
+
+[node name="CurvedLargeStraigthPath4" parent="Paths" unique_id=1028532523 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.9825597, 0, -5.2796216, 0, 10, 0, 0.52796215, 0, 79.8256, -67.874, -6.948, 61.131)
+
+[node name="CurvedLargeStraigthPath18" parent="Paths" unique_id=1268800077 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.7233806, 0, 16.87837, 0, 9.999999, 0, -2.0855188, 0, 62.506287, 30.157978, -6.948, -50.452164)
+
+[node name="CurvedLargeStraigthPath19" parent="Paths" unique_id=1983131611 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.9941726, 0, -2.4707396, 0, 10.000001, 0, 0.30528867, 0, 64.69784, 18.910494, -6.948, -116.02905)
+
+[node name="CurvedLargeStraigthPath20" parent="Paths" unique_id=342744586 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.9244967, 0, -8.874221, 0, 10, 0, 1.0965134, 0, 64.13393, 28.50857, -6.948, -187.18501)
+
+[node name="CurvedLargeStraigthPath7" parent="Paths" unique_id=1088970933 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.255939, 0, 33.691727, 0, 9.999999, 0, -3.3691728, 0, 72.5594, -172.52856, -15.324764, 58.850468)
+
+[node name="CurvedLargeStraigthPath8" parent="Paths" unique_id=367473028 instance=ExtResource("19_xvxio")]
+transform = Transform3D(5.266362, 0, 60.22077, 0, 10, 0, -6.022077, 0, 52.663628, -219.36734, -15.324764, -2.5861387)
+
+[node name="CurvedLargeStraigthPath9" parent="Paths" unique_id=2059120890 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.999999, 0, 0, 0, 10, 0, 0, 0, 79.99999, -249.25668, -15.324764, -70.11635)
+
+[node name="CurvedLargeStraigthPath10" parent="Paths" unique_id=613866331 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.9914513, 0, 3.6973844, 0, 10.000001, 0, -0.36973843, 0, 79.91451, -250.898, -15.325, -149.943)
+
+[node name="CurvedLargeStraigthPath11" parent="Paths" unique_id=623321992 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.9914513, 0, 3.6973844, 0, 10.000001, 0, -0.36973843, 0, 79.91451, -250.898, -15.325, -149.943)
+
+[node name="CurvedLargeStraigthPath12" parent="Paths" unique_id=1932506945 instance=ExtResource("19_xvxio")]
+transform = Transform3D(-7.8283815, 0, -9.275063e-06, 0, 10, 0, 6.8437885e-07, 0, -106.09435, -252.69014, -15.325, -242.8311)
+
+[node name="CurvedLargeStraigthPath13" parent="Paths" unique_id=601539015 instance=ExtResource("19_xvxio")]
+transform = Transform3D(6.143529, 0, 18.218325, 0, 10, 0, -4.8518667, 0, 23.068394, -262.25122, -15.325, -309.99597)
+
+[node name="CurvedLargeStraigthPath14" parent="Paths" unique_id=792874232 instance=ExtResource("19_xvxio")]
+transform = Transform3D(5.6836777, 0, 20.213615, 0, 10, 0, -5.383249, 0, 21.341694, -280.35367, -13.433453, -332.4224)
+
+[node name="CurvedLargeStraigthPath15" parent="Paths" unique_id=786331580 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.550024, 0, 2.9038377, 0, 10.000001, 0, -0.4945901, 0, 44.327644, -290.2516, -13.433453, -364.10046)
+
+[node name="CurvedLargeStraigthPath6" parent="Paths" unique_id=1012579206 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.666511, 0, -2.1191387, 0, 10, 0, 0.50705886, 0, 32.040462, -71.26316, -6.948, 113.65982)
+
+[node name="CurvedLargeStraigthPath5" parent="Paths" unique_id=37325223 instance=ExtResource("19_xvxio")]
+transform = Transform3D(0.94723135, 0, 68.688385, 0, 5.4679995, 0, -7.943724, 0, 8.190591, -83.39536, -6.948, 129.35263)
+
+[node name="CurvedLargeStraigthPath16" parent="Paths" unique_id=346237605 instance=ExtResource("19_xvxio")]
+transform = Transform3D(-6.072171, 0, 32.852776, 0, 5.4679995, 0, -5.2085257, 0, -38.300224, 40.219337, -6.948, 112.31938)
+
+[node name="CurvedLargeStraigthPath17" parent="Paths" unique_id=1663244267 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.993838, 0, -5.1737146, 0, 5.468, 0, 0.31393903, 0, 131.73846, 37.32, -6.948, 46.463)
+
+[node name="LCurveLeftPath" parent="Paths" unique_id=626460961 instance=ExtResource("18_xvxio")]
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, -48.32799, -8.577171, -229.4543)
+
+[node name="LCurveLeftPath4" parent="Paths" unique_id=654555513 instance=ExtResource("18_xvxio")]
+transform = Transform3D(7.9698734, 0, -0.6936294, 0, 7.64, 0, 0.6936294, 0, 7.9698734, -188.68204, -16.589638, 19.742748)
+
+[node name="LCurveLeftPath5" parent="Paths" unique_id=52420397 instance=ExtResource("18_xvxio")]
+transform = Transform3D(-5.7837377, 0, 5.527059, 0, 7.64, 0, -5.527059, 0, -5.7837377, -250.92247, -16.589638, -29.931492)
+
+[node name="LCurveLeftPath6" parent="Paths" unique_id=1909487189 instance=ExtResource("18_xvxio")]
+transform = Transform3D(7.332075, 0, -3.2001042, 0, 7.639998, 0, 3.2001042, 0, 7.332075, -250.92247, -13.915577, -297.4578)
+
+[node name="LCurveLeftPath7" parent="Paths" unique_id=843701668 instance=ExtResource("18_xvxio")]
+transform = Transform3D(7.332075, 0, -3.2001042, 0, 7.639998, 0, 3.2001042, 0, 7.332075, -251.40936, -13.915577, -299.49344)
+
+[node name="LCurveLeftPath8" parent="Paths" unique_id=148602861 instance=ExtResource("18_xvxio")]
+transform = Transform3D(-7.869929, 0, 1.4367368, 0, 7.639998, 0, -1.4367368, 0, -7.869929, -291.398, -13.915577, -339.97205)
+
+[node name="LCurveLeftPath2" parent="Paths" unique_id=1203229738 instance=ExtResource("18_xvxio")]
+transform = Transform3D(0.89189065, 0, -7.9501276, 0, 5, 0, 7.9501276, 0, 0.89189065, -46.881187, -7.9797573, -141.68462)
+
+[node name="LCurveLeftPath3" parent="Paths" unique_id=637642888 instance=ExtResource("18_xvxio")]
+transform = Transform3D(1.1562304, 0, 7.916004, 0, 4.999999, 0, -7.916004, 0, 1.1562304, -53.74386, -7.7372823, -141.78476)
+
+[node name="LCurveLeftPath9" parent="Paths" unique_id=1741701796 instance=ExtResource("18_xvxio")]
+transform = Transform3D(0.10387874, 0, -7.9993243, 0, 4.999999, 0, 7.9993243, 0, 0.10387874, 24.884462, -7.7372823, 131.77289)
+
+[node name="LCurveLeftPath10" parent="Paths" unique_id=2110888505 instance=ExtResource("18_xvxio")]
+transform = Transform3D(-7.9871235, 0, 0.45368207, 0, 4.9999986, 0, -0.45368207, 0, -7.9871235, 34.653084, -7.7372823, 116.27492)
+
+[node name="LCurveLeftPath11" parent="Paths" unique_id=420441600 instance=ExtResource("18_xvxio")]
+transform = Transform3D(6.662904, 0, -4.427829, 0, 4.9999976, 0, 4.427829, 0, 6.662904, 41.250153, -7.7372823, -20.517704)
+
+[node name="LCurveLeftPath12" parent="Paths" unique_id=815480946 instance=ExtResource("18_xvxio")]
+transform = Transform3D(-7.7619934, 0, 2.6111355, 0, 4.9999995, 0, -1.9368649, 0, -10.464138, 17.351046, -7.7372823, -81.516266)
+
+[node name="LCurveLeftPath13" parent="Paths" unique_id=2035074225 instance=ExtResource("18_xvxio")]
+transform = Transform3D(-1.7601304, 0, 7.8039656, 0, 4.999997, 0, -7.8039656, 0, -1.7601304, 18.007145, -7.7372823, -150.78925)
+
+[node name="LCurveLeftPath14" parent="Paths" unique_id=532898760 instance=ExtResource("18_xvxio")]
+transform = Transform3D(0.10988128, 0, -7.999241, 0, 4.9999967, 0, 7.999241, 0, 0.10988128, 25.46736, -7.7372823, -151.73488)
+
+[node name="LCurveLeftPath15" parent="Paths" unique_id=1145142276 instance=ExtResource("18_xvxio")]
+transform = Transform3D(7.8768516, 0, -1.3982595, 0, 4.9999967, 0, 1.3982595, 0, 7.8768516, 32.04309, -7.7372823, -246.81189)
+
+[node name="LCurveLeftPath16" parent="Paths" unique_id=1785792755 instance=ExtResource("18_xvxio")]
+transform = Transform3D(6.5670414, 0, 5.354067, 0, 5.0000005, 0, -4.568804, 0, 7.6957507, 18.29126, -7.7372823, -254.03741)
+
+[node name="LCurveLeftPath17" parent="Paths" unique_id=881116380 instance=ExtResource("18_xvxio")]
+transform = Transform3D(-2.5800457, 0, -7.773713, 0, 0.99999994, 0, 10.615978, 0, -1.8892784, -30.43358, -8.923533, -247.06253)
+
+[node name="StraigthPath" parent="Paths" unique_id=885858735 instance=ExtResource("16_py8g7")]
+transform = Transform3D(-0.00579899, 0, -11.220115, 0, 5, 0, 4.6145697, 0, -0.014099583, -44.120846, -6.895098, 132.06487)
+
+[node name="StraigthPath4" parent="Paths" unique_id=796469792 instance=ExtResource("16_py8g7")]
+transform = Transform3D(-0.005340671, 0, -5.1899962, 0, 5, 0, 4.2499967, 0, -0.006521902, 18.760916, -6.895098, 131.865)
+
+[node name="StraigthPath3" parent="Paths" unique_id=1274291509 instance=ExtResource("16_py8g7")]
+transform = Transform3D(-4.0082445, 0, -5.559619, 0, 4.9999995, 0, 2.2865398, 0, -9.745863, -153.0814, -14.414135, 99.08632)
+
+[node name="StraigthPath2" parent="Paths" unique_id=939096097 instance=ExtResource("16_py8g7")]
+transform = Transform3D(-1.0403086, 0, -3.8949888, 0, 5, 0, 4.1413355, 0, -0.97842604, -119.64294, -6.895098, 126.25584)
+
+[node name="StraigthPath5" parent="Paths" unique_id=2103262822 instance=ExtResource("16_py8g7")]
+transform = Transform3D(4.34, 0, 0, 0, 5, 0, 0, 0, 24.964977, 31.53321, -8.760796, -231.14236)
+
+[node name="StraigthPath6" parent="Paths" unique_id=1371143728 instance=ExtResource("16_py8g7")]
+transform = Transform3D(-1.7909412, 0, -10.370431, 0, 5, 0, 3.953243, 0, -4.698126, 23.622963, -8.837664, -249.44273)
+
+[node name="StraigthPath7" parent="Paths" unique_id=1890508463 instance=ExtResource("16_py8g7")]
+transform = Transform3D(-4.1391773, 0, 1.6852696, 0, 4.9999995, 0, -1.3049188, 0, -5.3456416, -28.910307, -8.837664, -252.31407)

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://62ksdb7unp2t"]
+
+[ext_resource type="Shader" uid="uid://drrfn1usmqlnm" path="res://shaders/dirt_path_shader.gdshader" id="1_ge07h"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nq554"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aj0v1"]
+noise = SubResource("FastNoiseLite_nq554")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kwgjb"]
+load_path = "res://.godot/imported/Dirt_18-256x256.png-0909036e71df6514921d8e948c1422bf.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dldrv"]
+render_priority = 0
+shader = ExtResource("1_ge07h")
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_kwgjb")
+shader_parameter/path_color = Color(1, 1, 1, 0.9254902)
+shader_parameter/global_tint = Color(0.84676754, 0.777289, 0.73516315, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_aj0v1")
+shader_parameter/noise_scale = 0.20000000298024
+shader_parameter/path_width = 0.499999988824
+shader_parameter/edge_softness = 0.35999999195328003
+shader_parameter/edge_distortion = 0.3
+shader_parameter/patch_holes = 0.1
+shader_parameter/use_90_deg_bend = false
+shader_parameter/bend_right = true
+shader_parameter/curve_amplitude = 1.40000016987368
+shader_parameter/curve_frequency = 0.23800001060648
+shader_parameter/curve_phase = 0.0
+shader_parameter/intersection_fade = 0.1
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oh6gp"]
+
+[node name="CurvedLargeStraigthPath" type="MeshInstance3D" unique_id=958646733]
+transform = Transform3D(8, 0, 0, 0, 10, 0, 0, 0, 80, 0, 0, 0)
+layers = 2
+material_override = SubResource("ShaderMaterial_dldrv")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_oh6gp")

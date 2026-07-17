@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dy4mywkv2rlm6" path="res://sounds/ambient/Mysterious Electricity.mp3" id="3_71eu1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ak8fw"]
-radius = 0.20954734
+radius = 0.07885047
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kb2x"]
 albedo_texture = ExtResource("2_71eu1")
@@ -54,7 +54,7 @@ collision_layer = 10
 collision_mask = 15
 script = ExtResource("1_kuvql")
 item_name = "Esfera de Energía"
-item_description = "Brilla con una egergía poderosa"
+item_description = "Brilla con una energía poderosa"
 item_icon = ExtResource("2_3kb2x")
 ruta_modelo3d = "uid://d0wypwdytqtxw"
 mesh = NodePath("MeshInstance3D")

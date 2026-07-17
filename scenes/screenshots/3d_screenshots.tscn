@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://da5w1ojflrjgt"]
 
 [ext_resource type="Script" uid="uid://cr03vo7aas7by" path="res://scenes/screenshots/3d_screenshots.gd" id="1_sdeym"]
-[ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="1_ut2b3"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ut2b3"]
 
@@ -39,11 +38,8 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1541453987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.012963742, 0.5943904)
 
-[node name="EnergySphere" parent="SubViewport" unique_id=1256466068 instance=ExtResource("1_ut2b3")]
-transform = Transform3D(0.98833495, 0, -0.15229589, 0, 1, 0, 0.15229589, 0, 0.98833495, 0, 0, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=744884627]
-transform = Transform3D(-0.7301208, -0.4904965, 0.4757486, 0.06111845, 0.64656574, 0.76040596, -0.68057907, 0.5842653, -0.4420928, -91.278076, 18.917465, 0)
+transform = Transform3D(-0.030977635, -0.90235394, 0.42988116, 0.04051467, 0.42860052, 0.90258527, -0.9986984, 0.045376454, 0.023281544, -91.278076, 18.917465, 0)
 light_color = Color(0.8093096, 0.97609526, 0.934499, 1)
 light_angular_distance = 0.59
 shadow_enabled = true

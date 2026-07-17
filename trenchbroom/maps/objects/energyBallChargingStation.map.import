@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://r3o5fn0j05hx"
+path="res://.godot/imported/energyBallChargingStation.map-3e542e7e221bc2ff72de6fc4784a00d6.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/energyBallChargingStation.map"
+dest_files=["res://.godot/imported/energyBallChargingStation.map-3e542e7e221bc2ff72de6fc4784a00d6.tres"]
+
+[params]
+

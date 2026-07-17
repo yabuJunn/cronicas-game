@@ -19,7 +19,10 @@
 [ext_resource type="Script" uid="uid://cau2r3unnyel3" path="res://scenes/objects/interactible_objects/rocks_bridge_to_move.gd" id="14_xvxio"]
 [ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/rock_bridge_switch.tscn" id="16_etlwe"]
 [ext_resource type="PackedScene" uid="uid://1t40lxq11773" path="res://scenes/world/paths/straigth_path.tscn" id="16_py8g7"]
+[ext_resource type="AudioStream" uid="uid://dr2cbgdsj0kt6" path="res://sounds/ambient/kokoreli777-sea-waves-169411.mp3" id="18_v2mpa"]
+[ext_resource type="PackedScene" uid="uid://ndq4fk4kygm4" path="res://scenes/objects/energy_sphere_deactivated.tscn" id="18_xeu51"]
 [ext_resource type="PackedScene" uid="uid://ddw7fgwbdlruc" path="res://scenes/world/paths/l_curve_left_path.tscn" id="18_xvxio"]
+[ext_resource type="PackedScene" uid="uid://byaok1ahq4xbd" path="res://scenes/objects/interactible_objects/energy_sphere_chargin_station.tscn" id="19_myv0h"]
 [ext_resource type="PackedScene" uid="uid://62ksdb7unp2t" path="res://scenes/world/paths/curved_large_straigth_path.tscn" id="19_xvxio"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="22_ymrg4"]
 
@@ -249,6 +252,7 @@ orientation = 1
 [sub_resource type="Resource" id="Resource_s4sqn"]
 script = ExtResource("10_ywa0e")
 mesh_library = ExtResource("9_a1d46")
+mesh_proportions = Array[int]([10])
 collision_user_data = null
 align = 2
 min_scale = 0.7
@@ -265,6 +269,7 @@ metadata/_custom_type_script = "uid://1b47ci4ks7ew"
 [sub_resource type="Resource" id="Resource_ymrg4"]
 script = ExtResource("10_ywa0e")
 mesh_library = ExtResource("11_ymrg4")
+mesh_proportions = Array[int]([10])
 collision_user_data = null
 align = 1
 min_scale = 0.2
@@ -282,6 +287,35 @@ script = ExtResource("8_rws65")
 layers = Array[ExtResource("7_scla1")]([SubResource("Resource_rws65"), SubResource("Resource_v2mpa")])
 metadata/_custom_type_script = "uid://dyltpy7s15mtf"
 
+[sub_resource type="Curve" id="Curve_cjvfu"]
+_data = [Vector2(0, 0.20357943), 0.0, 0.0, 0, 0, Vector2(0.20098041, 1), 0.0, 0.0, 0, 0, Vector2(0.79901963, 0.80313206), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_qcc2t"]
+curve = SubResource("Curve_cjvfu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rpd8k"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 64.756
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -0.8, 0)
+damping_min = 2.0
+damping_max = 3.0000002
+scale_curve = SubResource("CurveTexture_qcc2t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtll6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.3623615, 0.39151636, 0.40443814, 0.957)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvroc"]
+material = SubResource("StandardMaterial3D_xtll6")
+size = Vector3(0.05, 0.05, 0.05)
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_to654"]
 noise_type = 3
 frequency = 0.0211
@@ -295,7 +329,7 @@ seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yws86"]
 shader = ExtResource("12_ywa0e")
-shader_parameter/density = 0.32429999179521
+shader_parameter/density = 0.9999999747
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/emission = Color(0.3882353, 0.6627451, 0.7294118, 1)
 shader_parameter/height_falloff = 0.0
@@ -355,7 +389,7 @@ light_volumetric_fog_energy = 0.148
 shadow_enabled = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("2_5tvve")]
-transform = Transform3D(0.9992571, 0.026594441, -0.027896851, -0.02581561, 0.9992769, 0.027917018, 0.028619098, -0.027176103, 0.9992209, -142.77768, -3.8799853, 45.814983)
+transform = Transform3D(0.9992571, 0.026594441, -0.027896851, -0.02581561, 0.9992769, 0.027917018, 0.028619098, -0.027176103, 0.9992209, -53.592407, -7.884113, -206.34763)
 
 [node name="Maps" type="Node3D" parent="." unique_id=1249707242]
 
@@ -389,43 +423,353 @@ mesh = SubResource("QuadMesh_a1d46")
 [node name="ScatterObjects" type="Node3D" parent="WorldObjects" unique_id=228513466]
 
 [node name="ScatterShotZoneRect" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1988366634]
-transform = Transform3D(0.8798228, 0, 0.47530177, 0, 1, 0, -0.47530177, 0, 0.8798228, -177.36945, 16.396755, 84.75016)
+transform = Transform3D(0.8798228, 0, 0.47530177, 0, 1, 0, -0.47530177, 0, 0.8798228, -183.339, 16.397, 90.54)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
-density = 0.10000000000000009
+density = 0.10000000000000007
 hardness = 1.0
-rect_size = Vector2(18.948303, 50)
+rect_size = Vector2(34.860653, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect13" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=115361118]
+transform = Transform3D(0.99823976, 0, -0.059306324, 0, 1, 0, 0.059306324, 0, 0.99823976, -183.42297, 16.396755, 135.55737)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(41.24921, 73.74739)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect14" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=901982032]
+transform = Transform3D(0.99823976, 0, -0.059306324, 0, 1, 0, 0.059306324, 0, 0.99823976, -90.14441, 13.47105, 157.61777)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(57.198444, 44.568287)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect15" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=452193633]
+transform = Transform3D(-0.052614823, 0, -0.9986149, 0, 1, 0, 0.9986149, 0, -0.052614823, -56.32949, 13.47105, 105.14247)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 17.324)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect25" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=350684211]
+transform = Transform3D(-0.052614823, 0, -0.9986149, 0, 1, 0, 0.9986149, 0, -0.052614823, 21.934347, 13.47105, 97.38965)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 17.324)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect27" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1553752047]
+transform = Transform3D(-0.052614823, 0, -0.9986149, 0, 1, 0, 0.9986149, 0, -0.052614823, 44.337032, 13.47105, 83.70892)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(30.490017, 8.450738)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect26" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=134950077]
+transform = Transform3D(-0.052614823, 0, -0.9986149, 0, 1, 0, 0.9986149, 0, -0.052614823, 22.823217, 13.47105, 55.8713)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 17.324)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect24" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=848705840]
+transform = Transform3D(-0.052614823, 0, -0.9986149, 0, 1, 0, 0.9986149, 0, -0.052614823, 60.36821, 13.47105, 41.116074)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(62.36675, 30.631447)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect16" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=2116769659]
+transform = Transform3D(-0.052614823, 0, -0.9986149, 0, 1, 0, 0.9986149, 0, -0.052614823, -55.215427, 13.47105, 56.38961)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 17.324)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect17" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1736808891]
+transform = Transform3D(-0.052614823, 0, -0.9986149, 0, 1, 0, 0.9986149, 0, -0.052614823, -49.373684, 13.47105, 12.926559)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 17.324)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect18" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=674487884]
+transform = Transform3D(0.010681216, 0, -0.999943, 0, 1, 0, 0.999943, 0, 0.010681216, -48.587986, 13.47105, -36.490906)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(77.15746, 17.324)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect19" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=105924718]
+transform = Transform3D(0.010681216, 0, -0.999943, 0, 1, 0, 0.999943, 0, 0.010681216, -34.36624, 13.47105, -210.68045)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 21.707338)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect20" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=628767404]
+transform = Transform3D(-0.12682225, 0, -0.99192554, 0, 1, 0, 0.99192554, 0, -0.12682225, -37.713066, 13.47105, -171.48293)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 12.005591)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect21" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=652781023]
+transform = Transform3D(-0.12682225, 0, -0.99192554, 0, 1, 0, 0.99192554, 0, -0.12682225, -41.172825, 13.47105, -132.26926)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 12.005591)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect22" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1180345764]
+transform = Transform3D(-0.12682225, 0, -0.99192554, 0, 1, 0, 0.99192554, 0, -0.12682225, -46.692142, 13.47105, -88.1792)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(45.756138, 12.005591)
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
 [node name="ScatterShotZoneRect3" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=222372303]
-transform = Transform3D(0.89749706, 0, 0.4410203, 0, 1, 0, -0.4410203, 0, 0.89749706, -153.78407, 15.066267, 70.43768)
+transform = Transform3D(0.89749706, 0, 0.4410203, 0, 1, 0, -0.4410203, 0, 0.89749706, -152.56335, 15.066267, 70.43768)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
-density = 0.10000000000000009
+density = 0.10000000000000007
 hardness = 1.0
-rect_size = Vector2(18.948303, 50)
+rect_size = Vector2(18.948303, 57.937477)
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
 [node name="ScatterShotZoneRect4" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=2136249371]
 transform = Transform3D(0.89749706, 0, 0.4410203, 0, 1, 0, -0.4410203, 0, 0.89749706, -174.36987, 16.342726, 25.152287)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
-density = 0.10000000000000009
+density = 0.10000000000000007
 hardness = 1.0
 rect_size = Vector2(18.948303, 55.578922)
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
+[node name="ScatterShotZoneRect5" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=222810499]
+transform = Transform3D(0.9997252, 0, 0.023437649, 0, 1, 0, -0.023437649, 0, 0.9997252, -236.1088, 16.342726, -83.75654)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(18.948303, 59.890205)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect6" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=754936862]
+transform = Transform3D(0.9997252, 0, 0.023437649, 0, 1, 0, -0.023437649, 0, 0.9997252, -271.16312, 16.342726, -77.41833)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(30.619709, 76.09049)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect7" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=788078622]
+transform = Transform3D(0.9997252, 0, 0.023437649, 0, 1, 0, -0.023437649, 0, 0.9997252, -271.16312, 16.342726, -195.66853)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(30.619709, 76.09049)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect8" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=317708221]
+transform = Transform3D(0.9997252, 0, 0.023437649, 0, 1, 0, -0.023437649, 0, 0.9997252, -232.03824, 16.342726, -179.33148)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(27.45496, 87.96072)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect9" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=271488838]
+transform = Transform3D(0.9394835, 0, 0.34259415, 0, 1, 0, -0.34259415, 0, 0.9394835, -230.54823, 16.342726, -303.76096)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(38.656265, 72.230965)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect23" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1608404143]
+transform = Transform3D(0.037672788, 0, -0.99929017, 0, 1, 0, 0.99929017, 0, 0.037672788, -171.84235, 16.342726, -325.11118)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(70.04985, 109.03916)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect10" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=968695015]
+transform = Transform3D(0.99999887, 0, -0.0015183985, 0, 1, 0, 0.0015183985, 0, 0.99999887, -267.30115, 16.342726, -270.12247)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(17.579016, 39.25536)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect12" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1057462652]
+transform = Transform3D(0.99999887, 0, -0.0015183985, 0, 1, 0, 0.0015183985, 0, 0.99999887, -239.63525, 16.342726, -270.12247)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(17.579016, 39.25536)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneRect11" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1593651729]
+transform = Transform3D(0.88401866, 0, 0.4674516, 0, 1, 0, -0.4674516, 0, 0.88401866, -274.1284, 16.342726, -296.74564)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.10000000000000007
+hardness = 1.0
+rect_size = Vector2(17.579016, 39.25536)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
 [node name="ScatterShotZoneRect2" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=907391298]
-transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -205.1913, 16.396755, 43.945404)
+transform = Transform3D(0.7431681, 0, 0.6691047, 0, 1, 0, -0.6691047, 0, 0.7431681, -213.09355, 16.396755, 33.45265)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
 density = 0.1200000000000001
 hardness = 1.0
-rect_size = Vector2(34.434067, 50)
+rect_size = Vector2(32.0586, 50)
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
 [node name="ScatterShotZoneCircle" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1663435640]
 transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -254.69939, 7.673546, 39.74176)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle8" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=281369428]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -267.497, 7.673546, 92.70735)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle9" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=791105948]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -291.05505, 7.673546, 167.81456)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle10" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=222138875]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -301.11633, 7.673546, 254.67325)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle11" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=2016489088]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -301.11633, 7.673546, 342.89633)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle12" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=125762998]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -220.1023, 7.673546, 375.46405)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle15" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=897917891]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -118.98514, 7.673546, 375.46405)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 65.48782
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle16" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=437264767]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -122.78076, 7.673546, 267.14413)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 65.48782
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle17" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1379067965]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -122.78076, 7.673546, 198.9205)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 65.48782
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle13" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1379063061]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -173.52148, 7.673546, 304.48297)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle14" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=16660686]
+transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -173.52148, 7.673546, 210.67926)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
 density = 0.1200000000000001
@@ -452,6 +796,220 @@ density = 0.1200000000000001
 hardness = 1.0
 shape = 1
 rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle18" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1259990568]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -113.7837, 14.425888, -40.48491)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle22" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=102368167]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -111.08634, 14.425888, -93.81622)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle23" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=173369874]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -107.2814, 14.425888, -164.33205)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle24" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=300997643]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -107.2814, 14.425888, -270.39633)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle25" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1982233054]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 63.5763, 14.425888, -296.622)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle26" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=262736222]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 88.14754, 14.425888, -227.72935)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle27" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=108699621]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 85.77603, 14.425888, -167.61093)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle28" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=2006157106]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 79.72832, 14.425888, -116.579926)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle29" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=909444900]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 90.49559, 14.425888, -62.210922)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle30" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=596444542]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 99.37352, 14.425888, 11.851913)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle31" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=329741147]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 99.37352, 14.425888, 143.1428)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle32" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=35601262]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 65.051315, 14.425888, 173.34506)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle33" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=2135927016]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 74.64537, 14.425888, 236.96625)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle34" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1934989470]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 87.56984, 14.425888, 310.50586)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle35" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1862801625]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 68.410675, 14.425888, 388.69058)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle36" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=315178534]
+transform = Transform3D(0.9131656, -2.7772912e-05, -0.40758854, 5.53488e-05, 1, 5.5845976e-05, 0.40758854, -7.355901e-05, 0.9131656, 17.766388, 14.425888, 415.19598)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle37" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1735164137]
+transform = Transform3D(0.91775763, -7.297251e-05, 0.39714074, 5.53488e-05, 1, 5.584598e-05, -0.39714074, -2.9279272e-05, 0.91775763, -50.181652, 14.425888, 414.64932)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+rect_size = Vector2(34.434067, 78.49112)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle19" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=348062458]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -117.390236, 14.425888, 14.689529)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle20" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1425382012]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -105.47639, 14.425888, 68.38452)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 33.816826
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle21" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1714644781]
+transform = Transform3D(0.045126647, -5.829219e-05, 0.99898124, 5.53488e-05, 1, 5.584598e-05, -0.99898124, 5.2766314e-05, 0.045126647, -100.57893, 14.425888, 98.9495)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.1200000000000001
+hardness = 1.0
+rect_size = Vector2(47.228363, 50)
+circle_radius = 19.207851
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
 [node name="ScatterShotZoneCircle4" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1494441948]
@@ -668,7 +1226,34 @@ omni_range = 6.736985
 [node name="InteractibleObjects" type="Node3D" parent="WorldObjects" unique_id=775300750]
 
 [node name="RockBridgeSwitch" parent="WorldObjects/InteractibleObjects" unique_id=1903263336 instance=ExtResource("16_etlwe")]
-transform = Transform3D(0.8584949, 0, -0.5128223, 0, 1, 0, 0.5128223, 0, 0.8584949, -64.19944, 10.507372, -233.03899)
+transform = Transform3D(0.8584949, 0, -0.5128223, 0, 1, 0, 0.5128223, 0, 0.8584949, -51.625336, -9.304078, -213.14986)
+
+[node name="EnergySphereDeactivated" parent="WorldObjects/InteractibleObjects" unique_id=1256466068 instance=ExtResource("18_xeu51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.064915, -8.784653, -211.92714)
+
+[node name="EnergySphereChargingStation" parent="WorldObjects/InteractibleObjects" unique_id=2078462759 instance=ExtResource("19_myv0h")]
+transform = Transform3D(-0.04410759, 0, -0.9990268, 0, 1, 0, 0.9990268, 0, -0.04410759, -52.224945, -8.279527, -210.7809)
+collision_layer = 255
+
+[node name="WorldEffects" type="Node3D" parent="WorldObjects" unique_id=1087287346]
+
+[node name="Polvo Puerta" type="GPUParticles3D" parent="WorldObjects/WorldEffects" unique_id=708485512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8144, -13.1183195, 424.59332)
+layers = 4
+amount = 498
+process_material = SubResource("ParticleProcessMaterial_rpd8k")
+draw_pass_1 = SubResource("BoxMesh_yvroc")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="WorldObjects/WorldEffects/Polvo Puerta" unique_id=1154966586]
+stream = ExtResource("18_v2mpa")
+volume_db = -6.09
+unit_size = 54.4
+max_db = 0.264
+autoplay = true
+panning_strength = 2.07
+bus = &"Ambient"
+area_mask = 15
+parameters/looping = true
 
 [node name="Fog" type="Node3D" parent="." unique_id=2045019420]
 
@@ -676,6 +1261,12 @@ transform = Transform3D(0.8584949, 0, -0.5128223, 0, 1, 0, 0.5128223, 0, 0.85849
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.624551, 1.4384403, 425.95517)
 layers = 6
 size = Vector3(11.443115, 34.867798, 2)
+material = SubResource("ShaderMaterial_yws86")
+
+[node name="WaterfallFog2" type="FogVolume" parent="Fog" unique_id=39210018]
+transform = Transform3D(0.97421277, 0, 0.22563124, 0, 1, 0, -0.22563124, 0, 0.97421277, -22.548393, 1.2531092, -346.09903)
+layers = 6
+size = Vector3(69.39038, 34.498016, 11.07373)
 material = SubResource("ShaderMaterial_yws86")
 
 [node name="RiverFog" type="FogVolume" parent="Fog" unique_id=1381793016]
@@ -689,7 +1280,7 @@ material = SubResource("ShaderMaterial_ean77")
 [node name="Paths" type="Node3D" parent="." unique_id=1707030482]
 
 [node name="CurvedLargeStraigthPath" parent="Paths" unique_id=958646733 instance=ExtResource("19_xvxio")]
-transform = Transform3D(8, 0, 0, 0, 5.4675546, 0, 0, 0, 80, -48.476, -7.412509, -185.461)
+transform = Transform3D(8, 0, 0, 0, 5.4675546, 0, 0, 0, 80, -47.13038, -7.412509, -185.461)
 
 [node name="CurvedLargeStraigthPath21" parent="Paths" unique_id=928121199 instance=ExtResource("19_xvxio")]
 transform = Transform3D(5.7411222, 0, -21.693295, 0, 5.468, 0, 5.5713115, 0, 22.354494, -40.43142, -7.41779, -240.05626)
@@ -719,6 +1310,9 @@ transform = Transform3D(7.255939, 0, 33.691727, 0, 9.999999, 0, -3.3691728, 0, 7
 transform = Transform3D(5.266362, 0, 60.22077, 0, 10, 0, -6.022077, 0, 52.663628, -219.36734, -15.324764, -2.5861387)
 
 [node name="CurvedLargeStraigthPath9" parent="Paths" unique_id=2059120890 instance=ExtResource("19_xvxio")]
+transform = Transform3D(7.999999, 0, 0, 0, 10, 0, 0, 0, 79.99999, -249.25668, -15.324764, -70.11635)
+
+[node name="CurvedLargeStraigthPath22" parent="Paths" unique_id=374218756 instance=ExtResource("19_xvxio")]
 transform = Transform3D(7.999999, 0, 0, 0, 10, 0, 0, 0, 79.99999, -249.25668, -15.324764, -70.11635)
 
 [node name="CurvedLargeStraigthPath10" parent="Paths" unique_id=613866331 instance=ExtResource("19_xvxio")]
@@ -752,7 +1346,7 @@ transform = Transform3D(-6.072171, 0, 32.852776, 0, 5.4679995, 0, -5.2085257, 0,
 transform = Transform3D(7.993838, 0, -5.1737146, 0, 5.468, 0, 0.31393903, 0, 131.73846, 37.32, -6.948, 46.463)
 
 [node name="LCurveLeftPath" parent="Paths" unique_id=626460961 instance=ExtResource("18_xvxio")]
-transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, -48.32799, -8.577171, -229.4543)
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, -46.85758, -8.577171, -229.4543)
 
 [node name="LCurveLeftPath4" parent="Paths" unique_id=654555513 instance=ExtResource("18_xvxio")]
 transform = Transform3D(7.9698734, 0, -0.6936294, 0, 7.64, 0, 0.6936294, 0, 7.9698734, -188.68204, -16.589638, 19.742748)
@@ -762,6 +1356,12 @@ transform = Transform3D(-5.7837377, 0, 5.527059, 0, 7.64, 0, -5.527059, 0, -5.78
 
 [node name="LCurveLeftPath6" parent="Paths" unique_id=1909487189 instance=ExtResource("18_xvxio")]
 transform = Transform3D(7.332075, 0, -3.2001042, 0, 7.639998, 0, 3.2001042, 0, 7.332075, -250.92247, -13.915577, -297.4578)
+
+[node name="LCurveLeftPath18" parent="Paths" unique_id=1202413244 instance=ExtResource("18_xvxio")]
+transform = Transform3D(6.154483, 0, -5.111001, 0, 7.639998, 0, 5.111001, 0, 6.154483, -250.92247, -13.915577, -190.2056)
+
+[node name="LCurveLeftPath19" parent="Paths" unique_id=1253853185 instance=ExtResource("18_xvxio")]
+transform = Transform3D(-6.6582656, 0, 4.4348044, 0, 7.639998, 0, -4.4348044, 0, -6.6582656, -255.83809, -13.915577, -194.21509)
 
 [node name="LCurveLeftPath7" parent="Paths" unique_id=843701668 instance=ExtResource("18_xvxio")]
 transform = Transform3D(7.332075, 0, -3.2001042, 0, 7.639998, 0, 3.2001042, 0, 7.332075, -251.40936, -13.915577, -299.49344)

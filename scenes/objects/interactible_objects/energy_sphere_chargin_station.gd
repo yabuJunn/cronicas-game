@@ -21,12 +21,16 @@ func _ready() -> void:
 
 func _obtener_texto_interaccion() -> String:
 	if ya_activado and not ya_cargado:
+		outline_habilitado = false
 		return "Cargando"
 	if Inventory.tiene_objeto(objeto_requerido):
+		outline_habilitado = true 
 		return "[ E ] " + texto_con_objeto
 	if ya_cargado and ya_activado:
+		outline_habilitado = true 
 		return "Recoger"
 	else:
+		outline_habilitado = false
 		return texto_sin_objeto
 
 func interactuar() -> void:

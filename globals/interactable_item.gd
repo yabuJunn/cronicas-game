@@ -9,12 +9,17 @@ extends Node3D
 @export var item_icon: Texture2D
 @export_file("*.tscn") var ruta_modelo3d: String
 
-
 @export var mesh: MeshInstance3D 
 var outline_material: ShaderMaterial
 
+# --- CONTROL DE OVERLAY DINÁMICO ---
+var es_mirado: bool = false
+var outline_habilitado: bool = true:
+	set(valor):
+		outline_habilitado = valor
+		_actualizar_estado_outline() # Refresca el shader si cambia el valor
+
 # Propiedad base para que el texto cambie según el objeto (la lee el jugador)
-# Cambia esta parte en tu clase padre:
 var texto_interaccion: String:
 	get:
 		return _obtener_texto_interaccion()
@@ -46,9 +51,16 @@ func _ready() -> void:
 		outline_material.set_shader_parameter("outline_color", Color(1, 1, 1, 0))
 
 
+# Modificamos esta función para que guarde si el jugador nos mira
 func set_highlight(active: bool) -> void:
+	es_mirado = active
+	_actualizar_estado_outline()
+
+
+# Nueva función interna que decide si mostrar u ocultar el contorno
+func _actualizar_estado_outline() -> void:
 	if outline_material != null:
-		if active:
+		if es_mirado and outline_habilitado:
 			outline_material.set_shader_parameter("outline_color", Color(1, 1, 1, 1))
 		else:
 			outline_material.set_shader_parameter("outline_color", Color(1, 1, 1, 0))
@@ -58,11 +70,9 @@ func interactuar() -> void:
 	if se_puede_recoger:
 		var modelo_para_inventario: PackedScene = null
 		
-		# Si le asignaste una ruta en el inspector, la cargamos
 		if ruta_modelo3d != "":
 			modelo_para_inventario = load(ruta_modelo3d)
 			
-		# Pasamos el modelo (cargado o nulo) al inventario
 		Inventory.agregar_objeto(item_name, item_description, item_icon, modelo_para_inventario)
 		queue_free()
 	else:

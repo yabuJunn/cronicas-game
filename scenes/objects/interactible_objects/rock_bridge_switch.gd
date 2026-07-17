@@ -24,8 +24,10 @@ func _obtener_texto_interaccion() -> String:
 	if ya_activado:
 		return "El interruptor ya ha sido activado"
 	if Inventory.tiene_objeto(llave_requerida):
+		outline_habilitado = true
 		return "[ E ] activar"
 	else:
+		outline_habilitado = false
 		return "No tienes nada que parezca activar esto"
 
 func _ready() -> void:

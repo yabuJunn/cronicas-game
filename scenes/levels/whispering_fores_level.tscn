@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://byaok1ahq4xbd" path="res://scenes/objects/interactible_objects/energy_sphere_chargin_station.tscn" id="19_myv0h"]
 [ext_resource type="PackedScene" uid="uid://62ksdb7unp2t" path="res://scenes/world/paths/curved_large_straigth_path.tscn" id="19_xvxio"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="22_ymrg4"]
+[ext_resource type="Script" uid="uid://ch8qjgln2jxr3" path="res://scenes/levels/next_level_area_to_sea.gd" id="26_4p7th"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
 ground_color = Color(0.19165215, 0.504012, 0.6223743, 1)
@@ -37,8 +38,8 @@ background_mode = 2
 background_color = Color(0.361864, 0.647419, 0.75454575, 1)
 sky = SubResource("Sky_yrra7")
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.32
+ambient_light_color = Color(0.3346886, 0.71881086, 0.8148487, 1)
+ambient_light_energy = 0.14
 reflected_light_source = 2
 tonemap_mode = 3
 glow_enabled = true
@@ -348,6 +349,38 @@ shader_parameter/organic_scale = 0.05
 shader_parameter/organic_speed = 0.2
 shader_parameter/density_texture = SubResource("NoiseTexture3D_py8g7")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_myv0h"]
+noise_type = 3
+frequency = 0.0211
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_4p7th"]
+width = 274
+height = 238
+depth = 275
+noise = SubResource("FastNoiseLite_myv0h")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvg85"]
+shader = ExtResource("12_ywa0e")
+shader_parameter/density = 0.9999999747
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = Color(0.16222572, 0.33083087, 0.37084535, 1)
+shader_parameter/height_falloff = 0.0
+shader_parameter/edge_fade = 0.1
+shader_parameter/movement_speed = Vector3(0, 0.845, 0)
+shader_parameter/noise_scale = 1.0
+shader_parameter/edge_distortion_strength = 0.0
+shader_parameter/edge_speed_multiplier = Vector3(5.01, 5.98, 6.17)
+shader_parameter/edge_detail_scale = 3.0
+shader_parameter/wave_amplitude = 1.4
+shader_parameter/wave_speed = 2.73
+shader_parameter/wave_direction = Vector2(1, 1)
+shader_parameter/wave_frequency = 1.5
+shader_parameter/organic_amplitude = 0.0
+shader_parameter/organic_scale = 0.05
+shader_parameter/organic_speed = 0.2
+shader_parameter/density_texture = SubResource("NoiseTexture3D_4p7th")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_py8g7"]
 frequency = 0.0474
 metadata/_preview_in_3d_space_ = true
@@ -376,6 +409,9 @@ shader_parameter/organic_scale = 0.05
 shader_parameter/organic_speed = 0.2
 shader_parameter/density_texture = SubResource("NoiseTexture3D_s4sqn")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jvg85"]
+size = Vector3(14.315186, 12.039673, 8.999756)
+
 [node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1640846100]
@@ -384,12 +420,12 @@ environment = SubResource("Environment_0scc7")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1387043691]
 transform = Transform3D(-0.8660254, -0.29106152, 0.40655044, 0, 0.81310076, 0.582123, -0.50000006, 0.5041333, -0.7041659, 0, 0, 0)
 layers = 6
-light_energy = 0.431
+light_energy = 0.1
 light_volumetric_fog_energy = 0.148
 shadow_enabled = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("2_5tvve")]
-transform = Transform3D(0.9992571, 0.026594441, -0.027896851, -0.02581561, 0.9992769, 0.027917018, 0.028619098, -0.027176103, 0.9992209, -53.592407, -7.884113, -206.34763)
+transform = Transform3D(-0.9452803, -0.015315895, -0.32589984, -0.025815614, 0.999277, 0.027917022, 0.32523662, 0.0348027, -0.944992, -289.76282, -9.462765, -352.3624)
 
 [node name="Maps" type="Node3D" parent="." unique_id=1249707242]
 
@@ -1235,13 +1271,13 @@ omni_range = 6.736985
 [node name="InteractibleObjects" type="Node3D" parent="WorldObjects" unique_id=775300750]
 
 [node name="RockBridgeSwitch" parent="WorldObjects/InteractibleObjects" unique_id=1903263336 instance=ExtResource("16_etlwe")]
-transform = Transform3D(0.8584949, 0, -0.5128223, 0, 1, 0, 0.5128223, 0, 0.8584949, -51.625336, -9.304078, -213.14986)
+transform = Transform3D(0.85259455, 0, 0.5225731, 0, 1, 0, -0.5225731, 0, 0.85259455, -62.043877, 10.549355, -234.0314)
 
 [node name="EnergySphereDeactivated" parent="WorldObjects/InteractibleObjects" unique_id=1256466068 instance=ExtResource("18_xeu51")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.064915, -8.784653, -211.92714)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.834476, -6.9106393, -228.13377)
 
 [node name="EnergySphereChargingStation" parent="WorldObjects/InteractibleObjects" unique_id=2078462759 instance=ExtResource("19_myv0h")]
-transform = Transform3D(-0.04410759, 0, -0.9990268, 0, 1, 0, 0.9990268, 0, -0.04410759, -52.224945, -8.279527, -210.7809)
+transform = Transform3D(0.9802332, 0, 0.19784552, 0, 1, 0, -0.19784552, 0, 0.9802332, -58.925644, -7.8457484, -225.51717)
 collision_layer = 255
 
 [node name="WorldEffects" type="Node3D" parent="WorldObjects" unique_id=1087287346]
@@ -1277,6 +1313,12 @@ transform = Transform3D(0.97421277, 0, 0.22563124, 0, 1, 0, -0.22563124, 0, 0.97
 layers = 6
 size = Vector3(69.39038, 34.498016, 11.07373)
 material = SubResource("ShaderMaterial_yws86")
+
+[node name="TransitionLevelPathFog" type="FogVolume" parent="Fog" unique_id=731369897]
+transform = Transform3D(0.97421277, 0, 0.22563124, 0, 1, 0, -0.22563124, 0, 0.97421277, -287.09094, -10.249771, -387.90576)
+layers = 6
+size = Vector3(51.53766, 62.179897, 68.20355)
+material = SubResource("ShaderMaterial_jvg85")
 
 [node name="RiverFog" type="FogVolume" parent="Fog" unique_id=1381793016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.269119, -15.300236, -12.735001)
@@ -1435,6 +1477,18 @@ transform = Transform3D(-4.1391773, 0, 1.6852696, 0, 4.9999995, 0, -1.3049188, 0
 [node name="CinemaMarkers" type="Node3D" parent="." unique_id=1917427133]
 
 [node name="CinemaMarkerDoor" type="Marker3D" parent="CinemaMarkers" unique_id=1187951900 groups=["cinemaMarkers"]]
-transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.99858993, 0.045445226, 0.85155946, -0.00046140258, 0.52425796, -52.674202, 11.430074, -229.19246)
+transform = Transform3D(0.69553643, 0.14421152, -0.70386934, 0.12208044, 0.9416842, 0.3135713, 0.70804334, -0.304029, 0.6373705, -54.016975, 11.958249, -229.43318)
 gizmo_extents = 10.0
 script = ExtResource("22_ymrg4")
+
+[node name="NextLevelMarkers" type="Node3D" parent="." unique_id=1662106790]
+
+[node name="NextLevelArea" type="Area3D" parent="NextLevelMarkers" unique_id=936449634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -293.6691, -9.650665, -361.91968)
+collision_layer = 16
+script = ExtResource("26_4p7th")
+siguiente_nivel_ruta = "uid://di1d1ewmv5vyc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NextLevelMarkers/NextLevelArea" unique_id=2100047962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.088379, 2.9402466, 0)
+shape = SubResource("BoxShape3D_jvg85")

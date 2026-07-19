@@ -6128,7 +6128,7 @@ environment = SubResource("Environment_eut8q")
 [node name="Water" type="Node3D" parent="." unique_id=1260659188]
 
 [node name="WaterPlaneTest" type="MeshInstance3D" parent="Water" unique_id=1160406867]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234.67612, 1.4339237, 44.110115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234.676, 1.349, 44.11)
 mesh = SubResource("PlaneMesh_klac0")
 
 [node name="Borders" type="Node3D" parent="." unique_id=714211157]

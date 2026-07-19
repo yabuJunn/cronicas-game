@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://duus3jv4lch8k"]
+
+[ext_resource type="Script" uid="uid://bvwpgqmxfhwet" path="res://scenes/world/paths/subviewport_decal_texture.gd" id="1_kjikm"]
+[ext_resource type="Shader" uid="uid://k8s3ylmv5a6t" path="res://shaders/dirt_shader_2D_subviewport.gdshader" id="2_kaivb"]
+[ext_resource type="Texture2D" uid="uid://csjvikkqvd7at" path="res://textures/Dirt/Dirt_18-256x256.png" id="3_luirc"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bohvq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0xfjq"]
+noise = SubResource("FastNoiseLite_bohvq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xudhm"]
+shader = ExtResource("2_kaivb")
+shader_parameter/texture_albedo = ExtResource("3_luirc")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_0xfjq")
+shader_parameter/noise_scale = 1.0
+shader_parameter/path_width = 0.5999999865888
+shader_parameter/edge_softness = 0.2
+shader_parameter/edge_distortion = 0.3
+shader_parameter/patch_holes = 0.1
+shader_parameter/use_90_deg_bend = false
+shader_parameter/bend_right = true
+shader_parameter/curve_amplitude = 0.7000001594428404
+shader_parameter/curve_frequency = 0.32900001492898
+shader_parameter/curve_phase = 0.0
+shader_parameter/virtual_scale = Vector2(4, 80)
+shader_parameter/uv1_scale = Vector2(0.25, 0.25)
+shader_parameter/uv1_offset = Vector2(0, 0)
+
+[node name="LongWavyPathDecal" type="Node3D" unique_id=1061097441]
+
+[node name="Decal" type="Decal" parent="." unique_id=80287129]
+layers = 2
+size = Vector3(4, 2, 80)
+distance_fade_enabled = true
+script = ExtResource("1_kjikm")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=664117861]
+transparent_bg = true
+size = Vector2i(256, 5120)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=1685654277]
+material = SubResource("ShaderMaterial_xudhm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

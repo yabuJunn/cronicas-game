@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://byaok1ahq4xbd" path="res://scenes/objects/interactible_objects/energy_sphere_chargin_station.tscn" id="19_myv0h"]
 [ext_resource type="PackedScene" uid="uid://62ksdb7unp2t" path="res://scenes/world/paths/curved_large_straigth_path.tscn" id="19_xvxio"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="22_ymrg4"]
+[ext_resource type="PackedScene" uid="uid://duus3jv4lch8k" path="res://scenes/world/paths/long_wavy_path_decal.tscn" id="25_jvg85"]
 [ext_resource type="Script" uid="uid://ch8qjgln2jxr3" path="res://scenes/levels/next_level_area_to_sea.gd" id="26_4p7th"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
@@ -42,8 +43,6 @@ ambient_light_color = Color(0.3346886, 0.71881086, 0.8148487, 1)
 ambient_light_energy = 0.14
 reflected_light_source = 2
 tonemap_mode = 3
-glow_enabled = true
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.44725227, 0.76184994, 0.84916157, 1)
 fog_density = 1.0
@@ -420,12 +419,12 @@ environment = SubResource("Environment_0scc7")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1387043691]
 transform = Transform3D(-0.8660254, -0.29106152, 0.40655044, 0, 0.81310076, 0.582123, -0.50000006, 0.5041333, -0.7041659, 0, 0, 0)
 layers = 6
-light_energy = 0.1
+light_energy = 1.209
 light_volumetric_fog_energy = 0.148
 shadow_enabled = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("2_5tvve")]
-transform = Transform3D(-0.9452803, -0.015315895, -0.32589984, -0.025815614, 0.999277, 0.027917022, 0.32523662, 0.0348027, -0.944992, -289.76282, -9.462765, -352.3624)
+transform = Transform3D(-0.9452803, -0.015315895, -0.32589984, -0.025815614, 0.999277, 0.027917022, 0.32523662, 0.0348027, -0.944992, -51.791534, -7.577618, -234.93774)
 
 [node name="Maps" type="Node3D" parent="." unique_id=1249707242]
 
@@ -1473,6 +1472,9 @@ transform = Transform3D(-1.7909412, 0, -10.370431, 0, 5, 0, 3.953243, 0, -4.6981
 
 [node name="StraigthPath7" parent="Paths" unique_id=1890508463 instance=ExtResource("16_py8g7")]
 transform = Transform3D(-4.1391773, 0, 1.6852696, 0, 4.9999995, 0, -1.3049188, 0, -5.3456416, -28.910307, -8.837664, -252.31407)
+
+[node name="LongWavyPathDecal" parent="Paths" unique_id=1061097441 instance=ExtResource("25_jvg85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.202026, -8.529884, -212.47075)
 
 [node name="CinemaMarkers" type="Node3D" parent="." unique_id=1917427133]
 

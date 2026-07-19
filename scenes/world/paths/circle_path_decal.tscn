@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://de1o4orf880wf"]
+
+[ext_resource type="Script" uid="uid://bvwpgqmxfhwet" path="res://scenes/world/paths/subviewport_decal_texture.gd" id="1_okk31"]
+[ext_resource type="Shader" uid="uid://k8s3ylmv5a6t" path="res://shaders/dirt_shader_2D_subviewport.gdshader" id="2_u00ar"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2rwsk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g7c8y"]
+noise = SubResource("FastNoiseLite_2rwsk")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2i2ew"]
+load_path = "res://.godot/imported/Dirt_18-256x256.png-0909036e71df6514921d8e948c1422bf.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tk205"]
+shader = ExtResource("2_u00ar")
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_2i2ew")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_g7c8y")
+shader_parameter/noise_scale = 1.0
+shader_parameter/path_width = 0.499999988824
+shader_parameter/edge_softness = 0.2
+shader_parameter/edge_distortion = 0.3
+shader_parameter/patch_holes = 0.1
+shader_parameter/use_circle_mode = false
+shader_parameter/use_90_deg_bend = true
+shader_parameter/bend_right = true
+shader_parameter/curve_amplitude = 1.40000016987368
+shader_parameter/curve_frequency = 0.23800001060648
+shader_parameter/curve_phase = 0.0
+shader_parameter/circle_radius = 6.0
+shader_parameter/track_width = 4.0
+shader_parameter/virtual_scale = Vector2(5, 5)
+shader_parameter/uv1_scale = Vector2(1, 1)
+shader_parameter/uv1_offset = Vector2(0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2rwsk"]
+size = Vector3(8, 10, 8)
+
+[node name="CirclePathDecal" type="Decal" unique_id=80287129]
+layers = 2
+distance_fade_enabled = true
+distance_fade_length = 100.0
+script = ExtResource("1_okk31")
+use_circle_mode = true
+path_width = 8.0
+path_length = 8.0
+curve_bends = 0
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=664117861]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=1685654277]
+material = SubResource("ShaderMaterial_tk205")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PathPreview" type="MeshInstance3D" parent="." unique_id=1627649238]
+mesh = SubResource("BoxMesh_2rwsk")

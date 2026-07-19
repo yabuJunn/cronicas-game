@@ -1,5 +1,4 @@
-// Info: Este shader se aplica a un ColorRect dentro de un SubViewport.
-// Genera la textura del camino dinámicamente para el Decal nativo.
+// Info: Generador dinámico de caminos (Soporta Rectas, Curvas en S, Giros de 90° y Plazas Circulares Llenas)
 shader_type canvas_item;
 
 // --- TEXTURA DEL CAMINO ---
@@ -18,29 +17,50 @@ uniform float edge_distortion : hint_range(0.0, 1.0, 0.01) = 0.3;
 // --- HUECOS / PARCHES ---
 uniform float patch_holes : hint_range(0.0, 1.0, 0.01) = 0.1; 
 
-// --- CURVATURA MATEMÁTICA ---
-group_uniforms Curvatura_Camino;
+// --- MODOS DE CURVATURA ---
+group_uniforms Modos_De_Camino;
+uniform bool use_circle_mode = false;
 uniform bool use_90_deg_bend = false;
 uniform bool bend_right = true;
 
+group_uniforms Parametros_Curva_Sinaudal;
 uniform float curve_amplitude : hint_range(-10.0, 10.0, 0.05) = 0.0;
 uniform float curve_frequency : hint_range(0.01, 1.0, 0.001) = 0.1;
 uniform float curve_phase : hint_range(-6.28, 6.28, 0.01) = 0.0;
 
-// Reemplazamos la escala física tridimensional por un control virtual en el plano
+group_uniforms Parametros_Circulo;
+uniform float circle_radius = 6.0; 
+
+// Variables de mapeo global
+uniform float track_width = 4.0;  
 uniform vec2 virtual_scale = vec2(5.0, 5.0);
 uniform vec2 uv1_scale = vec2(1.0, 1.0);
 uniform vec2 uv1_offset = vec2(0.0, 0.0);
 
 void fragment() {
-	// Reemplazamos local_pos mapeando la UV bidimensional de -0.5 a 0.5
-	// La X sigue siendo el ancho y la Y toma el lugar de la Z (el avance del camino)
 	vec2 local_pos = UV - vec2(0.5);
-	
 	vec2 projected_uv;
 	float dist_center;
 
-	if (use_90_deg_bend) {
+	if (use_circle_mode) {
+		// --- MODO PLAZA CÍRCULO LLENO ---
+		float world_x = local_pos.x * virtual_scale.x;
+		float world_y = local_pos.y * virtual_scale.y;
+		vec2 world_pos = vec2(world_x, world_y);
+		
+		float dist_to_center = length(world_pos);
+		
+		// Proyección plana para que la textura no se pellizque ni se vuelva loca en el centro
+		projected_uv = world_pos;
+		
+		// El radio máximo real de la plaza en metros
+		float max_radius = circle_radius + (track_width * 0.5);
+		
+		// Sincronizamos con el slider de 'path_width' para heredar el ruido y el desvanecido original
+		dist_center = (dist_to_center / max_radius) * path_width;
+		
+	} else if (use_90_deg_bend) {
+		// --- MODO GIRO 90 GRADOS ---
 		vec2 U;
 		if (bend_right) {
 			U = vec2(0.5 - local_pos.x, 0.5 - local_pos.y);
@@ -60,9 +80,10 @@ void fragment() {
 		float curve_y = t * (0.5 * PI * virtual_scale.y);
 		
 		projected_uv = vec2(curve_x, curve_y);
-		dist_center = abs(dist_to_pivot - 0.5) * 2.0;
+		dist_center = abs(dist_to_pivot - 0.5) / (track_width * 0.5);
 		
 	} else {
+		// --- MODO RECTO / LINEAL SINUSOIDAL ---
 		float world_x = local_pos.x * virtual_scale.x;
 		float world_y = local_pos.y * virtual_scale.y;
 		
@@ -70,7 +91,7 @@ void fragment() {
 		
 		projected_uv = vec2(world_x - curve_offset, world_y);
 		float dist_center_world = abs(world_x - curve_offset);
-		dist_center = dist_center_world / (virtual_scale.x * 0.5);
+		dist_center = dist_center_world / (track_width * 0.5);
 	}
 
 	vec2 final_uv = projected_uv * uv1_scale + uv1_offset;
@@ -80,11 +101,10 @@ void fragment() {
 	
 	float distorted_dist = dist_center + (noise - 0.5) * edge_distortion;
 	
+	// Reutilizamos tus transiciones orgánicas suaves para el borde exterior del círculo
 	float edge_mask = 1.0 - smoothstep(path_width - edge_softness, path_width, distorted_dist);
 	float hole_mask = smoothstep(patch_holes - 0.1, patch_holes + 0.1, noise);
 	
-	// El color de salida ya no tiene global_tint. 
-	// Las luces y sombras del entorno 3D afectarán al Decal de forma nativa.
 	COLOR.rgb = albedo_tex.rgb * path_color.rgb;
 	COLOR.a = edge_mask * hole_mask * albedo_tex.a * path_color.a;
 }

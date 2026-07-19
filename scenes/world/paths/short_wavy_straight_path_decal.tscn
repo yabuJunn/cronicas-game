@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://duus3jv4lch8k"]
+[gd_scene format=3 uid="uid://cym1mdnjomtrf"]
 
-[ext_resource type="Script" uid="uid://bvwpgqmxfhwet" path="res://scenes/world/paths/subviewport_decal_texture.gd" id="1_kjikm"]
-[ext_resource type="Shader" uid="uid://k8s3ylmv5a6t" path="res://shaders/dirt_shader_2D_subviewport.gdshader" id="2_kaivb"]
-[ext_resource type="Texture2D" uid="uid://csjvikkqvd7at" path="res://textures/Dirt/Dirt_18-256x256.png" id="3_luirc"]
+[ext_resource type="Script" uid="uid://bvwpgqmxfhwet" path="res://scenes/world/paths/subviewport_decal_texture.gd" id="1_w7g36"]
+[ext_resource type="Shader" uid="uid://k8s3ylmv5a6t" path="res://shaders/dirt_shader_2D_subviewport.gdshader" id="2_c1bed"]
+[ext_resource type="Texture2D" uid="uid://csjvikkqvd7at" path="res://textures/Dirt/Dirt_18-256x256.png" id="3_pshkh"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bohvq"]
 
@@ -10,8 +10,8 @@
 noise = SubResource("FastNoiseLite_bohvq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xudhm"]
-shader = ExtResource("2_kaivb")
-shader_parameter/texture_albedo = ExtResource("3_luirc")
+shader = ExtResource("2_c1bed")
+shader_parameter/texture_albedo = ExtResource("3_pshkh")
 shader_parameter/path_color = Color(1, 1, 1, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_0xfjq")
 shader_parameter/noise_scale = 1.0
@@ -19,28 +19,24 @@ shader_parameter/path_width = 0.499999988824
 shader_parameter/edge_softness = 0.2
 shader_parameter/edge_distortion = 0.3
 shader_parameter/patch_holes = 0.1
-shader_parameter/use_circle_mode = false
 shader_parameter/use_90_deg_bend = false
 shader_parameter/bend_right = true
 shader_parameter/curve_amplitude = 1.40000016987368
 shader_parameter/curve_frequency = 0.23800001060648
 shader_parameter/curve_phase = 0.0
-shader_parameter/circle_radius = 6.0
-shader_parameter/track_width = 4.0
 shader_parameter/virtual_scale = Vector2(5, 5)
 shader_parameter/uv1_scale = Vector2(1, 1)
 shader_parameter/uv1_offset = Vector2(0, 0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_kaivb"]
-size = Vector3(4, 10, 80)
+[sub_resource type="BoxMesh" id="BoxMesh_w7g36"]
+size = Vector3(4, 10, 20)
 
-[node name="LongWavyStraightPathDecal" type="Decal" unique_id=80287129]
+[node name="ShortWavyStraightPathDecal" type="Decal" unique_id=80287129]
 layers = 2
 distance_fade_enabled = true
 distance_fade_length = 100.0
-script = ExtResource("1_kjikm")
+script = ExtResource("1_w7g36")
 path_width = 8.0
-path_length = 80.0
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=664117861]
 transparent_bg = true
@@ -55,4 +51,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PathPreview" type="MeshInstance3D" parent="." unique_id=1627649238]
-mesh = SubResource("BoxMesh_kaivb")
+mesh = SubResource("BoxMesh_w7g36")

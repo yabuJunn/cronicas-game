@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://duus3jv4lch8k"]
+[gd_scene format=3 uid="uid://dbm4gimtnqn0k"]
 
-[ext_resource type="Script" uid="uid://bvwpgqmxfhwet" path="res://scenes/world/paths/subviewport_decal_texture.gd" id="1_kjikm"]
-[ext_resource type="Shader" uid="uid://k8s3ylmv5a6t" path="res://shaders/dirt_shader_2D_subviewport.gdshader" id="2_kaivb"]
-[ext_resource type="Texture2D" uid="uid://csjvikkqvd7at" path="res://textures/Dirt/Dirt_18-256x256.png" id="3_luirc"]
+[ext_resource type="Script" uid="uid://bvwpgqmxfhwet" path="res://scenes/world/paths/subviewport_decal_texture.gd" id="1_p33o0"]
+[ext_resource type="Shader" uid="uid://k8s3ylmv5a6t" path="res://shaders/dirt_shader_2D_subviewport.gdshader" id="2_pes0q"]
+[ext_resource type="Texture2D" uid="uid://csjvikkqvd7at" path="res://textures/Dirt/Dirt_18-256x256.png" id="3_yo6jc"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bohvq"]
 
@@ -10,8 +10,8 @@
 noise = SubResource("FastNoiseLite_bohvq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xudhm"]
-shader = ExtResource("2_kaivb")
-shader_parameter/texture_albedo = ExtResource("3_luirc")
+shader = ExtResource("2_pes0q")
+shader_parameter/texture_albedo = ExtResource("3_yo6jc")
 shader_parameter/path_color = Color(1, 1, 1, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_0xfjq")
 shader_parameter/noise_scale = 1.0
@@ -31,16 +31,16 @@ shader_parameter/virtual_scale = Vector2(5, 5)
 shader_parameter/uv1_scale = Vector2(1, 1)
 shader_parameter/uv1_offset = Vector2(0, 0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_kaivb"]
-size = Vector3(4, 10, 80)
+[sub_resource type="BoxMesh" id="BoxMesh_w7g36"]
+size = Vector3(4, 10, 20)
 
-[node name="LongWavyStraightPathDecal" type="Decal" unique_id=80287129]
+[node name="ShortStraightPathDecal" type="Decal" unique_id=80287129]
 layers = 2
 distance_fade_enabled = true
 distance_fade_length = 100.0
-script = ExtResource("1_kjikm")
+script = ExtResource("1_p33o0")
 path_width = 8.0
-path_length = 80.0
+curve_bends = 0
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=664117861]
 transparent_bg = true
@@ -55,4 +55,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PathPreview" type="MeshInstance3D" parent="." unique_id=1627649238]
-mesh = SubResource("BoxMesh_kaivb")
+mesh = SubResource("BoxMesh_w7g36")

@@ -15,7 +15,7 @@ shader_parameter/texture_albedo = ExtResource("3_luirc")
 shader_parameter/path_color = Color(1, 1, 1, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_0xfjq")
 shader_parameter/noise_scale = 1.0
-shader_parameter/path_width = 0.5999999865888
+shader_parameter/path_width = 0.499999988824
 shader_parameter/edge_softness = 0.2
 shader_parameter/edge_distortion = 0.3
 shader_parameter/patch_holes = 0.1
@@ -24,21 +24,21 @@ shader_parameter/bend_right = true
 shader_parameter/curve_amplitude = 0.7000001594428404
 shader_parameter/curve_frequency = 0.32900001492898
 shader_parameter/curve_phase = 0.0
-shader_parameter/virtual_scale = Vector2(4, 80)
-shader_parameter/uv1_scale = Vector2(0.25, 0.25)
+shader_parameter/virtual_scale = Vector2(5, 5)
+shader_parameter/uv1_scale = Vector2(1, 1)
 shader_parameter/uv1_offset = Vector2(0, 0)
 
 [node name="LongWavyPathDecal" type="Node3D" unique_id=1061097441]
 
 [node name="Decal" type="Decal" parent="." unique_id=80287129]
 layers = 2
-size = Vector3(4, 2, 80)
 distance_fade_enabled = true
 script = ExtResource("1_kjikm")
+path_width = 8.0
+path_length = 80.0
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=664117861]
 transparent_bg = true
-size = Vector2i(256, 5120)
 render_target_update_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=1685654277]

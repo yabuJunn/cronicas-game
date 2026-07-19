@@ -1474,7 +1474,7 @@ transform = Transform3D(-1.7909412, 0, -10.370431, 0, 5, 0, 3.953243, 0, -4.6981
 transform = Transform3D(-4.1391773, 0, 1.6852696, 0, 4.9999995, 0, -1.3049188, 0, -5.3456416, -28.910307, -8.837664, -252.31407)
 
 [node name="LongWavyPathDecal" parent="Paths" unique_id=1061097441 instance=ExtResource("25_jvg85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.202026, -8.529884, -212.47075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.202026, -8.860876, -212.47075)
 
 [node name="CinemaMarkers" type="Node3D" parent="." unique_id=1917427133]
 

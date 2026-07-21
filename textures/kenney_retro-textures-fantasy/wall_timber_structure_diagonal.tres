@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://vutkkw4kqfob"]
+
+[ext_resource type="Texture2D" uid="uid://chr2820hsx1ri" path="res://textures/kenney_retro-textures-fantasy/wall_timber_structure_diagonal.png" id="1_i4vg2"]
+
+[resource]
+albedo_texture = ExtResource("1_i4vg2")
+metallic_specular = 0.0
+texture_filter = 2

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://yx6jwhf88avg"]
+
+[ext_resource type="Texture2D" uid="uid://b2walb34l3ydx" path="res://textures/kenney_retro-textures-fantasy/door_wood_handle.png" id="1_6yy45"]
+
+[resource]
+albedo_texture = ExtResource("1_6yy45")
+metallic_specular = 0.0
+texture_filter = 2

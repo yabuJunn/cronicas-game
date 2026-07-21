@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://d0tkqen4tuof7"
+path="res://.godot/imported/villageTower1.1.map-7e89b0a425a2d3b98a0379f27ba17f7e.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/houses/autosave/villageTower1.1.map"
+dest_files=["res://.godot/imported/villageTower1.1.map-7e89b0a425a2d3b98a0379f27ba17f7e.tres"]
+
+[params]
+

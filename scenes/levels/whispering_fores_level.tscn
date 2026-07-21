@@ -17,26 +17,32 @@
 [ext_resource type="PackedScene" uid="uid://cw5o5ubhuqlu7" path="res://scenes/objects/world/houses/tower_outskirts.tscn" id="14_to654"]
 [ext_resource type="Script" uid="uid://cau2r3unnyel3" path="res://scenes/objects/interactible_objects/rocks_bridge_to_move.gd" id="14_xvxio"]
 [ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/rock_bridge_switch.tscn" id="16_etlwe"]
+[ext_resource type="PackedScene" uid="uid://crqb4himt2hcp" path="res://scenes/objects/world/houses/VillageHouse2.tscn" id="16_h3dir"]
+[ext_resource type="PackedScene" uid="uid://dxuwbgyt71pcl" path="res://scenes/objects/world/houses/VillageHouse3.tscn" id="17_gj0yl"]
+[ext_resource type="PackedScene" uid="uid://cnn32yy8lwllp" path="res://scenes/objects/world/houses/VillageHouse4.tscn" id="18_0xfjq"]
 [ext_resource type="AudioStream" uid="uid://dr2cbgdsj0kt6" path="res://sounds/ambient/kokoreli777-sea-waves-169411.mp3" id="18_v2mpa"]
 [ext_resource type="PackedScene" uid="uid://ndq4fk4kygm4" path="res://scenes/objects/energy_sphere_deactivated.tscn" id="18_xeu51"]
 [ext_resource type="PackedScene" uid="uid://byaok1ahq4xbd" path="res://scenes/objects/interactible_objects/energy_sphere_chargin_station.tscn" id="19_myv0h"]
+[ext_resource type="PackedScene" uid="uid://dgscnrhc81fss" path="res://scenes/objects/world/houses/VillageTower1.tscn" id="19_r1yae"]
+[ext_resource type="PackedScene" uid="uid://cr5je18cect7i" path="res://scenes/objects/world/houses/VillageTower2.tscn" id="20_rr26k"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="22_ymrg4"]
 [ext_resource type="PackedScene" uid="uid://cym1mdnjomtrf" path="res://scenes/world/paths/short_wavy_straight_path_decal.tscn" id="25_h3dir"]
 [ext_resource type="PackedScene" uid="uid://duus3jv4lch8k" path="res://scenes/world/paths/long_wavy_path_decal.tscn" id="25_jvg85"]
 [ext_resource type="Script" uid="uid://ch8qjgln2jxr3" path="res://scenes/levels/next_level_area_to_sea.gd" id="26_4p7th"]
 [ext_resource type="PackedScene" uid="uid://dbm4gimtnqn0k" path="res://scenes/world/paths/short_straight_path_decal.tscn" id="27_0xfjq"]
+[ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="27_jvg85"]
 [ext_resource type="PackedScene" uid="uid://de1o4orf880wf" path="res://scenes/world/paths/circle_path_decal.tscn" id="27_r1yae"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
 ground_color = Color(0.19165215, 0.504012, 0.6223743, 1)
 
-[sub_resource type="Sky" id="Sky_yrra7"]
+[sub_resource type="Sky" id="Sky_4p7th"]
 sky_material = SubResource("PhysicalSkyMaterial_5tvve")
 
 [sub_resource type="Environment" id="Environment_0scc7"]
 background_mode = 2
 background_color = Color(0.361864, 0.647419, 0.75454575, 1)
-sky = SubResource("Sky_yrra7")
+sky = SubResource("Sky_4p7th")
 ambient_light_source = 2
 ambient_light_color = Color(0.3346886, 0.71881086, 0.8148487, 1)
 ambient_light_energy = 0.14
@@ -255,7 +261,8 @@ mesh_library = ExtResource("9_a1d46")
 mesh_proportions = Array[int]([10])
 collision_user_data = null
 align = 2
-min_scale = 0.7
+min_scale = 0.519
+max_scale = 0.7
 metadata/_custom_type_script = "uid://gwqrknegmc0e"
 
 [sub_resource type="Resource" id="Resource_rws65"]
@@ -420,7 +427,7 @@ size = Vector3(14.315186, 12.039673, 68.32031)
 environment = SubResource("Environment_0scc7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1874530262]
-transform = Transform3D(0.8910335, 0.41212454, 0.1902966, -0.16672364, -0.0927972, 0.98162717, 0.42221153, -0.90638983, -0.013974499, 0, 0, 0)
+transform = Transform3D(0.9914628, -0.027040726, -0.12755562, 0.09742266, -0.49656737, 0.8625136, -0.08666295, -0.86757714, -0.4896935, 0, 0, 0)
 layers = 6
 light_energy = 0.442
 light_volumetric_fog_energy = 0.148
@@ -463,7 +470,6 @@ mesh = SubResource("QuadMesh_a1d46")
 [node name="WorldObjects" type="Node3D" parent="." unique_id=326087452]
 
 [node name="ScatterObjects" type="Node3D" parent="WorldObjects" unique_id=228513466]
-process_mode = 4
 
 [node name="ScatterShotZoneRect" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1988366634]
 transform = Transform3D(0.8798228, 0, 0.47530177, 0, 1, 0, -0.47530177, 0, 0.8798228, -183.339, 16.397, 90.54)
@@ -1275,6 +1281,26 @@ shadow_enabled = true
 distance_fade_enabled = true
 omni_range = 6.736985
 
+[node name="Village" type="Node3D" parent="WorldObjects/Houses" unique_id=15152725]
+
+[node name="VillageHouse(1)" parent="WorldObjects/Houses/Village" unique_id=2003100932 instance=ExtResource("4_anfc4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 246.56697, -1.796565, 80.65802)
+
+[node name="VillageHouse(2)" parent="WorldObjects/Houses/Village" unique_id=1274955824 instance=ExtResource("16_h3dir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 237.02025, -1.796565, 80.65802)
+
+[node name="VillageHouse(3)" parent="WorldObjects/Houses/Village" unique_id=2039322746 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.62123, -1.796565, 80.65802)
+
+[node name="VillageHouse(4)" parent="WorldObjects/Houses/Village" unique_id=1664160948 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.94627, -1.752136, 80.6004)
+
+[node name="VillageTower(1)" parent="WorldObjects/Houses/Village" unique_id=977565960 instance=ExtResource("19_r1yae")]
+transform = Transform3D(-0.6, 0, 5.2453668e-08, 0, 0.6, 0, -5.2453668e-08, 0, -0.6, 189.838, 33.535, 80.6)
+
+[node name="VillageTower(2)" parent="WorldObjects/Houses/Village" unique_id=383602282 instance=ExtResource("20_rr26k")]
+transform = Transform3D(-0.6, 0, 5.2453668e-08, 0, 0.6, 0, -5.2453668e-08, 0, -0.6, 164.73169, 33.535, 80.6)
+
 [node name="InteractibleObjects" type="Node3D" parent="WorldObjects" unique_id=775300750]
 
 [node name="RockBridgeSwitch" parent="WorldObjects/InteractibleObjects" unique_id=1903263336 instance=ExtResource("16_etlwe")]
@@ -1486,5 +1512,5 @@ siguiente_nivel_ruta = "uid://di1d1ewmv5vyc"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8217163, 2.9402466, 0)
 shape = SubResource("BoxShape3D_jvg85")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=450669996]
-transform = Transform3D(0.03891101, 0, -0.99924266, 0, 1, 0, 0.99924266, 0, 0.03891101, -85.03775, 10.057095, 132.9755)
+[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("27_jvg85")]
+transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, 234.22487, 3.810296, 73.366684)

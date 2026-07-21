@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dyw1aflkvvosv"
+path="res://.godot/imported/villageTowerWindBlades.map-e89549db5a4ecfebb2739591208332ee.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/houses/villageTowerWindBlades.map"
+dest_files=["res://.godot/imported/villageTowerWindBlades.map-e89549db5a4ecfebb2739591208332ee.tres"]
+
+[params]
+

@@ -1,4 +1,4 @@
-// Info: Generador dinámico de caminos (Soporta Rectas, Curvas en S, Giros de 90° y Plazas Circulares Llenas)
+// Info: Generador dinámico de caminos con fusión limpia en mundo global
 shader_type canvas_item;
 
 // --- TEXTURA DEL CAMINO ---
@@ -31,6 +31,12 @@ uniform float curve_phase : hint_range(-6.28, 6.28, 0.01) = 0.0;
 group_uniforms Parametros_Circulo;
 uniform float circle_radius = 6.0; 
 
+// --- COORDENADAS GLOBALES (MÁGICA DE FUSIÓN) ---
+group_uniforms Alineacion_Global;
+uniform bool lock_to_world_grid = true; // Activa la fusión invisible entre piezas
+uniform vec2 global_pos = vec2(0.0);    // Posición X y Z del Decal en el mundo 3D
+uniform float global_rot = 0.0;   // Rotación Y del Decal en el mundo 3D
+
 // Variables de mapeo global
 uniform float track_width = 4.0;  
 uniform vec2 virtual_scale = vec2(5.0, 5.0);
@@ -39,24 +45,20 @@ uniform vec2 uv1_offset = vec2(0.0, 0.0);
 
 void fragment() {
 	vec2 local_pos = UV - vec2(0.5);
+	
+	// Calculamos los metros locales relativos al centro del Decal
+	float world_x = local_pos.x * virtual_scale.x;
+	float world_y = local_pos.y * virtual_scale.y;
+	
 	vec2 projected_uv;
 	float dist_center;
 
 	if (use_circle_mode) {
 		// --- MODO PLAZA CÍRCULO LLENO ---
-		float world_x = local_pos.x * virtual_scale.x;
-		float world_y = local_pos.y * virtual_scale.y;
 		vec2 world_pos = vec2(world_x, world_y);
-		
 		float dist_to_center = length(world_pos);
-		
-		// Proyección plana para que la textura no se pellizque ni se vuelva loca en el centro
 		projected_uv = world_pos;
-		
-		// El radio máximo real de la plaza en metros
 		float max_radius = circle_radius + (track_width * 0.5);
-		
-		// Sincronizamos con el slider de 'path_width' para heredar el ruido y el desvanecido original
 		dist_center = (dist_to_center / max_radius) * path_width;
 		
 	} else if (use_90_deg_bend) {
@@ -84,24 +86,33 @@ void fragment() {
 		
 	} else {
 		// --- MODO RECTO / LINEAL SINUSOIDAL ---
-		float world_x = local_pos.x * virtual_scale.x;
-		float world_y = local_pos.y * virtual_scale.y;
-		
 		float curve_offset = sin(world_y * curve_frequency + curve_phase) * curve_amplitude;
-		
 		projected_uv = vec2(world_x - curve_offset, world_y);
 		float dist_center_world = abs(world_x - curve_offset);
 		dist_center = dist_center_world / (track_width * 0.5);
 	}
 
-	vec2 final_uv = projected_uv * uv1_scale + uv1_offset;
+	// MÁGICA: Si está activo, recalculamos la UV usando la posición del mundo real en 3D
+	vec2 final_uv;
+	if (lock_to_world_grid) {
+		float cos_b = cos(global_rot);
+		float sin_b = sin(global_rot);
+		// Matriz de rotación 2D para acompañar el giro del Decal en el mapa
+		vec2 world_space_coords = vec2(
+			world_x * cos_b - world_y * sin_b,
+			world_x * sin_b + world_y * cos_b
+		) + global_pos;
+		
+		final_uv = world_space_coords * uv1_scale + uv1_offset;
+	} else {
+		final_uv = projected_uv * uv1_scale + uv1_offset;
+	}
 
 	vec4 albedo_tex = texture(texture_albedo, final_uv);
 	float noise = texture(noise_texture, final_uv * noise_scale).r;
 	
 	float distorted_dist = dist_center + (noise - 0.5) * edge_distortion;
 	
-	// Reutilizamos tus transiciones orgánicas suaves para el borde exterior del círculo
 	float edge_mask = 1.0 - smoothstep(path_width - edge_softness, path_width, distorted_dist);
 	float hole_mask = smoothstep(patch_holes - 0.1, patch_holes + 0.1, noise);
 	

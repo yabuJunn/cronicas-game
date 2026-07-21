@@ -18,12 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cw5o5ubhuqlu7" path="res://scenes/objects/world/houses/tower_outskirts.tscn" id="14_to654"]
 [ext_resource type="Script" uid="uid://cau2r3unnyel3" path="res://scenes/objects/interactible_objects/rocks_bridge_to_move.gd" id="14_xvxio"]
 [ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/rock_bridge_switch.tscn" id="16_etlwe"]
-[ext_resource type="PackedScene" uid="uid://1t40lxq11773" path="res://scenes/world/paths/straigth_path.tscn" id="16_py8g7"]
 [ext_resource type="AudioStream" uid="uid://dr2cbgdsj0kt6" path="res://sounds/ambient/kokoreli777-sea-waves-169411.mp3" id="18_v2mpa"]
 [ext_resource type="PackedScene" uid="uid://ndq4fk4kygm4" path="res://scenes/objects/energy_sphere_deactivated.tscn" id="18_xeu51"]
-[ext_resource type="PackedScene" uid="uid://ddw7fgwbdlruc" path="res://scenes/world/paths/l_curve_left_path.tscn" id="18_xvxio"]
 [ext_resource type="PackedScene" uid="uid://byaok1ahq4xbd" path="res://scenes/objects/interactible_objects/energy_sphere_chargin_station.tscn" id="19_myv0h"]
-[ext_resource type="PackedScene" uid="uid://62ksdb7unp2t" path="res://scenes/world/paths/curved_large_straigth_path.tscn" id="19_xvxio"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="22_ymrg4"]
 [ext_resource type="PackedScene" uid="uid://cym1mdnjomtrf" path="res://scenes/world/paths/short_wavy_straight_path_decal.tscn" id="25_h3dir"]
 [ext_resource type="PackedScene" uid="uid://duus3jv4lch8k" path="res://scenes/world/paths/long_wavy_path_decal.tscn" id="25_jvg85"]
@@ -46,14 +43,12 @@ ambient_light_color = Color(0.3346886, 0.71881086, 0.8148487, 1)
 ambient_light_energy = 0.14
 reflected_light_source = 2
 tonemap_mode = 3
-fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.44725227, 0.76184994, 0.84916157, 1)
+fog_light_color = Color(0.13104072, 0.31304422, 0.3627033, 1)
 fog_density = 1.0
 fog_depth_curve = 2.9281712
-fog_depth_begin = 30.0
-fog_depth_end = 200.0
-volumetric_fog_enabled = true
+fog_depth_begin = 0.0
+fog_depth_end = 150.0
 volumetric_fog_density = 0.0548
 volumetric_fog_albedo = Color(0.3898493, 0.6642744, 0.7293618, 1)
 volumetric_fog_emission = Color(0.0930867, 0.22663963, 0.24753043, 1)
@@ -423,8 +418,15 @@ size = Vector3(14.315186, 12.039673, 68.32031)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1640846100]
 environment = SubResource("Environment_0scc7")
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1874530262]
+transform = Transform3D(0.8910335, 0.41212454, 0.1902966, -0.16672364, -0.0927972, 0.98162717, 0.42221153, -0.90638983, -0.013974499, 0, 0, 0)
+layers = 6
+light_volumetric_fog_energy = 0.148
+shadow_enabled = true
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1387043691]
 transform = Transform3D(-0.8660254, -0.29106152, 0.40655044, 0, 0.81310076, 0.582123, -0.50000006, 0.5041333, -0.7041659, 0, 0, 0)
+visible = false
 layers = 6
 light_volumetric_fog_energy = 0.148
 shadow_enabled = true
@@ -1309,164 +1311,113 @@ parameters/looping = true
 
 [node name="Paths" type="Node3D" parent="WorldObjects" unique_id=1707030482]
 
-[node name="CurvedLargeStraigthPath" parent="WorldObjects/Paths" unique_id=958646733 instance=ExtResource("19_xvxio")]
-transform = Transform3D(8, 0, 0, 0, 5.4675546, 0, 0, 0, 80, -47.13038, -7.412509, -185.461)
-
-[node name="CurvedLargeStraigthPath21" parent="WorldObjects/Paths" unique_id=928121199 instance=ExtResource("19_xvxio")]
-transform = Transform3D(5.7411222, 0, -21.693295, 0, 5.468, 0, 5.5713115, 0, 22.354494, -40.43142, -7.41779, -240.05626)
-
-[node name="CurvedLargeStraigthPath2" parent="WorldObjects/Paths" unique_id=955200825 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.9825597, 0, -5.279621, 0, 5.467555, 0, 0.5279621, 0, 79.8256, -57.089, -8.004, -98.268)
-
-[node name="CurvedLargeStraigthPath3" parent="WorldObjects/Paths" unique_id=525157253 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.9825597, 0, -5.2796216, 0, 10, 0, 0.52796215, 0, 79.8256, -62.375, -6.948, -18.562)
-
-[node name="CurvedLargeStraigthPath4" parent="WorldObjects/Paths" unique_id=1028532523 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.9825597, 0, -5.2796216, 0, 10, 0, 0.52796215, 0, 79.8256, -67.874, -6.948, 61.131)
-
-[node name="CurvedLargeStraigthPath18" parent="WorldObjects/Paths" unique_id=1268800077 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.7233806, 0, 16.87837, 0, 9.999999, 0, -2.0855188, 0, 62.506287, 30.157978, -6.948, -50.452164)
-
-[node name="CurvedLargeStraigthPath19" parent="WorldObjects/Paths" unique_id=1983131611 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.9941726, 0, -2.4707396, 0, 10.000001, 0, 0.30528867, 0, 64.69784, 18.910494, -6.948, -116.02905)
-
-[node name="CurvedLargeStraigthPath20" parent="WorldObjects/Paths" unique_id=342744586 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.9244967, 0, -8.874221, 0, 10, 0, 1.0965134, 0, 64.13393, 28.50857, -6.948, -187.18501)
-
-[node name="CurvedLargeStraigthPath8" parent="WorldObjects/Paths" unique_id=367473028 instance=ExtResource("19_xvxio")]
-transform = Transform3D(5.266362, 0, 60.22077, 0, 10, 0, -6.022077, 0, 52.663628, -219.36734, -15.324764, -2.5861387)
-
-[node name="CurvedLargeStraigthPath9" parent="WorldObjects/Paths" unique_id=2059120890 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.999999, 0, 0, 0, 10, 0, 0, 0, 79.99999, -249.25668, -15.324764, -70.11635)
-
-[node name="CurvedLargeStraigthPath22" parent="WorldObjects/Paths" unique_id=374218756 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.999999, 0, 0, 0, 10, 0, 0, 0, 79.99999, -249.25668, -15.324764, -70.11635)
-
-[node name="CurvedLargeStraigthPath10" parent="WorldObjects/Paths" unique_id=613866331 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.9914513, 0, 3.6973844, 0, 10.000001, 0, -0.36973843, 0, 79.91451, -250.898, -15.325, -149.943)
-
-[node name="CurvedLargeStraigthPath11" parent="WorldObjects/Paths" unique_id=623321992 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.9914513, 0, 3.6973844, 0, 10.000001, 0, -0.36973843, 0, 79.91451, -250.898, -15.325, -149.943)
-
-[node name="CurvedLargeStraigthPath12" parent="WorldObjects/Paths" unique_id=1932506945 instance=ExtResource("19_xvxio")]
-transform = Transform3D(-7.8283815, 0, -9.275063e-06, 0, 10, 0, 6.8437885e-07, 0, -106.09435, -252.69014, -15.325, -242.8311)
-
-[node name="CurvedLargeStraigthPath13" parent="WorldObjects/Paths" unique_id=601539015 instance=ExtResource("19_xvxio")]
-transform = Transform3D(6.143529, 0, 18.218325, 0, 10, 0, -4.8518667, 0, 23.068394, -262.25122, -15.325, -309.99597)
-
-[node name="CurvedLargeStraigthPath14" parent="WorldObjects/Paths" unique_id=792874232 instance=ExtResource("19_xvxio")]
-transform = Transform3D(5.6836777, 0, 20.213615, 0, 10, 0, -5.383249, 0, 21.341694, -280.35367, -13.433453, -332.4224)
-
-[node name="CurvedLargeStraigthPath15" parent="WorldObjects/Paths" unique_id=786331580 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.550024, 0, 2.9038377, 0, 10.000001, 0, -0.4945901, 0, 44.327644, -290.2516, -13.433453, -364.10046)
-
-[node name="CurvedLargeStraigthPath6" parent="WorldObjects/Paths" unique_id=1012579206 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.666511, 0, -2.1191387, 0, 10, 0, 0.50705886, 0, 32.040462, -71.26316, -6.948, 113.65982)
-
-[node name="CurvedLargeStraigthPath5" parent="WorldObjects/Paths" unique_id=37325223 instance=ExtResource("19_xvxio")]
-transform = Transform3D(0.94723135, 0, 68.688385, 0, 5.4679995, 0, -7.943724, 0, 8.190591, -83.39536, -6.948, 129.35263)
-
-[node name="CurvedLargeStraigthPath16" parent="WorldObjects/Paths" unique_id=346237605 instance=ExtResource("19_xvxio")]
-transform = Transform3D(-6.072171, 0, 32.852776, 0, 5.4679995, 0, -5.2085257, 0, -38.300224, 40.219337, -6.948, 112.31938)
-
-[node name="CurvedLargeStraigthPath17" parent="WorldObjects/Paths" unique_id=1663244267 instance=ExtResource("19_xvxio")]
-transform = Transform3D(7.993838, 0, -5.1737146, 0, 5.468, 0, 0.31393903, 0, 131.73846, 37.32, -6.948, 46.463)
-
-[node name="LCurveLeftPath" parent="WorldObjects/Paths" unique_id=626460961 instance=ExtResource("18_xvxio")]
-transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, -46.85758, -8.577171, -229.4543)
-
-[node name="LCurveLeftPath4" parent="WorldObjects/Paths" unique_id=654555513 instance=ExtResource("18_xvxio")]
-transform = Transform3D(7.9698734, 0, -0.6936294, 0, 7.64, 0, 0.6936294, 0, 7.9698734, -188.68204, -16.589638, 19.742748)
-
-[node name="LCurveLeftPath5" parent="WorldObjects/Paths" unique_id=52420397 instance=ExtResource("18_xvxio")]
-transform = Transform3D(-5.7837377, 0, 5.527059, 0, 7.64, 0, -5.527059, 0, -5.7837377, -250.92247, -16.589638, -29.931492)
-
-[node name="LCurveLeftPath6" parent="WorldObjects/Paths" unique_id=1909487189 instance=ExtResource("18_xvxio")]
-transform = Transform3D(7.332075, 0, -3.2001042, 0, 7.639998, 0, 3.2001042, 0, 7.332075, -250.92247, -13.915577, -297.4578)
-
-[node name="LCurveLeftPath18" parent="WorldObjects/Paths" unique_id=1202413244 instance=ExtResource("18_xvxio")]
-transform = Transform3D(6.154483, 0, -5.111001, 0, 7.639998, 0, 5.111001, 0, 6.154483, -250.92247, -13.915577, -190.2056)
-
-[node name="LCurveLeftPath19" parent="WorldObjects/Paths" unique_id=1253853185 instance=ExtResource("18_xvxio")]
-transform = Transform3D(-6.6582656, 0, 4.4348044, 0, 7.639998, 0, -4.4348044, 0, -6.6582656, -255.83809, -13.915577, -194.21509)
-
-[node name="LCurveLeftPath7" parent="WorldObjects/Paths" unique_id=843701668 instance=ExtResource("18_xvxio")]
-transform = Transform3D(7.332075, 0, -3.2001042, 0, 7.639998, 0, 3.2001042, 0, 7.332075, -251.40936, -13.915577, -299.49344)
-
-[node name="LCurveLeftPath8" parent="WorldObjects/Paths" unique_id=148602861 instance=ExtResource("18_xvxio")]
-transform = Transform3D(-7.869929, 0, 1.4367368, 0, 7.639998, 0, -1.4367368, 0, -7.869929, -291.398, -13.915577, -339.97205)
-
-[node name="LCurveLeftPath2" parent="WorldObjects/Paths" unique_id=1203229738 instance=ExtResource("18_xvxio")]
-transform = Transform3D(0.89189065, 0, -7.9501276, 0, 5, 0, 7.9501276, 0, 0.89189065, -46.881187, -7.9797573, -141.68462)
-
-[node name="LCurveLeftPath3" parent="WorldObjects/Paths" unique_id=637642888 instance=ExtResource("18_xvxio")]
-transform = Transform3D(1.1562304, 0, 7.916004, 0, 4.999999, 0, -7.916004, 0, 1.1562304, -53.74386, -7.7372823, -141.78476)
-
-[node name="LCurveLeftPath9" parent="WorldObjects/Paths" unique_id=1741701796 instance=ExtResource("18_xvxio")]
-transform = Transform3D(0.10387874, 0, -7.9993243, 0, 4.999999, 0, 7.9993243, 0, 0.10387874, 24.884462, -7.7372823, 131.77289)
-
-[node name="LCurveLeftPath10" parent="WorldObjects/Paths" unique_id=2110888505 instance=ExtResource("18_xvxio")]
-transform = Transform3D(-7.9871235, 0, 0.45368207, 0, 4.9999986, 0, -0.45368207, 0, -7.9871235, 34.653084, -7.7372823, 116.27492)
-
-[node name="LCurveLeftPath11" parent="WorldObjects/Paths" unique_id=420441600 instance=ExtResource("18_xvxio")]
-transform = Transform3D(6.662904, 0, -4.427829, 0, 4.9999976, 0, 4.427829, 0, 6.662904, 41.250153, -7.7372823, -20.517704)
-
-[node name="LCurveLeftPath12" parent="WorldObjects/Paths" unique_id=815480946 instance=ExtResource("18_xvxio")]
-transform = Transform3D(-7.7619934, 0, 2.6111355, 0, 4.9999995, 0, -1.9368649, 0, -10.464138, 17.351046, -7.7372823, -81.516266)
-
-[node name="LCurveLeftPath13" parent="WorldObjects/Paths" unique_id=2035074225 instance=ExtResource("18_xvxio")]
-transform = Transform3D(-1.7601304, 0, 7.8039656, 0, 4.999997, 0, -7.8039656, 0, -1.7601304, 18.007145, -7.7372823, -150.78925)
-
-[node name="LCurveLeftPath14" parent="WorldObjects/Paths" unique_id=532898760 instance=ExtResource("18_xvxio")]
-transform = Transform3D(0.10988128, 0, -7.999241, 0, 4.9999967, 0, 7.999241, 0, 0.10988128, 25.46736, -7.7372823, -151.73488)
-
-[node name="LCurveLeftPath15" parent="WorldObjects/Paths" unique_id=1145142276 instance=ExtResource("18_xvxio")]
-transform = Transform3D(7.8768516, 0, -1.3982595, 0, 4.9999967, 0, 1.3982595, 0, 7.8768516, 32.04309, -7.7372823, -246.81189)
-
-[node name="LCurveLeftPath16" parent="WorldObjects/Paths" unique_id=1785792755 instance=ExtResource("18_xvxio")]
-transform = Transform3D(6.5670414, 0, 5.354067, 0, 5.0000005, 0, -4.568804, 0, 7.6957507, 18.29126, -7.7372823, -254.03741)
-
-[node name="LCurveLeftPath17" parent="WorldObjects/Paths" unique_id=881116380 instance=ExtResource("18_xvxio")]
-transform = Transform3D(-2.5800457, 0, -7.773713, 0, 0.99999994, 0, 10.615978, 0, -1.8892784, -30.43358, -8.923533, -247.06253)
-
-[node name="StraigthPath" parent="WorldObjects/Paths" unique_id=885858735 instance=ExtResource("16_py8g7")]
-transform = Transform3D(-0.00579899, 0, -11.220115, 0, 5, 0, 4.6145697, 0, -0.014099583, -44.120846, -6.895098, 132.06487)
-
-[node name="StraigthPath4" parent="WorldObjects/Paths" unique_id=796469792 instance=ExtResource("16_py8g7")]
-transform = Transform3D(-0.005340671, 0, -5.1899962, 0, 5, 0, 4.2499967, 0, -0.006521902, 18.760916, -6.895098, 131.865)
-
-[node name="StraigthPath2" parent="WorldObjects/Paths" unique_id=939096097 instance=ExtResource("16_py8g7")]
-transform = Transform3D(-1.0403086, 0, -3.8949888, 0, 5, 0, 4.1413355, 0, -0.97842604, -119.64294, -6.895098, 126.25584)
-
-[node name="StraigthPath5" parent="WorldObjects/Paths" unique_id=2103262822 instance=ExtResource("16_py8g7")]
-transform = Transform3D(4.34, 0, 0, 0, 5, 0, 0, 0, 24.964977, 31.53321, -8.760796, -231.14236)
-
-[node name="StraigthPath6" parent="WorldObjects/Paths" unique_id=1371143728 instance=ExtResource("16_py8g7")]
-transform = Transform3D(-1.7909412, 0, -10.370431, 0, 5, 0, 3.953243, 0, -4.698126, 23.622963, -8.837664, -249.44273)
-
-[node name="StraigthPath7" parent="WorldObjects/Paths" unique_id=1890508463 instance=ExtResource("16_py8g7")]
-transform = Transform3D(-4.1391773, 0, 1.6852696, 0, 4.9999995, 0, -1.3049188, 0, -5.3456416, -28.910307, -8.837664, -252.31407)
-
 [node name="LongWavyPathDecal" parent="WorldObjects/Paths" unique_id=1061097441 instance=ExtResource("25_jvg85")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -327.2283, -15.126022, 77.12358)
 
 [node name="LongWavyPathDecal2" parent="WorldObjects/Paths" unique_id=80287129 instance=ExtResource("25_jvg85")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -247.75238, -15.126022, 77.12358)
 
+[node name="LongWavyPathDecal7" parent="WorldObjects/Paths" unique_id=78996819 instance=ExtResource("25_jvg85")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -61.03821, -9.963017, 88.94183)
+
+[node name="LongWavyPathDecal8" parent="WorldObjects/Paths" unique_id=1709540713 instance=ExtResource("25_jvg85")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -61.03821, -8.647824, 9.210384)
+
+[node name="LongWavyPathDecal9" parent="WorldObjects/Paths" unique_id=435048915 instance=ExtResource("25_jvg85")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -61.03821, -8.647824, -70.19794)
+
+[node name="LongWavyPathDecal10" parent="WorldObjects/Paths" unique_id=366641105 instance=ExtResource("25_jvg85")]
+transform = Transform3D(-0.9666538, 0, 0.25608683, 0, 1, 0, -0.25608683, 0, -0.9666538, -51.08249, -8.647824, -148.08112)
+
+[node name="LongWavyPathDecal11" parent="WorldObjects/Paths" unique_id=636615908 instance=ExtResource("25_jvg85")]
+transform = Transform3D(-0.98294187, 0, 0.18391696, 0, 1, 0, -0.18391696, 0, -0.98294187, -34.397194, -8.647824, -222.11855)
+
+[node name="LongWavyPathDecal3" parent="WorldObjects/Paths" unique_id=1462112745 instance=ExtResource("25_jvg85")]
+transform = Transform3D(-0.80679536, 0, -0.5908309, 0, 1, 0, 0.5908309, 0, -0.80679536, -190.89722, -15.126022, 47.468872)
+
+[node name="LongWavyPathDecal4" parent="WorldObjects/Paths" unique_id=553433756 instance=ExtResource("25_jvg85")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -250.75317, -15.126022, -72.280014)
+
+[node name="LongWavyPathDecal5" parent="WorldObjects/Paths" unique_id=308350588 instance=ExtResource("25_jvg85")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -250.75317, -15.126022, -152.11253)
+
+[node name="LongWavyPathDecal6" parent="WorldObjects/Paths" unique_id=2002954755 instance=ExtResource("25_jvg85")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -250.75317, -15.126022, -231.77808)
+
 [node name="ShortWavyStraightPathDecal" parent="WorldObjects/Paths" unique_id=973199394 instance=ExtResource("25_h3dir")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -198.224, -15.435, 77.124)
+
+[node name="ShortWavyStraightPathDecal15" parent="WorldObjects/Paths" unique_id=61335361 instance=ExtResource("25_h3dir")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -110.925766, -11.20093, 126.17099)
+
+[node name="ShortWavyStraightPathDecal16" parent="WorldObjects/Paths" unique_id=1692292354 instance=ExtResource("25_h3dir")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -91.13111, -11.20093, 126.17099)
+
+[node name="ShortWavyStraightPathDecal17" parent="WorldObjects/Paths" unique_id=704917911 instance=ExtResource("25_h3dir")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -71.65152, -11.20093, 126.17099)
+
+[node name="ShortWavyStraightPathDecal7" parent="WorldObjects/Paths" unique_id=327836799 instance=ExtResource("25_h3dir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250.835, -15.435, -280.944)
+
+[node name="ShortWavyStraightPathDecal9" parent="WorldObjects/Paths" unique_id=613705593 instance=ExtResource("25_h3dir")]
+transform = Transform3D(0.7799173, 0, 0.6258827, 0, 1, 0, -0.6258827, 0, 0.7799173, -256.3096, -15.435, -301.601)
+
+[node name="ShortWavyStraightPathDecal10" parent="WorldObjects/Paths" unique_id=1007013524 instance=ExtResource("25_h3dir")]
+transform = Transform3D(0.7799173, 0, 0.6258827, 0, 1, 0, -0.6258827, 0, 0.7799173, -268.60733, -15.435, -316.95386)
+
+[node name="ShortWavyStraightPathDecal11" parent="WorldObjects/Paths" unique_id=415002066 instance=ExtResource("25_h3dir")]
+transform = Transform3D(0.7799173, 0, 0.6258827, 0, 1, 0, -0.6258827, 0, 0.7799173, -280.21768, -15.435, -331.3791)
+
+[node name="ShortWavyStraightPathDecal12" parent="WorldObjects/Paths" unique_id=1283268137 instance=ExtResource("25_h3dir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -287.82834, -13.406453, -350.76038)
+
+[node name="ShortWavyStraightPathDecal13" parent="WorldObjects/Paths" unique_id=1977707170 instance=ExtResource("25_h3dir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -287.82834, -13.406453, -369.43265)
+
+[node name="ShortWavyStraightPathDecal14" parent="WorldObjects/Paths" unique_id=409464933 instance=ExtResource("25_h3dir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -287.82834, -13.406453, -387.79483)
+
+[node name="ShortWavyStraightPathDecal4" parent="WorldObjects/Paths" unique_id=1901009615 instance=ExtResource("25_h3dir")]
+transform = Transform3D(-0.80696034, 0, -0.5906056, 0, 1, 0, 0.5906056, 0, -0.80696034, -220.20111, -15.435, 7.4827204)
+
+[node name="ShortWavyStraightPathDecal5" parent="WorldObjects/Paths" unique_id=822221734 instance=ExtResource("25_h3dir")]
+transform = Transform3D(-0.80696034, 0, -0.5906056, 0, 1, 0, 0.5906056, 0, -0.80696034, -231.6411, -15.435, -8.137678)
+
+[node name="ShortWavyStraightPathDecal6" parent="WorldObjects/Paths" unique_id=726682745 instance=ExtResource("25_h3dir")]
+transform = Transform3D(-0.80696034, 0, -0.5906056, 0, 1, 0, 0.5906056, 0, -0.80696034, -243.02026, -15.435, -23.687153)
 
 [node name="ShortWavyStraightPathDecal2" parent="WorldObjects/Paths" unique_id=163978724 instance=ExtResource("25_h3dir")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -178.55927, -15.435, 77.124)
 
 [node name="ShortWavyStraightPathDecal3" parent="WorldObjects/Paths" unique_id=2060160247 instance=ExtResource("25_h3dir")]
-transform = Transform3D(-0.82809955, 0, -0.5605811, 0, 1, 0, 0.5605811, 0, -0.82809955, -161.00827, -15.435, 88.50232)
+transform = Transform3D(-0.8625136, 0, -0.50603384, 0, 1, 0, 0.50603384, 0, -0.8625136, -162.72241, -15.435, 81.58221)
 
 [node name="ShortStraightPathDecal" parent="WorldObjects/Paths" unique_id=538670775 instance=ExtResource("27_0xfjq")]
-transform = Transform3D(-0.82806027, 0, -0.56063896, 0, 1, 0, 0.56063896, 0, -0.82806027, -155.88928, -15.546811, 96.10469)
+transform = Transform3D(-0.862116, 0, -0.50671107, 0, 1, 0, 0.50671107, 0, -0.862116, -154.93068, -15.546811, 94.826324)
 
-[node name="CirclePathDecal" parent="WorldObjects/Paths" unique_id=353941898 instance=ExtResource("27_r1yae")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.35468, -15.24691, 77.55112)
+[node name="ShortStraightPathDecal5" parent="WorldObjects/Paths" unique_id=1098537371 instance=ExtResource("27_0xfjq")]
+transform = Transform3D(-0.089085564, 0, -0.996024, 0, 1, 0, 0.996024, 0, -0.089085564, -49.008568, -11.458746, 131.19165)
+
+[node name="ShortStraightPathDecal6" parent="WorldObjects/Paths" unique_id=739182876 instance=ExtResource("27_0xfjq")]
+transform = Transform3D(-1.7490238e-05, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -1.7490238e-05, -43.290348, -11.458746, -229.35106)
+
+[node name="CirclePathDecal15" parent="WorldObjects/Paths" unique_id=527900296 instance=ExtResource("27_r1yae")]
+transform = Transform3D(0.9662593, 0, -0.2575713, 0, 1, 0, 0.2575713, 0, 0.9662593, -60.964886, -9.185413, 127.54837)
+
+[node name="CirclePathDecal12" parent="WorldObjects/Paths" unique_id=2076702235 instance=ExtResource("27_r1yae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.49095, -13.644176, 76.42837)
+
+[node name="CirclePathDecal4" parent="WorldObjects/Paths" unique_id=1622089430 instance=ExtResource("27_r1yae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -249.45255, -13.644176, -30.81654)
+
+[node name="CirclePathDecal14" parent="WorldObjects/Paths" unique_id=2139985087 instance=ExtResource("27_r1yae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.926422, -7.135894, -229.35992)
+
+[node name="CirclePathDecal7" parent="WorldObjects/Paths" unique_id=1927949193 instance=ExtResource("27_r1yae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -287.94904, -13.423818, -339.47076)
+
+[node name="CirclePathDecal8" parent="WorldObjects/Paths" unique_id=987095310 instance=ExtResource("27_r1yae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -251.12909, -13.423818, -293.7663)
 
 [node name="Fog" type="Node3D" parent="." unique_id=2045019420]
 

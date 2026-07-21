@@ -19,11 +19,17 @@ shader_parameter/path_width = 0.499999988824
 shader_parameter/edge_softness = 0.2
 shader_parameter/edge_distortion = 0.3
 shader_parameter/patch_holes = 0.1
+shader_parameter/use_circle_mode = false
 shader_parameter/use_90_deg_bend = false
 shader_parameter/bend_right = true
 shader_parameter/curve_amplitude = 1.40000016987368
 shader_parameter/curve_frequency = 0.23800001060648
 shader_parameter/curve_phase = 0.0
+shader_parameter/circle_radius = 6.0
+shader_parameter/lock_to_world_grid = true
+shader_parameter/global_pos = Vector2(0, 0)
+shader_parameter/global_rot = 0.0
+shader_parameter/track_width = 4.0
 shader_parameter/virtual_scale = Vector2(5, 5)
 shader_parameter/uv1_scale = Vector2(1, 1)
 shader_parameter/uv1_offset = Vector2(0, 0)
@@ -34,7 +40,7 @@ size = Vector3(4, 10, 20)
 [node name="ShortWavyStraightPathDecal" type="Decal" unique_id=80287129]
 layers = 2
 distance_fade_enabled = true
-distance_fade_length = 100.0
+distance_fade_length = 40.0
 script = ExtResource("1_w7g36")
 path_width = 8.0
 

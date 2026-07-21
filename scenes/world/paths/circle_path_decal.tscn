@@ -28,6 +28,9 @@ shader_parameter/curve_amplitude = 1.40000016987368
 shader_parameter/curve_frequency = 0.23800001060648
 shader_parameter/curve_phase = 0.0
 shader_parameter/circle_radius = 6.0
+shader_parameter/lock_to_world_grid = true
+shader_parameter/global_pos = Vector2(0, 0)
+shader_parameter/global_rot = 0.0
 shader_parameter/track_width = 4.0
 shader_parameter/virtual_scale = Vector2(5, 5)
 shader_parameter/uv1_scale = Vector2(1, 1)
@@ -39,12 +42,14 @@ size = Vector3(8, 10, 8)
 [node name="CirclePathDecal" type="Decal" unique_id=80287129]
 layers = 2
 distance_fade_enabled = true
-distance_fade_length = 100.0
+distance_fade_length = 40.0
 script = ExtResource("1_okk31")
 use_circle_mode = true
-path_width = 8.0
-path_length = 8.0
+path_width = 6.0
+path_length = 6.0
+circle_radius = 4.0
 curve_bends = 0
+layer_priority = 100
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=664117861]
 transparent_bg = true

@@ -284,9 +284,11 @@ map_settings = ExtResource("2_qhq33")
 metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="." unique_id=2125005627]
+collision_layer = 2
 collision_mask = 0
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="entity_0_worldspawn" unique_id=673768837]
+layers = 2
 mesh = SubResource("ArrayMesh_b6de5")
 
 [node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="entity_0_worldspawn" unique_id=1579646806]

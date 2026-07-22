@@ -43,6 +43,7 @@ size = Vector3(8, 10, 8)
 layers = 2
 distance_fade_enabled = true
 distance_fade_length = 40.0
+cull_mask = 1047554
 script = ExtResource("1_okk31")
 use_circle_mode = true
 path_width = 6.0
@@ -64,4 +65,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PathPreview" type="MeshInstance3D" parent="." unique_id=1627649238]
+cast_shadow = 0
 mesh = SubResource("BoxMesh_2rwsk")

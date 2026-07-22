@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, -1.1920933e-07, 1, 0, -1, -1.1920933e-07, 0.
 layers = 2
 light_color = Color(0.9773539, 0.82183343, 0.42186323, 1)
 light_energy = 10.136
-light_volumetric_fog_energy = 0.0
+light_volumetric_fog_energy = 0.2
 shadow_enabled = true
 distance_fade_enabled = true
 
@@ -58,7 +58,7 @@ distance_fade_enabled = true
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0)
 layers = 2
 light_color = Color(0.9764706, 0.8235294, 0.42352942, 1)
-light_volumetric_fog_energy = 0.0
+light_volumetric_fog_energy = 0.2
 shadow_enabled = true
 distance_fade_enabled = true
 spot_range = 21.444

@@ -41,6 +41,7 @@ size = Vector3(4, 10, 20)
 layers = 2
 distance_fade_enabled = true
 distance_fade_length = 40.0
+cull_mask = 1047554
 script = ExtResource("1_w7g36")
 path_width = 8.0
 

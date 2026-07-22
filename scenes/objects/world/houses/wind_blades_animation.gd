@@ -1,7 +1,7 @@
 extends StaticBody3D
 
 # Tiempo en segundos que tarda en dar una vuelta completa (360°)
-@export var velocidad_vuelta: float = 6
+@export var velocidad_vuelta: float = 10
 
 func _ready() -> void:
 	# Creamos el Tween y le indicamos que se repita infinitamente (set_loops)

@@ -41,6 +41,7 @@ size = Vector3(4, 10, 80)
 layers = 2
 distance_fade_enabled = true
 distance_fade_length = 80.0
+cull_mask = 1047554
 script = ExtResource("1_kjikm")
 path_width = 8.0
 path_length = 80.0
@@ -58,4 +59,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PathPreview" type="MeshInstance3D" parent="." unique_id=1627649238]
+cast_shadow = 0
 mesh = SubResource("BoxMesh_kaivb")

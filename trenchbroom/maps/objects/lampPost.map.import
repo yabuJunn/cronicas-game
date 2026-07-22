@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bowbrggef0ujc"
+path="res://.godot/imported/lampPost.map-8926039785da2afa8ac777c9b718aa05.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/lampPost.map"
+dest_files=["res://.godot/imported/lampPost.map-8926039785da2afa8ac777c9b718aa05.tres"]
+
+[params]
+

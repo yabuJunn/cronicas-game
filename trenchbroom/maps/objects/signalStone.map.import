@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://c2obgemf5eh2f"
+path="res://.godot/imported/signalStone.map-a0ff611d9ff425292c67862f15863543.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/signalStone.map"
+dest_files=["res://.godot/imported/signalStone.map-a0ff611d9ff425292c67862f15863543.tres"]
+
+[params]
+

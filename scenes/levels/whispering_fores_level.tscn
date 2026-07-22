@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://de1o4orf880wf" path="res://scenes/world/paths/circle_path_decal.tscn" id="27_r1yae"]
 [ext_resource type="PackedScene" uid="uid://ql87akcuk6rk" path="res://scenes/objects/world/woden_lamp_post.tscn" id="32_t4hbk"]
 [ext_resource type="AudioStream" uid="uid://b0srtk0nd0ci8" path="res://sounds/ambient/soundreality-big-river-392040.mp3" id="33_jshvx"]
+[ext_resource type="PackedScene" uid="uid://nyp4kio1bmrg" path="res://scenes/objects/world/stone_signal.tscn" id="33_xukqh"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
 ground_color = Color(0.19165215, 0.504012, 0.6223743, 1)
@@ -1488,6 +1489,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.834476, -6.9106393, -228.
 transform = Transform3D(0.9802332, 0, 0.19784552, 0, 1, 0, -0.19784552, 0, 0.9802332, -58.925644, -7.8457484, -225.51717)
 collision_layer = 255
 
+[node name="StoneSignal" parent="WorldObjects/InteractibleObjects" unique_id=364495071 instance=ExtResource("33_xukqh")]
+transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -212.93864, -15.567966, 79.3809)
+
 [node name="WorldEffects" type="Node3D" parent="WorldObjects" unique_id=1087287346]
 
 [node name="Waterfall Particles" type="GPUParticles3D" parent="WorldObjects/WorldEffects" unique_id=708485512]
@@ -1922,4 +1926,4 @@ area_mask = 15
 parameters/looping = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("27_jvg85")]
-transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -226.12126, -13.257941, 309.06146)
+transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -239.16722, -13.257941, 70.45861)

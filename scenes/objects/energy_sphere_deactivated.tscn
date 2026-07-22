@@ -28,6 +28,7 @@ item_name = "Esfera de Energía Desactivada"
 item_description = "Parece que puede contener grandes cantidades de energía"
 item_icon = ExtResource("2_2r6e7")
 ruta_modelo3d = "uid://ndq4fk4kygm4"
+texto_recoger = "[E] Recoger Esfera de Energía Desactivada"
 mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1018405947]

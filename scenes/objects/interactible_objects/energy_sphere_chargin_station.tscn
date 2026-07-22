@@ -71,13 +71,10 @@ script = ExtResource("1_qmmq8")
 item_name = "Estación de Carga"
 item_description = "Estación de Carga"
 se_puede_recoger = false
-ruta_modelo3d = null
 es_puerta = true
 item_clave_requerido = "Esfera de Energía Desactivada"
-texto_recoger = null
-texto_estatico = null
-texto_con_objeto = null
-texto_sin_objeto = null
+texto_con_objeto = "[E] Cargar esfera de energía"
+texto_sin_objeto = "No tienes nada para cargar"
 mesh = NodePath("ChargingStationMesh")
 
 [node name="ChargingStationMesh" type="MeshInstance3D" parent="." unique_id=592333712]

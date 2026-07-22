@@ -1488,9 +1488,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.834476, -6.9106393, -228.
 [node name="EnergySphereChargingStation" parent="WorldObjects/InteractibleObjects" unique_id=2078462759 instance=ExtResource("19_myv0h")]
 transform = Transform3D(0.9802332, 0, 0.19784552, 0, 1, 0, -0.19784552, 0, 0.9802332, -58.925644, -7.8457484, -225.51717)
 collision_layer = 255
-se_puede_recoger = null
-es_puerta = null
-item_clave_requerido = null
+se_puede_recoger = true
+es_puerta = false
+item_clave_requerido = ""
+texto_con_objeto = ""
+texto_sin_objeto = ""
 
 [node name="StoneSignal" parent="WorldObjects/InteractibleObjects" unique_id=364495071 instance=ExtResource("33_xukqh")]
 transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -212.93864, -15.567966, 79.3809)

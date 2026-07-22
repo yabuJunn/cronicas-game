@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b4h2v3mc7aneb"]
+
+[ext_resource type="Script" uid="uid://csn0hdgt2v1it" path="res://globals/dialog_system.gd" id="1_hsp76"]
+
+[node name="DialogueSystem" type="CanvasLayer" unique_id=477430221]
+layer = 17
+script = ExtResource("1_hsp76")
+
+[node name="Control" type="Control" parent="." unique_id=1488355940]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTextBox" type="ColorRect" parent="Control" unique_id=207233801]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -165.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.047058824, 0.1254902, 0.29803923, 0.5803922)
+
+[node name="DialogueText" type="RichTextLabel" parent="Control/BackgroundTextBox" unique_id=465059917]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fit_content = true
+scroll_active = false

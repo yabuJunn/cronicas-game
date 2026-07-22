@@ -1,9 +1,10 @@
-extends StaticBody3D
+class_name PiedraRunica
+extends InteractibleObjectTextOpener
 
 @export_group("Configuración Mística")
 @export var duracion_animacion: float = 1.0     # Tiempo en segundos que tarda en encender/apagar
-@export var luz_energia_maxima: float = 0.8     # (REDUCIDO) Intensidad de la OmniLight3D
-@export var emision_energia_maxima: float = 1.2 # (REDUCIDO) Brillo del grabado
+@export var luz_energia_maxima: float = 0.8     # Intensidad de la OmniLight3D
+@export var emision_energia_maxima: float = 1.2 # Brillo del grabado
 @export var color_grabado: Color = Color(0.2, 0.7, 1.0) # Color místico del brillo
 
 @onready var textMesh: MeshInstance3D = $TextMesh
@@ -15,34 +16,37 @@ var material_malla: StandardMaterial3D
 var tween_activo: Tween
 
 func _ready() -> void:
-	# 1. FORZAR VISIBILIDAD: Aseguramos que los nodos no estén ocultos en la jerarquía
+	# 1. Aseguramos visibilidad
 	ligth.visible = true
 	particles.visible = true
 
-	# 2. Hacemos una copia única del material para esta piedra
+	# 2. Copia única del material
 	var mat_original = textMesh.get_active_material(0)
 	if mat_original:
 		material_malla = mat_original.duplicate() as StandardMaterial3D
 		textMesh.set_surface_override_material(0, material_malla)
 		
-		# Configuramos el canal de emisión con color y la apagar al inicio
 		material_malla.emission_enabled = true
 		material_malla.emission = color_grabado
 		material_malla.emission_energy_multiplier = 0.0
 
-	# 3. Estado inicial encendido/apagado por energía
+	# 3. Apagado inicial
 	ligth.light_energy = 0.0
 	particles.emitting = false
 
-	# 4. Conectamos señales
+	# 4. Conectamos señales del Area3D
 	AreaActivation.body_entered.connect(_on_area_3d_body_entered)
 	AreaActivation.body_exited.connect(_on_area_3d_body_exited)
 
+# Sobrescribimos el enter del padre usando 'super'
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	super(body) # Ejecuta el jugador_en_rango = true de InteractibleObjectTextOpener
 	if body.is_in_group("player") or body is CharacterBody3D:
 		animar_efecto(true)
 
+# Sobrescribimos el exit del padre usando 'super'
 func _on_area_3d_body_exited(body: Node3D) -> void:
+	super(body) # Ejecuta el jugador_en_rango = false y cierra diálogo si estaba abierto
 	if body.is_in_group("player") or body is CharacterBody3D:
 		animar_efecto(false)
 
@@ -55,14 +59,11 @@ func animar_efecto(encender: bool) -> void:
 	var luz_objetivo: float = luz_energia_maxima if encender else 0.0
 	var emision_objetivo: float = emision_energia_maxima if encender else 0.0
 
-	# Transición suave de intensidad de luz
 	tween_activo.tween_property(ligth, "light_energy", luz_objetivo, duracion_animacion)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-	# Transición suave de emisión del texto/grabado
 	if material_malla:
 		tween_activo.tween_property(material_malla, "emission_energy_multiplier", emision_objetivo, duracion_animacion)\
 			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-	# Activar/Desactivar emisión de partículas
 	particles.emitting = encender

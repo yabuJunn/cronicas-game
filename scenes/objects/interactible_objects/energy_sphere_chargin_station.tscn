@@ -71,7 +71,6 @@ script = ExtResource("1_qmmq8")
 item_name = "Estación de Carga"
 item_description = "Estación de Carga"
 se_puede_recoger = false
-es_puerta = true
 item_clave_requerido = "Esfera de Energía Desactivada"
 texto_con_objeto = "[E] Cargar esfera de energía"
 texto_sin_objeto = "No tienes nada para cargar"

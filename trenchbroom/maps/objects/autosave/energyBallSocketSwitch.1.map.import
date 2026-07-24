@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dh5xgvv45thc4"
+path="res://.godot/imported/energyBallSocketSwitch.1.map-294ad6fe8f99d622ec37ad5925fbcaba.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/autosave/energyBallSocketSwitch.1.map"
+dest_files=["res://.godot/imported/energyBallSocketSwitch.1.map-294ad6fe8f99d622ec37ad5925fbcaba.tres"]
+
+[params]
+

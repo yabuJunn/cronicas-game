@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ciy8k886ua8mh"]
+
+[ext_resource type="Texture2D" uid="uid://cp5em2cofkfj" path="res://textures/kenney_retro-textures-fantasy/floor_wood_planks_damaged.png" id="1_difsw"]
+
+[resource]
+albedo_texture = ExtResource("1_difsw")
+metallic_specular = 0.0
+texture_filter = 2

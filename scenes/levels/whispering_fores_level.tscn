@@ -16,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://bthajwnrlyacy" path="res://scenes/objects/world/rocks/rock_pillar_1.tscn" id="13_ean77"]
 [ext_resource type="PackedScene" uid="uid://cw5o5ubhuqlu7" path="res://scenes/objects/world/houses/tower_outskirts.tscn" id="14_to654"]
 [ext_resource type="Script" uid="uid://cau2r3unnyel3" path="res://scenes/objects/interactible_objects/rocks_bridge_to_move.gd" id="14_xvxio"]
-[ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/rock_bridge_switch.tscn" id="16_etlwe"]
+[ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/mechanism_switch.tscn" id="16_etlwe"]
 [ext_resource type="PackedScene" uid="uid://crqb4himt2hcp" path="res://scenes/objects/world/houses/VillageHouse2.tscn" id="16_h3dir"]
+[ext_resource type="PackedScene" uid="uid://bs64gjbolftui" path="res://scenes/objects/world/village_fountain.tscn" id="16_xfv3t"]
 [ext_resource type="PackedScene" uid="uid://dxuwbgyt71pcl" path="res://scenes/objects/world/houses/VillageHouse3.tscn" id="17_gj0yl"]
 [ext_resource type="PackedScene" uid="uid://cnn32yy8lwllp" path="res://scenes/objects/world/houses/VillageHouse4.tscn" id="18_0xfjq"]
 [ext_resource type="PackedScene" uid="uid://ndq4fk4kygm4" path="res://scenes/objects/energy_sphere_deactivated.tscn" id="18_xeu51"]
@@ -36,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="27_jvg85"]
 [ext_resource type="PackedScene" uid="uid://de1o4orf880wf" path="res://scenes/world/paths/circle_path_decal.tscn" id="27_r1yae"]
 [ext_resource type="PackedScene" uid="uid://ql87akcuk6rk" path="res://scenes/objects/world/woden_lamp_post.tscn" id="32_t4hbk"]
+[ext_resource type="PackedScene" uid="uid://d23fp1yabt5hj" path="res://scenes/world/paths/big_circle_path_decal.tscn" id="33_5at7w"]
 [ext_resource type="AudioStream" uid="uid://b0srtk0nd0ci8" path="res://sounds/ambient/soundreality-big-river-392040.mp3" id="33_jshvx"]
 [ext_resource type="PackedScene" uid="uid://nyp4kio1bmrg" path="res://scenes/objects/world/stone_signal.tscn" id="33_xukqh"]
 
@@ -55,14 +57,12 @@ ambient_light_energy = 0.05
 reflected_light_source = 2
 tonemap_mode = 3
 glow_enabled = true
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.13104072, 0.31304422, 0.3627033, 1)
 fog_density = 1.0
 fog_depth_curve = 2.9281712
 fog_depth_begin = 0.0
 fog_depth_end = 150.0
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.1
 volumetric_fog_albedo = Color(0.5614595, 0.8083384, 0.87028193, 1)
 volumetric_fog_emission = Color(0.073677994, 0.18298149, 0.19615486, 1)
@@ -455,9 +455,9 @@ light_volumetric_fog_energy = 0.44
 shadow_enabled = true
 
 [node name="DirectionalLight3DDebug" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1387043691]
-visible = false
+transform = Transform3D(0.9085082, 0, 0.41786706, 0, 1, 0, -0.41786706, 0, 0.9085082, 0, 0, 0)
 layers = 6
-light_volumetric_fog_energy = 0.148
+light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 
 [node name="Maps" type="Node3D" parent="." unique_id=1249707242]
@@ -1390,6 +1390,9 @@ transform = Transform3D(-0.6, 0, 5.2453668e-08, 0, 0.6, 0, -5.2453668e-08, 0, -0
 [node name="VillageTower(2)" parent="WorldObjects/Houses/Village" unique_id=383602282 instance=ExtResource("20_rr26k")]
 transform = Transform3D(-0.6, 0, 5.2453668e-08, 0, 0.6, 0, -5.2453668e-08, 0, -0.6, 164.73169, 33.535, 80.6)
 
+[node name="VillageFountain" parent="WorldObjects/Houses/Village" unique_id=117244724 instance=ExtResource("16_xfv3t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 230.61853, 3.8579602, 49.612694)
+
 [node name="ChargingForestStation" type="Node3D" parent="WorldObjects/Houses" unique_id=1499057351]
 
 [node name="VillageHouse(4)" parent="WorldObjects/Houses/ChargingForestStation" unique_id=1116907304 instance=ExtResource("18_0xfjq")]
@@ -1489,17 +1492,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.834476, -6.9106393, -228.
 transform = Transform3D(0.9802332, 0, 0.19784552, 0, 1, 0, -0.19784552, 0, 0.9802332, -58.925644, -7.8457484, -225.51717)
 collision_layer = 255
 se_puede_recoger = true
-es_puerta = false
 item_clave_requerido = ""
 texto_con_objeto = ""
 texto_sin_objeto = ""
 
 [node name="StoneSignal" parent="WorldObjects/InteractibleObjects" unique_id=364495071 instance=ExtResource("33_xukqh")]
 transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -212.93864, -15.567966, 79.3809)
-duracion_animacion = 1.0
-luz_energia_maxima = 0.8
-emision_energia_maxima = 1.2
-color_grabado = Color(0.2, 0.7, 1, 1)
 texto_estatico = "[E] Leer"
 
 [node name="WorldEffects" type="Node3D" parent="WorldObjects" unique_id=1087287346]
@@ -1701,6 +1699,21 @@ transform = Transform3D(0.9561311, 0, 0.29293913, 0, 1, 0, -0.29293913, 0, 0.956
 
 [node name="CirclePathDecal10" parent="WorldObjects/Paths" unique_id=845711291 instance=ExtResource("27_r1yae")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.775726, -9.470837, 130.7141)
+
+[node name="BigCirclePathDecal" parent="WorldObjects/Paths" unique_id=182161482 instance=ExtResource("33_5at7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.2425, -2.5056021, 56.715363)
+
+[node name="BigCirclePathDecal2" parent="WorldObjects/Paths" unique_id=685570016 instance=ExtResource("33_5at7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.15288, -2.5056021, 59.24212)
+
+[node name="BigCirclePathDecal3" parent="WorldObjects/Paths" unique_id=746450661 instance=ExtResource("33_5at7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 281.58612, -2.5056021, 69.24277)
+
+[node name="BigCirclePathDecal4" parent="WorldObjects/Paths" unique_id=2034857869 instance=ExtResource("33_5at7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 249.10327, -2.5056021, 112.541405)
+
+[node name="BigCirclePathDecal5" parent="WorldObjects/Paths" unique_id=75230555 instance=ExtResource("33_5at7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 249.10327, -2.5056021, 14.142044)
 
 [node name="Fog" type="Node3D" parent="." unique_id=2045019420]
 
@@ -1936,4 +1949,4 @@ area_mask = 15
 parameters/looping = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("27_jvg85")]
-transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -239.16722, -13.257941, 70.45861)
+transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, 237.25464, 10.003938, 70.45861)

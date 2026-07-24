@@ -1,0 +1,80 @@
+[gd_scene format=4 uid="uid://dn4udve851g52"]
+
+[ext_resource type="Script" uid="uid://dwpbm38sthh27" path="res://scenes/objects/world/wooden_info_sign.gd" id="1_w320k"]
+[ext_resource type="Texture2D" uid="uid://f837mfj5bta7" path="res://textures/Wood/Wood_25-256x256.png" id="3_245nl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8s27s"]
+albedo_texture = ExtResource("3_245nl")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kj0te"]
+_surfaces = [{
+"aabb": AABB(0, 0, -0.75, 0.25, 2.5, 1.75),
+"attribute_data": PackedByteArray("AAAgvgAAcL8AAAAAAABwvwAAAAAAAAAAAAAgvgAAAAAAACA+AAAAAAAAAAAAAAAAAAAAAAAAcL8AACA+AABwvwAAIL4AAAAAAAAgvgAAIL4AAAAAAAAgvgAAAAAAAAAAAAAgPgAAAAAAAAAAAAAAAAAAAAAAACC+AAAgPgAAIL4AACC+AABwvwAAAAAAAHC/AAAAAAAAAAAAACC+AAAAAAAAID4AAAAAAAAAAAAAAAAAAAAAAABwvwAAID4AAHC/AAAgvv//z78AAAAA///PvwAAAAAAAIC/AAAgvgAAgL8AACA/AACAvwAA8L4AAIC/AADwvv//z78AACA////PvwAAIL8AAAAAAAAgvwAAIL4AAPA+AAAgvgAA8D4AAAAAAAAgPwAAAAAAAPC+AAAAAAAA8L4AACC+AAAgPwAAIL4AACC////PvwAA8D7//8+/AADwPgAAgL8AACC/AACAvwAAID4AAIC/AAAAAAAAgL8AAAAA///PvwAAID7//8+/"),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"),
+"material": SubResource("StandardMaterial3D_8s27s"),
+"name": "Wood/Wood_25-256x256",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AACAPgAAwD8AAAAAAAAAAAAAwD8AAAAAAAAAAAAAAAAAAAAAAACAPgAAAAAAAAAAAAAAAAAAAAAAAIA+AAAAAAAAAAAAAAAAAAAAAAAAwD8AAAAAAAAAAAAAwD8AAIA+AAAAAAAAAAAAAIA+AACAPgAAAAAAAIA+AACAPgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwD8AAIA+AAAAAAAAwD8AAAAAAACAPgAAwD8AAAAAAACAPgAAwD8AAIA+AACAPgAAwD8AAIA+AACAPgAAwD8AAAAAAACAPgAAAAAAAAAAAACAPgAAAAAAAIA+AACAPgAAAAAAAIA+AAAAAAAAAAAAAIA+AAAAAAAAwD8AAIA+AACAPgAAwD8AAIA+AACAPgAAIEAAAEC/AAAAAAAAIEAAAEC/AAAAAAAAwD8AAEC/AACAPgAAwD8AAEC/AAAAAAAAwD8AAIA/AAAAAAAAwD8AAEC/AAAAAAAAIEAAAEC/AAAAAAAAIEAAAIA/AAAAAAAAwD8AAIA/AACAPgAAwD8AAIA/AACAPgAAwD8AAEC/AAAAAAAAwD8AAEC/AAAAAAAAIEAAAIA/AAAAAAAAIEAAAEC/AACAPgAAIEAAAEC/AACAPgAAIEAAAIA/AACAPgAAIEAAAIA/AACAPgAAIEAAAEC/AACAPgAAwD8AAEC/AACAPgAAwD8AAIA/AACAPgAAwD8AAIA/AAAAAAAAwD8AAIA/AAAAAAAAIEAAAIA/AACAPgAAIEAAAIA//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tjwb4"]
+points = PackedVector3Array(0.25, 1.5, 0.25, 0.25, 0, 0.25, 0, 1.5, 0.25, 0, 0, 0.25, 0.25, 1.5, 0, 0.25, 0, 0, 0, 1.5, 0, 0, 0, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cb4f3"]
+points = PackedVector3Array(0.25, 2.5, 1, 0.25, 1.5, 1, 0, 2.5, 1, 0, 1.5, 1, 0.25, 2.5, -0.75, 0.25, 1.5, -0.75, 0, 2.5, -0.75, 0, 1.5, -0.75)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vap2k"]
+load_path = "res://.godot/imported/StoneSignalText.png-409a34a0d25a9249760f7bf238789d68.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ph7c5"]
+transparency = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0.74335724, 0.3914764, 0.19284722, 1)
+albedo_texture = SubResource("CompressedTexture2D_vap2k")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w320k"]
+material = SubResource("StandardMaterial3D_ph7c5")
+size = Vector2(1.66, 0.965)
+
+[node name="WoodenInfoSign" type="StaticBody3D" unique_id=1093640174 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+collision_layer = 8
+script = ExtResource("1_w320k")
+texto_a_mostrar = "[center][b]🧭 CRUCE DE LOS CUATRO VIENTOS 🧭[/b][/center]
+
+[color=#88ccff]⬅️ Izquierda:[/color] [b]Puerto de la Bruma[/b]
+[i][wave amp=15.0 freq=3.0](Camino seguro, olor a sal)[/wave][/i]
+
+[color=#77dd77]⬆️ Adelante:[/color] [b]Bosque Susurrante[/b]
+[i][tornado radius=2.0 freq=3.0](Cuidado con los duendes)[/tornado][/i]
+
+[color=#ff5555]➡️ Derecha:[/color] [b]Valle de los Picos[/b]
+[i][shake rate=15.0 level=4.0][color=#ff3333]⚠️ ¡ZONA PELIGROSA! ⚠️[/color][/shake][/i]"
+item_name = "Señal de Madera"
+item_description = "Señal de Madera"
+se_puede_recoger = false
+texto_estatico = "[E] Leer"
+mesh = NodePath("WoodenInfoMesh")
+
+[node name="WoodenInfoMesh" type="MeshInstance3D" parent="." unique_id=1021609839]
+transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, -0.10661936, 0, -0.104130864)
+layers = 8
+mesh = SubResource("ArrayMesh_kj0te")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="." unique_id=1564288939]
+transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, -0.10661936, 0, -0.104130864)
+shape = SubResource("ConvexPolygonShape3D_tjwb4")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="." unique_id=225301681]
+transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, -0.10661936, 0, -0.104130864)
+shape = SubResource("ConvexPolygonShape3D_cb4f3")
+
+[node name="TextMesh" type="MeshInstance3D" parent="." unique_id=1088632851]
+transform = Transform3D(-3.081653e-08, 0.705, 3.081653e-08, 0, -3.081653e-08, 0.705, 0.705, 3.081653e-08, 1.3470332e-15, 0.14691097, 1.6259238, -0.023077965)
+mesh = SubResource("PlaneMesh_w320k")

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bbcsuyt7m6grp"]
+
+[ext_resource type="Texture2D" uid="uid://c3e18k4k0ocyg" path="res://textures/kenney_retro-textures-fantasy/wall_timber_structure_cross.png" id="1_jk6k5"]
+
+[resource]
+albedo_texture = ExtResource("1_jk6k5")
+metallic_specular = 0.0
+texture_filter = 2

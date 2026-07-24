@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="14_qcc2t"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="15_l22r4"]
 [ext_resource type="PackedScene" uid="uid://c62sk6j3203tb" path="res://scenes/objects/world/tree_1.tscn" id="16_2g36m"]
+[ext_resource type="PackedScene" uid="uid://ndq4fk4kygm4" path="res://scenes/objects/energy_sphere_deactivated.tscn" id="17_5u6e4"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2g36m"]
 
@@ -1177,26 +1178,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.718857, 12.681274)
 [node name="EnergySphere" parent="." unique_id=1256466068 instance=ExtResource("12_1qcro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 23, -7)
 item_name = "Esfera de Energía5"
-item_description = "Brilla con una energía poderosa"
 
 [node name="EnergySphere2" parent="." unique_id=539239160 instance=ExtResource("12_1qcro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.590052, 23, -7)
 item_name = "Esfera de Energía2"
-item_description = "Brilla con una energía poderosa"
 
 [node name="EnergySphere3" parent="." unique_id=1433948455 instance=ExtResource("12_1qcro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.598507, 23, -7)
 item_name = "Esfera de Energía4"
-item_description = "Brilla con una energía poderosa"
 
 [node name="EnergySphere4" parent="." unique_id=206893683 instance=ExtResource("12_1qcro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.023996, 23, -7)
 item_name = "Esfera de Energía3"
-item_description = "Brilla con una energía poderosa"
 
 [node name="EnergySphere5" parent="." unique_id=994601512 instance=ExtResource("12_1qcro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7010956, 23, -7)
-item_description = "Brilla con una energía poderosa"
 
 [node name="Pedestal" parent="." unique_id=1043176817 instance=ExtResource("13_xtll6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.158941, 21.734081, 9.205422)
@@ -1218,3 +1214,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.582897, 21.924063, -1.668
 
 [node name="Tree4" parent="." unique_id=546825256 instance=ExtResource("16_2g36m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.332327, 21.924063, 0.91981936)
+
+[node name="EnergySphereDeactivated" parent="." unique_id=1132461812 instance=ExtResource("17_5u6e4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95434, 22.760551, -3.2097764)

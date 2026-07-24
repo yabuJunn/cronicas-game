@@ -5,22 +5,22 @@ extends InteractableItem
 @export_multiline var texto_a_mostrar: String = "Primera página...||Y esta es la segunda página.||Fin."
 @export var separador_paginas: String = "||"
 
-var jugador_en_rango: bool = false
+@export_group("Configuración de Título")
+@export var mostrar_titulo: bool = true
+@export var titulo_personalizado: String = "" # Si se deja vacío y mostrar_titulo es true, usará 'item_name'
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player") or body is CharacterBody3D:
-		jugador_en_rango = true
+func _ready() -> void:
+	# Los objetos de texto no se recogen al inventario
+	se_puede_recoger = false
+	super._ready()
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player") or body is CharacterBody3D:
-		jugador_en_rango = false
-		# Si el jugador se aleja mientras lee, cerramos el diálogo automáticamente
-		if DialogueSystem.esta_activo:
-			DialogueSystem.cerrar_dialogo()
+# Esta función la invoca directamente el Raycast de tu jugador al presionar 'E' o Clic
+func interactuar() -> void:
+	if not DialogueSystem.esta_activo:
+		var titulo_a_enviar: String = ""
+		
+		if mostrar_titulo:
+			# Si hay título personalizado usa ese, si no, usa el item_name heredado
+			titulo_a_enviar = titulo_personalizado if titulo_personalizado != "" else item_name
 
-func _unhandled_input(event: InputEvent) -> void:
-	if jugador_en_rango and not DialogueSystem.esta_activo:
-		if event.is_action_pressed("interact"):
-			# Consumimos el evento para no activar otras cosas a la vez
-			get_viewport().set_input_as_handled() 
-			DialogueSystem.iniciar_dialogo(texto_a_mostrar, separador_paginas)
+		DialogueSystem.iniciar_dialogo(texto_a_mostrar, separador_paginas, titulo_a_enviar)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bnqgjfq0h45c5"
+path="res://.godot/imported/VillageFountain.4.map-61e80d2aaa8dd98779eaead20fc80894.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/autosave/VillageFountain.4.map"
+dest_files=["res://.godot/imported/VillageFountain.4.map-61e80d2aaa8dd98779eaead20fc80894.tres"]
+
+[params]
+

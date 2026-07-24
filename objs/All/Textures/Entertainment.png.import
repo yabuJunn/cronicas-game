@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://81gx538xq5ga"
-path.s3tc="res://.godot/imported/Entertainment.png-e3d9e770eb89538d2da949bd791977c0.s3tc.ctex"
+path.s3tc="res://.godot/imported/Entertainment.png-576dd2c8df96816d82c77b210560f583.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://objs/All/textures/Entertainment.png"
-dest_files=["res://.godot/imported/Entertainment.png-e3d9e770eb89538d2da949bd791977c0.s3tc.ctex"]
+source_file="res://objs/All/Textures/Entertainment.png"
+dest_files=["res://.godot/imported/Entertainment.png-576dd2c8df96816d82c77b210560f583.s3tc.ctex"]
 
 [params]
 

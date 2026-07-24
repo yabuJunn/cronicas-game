@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://c2wripd4ps8v5"
+path="res://.godot/imported/woodenInfoSign.map-06b539d7049570c9dfb3a263b41ad3a7.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/woodenInfoSign.map"
+dest_files=["res://.godot/imported/woodenInfoSign.map-06b539d7049570c9dfb3a263b41ad3a7.tres"]
+
+[params]
+

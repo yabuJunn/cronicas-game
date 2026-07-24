@@ -63,10 +63,6 @@ orientation = 2
 [node name="StoneSignal" type="StaticBody3D" unique_id=364495071 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
 collision_layer = 10
 script = ExtResource("1_lufbg")
-duracion_animacion = null
-luz_energia_maxima = null
-emision_energia_maxima = null
-color_grabado = null
 item_name = "Piedra Runica"
 item_description = "Piedra Runica"
 se_puede_recoger = false

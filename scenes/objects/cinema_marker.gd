@@ -6,4 +6,4 @@ class_name CinemaMarker
 
 func _ready() -> void:
 	# Nos metemos al grupo para que el pedestal nos encuentre
-	add_to_group("marcadores_cine")
+	add_to_group("cinemaMarkers")

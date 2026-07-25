@@ -8,7 +8,7 @@ extends InteractableItem
 # 'targetname' del marcador de cámara en el mapa
 @export var camera_marker_id: String = "RockBridgeMarker" 
 # Grupo/ID de la puerta o puente que se levantará
-@export var target_id: String = "RockBridgeForest" 
+@export var target_id: String 
 
 # --- REFERENCIAS INTERNAS ---
 @onready var placedEnergySphere: StaticBody3D = $EnergySphere
@@ -18,7 +18,6 @@ var ya_activado: bool = false
 
 
 func _ready() -> void:
-	print(self, ": Rocks Bridge Switch")
 	
 	# Configuración de variables heredadas de InteractableItem (Valores por defecto)
 	se_puede_recoger = false
@@ -71,13 +70,11 @@ func _obtener_texto_interaccion() -> String:
 		outline_habilitado = false
 		return texto_sin_objeto
 
-
 # --- LÓGICA DE INTERACCIÓN ---
 func interactuar() -> void:
 	if ya_activado:
 		return
 
-	# Confirmamos que el jugador tenga la llave heredada
 	if item_clave_requerido != "" and not Inventory.tiene_objeto(item_clave_requerido):
 		return
 
@@ -95,7 +92,7 @@ func interactuar() -> void:
 	if is_in_group("interactibleObjects"):
 		remove_from_group("interactibleObjects")
 		
-	# --- DISPARAR CINEMÁTICA AUTOMÁTICA EN EL JUGADOR ---
+	# --- DISPARAR CINEMÁTICA EN EL JUGADOR ---
 	var jugador = get_tree().get_first_node_in_group("player")
 	if jugador and camera_marker_id != "":
 		var marcador = _buscar_por_id(camera_marker_id)
@@ -104,9 +101,11 @@ func interactuar() -> void:
 		else:
 			push_warning("Advertencia: No se encontró ningún CinemaMarker con el ID: ", camera_marker_id)
 		
-		# --- CONEXIÓN AUTOMÁTICA CON EL TARGET ---
-		get_tree().call_group(target_id, "verificar_y_levantar", target_id)
-
+	# --- CONEXIÓN AUTOMÁTICA CON EL TARGET ---
+	if target_id != "":
+		get_tree().call_group(target_id, "open", target_id)
+	else:
+		push_warning("Advertencia: target_id no está configurado en el switch.")
 
 # --- FUNCIÓN AUXILIAR PARA BUSCAR EL MARCADOR EN EL MAPA ---
 func _buscar_por_id(id_buscado: String) -> Marker3D:

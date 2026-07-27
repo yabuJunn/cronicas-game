@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d1xmld0343rf" path="res://scenes/objects/world/stone_signal.gd" id="1_lufbg"]
 [ext_resource type="Texture2D" uid="uid://v5oe0cnv4d3w" path="res://textures/Texts/StoneSignalText.png" id="2_v0lxu"]
 [ext_resource type="Material" uid="uid://bshl85rsbyyov" path="res://textures/Stone/Stone_12-256x256.tres" id="3_lufbg"]
+[ext_resource type="PackedScene" uid="uid://bkyyf4n8qn4f4" path="res://scenes/objects/interactible_objects/interactible_objects_ligth.tscn" id="4_jrm1v"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_jrm1v"]
 _surfaces = [{
@@ -60,7 +61,7 @@ material = SubResource("StandardMaterial3D_80jk7")
 size = Vector2(0.04, 0.04)
 orientation = 2
 
-[node name="StoneSignal" type="StaticBody3D" unique_id=364495071 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+[node name="StoneSign" type="StaticBody3D" unique_id=364495071 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
 collision_layer = 10
 script = ExtResource("1_lufbg")
 item_name = "Piedra Runica"
@@ -99,3 +100,6 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_jrm1v")
 draw_pass_1 = SubResource("PlaneMesh_ijvdf")
+
+[node name="InteractibleObjectsLigth" parent="." unique_id=221834046 instance=ExtResource("4_jrm1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15063936, 2.4010444, -0.10310215)

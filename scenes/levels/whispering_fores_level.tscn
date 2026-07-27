@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://dbm4gimtnqn0k" path="res://scenes/world/paths/short_straight_path_decal.tscn" id="27_0xfjq"]
 [ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="27_jvg85"]
 [ext_resource type="PackedScene" uid="uid://de1o4orf880wf" path="res://scenes/world/paths/circle_path_decal.tscn" id="27_r1yae"]
+[ext_resource type="PackedScene" uid="uid://cuwi17ck3g0dm" path="res://scenes/objects/world/houses/ruined_house_3.tscn" id="28_y8p3x"]
 [ext_resource type="PackedScene" uid="uid://dn4udve851g52" path="res://scenes/objects/world/wooden_info_sign.tscn" id="30_q5fs3"]
 [ext_resource type="PackedScene" uid="uid://ql87akcuk6rk" path="res://scenes/objects/world/woden_lamp_post.tscn" id="32_t4hbk"]
 [ext_resource type="PackedScene" uid="uid://d23fp1yabt5hj" path="res://scenes/world/paths/big_circle_path_decal.tscn" id="33_5at7w"]
@@ -58,6 +59,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.05
 reflected_light_source = 2
 tonemap_mode = 3
+ssao_enabled = true
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
@@ -279,8 +281,6 @@ metadata/_custom_type_script = "uid://gwqrknegmc0e"
 script = ExtResource("7_scla1")
 collections = Array[ExtResource("8_scla1")]([SubResource("Resource_s4sqn")])
 raycast_mask = 15
-view_distance = 200.0
-fade_distance = 150.0
 metadata/_custom_type_script = "uid://1b47ci4ks7ew"
 
 [sub_resource type="Resource" id="Resource_ymrg4"]
@@ -1228,11 +1228,12 @@ metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 [node name="NegativeScatters" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1787820636]
 
 [node name="ScatterShotModulator" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=1756794570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.91443, -13.010546, 93.961845)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -205.74089, -13.010546, 93.1741)
 script = ExtResource("11_a1vcf")
 density = -1.0
+hardness = 0.0
 shape = 1
-circle_radius = 11.098312
+circle_radius = 5.0203857
 metadata/_custom_type_script = "uid://bakbblh68cskr"
 
 [node name="Rocks" type="Node3D" parent="WorldObjects" unique_id=637036486]
@@ -1438,92 +1439,97 @@ transform = Transform3D(-0.6, 0, 5.2453668e-08, 0, 0.6, 0, -5.2453668e-08, 0, -0
 [node name="VillageFountain" parent="WorldObjects/Houses/Village" unique_id=117244724 instance=ExtResource("16_xfv3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 230.61853, 3.8579602, 49.612694)
 
-[node name="ChargingForestStation" type="Node3D" parent="WorldObjects/Houses" unique_id=1499057351]
+[node name="ForestLumberjackStation" type="Node3D" parent="WorldObjects/Houses" unique_id=1499057351]
 
-[node name="VillageHouse(4)" parent="WorldObjects/Houses/ChargingForestStation" unique_id=1116907304 instance=ExtResource("18_0xfjq")]
+[node name="VillageHouse(4)" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1116907304 instance=ExtResource("18_0xfjq")]
 transform = Transform3D(0.90176463, 0, -0.4322274, 0, 1, 0, 0.4322274, 0, 0.90176463, -251.48634, -15.791772, 323.57227)
 
-[node name="VillageHouse(1)" parent="WorldObjects/Houses/ChargingForestStation" unique_id=1270211394 instance=ExtResource("4_anfc4")]
+[node name="VillageHouse(1)" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1270211394 instance=ExtResource("4_anfc4")]
 transform = Transform3D(-0.09626272, 0, -0.9953561, 0, 1, 0, 0.9953561, 0, -0.09626272, -243.78185, -15.791772, 325.4099)
 
-[node name="WallLamp1" parent="WorldObjects/Houses/ChargingForestStation/VillageHouse(1)" unique_id=475144102 instance=ExtResource("21_oxvs5")]
+[node name="WallLamp1" parent="WorldObjects/Houses/ForestLumberjackStation/VillageHouse(1)" unique_id=475144102 instance=ExtResource("21_oxvs5")]
 transform = Transform3D(-0.997653, 8.72175e-08, -0.06848542, -8.742279e-08, -0.9999999, -3.37506e-16, -0.068485394, 5.9871867e-09, 0.99765277, -1.8486938, 3.158764, -0.01828003)
 
-[node name="WallLamp2" parent="WorldObjects/Houses/ChargingForestStation/VillageHouse(1)" unique_id=1760141648 instance=ExtResource("21_oxvs5")]
+[node name="WallLamp2" parent="WorldObjects/Houses/ForestLumberjackStation/VillageHouse(1)" unique_id=1760141648 instance=ExtResource("21_oxvs5")]
 transform = Transform3D(-0.99765325, 8.72175e-08, -0.068485394, -8.742279e-08, -0.9999999, -3.37506e-16, -0.06848537, 5.9871867e-09, 0.997653, -0.6890869, 6.9090576, -0.031036377)
 
-[node name="WallLamp4" parent="WorldObjects/Houses/ChargingForestStation/VillageHouse(1)" unique_id=1159109160 instance=ExtResource("21_oxvs5")]
+[node name="WallLamp4" parent="WorldObjects/Houses/ForestLumberjackStation/VillageHouse(1)" unique_id=1159109160 instance=ExtResource("21_oxvs5")]
 transform = Transform3D(-0.9299125, 8.129541e-08, -0.36778402, -8.742279e-08, -0.9999999, 2.1108217e-16, -0.36778402, 3.215268e-08, 0.9299125, -3.0779114, 2.680645, 7.045883)
 
-[node name="WallLamp3" parent="WorldObjects/Houses/ChargingForestStation/VillageHouse(1)" unique_id=13284743 instance=ExtResource("21_oxvs5")]
+[node name="WallLamp3" parent="WorldObjects/Houses/ForestLumberjackStation/VillageHouse(1)" unique_id=13284743 instance=ExtResource("21_oxvs5")]
 transform = Transform3D(-0.817568, 7.1473984e-08, 0.5758342, -8.742279e-08, -0.9999999, 2.1108217e-16, 0.5758342, -5.0340923e-08, 0.81756806, -3.2739868, 5.454689, -6.578064)
 
-[node name="VillageHouse(3)" parent="WorldObjects/Houses/ChargingForestStation" unique_id=152232434 instance=ExtResource("17_gj0yl")]
+[node name="VillageHouse(3)" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=152232434 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(0.8216371, 0, 0.570011, 0, 1, 0, -0.570011, 0, 0.8216371, -236.09377, -15.791772, 325.4099)
 
-[node name="MedievalBox1" parent="WorldObjects/Houses/ChargingForestStation" unique_id=203957198 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox1" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=203957198 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.8021093, 0, 0.59717727, 0, 1, 0, -0.59717727, 0, 0.8021093, -239.45499, -15.595572, 326.68387)
 
-[node name="MedievalBox4" parent="WorldObjects/Houses/ChargingForestStation" unique_id=305038888 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox4" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=305038888 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.8021093, 0, 0.59717727, 0, 1, 0, -0.59717727, 0, 0.8021093, -247.39507, -15.595572, 325.82364)
 
-[node name="MedievalBox5" parent="WorldObjects/Houses/ChargingForestStation" unique_id=397626067 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox5" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=397626067 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.9911902, 0, 0.13244668, 0, 1, 0, -0.13244668, 0, 0.9911902, -247.39507, -14.61729, 325.82364)
 
-[node name="MedievalBox6" parent="WorldObjects/Houses/ChargingForestStation" unique_id=693123106 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox6" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=693123106 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.92986006, 0, -0.3679136, 0, 1, 0, 0.3679136, 0, 0.92986006, -247.55844, -13.644901, 325.82364)
 
-[node name="MedievalBox2" parent="WorldObjects/Houses/ChargingForestStation" unique_id=919670069 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox2" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=919670069 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.88767076, 0, 0.4604787, 0, 1, 0, -0.4604787, 0, 0.88767076, -238.36673, -15.595572, 326.00165)
 
-[node name="MedievalBox12" parent="WorldObjects/Houses/ChargingForestStation" unique_id=1316330932 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox12" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1316330932 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.9853127, 0, 0.17075986, 0, 1, 0, -0.17075986, 0, 0.9853127, -255.14568, -15.595572, 321.3745)
 
-[node name="MedievalBox8" parent="WorldObjects/Houses/ChargingForestStation" unique_id=776606806 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox8" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=776606806 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(-0.22914946, 0, -0.9733913, 0, 1, 0, 0.9733913, 0, -0.22914946, -230.5214, -15.595572, 320.44946)
 
-[node name="MedievalBox9" parent="WorldObjects/Houses/ChargingForestStation" unique_id=619982568 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox9" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=619982568 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.3500112, 0, -0.9367455, 0, 1, 0, 0.9367455, 0, 0.3500112, -229.56966, -15.595572, 319.75818)
 
-[node name="MedievalBox10" parent="WorldObjects/Houses/ChargingForestStation" unique_id=1378273899 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox10" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1378273899 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(-0.03172472, 0, -0.99949664, 0, 1, 0, 0.99949664, 0, -0.03172472, -229.56966, -14.5961, 319.75818)
 
-[node name="MedievalBox11" parent="WorldObjects/Houses/ChargingForestStation" unique_id=1622434930 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox11" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1622434930 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.38984734, 0, -0.9208795, 0, 1, 0, 0.9208795, 0, 0.38984734, -229.56966, -13.6339655, 319.75818)
 
-[node name="MedievalBox7" parent="WorldObjects/Houses/ChargingForestStation" unique_id=740326927 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox7" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=740326927 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.99674517, 0, -0.08061645, 0, 1, 0, 0.08061645, 0, 0.99674517, -245.26706, -15.595572, 324.55368)
 
-[node name="EnergySphereDeactivated" parent="WorldObjects/Houses/ChargingForestStation/MedievalBox7" unique_id=1256466068 instance=ExtResource("18_xeu51")]
+[node name="EnergySphereDeactivated" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=1256466068 instance=ExtResource("18_xeu51")]
 transform = Transform3D(1.0000006, 0, -7.450581e-09, 0, 1, 0, 7.450581e-09, 0, 1.0000006, -0.004135132, 0.8535681, -0.05105591)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Houses/ChargingForestStation/MedievalBox7" unique_id=297782030]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=297782030]
 transform = Transform3D(0.9962518, 0, 0.0865125, 0, 1, 0, -0.0865125, 0, 0.9962518, -0.22541809, 0.6854172, 0.20489502)
 layers = 8
 mesh = SubResource("SphereMesh_oxvs5")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="WorldObjects/Houses/ChargingForestStation/MedievalBox7" unique_id=1258765833]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=1258765833]
 transform = Transform3D(0.9997026, 0.024153259, -0.003691256, -0.024153281, 0.9540627, -0.29863217, -0.003691256, 0.29863188, 0.95436233, 0.177948, 0.6854172, 0.17227173)
 layers = 8
 mesh = SubResource("SphereMesh_oxvs5")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="WorldObjects/Houses/ChargingForestStation/MedievalBox7" unique_id=1914917673]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=1914917673]
 transform = Transform3D(0.95966923, 0, 0.28113604, 0, 1, 0, -0.28113604, 0, 0.95966923, 0.25924683, 0.6854172, -0.24822998)
 layers = 8
 mesh = SubResource("SphereMesh_oxvs5")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="WorldObjects/Houses/ChargingForestStation/MedievalBox7" unique_id=1184504207]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=1184504207]
 transform = Transform3D(0.95966923, 0, 0.28113604, 0, 1, 0, -0.28113604, 0, 0.95966923, 5.748123, 0.6854172, 1.5132446)
 layers = 8
 mesh = SubResource("SphereMesh_oxvs5")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="WorldObjects/Houses/ChargingForestStation/MedievalBox7" unique_id=230512895]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=230512895]
 transform = Transform3D(0.98560166, 0, -0.16909175, 0, 1, 0, 0.16909175, 0, 0.98560166, -0.22038269, 0.6854172, -0.20944214)
 layers = 8
 mesh = SubResource("SphereMesh_oxvs5")
 
-[node name="MedievalBox3" parent="WorldObjects/Houses/ChargingForestStation" unique_id=1469134731 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox3" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1469134731 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.88767076, 0, 0.4604787, 0, 1, 0, -0.4604787, 0, 0.88767076, -238.92886, -14.602767, 326.33392)
+
+[node name="RuinsForest" type="Node3D" parent="WorldObjects/Houses" unique_id=1841445270]
+
+[node name="RuinedHouse(3)" parent="WorldObjects/Houses/RuinsForest" unique_id=480450169 instance=ExtResource("28_y8p3x")]
+transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -207.1438, -15.89285, 93.56683)
 
 [node name="InteractibleObjects" type="Node3D" parent="WorldObjects" unique_id=775300750]
 
@@ -1536,13 +1542,13 @@ target_id = "RiverRockBridgeForest"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.834476, -6.9106393, -228.13377)
 
 [node name="EnergySphereChargingStation" parent="WorldObjects/InteractibleObjects" unique_id=2078462759 instance=ExtResource("19_myv0h")]
-transform = Transform3D(0.9802332, 0, 0.19784552, 0, 1, 0, -0.19784552, 0, 0.9802332, -58.925644, -7.8457484, -225.51717)
+transform = Transform3D(-0.88162506, 0, -0.47195077, 0, 1, 0, 0.47195077, 0, -0.88162506, -61.774426, 11.179531, -233.84502)
 collision_layer = 255
 se_puede_recoger = true
 texto_con_objeto = "Cargar"
 
-[node name="StoneSignal" parent="WorldObjects/InteractibleObjects" unique_id=364495071 instance=ExtResource("33_xukqh")]
-transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -207.1438, -15.567966, 93.56683)
+[node name="StoneSign" parent="WorldObjects/InteractibleObjects" unique_id=364495071 instance=ExtResource("33_xukqh")]
+transform = Transform3D(-0.2513092, 0, 0.96790683, 0, 1, 0, -0.96790683, 0, -0.2513092, -203.7902, -15.8985815, 90.2997)
 texto_estatico = "[E] Leer"
 
 [node name="WoodenInfoSign" parent="WorldObjects/InteractibleObjects" unique_id=1093640174 instance=ExtResource("30_q5fs3")]
@@ -2215,4 +2221,4 @@ area_mask = 15
 parameters/looping = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("27_jvg85")]
-transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -42.088436, -8.552008, -234.0202)
+transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -220.07259, -8.552008, 69.796005)

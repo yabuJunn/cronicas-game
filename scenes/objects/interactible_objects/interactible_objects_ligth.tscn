@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bkyyf4n8qn4f4"]
+
+[ext_resource type="Script" uid="uid://yr52mggjpwwr" path="res://scenes/objects/interactible_objects/interactible_objects_ligth.gd" id="1_8howf"]
+[ext_resource type="Texture2D" uid="uid://bpclccxkxskp8" path="res://sprites/circle.png" id="2_o6v87"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6v87"]
+transparency = 1
+shading_mode = 0
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.97163707, 0.8950914, 0.4808575, 1)
+albedo_texture = ExtResource("2_o6v87")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[node name="InteractibleObjectsLigth" type="OmniLight3D" unique_id=221834046]
+light_color = Color(0.98333615, 0.9299762, 0.647875, 1)
+light_energy = 5.698
+light_volumetric_fog_energy = 16.0
+light_cull_mask = 4294967293
+omni_range = 2.0
+script = ExtResource("1_8howf")
+min_energy = 1.0
+max_energy = 3.0
+min_alpha = 0.0
+max_alpha = 0.3
+min_scale = Vector3(0.1, 0.1, 0.1)
+max_scale = Vector3(0.3, 0.3, 0.3)
+dist_cerca_invisible = 3.0
+dist_lejos_invisible = 30.0
+
+[node name="DestelloSprite" type="Sprite3D" parent="." unique_id=1015077505]
+material_override = SubResource("StandardMaterial3D_o6v87")
+modulate = Color(2.8057854, 2.4132009, 0.67400503, 1)
+pixel_size = 0.0005
+billboard = 1
+texture = ExtResource("2_o6v87")

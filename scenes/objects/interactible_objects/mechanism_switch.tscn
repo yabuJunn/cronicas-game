@@ -58,7 +58,6 @@ collision_layer = 11
 collision_mask = 15
 script = ExtResource("2_um18e")
 camera_marker_id = ""
-target_id = ""
 item_name = "MechanismSwitch"
 item_description = "MechanismSwitchDefault"
 se_puede_recoger = false

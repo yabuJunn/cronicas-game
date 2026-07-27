@@ -124,3 +124,6 @@ func interactuar() -> void:
 		queue_free()
 	else:
 		print("Has interactuado con: ", item_name, " (Objeto estático)")
+		
+	if has_node("InteractibleObjectsLigth"):
+		$InteractibleObjectsLigth.apagar() # o $InteractableLight.queue_free()

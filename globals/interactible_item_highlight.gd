@@ -19,8 +19,17 @@ const HIGHLIGHT_SHADER: Shader = preload("res://shaders/item_highlighter.gdshade
 @export_range(-1.0, 1.0, 0.1) var z_direction: float = 1.0
 
 @export_group("Comportamiento del Efecto")
-## Si es true, el destello pasa continuamente. Si es false, solo brilla al mirarlo.
-@export var siempre_activo: bool = true
+## Interruptor principal: Si es false, desactiva por completo el destello (On / Off).
+@export var destello_habilitado: bool = true:
+	set(valor):
+		destello_habilitado = valor
+		actualizar_parametros_shader()
+
+## Si es true, el destello pasa continuamente. Si es false, solo brilla cuando el jugador mira el objeto.
+@export var siempre_activo: bool = true:
+	set(valor):
+		siempre_activo = valor
+		actualizar_parametros_shader()
 
 var shader_material: ShaderMaterial
 
@@ -41,7 +50,7 @@ func _crear_y_configurar_shader() -> void:
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = HIGHLIGHT_SHADER
 	
-	# ¡CLAVE!: Conectamos el outline_material generado en el padre como "next_pass"
+	# Conectamos el outline_material generado en el padre como "next_pass"
 	if outline_material:
 		shader_material.next_pass = outline_material
 		
@@ -55,9 +64,13 @@ func actualizar_parametros_shader() -> void:
 	if not shader_material:
 		return
 		
-	# Si 'siempre_activo' es false y el jugador no está mirando el objeto, ocultamos el destello
 	var color_final: Color = shine_color
-	if not siempre_activo and not es_mirado:
+	
+	# CASO 1: Si el destello está apagado por completo (Off master)
+	if not destello_habilitado:
+		color_final.a = 0.0
+	# CASO 2: Si no está en 'siempre_activo' y el jugador NO lo está mirando
+	elif not siempre_activo and not es_mirado:
 		color_final.a = 0.0
 
 	shader_material.set_shader_parameter("shine_color", color_final)
@@ -75,5 +88,5 @@ func set_highlight(activo: bool) -> void:
 	# 1. Llamamos a InteractableItem.set_highlight(), que activa/desactiva el outline
 	super.set_highlight(activo)
 	
-	# 2. Actualizamos el destello por si dependía de 'es_mirado' (cuando siempre_activo = false)
+	# 2. Actualizamos el destello por si dependía de 'es_mirado'
 	actualizar_parametros_shader()

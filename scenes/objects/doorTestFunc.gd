@@ -67,8 +67,9 @@ func preparar_material_shader() -> void:
 			material_shader_puerta = nuevo_material_combinado
 
 # Si el jugador interactúa directamente con la puerta física
-func interactuar() -> void:
+func interactuar() -> bool:
 	print("No puedes abrir esta puerta empujándola. Busca un mecanismo.")
+	return false
 
 # --- FUNCIÓN PÚBLICA: El pedestal llamará a esto ---
 func abrir_puerta() -> void:

@@ -1,5 +1,5 @@
 class_name InteractibleObjectTextOpener
-extends InteractableItem
+extends InteractibleItemHighlight
 
 @export_group("Configuración de Texto")
 @export_multiline var texto_a_mostrar: String = "Primera página...||Y esta es la segunda página.||Fin."
@@ -15,7 +15,7 @@ func _ready() -> void:
 	super._ready()
 
 # Esta función la invoca directamente el Raycast de tu jugador al presionar 'E' o Clic
-func interactuar() -> void:
+func interactuar() -> bool:
 	if not DialogueSystem.esta_activo:
 		var titulo_a_enviar: String = ""
 		
@@ -24,3 +24,4 @@ func interactuar() -> void:
 			titulo_a_enviar = titulo_personalizado if titulo_personalizado != "" else item_name
 
 		DialogueSystem.iniciar_dialogo(texto_a_mostrar, separador_paginas, titulo_a_enviar)
+	return false

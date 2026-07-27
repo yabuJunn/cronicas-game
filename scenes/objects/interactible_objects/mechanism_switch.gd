@@ -71,12 +71,12 @@ func _obtener_texto_interaccion() -> String:
 		return texto_sin_objeto
 
 # --- LÓGICA DE INTERACCIÓN ---
-func interactuar() -> void:
+func interactuar() -> bool:
 	if ya_activado:
-		return
+		return false
 
 	if item_clave_requerido != "" and not Inventory.tiene_objeto(item_clave_requerido):
-		return
+		return false
 
 	ya_activado = true
 	Inventory.remover_objeto(item_clave_requerido)
@@ -106,6 +106,7 @@ func interactuar() -> void:
 		get_tree().call_group(target_id, "open", target_id)
 	else:
 		push_warning("Advertencia: target_id no está configurado en el switch.")
+	return true
 
 # --- FUNCIÓN AUXILIAR PARA BUSCAR EL MARCADOR EN EL MAPA ---
 func _buscar_por_id(id_buscado: String) -> Marker3D:

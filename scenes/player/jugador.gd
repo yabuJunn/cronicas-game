@@ -26,8 +26,8 @@ const BOB_FREQ_SPRINT = 14.0      # Frecuencia al correr (más rápida)
 const BOB_AMP_SPRINT_V = 0.07     # Amplitud vertical al correr (más notable)
 const BOB_AMP_SPRINT_H = 0.05     # Amplitud horizontal al correr
 
-const BREATH_FREQ = 2.0           # Velocidad de la respiración (más bajo = más lento/relajado)
-const BREATH_AMP = 0.035          # Amplitud de la respiración (0.015 = 1.5 centímetros de vaivén)
+const BREATH_FREQ = 2.0           # Velocidad de la respiración
+const BREATH_AMP = 0.035          # Amplitud de la respiración
 
 var bob_time := 0.0               # Acumulador de tiempo para las ondas seno/coseno de movimiento
 var breath_time := 0.0            # Acumulador de tiempo exclusivo para la respiración
@@ -49,12 +49,11 @@ const CAMERA_STEP_SPEED := 14.0
 
 # Guardamos el objeto que estamos mirando actualmente
 var current_interactable = null
-var default_camera_pos := Vector3.ZERO # <--- NUEVA VARIABLE: Guarda la posición de tus ojos del editor
+var default_camera_pos := Vector3.ZERO # Guarda la posición de tus ojos del editor
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	add_to_group("player")
-	# Guardamos la posición exacta que le diste en el Inspector a la altura de los ojos
 	default_camera_pos = camera_3d.position 
 
 func _physics_process(delta: float) -> void:
@@ -65,7 +64,7 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 		move_and_slide()
-		return # ¡CORTE! Salimos de la función aquí para que nadie altere la cámara
+		return
 	
 	# --- SI SOLO ESTÁN BLOQUEADOS LOS CONTROLES (MENÚS, DIÁLOGOS, ETC.) ---
 	if controles_bloqueados:
@@ -112,12 +111,11 @@ func _physics_process(delta: float) -> void:
 			else:
 				$Sounds/Steps/StepsTimer.start(0.5)
 	
-	# <--- GUARDAR VELOCIDAD ANTES DEL IMPACTO --->
 	last_velocity_y = velocity.y 
 	
 	move_and_slide()
 	
-	# DETECCIÓN DE ATERRIZAJE (CORREGIDA)
+	# DETECCIÓN DE ATERRIZAJE
 	if is_on_floor() and not was_on_floor:
 		if last_velocity_y < -3.5: 
 			landingSoundPlayer.play()
@@ -136,7 +134,7 @@ func _physics_process(delta: float) -> void:
 	# --- PROCESAR EL MOVIMIENTO DEL HEAD BOB ---
 	_update_head_bob(delta)
 	
-	# --- SISTEMA DE DETECCIÓN VISUAL (ACTUALIZADO) ---
+	# --- SISTEMA DE DETECCIÓN VISUAL ---
 	var collider = interact_ray.get_collider() if interact_ray.is_colliding() else null
 	
 	if current_interactable != null:
@@ -144,7 +142,7 @@ func _physics_process(delta: float) -> void:
 			current_interactable = null
 			interact_prompt.hide()
 	
-	# Manejamos los cambios de foco (entrar o salir de un objeto con la mirada)
+	# Manejamos los cambios de foco
 	if collider != current_interactable:
 		if current_interactable != null and is_instance_valid(current_interactable):
 			current_interactable.set_highlight(false)
@@ -158,7 +156,7 @@ func _physics_process(delta: float) -> void:
 			current_interactable = null
 			interact_prompt.hide()
 
-	# ¡NUEVO! Si estamos enfocando activamente a un objeto, actualizamos el texto de la UI en cada frame
+	# Actualizamos el texto de la UI
 	if current_interactable != null and is_instance_valid(current_interactable):
 		if "texto_interaccion" in current_interactable:
 			interact_prompt.text = current_interactable.texto_interaccion
@@ -200,57 +198,45 @@ func _input(event):
 
 	if event.is_action_pressed("interact") and current_interactable != null:
 		if is_instance_valid(current_interactable):
-			if "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
+			# Primero ejecutamos la interacción y guardamos si la recogida fue exitosa
+			var objeto_recogido: bool = current_interactable.interactuar()
+			
+			# Solo si devolvió 'true' disparamos el audio de inventario
+			if objeto_recogido:
 				miscellaneousSoundsPlayer.pitch_scale = 1.0 
 				miscellaneousSoundsPlayer.stream = pickUpSound
 				miscellaneousSoundsPlayer.play()
 			
-			current_interactable.interactuar()
 			current_interactable = null
 			interact_prompt.hide()
 
 
-# =============================================================================
-# --- FUNCIÓN INTERNA: CÁLCULO DEL HEAD BOB PROCESADO (CORREGIDO) ---
-# =============================================================================
 func _update_head_bob(delta: float) -> void:
 	if controles_bloqueados:
 		camera_3d.position = camera_3d.position.lerp(default_camera_pos, delta * 10.0)
 		return
 
-	# Iniciamos en la posición base del editor en lugar de Vector3.ZERO
 	var target_pos = default_camera_pos
 	var velocidad_horizontal = Vector2(velocity.x, velocity.z).length()
 
-	# --- SI EL JUGADOR ESTÁ EN EL SUELO ---
 	if is_on_floor():
 		if velocidad_horizontal > 0.1:
-			# MOVIMIENTO: Caminando o Corriendo
 			var es_corriendo = Input.is_action_pressed("sprint")
 			var freq = BOB_FREQ_SPRINT if es_corriendo else BOB_FREQ_WALK
 			var amp_v = BOB_AMP_SPRINT_V if es_corriendo else BOB_AMP_WALK_V
 			var amp_h = BOB_AMP_SPRINT_H if es_corriendo else BOB_AMP_WALK_H
 
 			bob_time += delta * freq
-			
-			# Sumamos el desfase a la posición original
 			target_pos.y += sin(bob_time * 2.0) * amp_v
 			target_pos.x += cos(bob_time) * amp_h
 		else:
-			# REPOSO: Simulación de Respiración Orgánica
 			breath_time += delta * BREATH_FREQ
-			
 			target_pos.y += sin(breath_time) * BREATH_AMP
-	
-	# --- SI EL JUGADOR ESTÁ EN EL AIRE (Salto y Caída) ---
 	else:
 		target_pos.y += clamp(velocity.y * 0.015, -0.08, 0.05)
 
-	# --- IMPACTO DE ATERRIZAJE ---
 	landing_bounce = lerp(landing_bounce, 0.0, delta * 10.0)
 	target_pos.y += landing_bounce
-
-	# --- INTERPOLACIÓN Y APLICACIÓN FINAL ---
 	camera_3d.position = camera_3d.position.lerp(target_pos, delta * 12.0)
 
 
@@ -258,25 +244,21 @@ func ejecutar_cinematica(transform_destino: Transform3D, duracion_total: float =
 	if en_cinematica:
 		return
 		
-	en_cinematica = true # Activamos el estado de película
+	en_cinematica = true
 	controles_bloqueados = true
 	interact_prompt.hide()
 	if current_interactable != null:
 		current_interactable.set_highlight(false)
 	
 	var original_local_transform = camera_3d.transform
-	var tiempo_transicion : float = 2.0 # Forzado a float para evitar fallos de cálculo
+	var tiempo_transicion : float = 2.0
 	var tiempo_espera = max(0.1, duracion_total - (tiempo_transicion * 2.0))
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	
-	# Transición hacia el objetivo
 	tween.tween_property(camera_3d, "global_transform", transform_destino, tiempo_transicion)
-	# Tiempo de espera en el objetivo (Ahora sí se respetará por completo)
 	tween.tween_interval(tiempo_espera)
-	# Transición de regreso a los ojos del jugador
 	tween.tween_property(camera_3d, "transform", original_local_transform, tiempo_transicion)
 	
-	# Al finalizar, devolvemos el control total
 	tween.tween_callback(func(): 
 		en_cinematica = false
 		controles_bloqueados = false

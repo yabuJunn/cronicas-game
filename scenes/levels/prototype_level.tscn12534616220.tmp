@@ -1233,6 +1233,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.006334, 22.302912, 9.8050
 
 [node name="MechanismSwitch" parent="." unique_id=1781407386 instance=ExtResource("19_2hxmp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.021757, 22.013512, 12.179106)
+tiempo_escena = null
+target_id = null
+ruta_modelo3d = null
+texto_recoger = null
+texto_estatico = null
 
 [node name="LoreNote" parent="." unique_id=1089980636 instance=ExtResource("20_ii7fs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.110064, 22.20683, 9.864953)

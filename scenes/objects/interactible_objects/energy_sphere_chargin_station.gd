@@ -59,15 +59,16 @@ func _obtener_texto_interaccion() -> String:
 		return "[ Requieres: " + nombre_req + " ]"
 
 
-func interactuar() -> void:
+# Firma ajustada a -> bool para coincidir exactamente con el padre (InteractableItem)
+func interactuar() -> bool:
 	# 1. Recoger esfera cargada
 	if ya_activado and ya_cargado:
 		recogerEsferaCargada()
-		return
+		return true # Retornamos true para reproducir el sonido de pick up en el jugador
 
 	# 2. Si está cargando, ignoramos clics adicionales
 	if ya_activado and not ya_cargado:
-		return
+		return false
 
 	# 3. Colocar esfera e iniciar carga
 	if _comprobar_item_requerido():
@@ -80,8 +81,16 @@ func interactuar() -> void:
 			Inventory.remove_item(item_clave_requerido)
 
 		estadoInicialCarga()
-		await animacionDeCarga()
-		ya_cargado = true
+		_procesar_animacion_carga()
+		return true
+		
+	return false
+
+
+# Separamos la corrutina asíncrona para no congelar ni cambiar la firma de 'interactuar()'
+func _procesar_animacion_carga() -> void:
+	await animacionDeCarga()
+	ya_cargado = true
 
 
 func _comprobar_item_requerido() -> bool:

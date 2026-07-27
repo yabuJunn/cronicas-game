@@ -33,9 +33,9 @@ func _ready() -> void:
 	super._ready() 
 	se_puede_recoger = false 
 
-func interactuar() -> void:
+func interactuar() -> bool:
 	if ya_activado:
-		return
+		return false
 
 	if Inventory.tiene_objeto(llave_requerida):
 		print("¡Esfera colocada con éxito en el pedestal!")
@@ -77,8 +77,10 @@ func interactuar() -> void:
 		# --- CONEXIÓN AUTOMÁTICA CON LA PUERTA ---
 		get_tree().call_group("puertas_mapa", "verificar_y_abrir", target_id)
 		
+		return false # El pedestal consume la esfera, no la añade al inventario del jugador
 	else:
 		print("El pedestal emite un zumbido vacío. Necesitas la ", llave_requerida)
+		return false
 
 # --- FUNCIÓN AUXILIAR PARA BUSCAR EL MARCADOR EN EL MAPA ---
 func _buscar_por_id(id_buscado: String) -> Marker3D:

@@ -4,7 +4,7 @@ shader_type spatial;
 render_mode unshaded, cull_front;
 
 uniform vec4 outline_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // Blanco por defecto
-uniform float outline_width = 2.0;
+uniform float outline_width = 1.0;
 
 void vertex() {
     // CAMBIO CLAVE: En lugar de NORMAL, usamos normalize(VERTEX).

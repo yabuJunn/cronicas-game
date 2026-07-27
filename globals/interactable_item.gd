@@ -75,7 +75,6 @@ func _obtener_texto_interaccion() -> String:
 			elif Inventory.has_method("has_item"):
 				tiene_llave = Inventory.has_item(item_clave_requerido)
 		else:
-			# Si no requiere ningún objeto en particular, se considera desbloqueada
 			tiene_llave = true
 			
 		if tiene_llave:
@@ -113,7 +112,10 @@ func _actualizar_estado_outline() -> void:
 			outline_material.set_shader_parameter("outline_color", Color(1, 1, 1, 0))
 
 
-func interactuar() -> void:
+func interactuar() -> bool:
+	if has_node("InteractibleObjectsLigth"):
+		$InteractibleObjectsLigth.apagar()
+
 	if se_puede_recoger:
 		var modelo_para_inventario: PackedScene = null
 		
@@ -122,8 +124,7 @@ func interactuar() -> void:
 			
 		Inventory.agregar_objeto(item_name, item_description, item_icon, modelo_para_inventario)
 		queue_free()
+		return true # Indica que el objeto se ha recogido
 	else:
-		print("Has interactuado con: ", item_name, " (Objeto estático)")
-		
-	if has_node("InteractibleObjectsLigth"):
-		$InteractibleObjectsLigth.apagar() # o $InteractableLight.queue_free()
+		print("Has interactuado con: ", item_name, " (Objeto estático / Puerta)")
+		return false # Indica que NO es un objeto de recogida

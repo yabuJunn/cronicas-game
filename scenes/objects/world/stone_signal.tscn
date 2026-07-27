@@ -64,6 +64,8 @@ orientation = 2
 [node name="StoneSign" type="StaticBody3D" unique_id=364495071 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
 collision_layer = 10
 script = ExtResource("1_lufbg")
+destello_habilitado = false
+siempre_activo = false
 item_name = "Piedra Runica"
 item_description = "Piedra Runica"
 se_puede_recoger = false

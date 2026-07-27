@@ -56,6 +56,8 @@ texto_a_mostrar = "[center][b]🧭 CRUCE DE LOS CUATRO VIENTOS 🧭[/b][/center]
 
 [color=#ff5555]➡️ Derecha:[/color] [b]Valle de los Picos[/b]
 [i][shake rate=15.0 level=4.0][color=#ff3333]⚠️ ¡ZONA PELIGROSA! ⚠️[/color][/shake][/i]"
+destello_habilitado = false
+siempre_activo = false
 item_name = "Señal de Madera"
 item_description = "Señal de Madera"
 se_puede_recoger = false

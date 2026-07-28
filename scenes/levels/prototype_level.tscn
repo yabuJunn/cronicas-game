@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://bg4ii3ka2ygmg" path="res://scenes/objects/interactible_objects/lore_note.tscn" id="20_ii7fs"]
 [ext_resource type="PackedScene" uid="uid://dn4udve851g52" path="res://scenes/objects/world/wooden_info_sign.tscn" id="21_dei2k"]
 [ext_resource type="PackedScene" uid="uid://nyp4kio1bmrg" path="res://scenes/objects/world/stone_signal.tscn" id="22_sy7sx"]
+[ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="23_oj5qw"]
+[ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="24_65iqy"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2g36m"]
 
@@ -623,6 +625,9 @@ points = PackedVector3Array(25.333334, 33.5, 36, 25.333334, 22, 36, 24.666666, 3
 [sub_resource type="BoxShape3D" id="BoxShape3D_js2ys"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_js2ys"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xoou4"]
+size = Vector3(1, 7.673462, 6.057617)
 
 [node name="Node3D" type="Node3D" unique_id=1007813685]
 
@@ -1242,3 +1247,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.301485, 21.034533, 14.590
 
 [node name="StoneSign" parent="." unique_id=364495071 instance=ExtResource("22_sy7sx")]
 transform = Transform3D(-0.012391532, 0, -0.9999232, 0, 1, 0, 0.9999232, 0, -0.012391532, -24.689419, 21.76586, 8.034464)
+
+[node name="MistBarriersBody" type="StaticBody3D" parent="." unique_id=854739307]
+collision_layer = 2
+
+[node name="MistBarrier" type="CollisionShape3D" parent="MistBarriersBody" unique_id=1992105081 node_paths=PackedStringArray("fogVolume")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.3021, 25.141813, 26.504393)
+shape = SubResource("BoxShape3D_xoou4")
+script = ExtResource("23_oj5qw")
+puerta_id = "MistBarrierTest"
+fogVolume = NodePath("FogVolume")
+
+[node name="FogVolume" type="FogVolume" parent="MistBarriersBody/MistBarrier" unique_id=1451062740]
+material = ExtResource("24_65iqy")
+
+[node name="EnergySphere6" parent="." unique_id=1980340121 instance=ExtResource("12_1qcro")]
+transform = Transform3D(0.98796004, 0, -0.15471037, 0, 1, 0, 0.15471037, 0, 0.98796004, -31.761274, 22.37766, 26.325413)
+
+[node name="MechanismSwitchFogBarrier" parent="." unique_id=1725890483 instance=ExtResource("19_2hxmp")]
+transform = Transform3D(0.9879598, 0, -0.15471032, 0, 1, 0, 0.15471032, 0, 0.9879598, -31.761276, 21.948444, 24.709402)
+target_id = "MistBarrierTest"

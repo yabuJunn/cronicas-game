@@ -1,4 +1,5 @@
 extends InteractableItem
+class_name MechanismSwitch
 
 # MechanismSwitchPedestal
 

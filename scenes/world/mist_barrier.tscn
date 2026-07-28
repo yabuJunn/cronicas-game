@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://vrcgjim2ecrf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_th27n"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" unique_id=742201644]
+shape = SubResource("BoxShape3D_th27n")
+
+[node name="FogVolume" type="FogVolume" parent="." unique_id=181776743]

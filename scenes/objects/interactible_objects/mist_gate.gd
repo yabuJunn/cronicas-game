@@ -71,7 +71,7 @@ func open(id_recibido: String = "") -> void:
 		# Usamos TRANS_LINEAR para que el fade sea constante y perceptible.
 		# Usamos EASE_IN_OUT para un comienzo y final suaves (opcional, TRANS_LINEAR funciona solo con linear).
 		var activatedAnimationTween = create_tween().set_parallel(true)
-		activatedAnimationTween.set_trans(Tween.TRANS_LINEAR)
+		create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 		# activatedAnimationTween.set_ease(Tween.EASE_IN_OUT) # Opcional si usas LINEAR
 		activatedAnimationTween.tween_property(mat_unico, "emission_energy_multiplier", multiplicador_energia_max, animationTime)
 		activatedAnimationTween.tween_property(ligth1, "light_energy", 2, animationTime)

@@ -8,10 +8,17 @@ extends CollisionShape3D
 @export var meshInstance: MeshInstance3D
 @export var fogVolume: FogVolume
 
+@export_group("Textura de Disolución (BOTW)")
+## Textura de ruido utilizada para el patrón de disolución.
+## Si se deja vacía, se generará un ruido FastNoiseLite automáticamente al cargar la escena.
+@export var textura_ruido: Texture2D
+
+## Escala del patrón de disolución. 
+## Valores más altos (ej: 8.0 a 25.0) crean agujeros más pequeños y detallados en mallas grandes.
+@export_range(0.1, 50.0, 0.5) var escala_ruido: float = 12.0
+
 @export_group("Ajuste de Margen de Malla")
 ## Factor de escala relativo a la colisión (ej: X: 0.98, Y: 0.98, Z: 0.80).
-## Reducir principalmente Z (profundidad) evita que la cabeza del jugador
-## entre a las crestas deformadas por el shader antes de colisionar.
 @export var factor_escala_malla: Vector3 = Vector3(0.98, 0.98, 0.95)
 
 @export_group("Configuración de Fog Base")
@@ -19,7 +26,12 @@ extends CollisionShape3D
 @export var altura_fog_base: float = 0.5
 
 @export_group("Animación de Salida")
+## Duración total del proceso (Encendido + Disolución)
 @export var duracion_desvanecimiento: float = 6.0
+## Proporción del tiempo dedicada a "encender" la malla (ej: 0.35 = 35% encendido, 65% disolución)
+@export_range(0.1, 0.9) var proporcion_tiempo_encendido: float = 0.35
+
+@onready var simple_dissolve_shader: Shader = preload("res://shaders/simple_dissolve.gdshader")
 
 var ya_abierto: bool = false
 
@@ -38,8 +50,21 @@ func _ready() -> void:
 	if fogVolume == null and has_node("FogVolume"):
 		fogVolume = $FogVolume as FogVolume
 
-	# 3. Sincronizar tamaños aplicando el margen a la malla y posicionando el FogVolume en la base
+	# 3. Sincronizar tamaños aplicando el margen a la malla
 	_sincronizar_tamano_niebla()
+	
+	# 4. Pre-generar textura de respaldo si no fue asignada en el inspector
+	_preparar_textura_ruido()
+
+
+func _preparar_textura_ruido() -> void:
+	if textura_ruido == null:
+		var noise_gen := FastNoiseLite.new()
+		noise_gen.frequency = 0.03
+		var noise_tex_fallback := NoiseTexture2D.new()
+		noise_tex_fallback.noise = noise_gen
+		textura_ruido = noise_tex_fallback
+		await noise_tex_fallback.changed
 
 
 func _sincronizar_tamano_niebla() -> void:
@@ -47,37 +72,25 @@ func _sincronizar_tamano_niebla() -> void:
 		return
 		
 	var box_shape := shape as BoxShape3D
-	
-	# Calculamos el tamaño con la reducción porcentual aplicada a la Malla
 	var tamano_malla_reducido: Vector3 = box_shape.size * factor_escala_malla
 	
-	# Sincronizar Malla 3D (Mantiene la altura completa de 200m o la asignada al CollisionShape3D)
 	if meshInstance != null:
 		if meshInstance.mesh is BoxMesh:
 			meshInstance.mesh = meshInstance.mesh.duplicate()
 			var box_mesh := meshInstance.mesh as BoxMesh
 			box_mesh.size = tamano_malla_reducido
-			
-			# Subdivisiones necesarias para deformar vértices a gran escala
 			box_mesh.subdivide_width = 70
 			box_mesh.subdivide_height = 25
 			box_mesh.subdivide_depth = 2
 		else:
 			meshInstance.scale = tamano_malla_reducido
 
-	# Sincronizar FogVolume (Restringido solo a la base)
 	if fogVolume != null:
-		# 1. Conserva el 100% de X y Z, pero su altura Y se fija a altura_fog_base (ej: 0.5m)
 		fogVolume.size = Vector3(box_shape.size.x, altura_fog_base, box_shape.size.z)
-		
-		# 2. Posicionar en la base del CollisionShape3D:
-		# El centro de la colisión está en Y=0. Su suelo físico está en -box_shape.size.y / 2.0.
-		# Desplazamos el centro del FogVolume para que descanse justo en ese suelo.
 		var offset_y_base: float = (-box_shape.size.y + altura_fog_base) * 0.5
 		fogVolume.position = Vector3(0.0, offset_y_base, 0.0)
 
 
-# Método invocado por MechanismSwitch vía call_group()
 func open(id_recibido: String = "") -> void:
 	if id_recibido != puerta_id and puerta_id != "":
 		return
@@ -90,26 +103,50 @@ func open(id_recibido: String = "") -> void:
 	animacionQuitarNiebla()
 
 
-func animacionQuitarNiebla() -> void:
-	# 1. Desactivar la colisión de inmediato
-	set_deferred("disabled", true)
+func animacionQuitarNiebla() -> void:	
+	var tiempo_encendido: float = duracion_desvanecimiento * proporcion_tiempo_encendido
+	var tiempo_disolucion: float = duracion_desvanecimiento - tiempo_encendido
 
-	var fogTween: Tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-
-	# 2. Animar desvanecimiento del Shader de la Malla
-	if meshInstance != null:
-		var mat_shader = meshInstance.get_active_material(0)
-		if mat_shader is ShaderMaterial:
-			mat_shader = mat_shader.duplicate()
-			meshInstance.set_surface_override_material(0, mat_shader)
-			fogTween.tween_property(mat_shader, "shader_parameter/fade_dissolve", 0.0, duracion_desvanecimiento)
-
-	# 3. Animar desvanecimiento del Shader del FogVolume (reducir densidad a 0)
+	# 1. Animar desvanecimiento del FogVolume en paralelo
 	if fogVolume != null and fogVolume.material is ShaderMaterial:
 		var mat_fog = fogVolume.material.duplicate() as ShaderMaterial
 		fogVolume.material = mat_fog
+		var fogTween: Tween = create_tween()
 		fogTween.tween_property(mat_fog, "shader_parameter/density", 0.0, duracion_desvanecimiento)
 
-	# 4. Destruir el nodo una vez terminadas ambas animaciones
-	await fogTween.finished
+	# 2. Configurar la Malla y su ShaderMaterial
+	if meshInstance != null:
+		var mat_dissolve := ShaderMaterial.new()
+		mat_dissolve.shader = simple_dissolve_shader
+		mat_dissolve.set_shader_parameter("noise_tex", textura_ruido)
+		mat_dissolve.set_shader_parameter("noise_scale", escala_ruido)
+		mat_dissolve.set_shader_parameter("t", 0.0)
+		mat_dissolve.set_shader_parameter("albedo_and_emissive_color", Vector3(0.05, 0.05, 0.05))
+
+		meshInstance.set_surface_override_material(0, mat_dissolve)
+		
+		# Creamos el Tween SOLAMENTE cuando el material ya está listo y sin pausas
+		var meshTween: Tween = create_tween()
+
+		# FASE 1: Encendido progresivo
+		meshTween.tween_property(
+			mat_dissolve, 
+			"shader_parameter/albedo_and_emissive_color", 
+			Vector3(2.5, 2.5, 2.5),
+			tiempo_encendido
+		).set_trans(Tween.TRANS_LINEAR)
+
+		# FASE 2: Disolución
+		meshTween.tween_property(
+			mat_dissolve, 
+			"shader_parameter/t", 
+			1.05, 
+			tiempo_disolucion
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+		# Esperamos a que la secuencia de la malla termine
+		await meshTween.finished
+	else:
+		await get_tree().create_timer(duracion_desvanecimiento).timeout
+
 	queue_free()

@@ -462,6 +462,14 @@ size = Vector3(14.315186, 12.039673, 68.32031)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtse2"]
 size = Vector3(942.193, 211, 34.490967)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xm6r1"]
+noise_type = 2
+seed = 1
+frequency = 0.0401
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jikva"]
+noise = SubResource("FastNoiseLite_xm6r1")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_reosq"]
 seed = 1
 
@@ -589,7 +597,6 @@ mesh = SubResource("QuadMesh_a1d46")
 [node name="WorldObjects" type="Node3D" parent="." unique_id=326087452]
 
 [node name="ScatterObjects" type="Node3D" parent="WorldObjects" unique_id=228513466]
-process_mode = 4
 
 [node name="ScatterShotZoneRect" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1988366634]
 transform = Transform3D(0.8798228, 0, 0.47530177, 0, 1, 0, -0.47530177, 0, 0.8798228, -170.57683, 16.397, 112.77953)
@@ -2190,7 +2197,7 @@ script = ExtResource("22_ymrg4")
 targetname = "RiverRockBridgeForest"
 
 [node name="MistBarrier1" type="Marker3D" parent="CinemaMarkers" unique_id=1410642891 groups=["cinemaMarkers"]]
-transform = Transform3D(-0.016544942, 0, -0.99986315, 0, 1, 0, 0.99986315, 0, -0.016544942, -130.1034, -2.8394866, 126.17376)
+transform = Transform3D(-0.016544942, 0, -0.99986315, 0, 1, 0, 0.99986315, 0, -0.016544942, -135.6825, -2.8394866, 126.17376)
 script = ExtResource("22_ymrg4")
 targetname = "MistBarrier1"
 metadata/_custom_type_script = "uid://fbk2erjs31o0"
@@ -2363,7 +2370,9 @@ script = ExtResource("46_7n1e8")
 puerta_id = "MistBarrier1"
 meshInstance = NodePath("MistBarrierMesh")
 fogVolume = NodePath("FogVolume")
+textura_ruido = SubResource("NoiseTexture2D_jikva")
 altura_fog_base = 60.0
+duracion_desvanecimiento = 7.0
 
 [node name="MistBarrierMesh" type="MeshInstance3D" parent="MistBarriers/MistBarriersBody/MistBarrier1" unique_id=769127062]
 mesh = SubResource("BoxMesh_exqqg")

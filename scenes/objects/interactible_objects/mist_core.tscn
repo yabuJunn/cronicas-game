@@ -1,0 +1,91 @@
+[gd_scene format=4 uid="uid://d065ca8nie10"]
+
+[ext_resource type="Texture2D" uid="uid://bknk1ym352wd" path="res://textures/Plaster/Plaster_16-256x256.png" id="1_4nvkp"]
+[ext_resource type="Script" uid="uid://ddtla1shy7ay0" path="res://globals/interactible_item_highlight.gd" id="1_r0sox"]
+[ext_resource type="Texture2D" uid="uid://bka4ub13uu7uy" path="res://textures/Metal/Metal_10-256x256.png" id="2_lq3qb"]
+[ext_resource type="Texture2D" uid="uid://hoyw4at5tkp1" path="res://icons/inventory/mistCore.png" id="2_wr0ly"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wr0ly"]
+albedo_texture = ExtResource("2_lq3qb")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0sox"]
+albedo_texture = ExtResource("1_4nvkp")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lq3qb"]
+_surfaces = [{
+"aabb": AABB(-0.5, -1.125, -0.5, 1, 1.25, 1),
+"attribute_data": PackedByteArray("AAAAAAAAgL0AAIA9AACAPQAAgL0AAIA9AACAPQAAgD0AAIC9AACAPQAAgD0AAIC9AACAvQAAgD0AAIC9AACAvQAAgD0AAIC9AACAPQAAgD0AAAAAAACAvQAAgD0AAIA9AACAvQAAgD0AAIA9AACAPQAAgL0AAIA9AACAPQAAgL0AAIC9AACAPQAAgD0AAIA9AAAAAAAAgL0AAIA9AACAPQAAgD0AAIC9AACAvQAAgD0AAIC9AACAPQAAgD0AAIA9AACAPQAAgL0AAIC9AACAvQAAgL0AAIA9AACAPQAAgD0AAAAAAACAvQAAgL0AAIA9AACAPQAAgD0AAIA9AACAvQ=="),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgABgAIAAkACgALAAwADQAOAA8AEAARABIAEwAUABUAFgAXABgAFgAYABkAGgAbABwAHQAeAB8A"),
+"material": SubResource("StandardMaterial3D_r0sox"),
+"name": "Plaster/Plaster_16-256x256",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("AAAAAAAAAD4AAAAAAAAAvwAAAL8AAAC/AAAAPwAAAL8AAAC/AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAC/AAAAAAAAAD4AAAAAAAAAvwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAvwAAAL8AAAC/AAAAAAAAAD4AAAAAAAAAPwAAAL8AAAC/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAvwAAAL8AAAA/AAAAAAAAAD4AAAAAAAAAPwAAAL8AAAC/AAAAvwAAAL8AAAC/AAAAAAAAkL8AAAAAAAAAvwAAAL8AAAA/AAAAAAAAkL8AAAAAAAAAvwAAAL8AAAC/AAAAvwAAAL8AAAA/AAAAvwAAAL8AAAC/AAAAPwAAAL8AAAC/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAPwAAAL8AAAC/AAAAAAAAkL8AAAAAAAAAvwAAAL8AAAA/AAAAPwAAAL8AAAA/AAAAAAAAkL8AAAAAG8f//wAA/78bx///AAD/vxvH//8AAP+/4zjiuJiantDjOOK4mJqe0OM44riYmp7Q/38AAP//////fwAA//////9/AAD//////38AAP////8bx+K4/////xvH4rj/////G8fiuP//////f+K4v97r3f9/4ri/3uvd/3/iuL/e690bxwAAAAD/PxvHAAAAAP8/G8cAAAAA/z/jOBxHmJqfUOM4HEeYmp9Q4zgcR5ian1D/f/////8AAP9//////wAA/3//////AAD/f/////8AABvHHEf//wAAG8ccR///AAAbxxxH//8AAP9/HEe/3utd/38cR7/e613/fxxHv97rXQ==")
+}]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r0sox"]
+data = PackedVector3Array(0, 0.125, 0, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.125, 0, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0, 0.125, 0, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.125, 0, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0, -1.125, 0, -0.5, -0.5, 0.5, 0, -1.125, 0, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0, -1.125, 0, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0, -1.125, 0)
+
+[sub_resource type="Gradient" id="Gradient_lq3qb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dfm00"]
+gradient = SubResource("Gradient_lq3qb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wr0ly"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.9999776
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_dfm00")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80jk7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yacw1"]
+material = SubResource("StandardMaterial3D_80jk7")
+size = Vector2(0.04, 0.04)
+orientation = 2
+
+[node name="MistCore" type="StaticBody3D" unique_id=1700695504 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+collision_layer = 10
+script = ExtResource("1_r0sox")
+shine_color = Color(0, 0, 0, 1)
+item_name = "Núcleo de niebla"
+item_description = "Es brumoso al tacto"
+item_icon = ExtResource("2_wr0ly")
+ruta_modelo3d = "uid://d065ca8nie10"
+texto_recoger = "[E] Núcleo de niebla"
+mesh = NodePath("MistCoreMesh")
+
+[node name="MistCoreMesh" type="MeshInstance3D" parent="." unique_id=710814133]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0, 0.16992682, 0)
+material_override = SubResource("StandardMaterial3D_wr0ly")
+mesh = SubResource("ArrayMesh_lq3qb")
+
+[node name="MistCoreCollision" type="CollisionShape3D" parent="." unique_id=972278590]
+transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0, 0.16992682, 0)
+shape = SubResource("ConcavePolygonShape3D_r0sox")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=813820827]
+shadow_enabled = true
+omni_range = 3.3435197
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="OmniLight3D" unique_id=925735989]
+layers = 8
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wr0ly")
+draw_pass_1 = SubResource("PlaneMesh_yacw1")

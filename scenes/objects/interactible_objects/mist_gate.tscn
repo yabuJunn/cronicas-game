@@ -69,3 +69,4 @@ omni_range = 3.3435197
 [node name="FogGateSwitch" parent="." unique_id=1246060721 instance=ExtResource("2_qbtl4")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.1903069, -1.5486045, 1.7795331)
 camera_marker_id = "MistBarrier1"
+item_clave_requerido = "Núcleo de niebla"

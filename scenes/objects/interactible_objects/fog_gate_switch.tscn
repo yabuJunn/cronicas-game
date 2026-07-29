@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://p84eg01kgbv5"]
 
 [ext_resource type="Script" uid="uid://cwyc4al1gki01" path="res://scenes/objects/interactible_objects/mechanism_switch.gd" id="1_blilr"]
-[ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="2_ex7qm"]
 [ext_resource type="Material" uid="uid://bshl85rsbyyov" path="res://textures/Stone/Stone_12-256x256.tres" id="3_bsub4"]
+[ext_resource type="PackedScene" uid="uid://d065ca8nie10" path="res://scenes/objects/interactible_objects/mist_core.tscn" id="4_j576i"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_g0lrg"]
 _surfaces = [{
@@ -40,6 +40,6 @@ mesh = SubResource("ArrayMesh_g0lrg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=989763830]
 shape = SubResource("ConcavePolygonShape3D_x3sre")
 
-[node name="EnergySphere" parent="." unique_id=1256466068 instance=ExtResource("2_ex7qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48414278, 0)
+[node name="MistCore" parent="." unique_id=1700695504 instance=ExtResource("4_j576i")]
+transform = Transform3D(0.6045763, 0, -0.6045763, 0, 0.855, 0, 0.6045763, 0, 0.6045763, 0, 0.48936546, 0)
 visible = false

@@ -12,7 +12,7 @@ class_name MechanismSwitch
 @export var target_id: String 
 
 # --- REFERENCIAS INTERNAS ---
-@onready var placedEnergySphere: StaticBody3D = $EnergySphere
+@onready var placedEnergySphere: StaticBody3D = $MistCore
 var energySphereAudio: AudioStreamPlayer3D
 
 var ya_activado: bool = false

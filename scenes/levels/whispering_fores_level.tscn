@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://de1o4orf880wf" path="res://scenes/world/paths/circle_path_decal.tscn" id="27_r1yae"]
 [ext_resource type="PackedScene" uid="uid://cuwi17ck3g0dm" path="res://scenes/objects/world/houses/ruined_house_3.tscn" id="28_y8p3x"]
 [ext_resource type="PackedScene" uid="uid://wwpq12jyjqwf" path="res://scenes/objects/world/houses/ruined_house_2.tscn" id="29_ltbvo"]
+[ext_resource type="PackedScene" uid="uid://c21x4ng50iman" path="res://scenes/objects/world/houses/ruined_house_1.tscn" id="30_ftjc2"]
 [ext_resource type="PackedScene" uid="uid://dn4udve851g52" path="res://scenes/objects/world/wooden_info_sign.tscn" id="30_q5fs3"]
 [ext_resource type="PackedScene" uid="uid://ql87akcuk6rk" path="res://scenes/objects/world/woden_lamp_post.tscn" id="32_t4hbk"]
 [ext_resource type="PackedScene" uid="uid://d23fp1yabt5hj" path="res://scenes/world/paths/big_circle_path_decal.tscn" id="33_5at7w"]
@@ -46,6 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://nyp4kio1bmrg" path="res://scenes/objects/world/stone_signal.tscn" id="33_xukqh"]
 [ext_resource type="PackedScene" uid="uid://bg4ii3ka2ygmg" path="res://scenes/objects/interactible_objects/lore_note.tscn" id="34_mtse2"]
 [ext_resource type="PackedScene" uid="uid://c5coqdgnve1ds" path="res://scenes/objects/interactible_objects/mist_gate.tscn" id="35_ui0oi"]
+[ext_resource type="PackedScene" uid="uid://d065ca8nie10" path="res://scenes/objects/interactible_objects/mist_core.tscn" id="36_exqqg"]
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="36_reosq"]
 [ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="46_7n1e8"]
 [ext_resource type="Shader" uid="uid://dn25ff07u6xum" path="res://shaders/mist_barrier_shader.gdshader" id="49_reosq"]
@@ -460,7 +462,7 @@ shader_parameter/density_texture = SubResource("NoiseTexture3D_s4sqn")
 size = Vector3(14.315186, 12.039673, 68.32031)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtse2"]
-size = Vector3(942.193, 211, 34.490967)
+size = Vector3(850, 211, 20.766785)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xm6r1"]
 noise_type = 2
@@ -543,6 +545,9 @@ shader_parameter/organic_scale = 2.915
 shader_parameter/organic_speed = 0.895
 shader_parameter/density_texture = SubResource("NoiseTexture3D_eolq4")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_reosq"]
+size = Vector3(402.89136, 211, 10.805664)
+
 [node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1640846100]
@@ -597,6 +602,35 @@ mesh = SubResource("QuadMesh_a1d46")
 [node name="WorldObjects" type="Node3D" parent="." unique_id=326087452]
 
 [node name="ScatterObjects" type="Node3D" parent="WorldObjects" unique_id=228513466]
+
+[node name="NegativeScatters" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1787820636]
+
+[node name="ScatterShotModulator" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=1756794570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.42662, -13.010546, 86.98259)
+script = ExtResource("11_a1vcf")
+density = -1.0
+hardness = 0.0
+shape = 1
+circle_radius = 5.0203857
+metadata/_custom_type_script = "uid://bakbblh68cskr"
+
+[node name="ScatterShotModulator2" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=440916740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.8069, -13.010546, 128.66235)
+script = ExtResource("11_a1vcf")
+density = -1.0
+hardness = 0.0
+shape = 1
+circle_radius = 5.0203857
+metadata/_custom_type_script = "uid://bakbblh68cskr"
+
+[node name="ScatterShotModulator3" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=1347150160]
+transform = Transform3D(0.95563895, 0, -0.29454073, 0, 1, 0, 0.29454073, 0, 0.95563895, -231.53078, -13.010546, 251.17522)
+script = ExtResource("11_a1vcf")
+density = -1.0
+hardness = 0.0
+shape = 1
+circle_radius = 7.3809967
+metadata/_custom_type_script = "uid://bakbblh68cskr"
 
 [node name="ScatterShotZoneRect" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1988366634]
 transform = Transform3D(0.8798228, 0, 0.47530177, 0, 1, 0, -0.47530177, 0, 0.8798228, -170.57683, 16.397, 112.77953)
@@ -1331,26 +1365,6 @@ rect_size = Vector2(34.434067, 50)
 circle_radius = 62.540646
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
-[node name="NegativeScatters" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1787820636]
-
-[node name="ScatterShotModulator" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=1756794570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -205.74089, -13.010546, 93.1741)
-script = ExtResource("11_a1vcf")
-density = -1.0
-hardness = 0.0
-shape = 1
-circle_radius = 5.0203857
-metadata/_custom_type_script = "uid://bakbblh68cskr"
-
-[node name="ScatterShotModulator2" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=440916740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.8069, -13.010546, 128.66235)
-script = ExtResource("11_a1vcf")
-density = -1.0
-hardness = 0.0
-shape = 1
-circle_radius = 5.0203857
-metadata/_custom_type_script = "uid://bakbblh68cskr"
-
 [node name="Rocks" type="Node3D" parent="WorldObjects" unique_id=637036486]
 
 [node name="rock" parent="WorldObjects/Rocks" unique_id=1734990633 instance=ExtResource("12_s4sqn")]
@@ -1574,6 +1588,9 @@ transform = Transform3D(-0.9299125, 8.129541e-08, -0.36778402, -8.742279e-08, -0
 [node name="WallLamp3" parent="WorldObjects/Houses/ForestLumberjackStation/VillageHouse(1)" unique_id=13284743 instance=ExtResource("21_oxvs5")]
 transform = Transform3D(-0.817568, 7.1473984e-08, 0.5758342, -8.742279e-08, -0.9999999, 2.1108217e-16, 0.5758342, -5.0340923e-08, 0.81756806, -3.2739868, 5.454689, -6.578064)
 
+[node name="WallLamp5" parent="WorldObjects/Houses/ForestLumberjackStation/VillageHouse(1)" unique_id=1466996148 instance=ExtResource("21_oxvs5")]
+transform = Transform3D(-0.817568, 7.1473984e-08, 0.5758342, -8.742279e-08, -0.9999999, 2.1108217e-16, 0.5758342, -5.0340923e-08, 0.81756806, 3.9013977, 4.2737484, -8.249756)
+
 [node name="VillageHouse(3)" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=152232434 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(0.8216371, 0, 0.570011, 0, 1, 0, -0.570011, 0, 0.8216371, -236.09377, -15.791772, 325.4099)
 
@@ -1641,13 +1658,25 @@ mesh = SubResource("SphereMesh_oxvs5")
 [node name="MedievalBox3" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1469134731 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.88767076, 0, 0.4604787, 0, 1, 0, -0.4604787, 0, 0.88767076, -238.92886, -14.602767, 326.33392)
 
+[node name="VillageTower(1)" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=692108529 instance=ExtResource("19_r1yae")]
+transform = Transform3D(-0.4103736, 0, -0.25051844, 0, 0.653, 0, 0.2768005, 0, -0.37140882, -233.431, 22.814, 333.721)
+
 [node name="RuinsForest" type="Node3D" parent="WorldObjects/Houses" unique_id=1841445270]
 
 [node name="RuinedHouse(3)" parent="WorldObjects/Houses/RuinsForest" unique_id=480450169 instance=ExtResource("28_y8p3x")]
-transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -207.1438, -15.89285, 93.56683)
+transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -207.1438, -15.89285, 86.71324)
 
 [node name="RuinedHouse(2)" parent="WorldObjects/Houses/RuinsForest" unique_id=927833897 instance=ExtResource("29_ltbvo")]
 transform = Transform3D(0.5305704, -3.6903363e-09, 0.8476409, -0.16596143, 0.98064554, 0.103881516, -0.8312353, -0.19579214, 0.52030146, -207.1438, -15.0046625, 129.4187)
+
+[node name="RuinedHouse(1)" parent="WorldObjects/Houses/RuinsForest" unique_id=268043085 instance=ExtResource("30_ftjc2")]
+transform = Transform3D(0.95563895, 0, -0.29454073, 0, 1, 0, 0.29454073, 0, 0.95563895, -233.99751, -15.860658, 251.16943)
+
+[node name="VillageTower(2)" parent="WorldObjects/Houses/RuinsForest" unique_id=119186269 instance=ExtResource("20_rr26k")]
+transform = Transform3D(-0.92454606, 0, -0.38107032, 0, 1, 0, 0.38107032, 0, -0.92454606, -137.939, 50.031, 152.35)
+
+[node name="WallLamp1" parent="WorldObjects/Houses/RuinsForest/VillageTower(2)" unique_id=2002736150 instance=ExtResource("21_oxvs5")]
+transform = Transform3D(0.06474131, -0.005224974, 0.99788845, 8.758563e-08, -0.9999863, -0.005235964, 0.9979021, 0.00033907208, -0.06474066, 0.11909485, -53.604454, 9.342102)
 
 [node name="InteractibleObjects" type="Node3D" parent="WorldObjects" unique_id=775300750]
 
@@ -1666,15 +1695,24 @@ se_puede_recoger = true
 texto_con_objeto = "Cargar"
 
 [node name="StoneSign" parent="WorldObjects/InteractibleObjects" unique_id=364495071 instance=ExtResource("33_xukqh")]
-transform = Transform3D(-0.2513092, 0, 0.96790683, 0, 1, 0, -0.96790683, 0, -0.2513092, -203.7902, -15.8985815, 90.2997)
+transform = Transform3D(0.65178615, 0.09697211, 0.7521777, -0.1645169, 0.9862539, 0.015409492, -0.7403439, -0.13378957, 0.6587802, -229.52664, -15.764452, 253.21838)
+texto_a_mostrar = "De la neblina venimos...||A la neblina iremos..."
+texto_recoger = "[E] Leer"
 texto_estatico = "[E] Leer"
+texto_con_objeto = "[E] Leer"
+texto_sin_objeto = "[E] Leer"
 
 [node name="WoodenInfoSign" parent="WorldObjects/InteractibleObjects" unique_id=1093640174 instance=ExtResource("30_q5fs3")]
 transform = Transform3D(-0.95650864, 0, 0.29170388, 0, 1, 0, -0.29170388, 0, -0.95650864, -215.71274, -16.514444, 80.782455)
-texto_a_mostrar = "[center][b]Señal[/b][/center]
-
-Adelante: Pueblo
+texto_a_mostrar = "Adelante: Pueblo
 Derecha: Puesto de leñadoress"
+titulo_personalizado = "Señal de Madera"
+
+[node name="WoodenInfoSign3" parent="WorldObjects/InteractibleObjects" unique_id=1907048722 instance=ExtResource("30_q5fs3")]
+transform = Transform3D(-0.8589956, 0, -0.511983, 0, 1, 0, 0.511983, 0, -0.8589956, -171.54463, -15.304406, 75.132805)
+texto_a_mostrar = "Derecha: Pueblo
+Izquierda: Lago"
+titulo_personalizado = "Señal de Madera"
 
 [node name="WoodenInfoSign2" parent="WorldObjects/InteractibleObjects" unique_id=757877843 instance=ExtResource("30_q5fs3")]
 transform = Transform3D(-0.84082186, 0, 0.541312, 0, 1, 0, -0.541312, 0, -0.84082186, -56.060974, -9.818851, 132.06848)
@@ -1686,8 +1724,11 @@ titulo_personalizado = "Señal"
 transform = Transform3D(1, 0, 0, 0, 0.98185295, 0.18964384, 0, -0.18964384, 0.98185295, -205.8797, -14.25342, 128.19595)
 texto_a_mostrar = "Las cosechas son cada vez mas ||Siguiente pagina||Fin."
 
+[node name="MistCore" parent="WorldObjects/InteractibleObjects" unique_id=1700695504 instance=ExtResource("36_exqqg")]
+transform = Transform3D(0.13644186, 0, -0.9906482, 0, 1, 0, 0.9906482, 0, 0.13644186, -231.12755, -15.174525, 252.06532)
+
 [node name="FogGate" parent="WorldObjects/InteractibleObjects" unique_id=1038753867 instance=ExtResource("35_ui0oi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.169365, -5.6535916, 126.17376)
+transform = Transform3D(0.9743465, 0, -0.22505309, 0, 1, 0, 0.22505309, 0, 0.9743465, -124.169365, -5.6535916, 125.13998)
 puerta_id = "MistBarrier1"
 
 [node name="EnergySphere" parent="WorldObjects/InteractibleObjects/FogGate" unique_id=2144371339 instance=ExtResource("36_reosq")]
@@ -1969,6 +2010,9 @@ transform = Transform3D(-0.99978316, 0, 0.02082017, 0, 1, 0, -0.02082017, 0, -0.
 [node name="WodenLampPost5" parent="Ligths" unique_id=1777608866 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.99975514, 0, -0.022128748, 0, 1, 0, 0.022128748, 0, 0.99975514, -237.53595, -15.795877, 261.45944)
 
+[node name="WodenLampPost84" parent="Ligths" unique_id=1375957964 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.7448939, 0, 0.667183, 0, 1, 0, -0.667183, 0, 0.7448939, -232.23538, -15.795877, 243.71596)
+
 [node name="WodenLampPost7" parent="Ligths" unique_id=531633109 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.95021164, 0, -0.3116051, 0, 1, 0, 0.3116051, 0, 0.95021164, -231.50992, -15.8396435, 210.11464)
 
@@ -1982,16 +2026,22 @@ transform = Transform3D(0.77965516, 0, -0.62620914, 0, 1, 0, 0.62620914, 0, 0.77
 transform = Transform3D(0.0317944, 0, 0.99949443, 0, 1, 0, -0.99949443, 0, 0.0317944, -219.12643, -15.626808, 74.01463)
 
 [node name="WodenLampPost77" parent="Ligths" unique_id=555972153 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(0.0317944, 0, 0.99949443, 0, 1, 0, -0.99949443, 0, 0.0317944, -285.71292, -15.626808, 74.01463)
+transform = Transform3D(0.0317944, 0, 0.99949443, 0, 1, 0, -0.99949443, 0, 0.0317944, -265.38013, -15.626808, 74.01463)
+
+[node name="WodenLampPost82" parent="Ligths" unique_id=1207199348 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.0317944, 0, 0.99949443, 0, 1, 0, -0.99949443, 0, 0.0317944, -316.51443, -15.626808, 74.01463)
 
 [node name="WodenLampPost80" parent="Ligths" unique_id=700196272 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.0317944, 0, 0.99949443, 0, 1, 0, -0.99949443, 0, 0.0317944, -360.26126, -15.626808, 74.01463)
 
 [node name="WodenLampPost78" parent="Ligths" unique_id=1709760625 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(-0.020436347, 0, -0.9997912, 0, 1, 0, 0.9997912, 0, -0.020436347, -254.103, -15.626808, 80.67847)
+transform = Transform3D(-0.020436347, 0, -0.9997912, 0, 1, 0, 0.9997912, 0, -0.020436347, -241.74501, -15.626808, 80.67847)
 
 [node name="WodenLampPost79" parent="Ligths" unique_id=317628074 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(-0.020436347, 0, -0.9997912, 0, 1, 0, 0.9997912, 0, -0.020436347, -327.8913, -15.626808, 80.67847)
+transform = Transform3D(-0.020436347, 0, -0.9997912, 0, 1, 0, 0.9997912, 0, -0.020436347, -292.03326, -15.626808, 80.67847)
+
+[node name="WodenLampPost83" parent="Ligths" unique_id=1338727854 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.020436347, 0, -0.9997912, 0, 1, 0, 0.9997912, 0, -0.020436347, -335.4829, -15.626808, 80.67847)
 
 [node name="WodenLampPost14" parent="Ligths" unique_id=1454611295 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(-0.19875233, 0, 0.9800498, 0, 1, 0, -0.9800498, 0, -0.19875233, -172.70076, -14.80254, 74.046036)
@@ -2185,6 +2235,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -195
 [node name="WodenLampPost2" parent="Ligths" unique_id=1523090516 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.705649, 0, 0.70856154, 0, 1, 0, -0.70856154, 0, 0.705649, -234.07353, -15.626808, 314.1217)
 
+[node name="WodenLampPost33" parent="Ligths" unique_id=686556549 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.6063632, 0, -0.79518783, 0, 1, 0, 0.79518783, 0, -0.6063632, -240.47737, -15.626808, 332.9135)
+
 [node name="WodenLampPost13" parent="Ligths" unique_id=1628616740 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(-0.46618587, 0, 0.88468677, 0, 1, 0, -0.88468677, 0, -0.46618587, -252.38506, -15.626808, 314.1217)
 
@@ -2356,7 +2409,7 @@ area_mask = 15
 parameters/looping = true
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("27_jvg85")]
-transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -220.07259, -8.552008, 69.796005)
+transform = Transform3D(0.05315514, 0, -0.9985863, 0, 1, 0, 0.9985863, 0, 0.05315514, -316.02603, -11.00526, 77.868645)
 
 [node name="MistBarriers" type="Node3D" parent="." unique_id=982872186]
 
@@ -2364,13 +2417,14 @@ transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.186
 collision_layer = 2
 
 [node name="MistBarrier1" type="CollisionShape3D" parent="MistBarriers/MistBarriersBody" unique_id=1638222908 node_paths=PackedStringArray("meshInstance", "fogVolume")]
-transform = Transform3D(0.008325079, 0, -0.99996537, 0, 1, 0, 0.99996537, 0, 0.008325079, -104.97111, 37.721375, 84.37878)
+transform = Transform3D(0.008325079, 0, -0.99996537, 0, 1, 0, 0.99996537, 0, 0.008325079, -112.35425, 37.721375, 84.44025)
 shape = SubResource("BoxShape3D_mtse2")
 script = ExtResource("46_7n1e8")
 puerta_id = "MistBarrier1"
 meshInstance = NodePath("MistBarrierMesh")
 fogVolume = NodePath("FogVolume")
 textura_ruido = SubResource("NoiseTexture2D_jikva")
+factor_escala_malla = Vector3(0.98, 0.98, 0.9)
 altura_fog_base = 60.0
 duracion_desvanecimiento = 7.0
 
@@ -2378,4 +2432,22 @@ duracion_desvanecimiento = 7.0
 mesh = SubResource("BoxMesh_exqqg")
 
 [node name="FogVolume" type="FogVolume" parent="MistBarriers/MistBarriersBody/MistBarrier1" unique_id=868659388]
+material = SubResource("ShaderMaterial_exqqg")
+
+[node name="MistBarrier2" type="CollisionShape3D" parent="MistBarriers/MistBarriersBody" unique_id=1678104278 node_paths=PackedStringArray("meshInstance", "fogVolume")]
+transform = Transform3D(0.8809155, 0, 0.47327355, 0, 1, 0, -0.47327355, 0, 0.8809155, -309.28293, 37.721, -312.02148)
+shape = SubResource("BoxShape3D_reosq")
+script = ExtResource("46_7n1e8")
+puerta_id = "MistBarrier2"
+meshInstance = NodePath("MistBarrierMesh")
+fogVolume = NodePath("FogVolume")
+textura_ruido = SubResource("NoiseTexture2D_jikva")
+factor_escala_malla = Vector3(0.98, 0.98, 0.98)
+altura_fog_base = 53.275
+duracion_desvanecimiento = 7.0
+
+[node name="MistBarrierMesh" type="MeshInstance3D" parent="MistBarriers/MistBarriersBody/MistBarrier2" unique_id=109531064]
+mesh = SubResource("BoxMesh_exqqg")
+
+[node name="FogVolume" type="FogVolume" parent="MistBarriers/MistBarriersBody/MistBarrier2" unique_id=289073190]
 material = SubResource("ShaderMaterial_exqqg")

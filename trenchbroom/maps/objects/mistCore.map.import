@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://mc8ukfb4e2pc"
+path="res://.godot/imported/mistCore.map-2c573d6ce51823e51fa7d540707b3766.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/mistCore.map"
+dest_files=["res://.godot/imported/mistCore.map-2c573d6ce51823e51fa7d540707b3766.tres"]
+
+[params]
+

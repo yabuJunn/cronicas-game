@@ -16,8 +16,7 @@ billboard_mode = 1
 [node name="InteractibleObjectsLigth" type="OmniLight3D" unique_id=221834046]
 light_color = Color(0.98333615, 0.9299762, 0.647875, 1)
 light_energy = 5.698
-light_volumetric_fog_energy = 16.0
-light_cull_mask = 4294967293
+light_cull_mask = 4294967292
 omni_range = 2.0
 script = ExtResource("1_8howf")
 min_energy = 1.0

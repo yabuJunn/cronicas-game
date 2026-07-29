@@ -69,6 +69,7 @@ siempre_activo = false
 item_name = "Piedra Runica"
 item_description = "Piedra Runica"
 se_puede_recoger = false
+texto_estatico = "Leer"
 mesh = NodePath("StoneSignalMesh")
 
 [node name="StoneSignalMesh" type="MeshInstance3D" parent="." unique_id=745232280]

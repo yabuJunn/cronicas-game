@@ -9,6 +9,7 @@ extends InteractableItem
 @onready var activeIndicatorMesh: MeshInstance3D = $GateStaticBody/ActiveIndicatorMesh
 @onready var ligth1: OmniLight3D = $GateStaticBody/OmniLight3D
 @onready var ligth2: OmniLight3D = $GateStaticBody/OmniLight3D2
+var animationTime: float = 10
 
 var isActive: bool = false
 var animationPlayed: bool = false
@@ -17,6 +18,10 @@ var animationPlayed: bool = false
 func _ready() -> void:
 	super._ready()
 	se_puede_recoger = false
+	
+	#Configuracion Inicial de Luces (Empiezan apagadas)
+	ligth1.light_energy = 0
+	ligth2.light_energy = 0
 	
 	# Nos unimos dinámicamente al grupo definido por puerta_id
 	if puerta_id != "":
@@ -51,18 +56,24 @@ func open(id_recibido: String = "") -> void:
 		var mat_unico = mat_activo.duplicate()
 		activeIndicatorMesh.set_surface_override_material(0, mat_unico)
 		
+		# Asegurar estado inicial ANTES de la animación (opcional, ya se hizo en ready, pero por seguridad)
 		# Configuración inicial de emisión
 		mat_unico.emission_enabled = true
 		mat_unico.emission = color_emision
 		mat_unico.emission_energy_multiplier = 0.0
 		
-		#Configuracion Inicial de Luces
+		#Configuracion Inicial de Luces (para asegurar que empiezan en 0 para el fade)
 		ligth1.light_energy = 0
 		ligth2.light_energy = 0
 		
-		# Animamos el multiplicador de energía de 0 al máximo en 2 segundos
-		var activatedAnimationTween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		activatedAnimationTween.set_parallel(true)
-		activatedAnimationTween.tween_property(mat_unico, "emission_energy_multiplier", multiplicador_energia_max, 6)
-		activatedAnimationTween.tween_property(ligth1, "light_energy", 2, 6)
-		activatedAnimationTween.tween_property(ligth2, "light_energy", 2, 6)
+		# --- Testear con Animación Lineal para confirmar que funciona ---
+		# Animamos el multiplicador de energía de 0 al máximo en 6 segundos
+		# Usamos TRANS_LINEAR para que el fade sea constante y perceptible.
+		# Usamos EASE_IN_OUT para un comienzo y final suaves (opcional, TRANS_LINEAR funciona solo con linear).
+		var activatedAnimationTween = create_tween().set_parallel(true)
+		activatedAnimationTween.set_trans(Tween.TRANS_LINEAR)
+		# activatedAnimationTween.set_ease(Tween.EASE_IN_OUT) # Opcional si usas LINEAR
+		activatedAnimationTween.tween_property(mat_unico, "emission_energy_multiplier", multiplicador_energia_max, animationTime)
+		activatedAnimationTween.tween_property(ligth1, "light_energy", 2, animationTime)
+		activatedAnimationTween.tween_property(ligth2, "light_energy", 2, animationTime)
+		print("Animación de test lineal iniciada")

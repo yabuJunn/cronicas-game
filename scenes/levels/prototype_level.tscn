@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://nyp4kio1bmrg" path="res://scenes/objects/world/stone_signal.tscn" id="22_sy7sx"]
 [ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="23_oj5qw"]
 [ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="24_65iqy"]
+[ext_resource type="PackedScene" uid="uid://p84eg01kgbv5" path="res://scenes/objects/interactible_objects/fog_gate_switch.tscn" id="25_65iqy"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2g36m"]
 
@@ -1251,12 +1252,11 @@ transform = Transform3D(-0.012391532, 0, -0.9999232, 0, 1, 0, 0.9999232, 0, -0.0
 [node name="MistBarriersBody" type="StaticBody3D" parent="." unique_id=854739307]
 collision_layer = 2
 
-[node name="MistBarrier" type="CollisionShape3D" parent="MistBarriersBody" unique_id=1992105081 node_paths=PackedStringArray("fogVolume")]
+[node name="MistBarrier" type="CollisionShape3D" parent="MistBarriersBody" unique_id=1992105081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.3021, 25.141813, 26.504393)
 shape = SubResource("BoxShape3D_xoou4")
 script = ExtResource("23_oj5qw")
 puerta_id = "MistBarrierTest"
-fogVolume = NodePath("FogVolume")
 
 [node name="FogVolume" type="FogVolume" parent="MistBarriersBody/MistBarrier" unique_id=1451062740]
 material = ExtResource("24_65iqy")
@@ -1267,3 +1267,6 @@ transform = Transform3D(0.98796004, 0, -0.15471037, 0, 1, 0, 0.15471037, 0, 0.98
 [node name="MechanismSwitchFogBarrier" parent="." unique_id=1725890483 instance=ExtResource("19_2hxmp")]
 transform = Transform3D(0.9879598, 0, -0.15471032, 0, 1, 0, 0.15471032, 0, 0.9879598, -31.761276, 21.948444, 24.709402)
 target_id = "MistBarrierTest"
+
+[node name="FogGateSwitch" parent="." unique_id=1246060721 instance=ExtResource("25_65iqy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.996403, 22.112843, 19.594786)

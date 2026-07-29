@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://7fl4xglihyyk" path="res://shaders/fog_shader.gdshader" id="1_2vn1g"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_eolq4"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ftjc2"]
 noise_type = 3
 frequency = 0.0211
 
@@ -10,7 +10,7 @@ frequency = 0.0211
 width = 274
 height = 238
 depth = 275
-noise = SubResource("FastNoiseLite_eolq4")
+noise = SubResource("FastNoiseLite_ftjc2")
 seamless = true
 
 [resource]

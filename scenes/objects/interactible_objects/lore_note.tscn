@@ -18,6 +18,10 @@ collision_layer = 10
 script = ExtResource("1_8y1nt")
 texto_a_mostrar = "Nota de lore||Siguiente pagina||Fin."
 mostrar_titulo = false
+texto_recoger = "[E] Leer"
+texto_estatico = "[E] Leer"
+texto_con_objeto = "[E] Leer"
+texto_sin_objeto = "[E] Leer"
 mesh = NodePath("LoreNoteMesh")
 
 [node name="LoreNoteMesh" type="MeshInstance3D" parent="." unique_id=402909938]

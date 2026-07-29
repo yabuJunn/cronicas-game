@@ -62,7 +62,7 @@ background_mode = 1
 background_color = Color(0.015686275, 0.14901961, 0.21176471, 1)
 sky = SubResource("Sky_4p7th")
 ambient_light_source = 2
-ambient_light_color = Color(0.015280178, 0.1488443, 0.21098918, 1)
+ambient_light_color = Color(0.034815427, 0.23589951, 0.3219112, 1)
 reflected_light_source = 2
 tonemap_mode = 3
 ssao_enabled = true
@@ -606,7 +606,7 @@ mesh = SubResource("QuadMesh_a1d46")
 [node name="NegativeScatters" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1787820636]
 
 [node name="ScatterShotModulator" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=1756794570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.42662, -13.010546, 86.98259)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.42662, -13.010546, 82.65392)
 script = ExtResource("11_a1vcf")
 density = -1.0
 hardness = 0.0
@@ -615,7 +615,16 @@ circle_radius = 5.0203857
 metadata/_custom_type_script = "uid://bakbblh68cskr"
 
 [node name="ScatterShotModulator2" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=440916740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.8069, -13.010546, 128.66235)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212.53076, -13.010546, 128.66235)
+script = ExtResource("11_a1vcf")
+density = -1.0
+hardness = 0.0
+shape = 1
+circle_radius = 5.0203857
+metadata/_custom_type_script = "uid://bakbblh68cskr"
+
+[node name="ScatterShotModulator5" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=1819365473]
+transform = Transform3D(-0.7960337, 0, 0.60525227, 0, 1, 0, -0.60525227, 0, -0.7960337, -271.1223, -13.438066, 68.749565)
 script = ExtResource("11_a1vcf")
 density = -1.0
 hardness = 0.0
@@ -625,6 +634,15 @@ metadata/_custom_type_script = "uid://bakbblh68cskr"
 
 [node name="ScatterShotModulator3" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=1347150160]
 transform = Transform3D(0.95563895, 0, -0.29454073, 0, 1, 0, 0.29454073, 0, 0.95563895, -231.53078, -13.010546, 251.17522)
+script = ExtResource("11_a1vcf")
+density = -1.0
+hardness = 0.0
+shape = 1
+circle_radius = 7.3809967
+metadata/_custom_type_script = "uid://bakbblh68cskr"
+
+[node name="ScatterShotModulator4" type="Node3D" parent="WorldObjects/ScatterObjects/NegativeScatters" unique_id=955559474]
+transform = Transform3D(0.95563895, 0, -0.29454073, 0, 1, 0, 0.29454073, 0, 0.95563895, -233.24994, -13.010546, 179.3956)
 script = ExtResource("11_a1vcf")
 density = -1.0
 hardness = 0.0
@@ -1628,7 +1646,7 @@ transform = Transform3D(0.38984734, 0, -0.9208795, 0, 1, 0, 0.9208795, 0, 0.3898
 transform = Transform3D(0.99674517, 0, -0.08061645, 0, 1, 0, 0.08061645, 0, 0.99674517, -245.26706, -15.595572, 324.55368)
 
 [node name="EnergySphereDeactivated" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=1256466068 instance=ExtResource("18_xeu51")]
-transform = Transform3D(1.0000006, 0, -7.450581e-09, 0, 1, 0, 7.450581e-09, 0, 1.0000006, -0.004135132, 0.8535681, -0.05105591)
+transform = Transform3D(-0.020226955, 0, -0.9997961, 0, 1, 0, 0.9997961, 0, -0.020226955, -0.004119873, 0.8535681, -0.05102539)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=297782030]
 transform = Transform3D(0.9962518, 0, 0.0865125, 0, 1, 0, -0.0865125, 0, 0.9962518, -0.22541809, 0.6854172, 0.20489502)
@@ -1664,10 +1682,16 @@ transform = Transform3D(-0.4103736, 0, -0.25051844, 0, 0.653, 0, 0.2768005, 0, -
 [node name="RuinsForest" type="Node3D" parent="WorldObjects/Houses" unique_id=1841445270]
 
 [node name="RuinedHouse(3)" parent="WorldObjects/Houses/RuinsForest" unique_id=480450169 instance=ExtResource("28_y8p3x")]
-transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -207.1438, -15.89285, 86.71324)
+transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -207.1438, -15.89285, 82.384575)
+
+[node name="RuinedHouse(3)2" parent="WorldObjects/Houses/RuinsForest" unique_id=1119308886 instance=ExtResource("28_y8p3x")]
+transform = Transform3D(0.02724129, 0, -0.99962896, 0, 1, 0, 0.99962896, 0, 0.02724129, -235.40102, -15.8764925, 181.21054)
 
 [node name="RuinedHouse(2)" parent="WorldObjects/Houses/RuinsForest" unique_id=927833897 instance=ExtResource("29_ltbvo")]
-transform = Transform3D(0.5305704, -3.6903363e-09, 0.8476409, -0.16596143, 0.98064554, 0.103881516, -0.8312353, -0.19579214, 0.52030146, -207.1438, -15.0046625, 129.4187)
+transform = Transform3D(0.5305704, -3.6903363e-09, 0.8476409, -0.16596143, 0.98064554, 0.103881516, -0.8312353, -0.19579214, 0.52030146, -211.86766, -15.573055, 129.4187)
+
+[node name="RuinedHouse(2)2" parent="WorldObjects/Houses/RuinsForest" unique_id=172984520 instance=ExtResource("29_ltbvo")]
+transform = Transform3D(-0.9705486, 0, -0.24090567, 0, 1.0000002, 0, 0.24090572, 0, -0.97054845, -271.19238, -15.780934, 67.74615)
 
 [node name="RuinedHouse(1)" parent="WorldObjects/Houses/RuinsForest" unique_id=268043085 instance=ExtResource("30_ftjc2")]
 transform = Transform3D(0.95563895, 0, -0.29454073, 0, 1, 0, 0.29454073, 0, 0.95563895, -233.99751, -15.860658, 251.16943)
@@ -1721,8 +1745,35 @@ Izquierda: Torre Vigía"
 titulo_personalizado = "Señal"
 
 [node name="LoreNote" parent="WorldObjects/InteractibleObjects" unique_id=1089980636 instance=ExtResource("34_mtse2")]
-transform = Transform3D(1, 0, 0, 0, 0.98185295, 0.18964384, 0, -0.18964384, 0.98185295, -205.8797, -14.25342, 128.19595)
-texto_a_mostrar = "Las cosechas son cada vez mas ||Siguiente pagina||Fin."
+transform = Transform3D(0.7698007, 0, 0.63828427, 0, 1, 0, -0.63828427, 0, 0.7698007, -235.85933, -15.62448, 183.92638)
+texto_a_mostrar = "Algo de lore importante||Siguiente pagina||Fin."
+
+[node name="LoreNote2" parent="WorldObjects/InteractibleObjects" unique_id=185492270 instance=ExtResource("34_mtse2")]
+transform = Transform3D(0.046339303, 0, 0.99892586, 0, 1, 0, -0.99892586, 0, 0.046339303, -238.33305, -15.017707, 325.59888)
+texto_a_mostrar = "Registros de tala
+Ciclo 385
+Día 5
+Todo ha ido bien||
+Ciclo 389
+Día 176
+En el pueblo se habla de un gran evento que ocurrirá||
+Ciclo 360
+Día 47
+Es peligroso andar en los bosques
+La niebla se los ha llevado a todos
+Solo espero mi turno..."
+
+[node name="LoreNote3" parent="WorldObjects/InteractibleObjects" unique_id=1104418817 instance=ExtResource("34_mtse2")]
+transform = Transform3D(0.5648663, 0, -0.8251825, 0, 1, 0, 0.8251825, 0, 0.5648663, -245.57518, -15.086906, 324.21725)
+texto_a_mostrar = "Peticion de Cargamento #39
+[ul]
+6 Hachas
+10 Esferas de Energía
+23 Raciones de Comida
+[/ul]||
+Anexo:
+La comida y las esferas de energía son cada vez más escazas, ¿que es lo que esta pasando allá capitan? Solo nos quedan innumerables de esferas descargadas, con eso no podemos hacer nada.
+"
 
 [node name="MistCore" parent="WorldObjects/InteractibleObjects" unique_id=1700695504 instance=ExtResource("36_exqqg")]
 transform = Transform3D(0.13644186, 0, -0.9906482, 0, 1, 0, 0.9906482, 0, 0.13644186, -231.12755, -15.174525, 252.06532)

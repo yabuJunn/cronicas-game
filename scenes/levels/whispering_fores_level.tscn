@@ -45,18 +45,17 @@
 [ext_resource type="AudioStream" uid="uid://b0srtk0nd0ci8" path="res://sounds/ambient/soundreality-big-river-392040.mp3" id="33_jshvx"]
 [ext_resource type="PackedScene" uid="uid://nyp4kio1bmrg" path="res://scenes/objects/world/stone_signal.tscn" id="33_xukqh"]
 [ext_resource type="PackedScene" uid="uid://bg4ii3ka2ygmg" path="res://scenes/objects/interactible_objects/lore_note.tscn" id="34_mtse2"]
+[ext_resource type="PackedScene" uid="uid://c5coqdgnve1ds" path="res://scenes/objects/interactible_objects/mist_gate.tscn" id="35_ui0oi"]
+[ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="36_reosq"]
 [ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="46_7n1e8"]
-[ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="47_r1w47"]
+[ext_resource type="Shader" uid="uid://dn25ff07u6xum" path="res://shaders/mist_barrier_shader.gdshader" id="49_reosq"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
-ground_color = Color(0.02888955, 0.14047515, 0.18223089, 1)
 
 [sub_resource type="Sky" id="Sky_4p7th"]
 sky_material = SubResource("PhysicalSkyMaterial_5tvve")
 
 [sub_resource type="Environment" id="Environment_0scc7"]
-background_mode = 2
-background_color = Color(0.013221976, 0.05911851, 0.078223236, 1)
 sky = SubResource("Sky_4p7th")
 ambient_light_source = 2
 ambient_light_color = Color(0.015280178, 0.1488443, 0.21098918, 1)
@@ -75,7 +74,7 @@ volumetric_fog_density = 0.1
 volumetric_fog_albedo = Color(0.07450981, 0.18431373, 0.19607843, 1)
 volumetric_fog_emission = Color(0.073677994, 0.18298149, 0.19615486, 1)
 volumetric_fog_anisotropy = 0.63
-volumetric_fog_sky_affect = 0.916
+volumetric_fog_sky_affect = 0.994
 adjustment_enabled = true
 adjustment_contrast = 1.09
 adjustment_saturation = 0.55
@@ -364,6 +363,10 @@ seamless = true
 shader = ExtResource("12_ywa0e")
 shader_parameter/density = 0.9999999747
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_secundario = Color(0.2, 0.5, 0.8, 1)
+shader_parameter/color_mix_scale = 1.0
+shader_parameter/color_mix_contrast = 1.5
+shader_parameter/color_mix_offset = 0.0
 shader_parameter/emission = Color(0.3882353, 0.6627451, 0.7294118, 1)
 shader_parameter/height_falloff = 0.0
 shader_parameter/edge_fade = 7.695
@@ -396,6 +399,10 @@ seamless = true
 shader = ExtResource("12_ywa0e")
 shader_parameter/density = 0.9999999747
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_secundario = Color(0.2, 0.5, 0.8, 1)
+shader_parameter/color_mix_scale = 1.0
+shader_parameter/color_mix_contrast = 1.5
+shader_parameter/color_mix_offset = 0.0
 shader_parameter/emission = Color(0.16222572, 0.33083087, 0.37084535, 1)
 shader_parameter/height_falloff = 0.0
 shader_parameter/edge_fade = 0.1
@@ -427,6 +434,10 @@ noise = SubResource("FastNoiseLite_py8g7")
 shader = ExtResource("12_ywa0e")
 shader_parameter/density = 0.32419999179774
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_secundario = Color(0.2, 0.5, 0.8, 1)
+shader_parameter/color_mix_scale = 1.0
+shader_parameter/color_mix_contrast = 1.5
+shader_parameter/color_mix_offset = 0.0
 shader_parameter/emission = Color(0.3882353, 0.6627451, 0.7294118, 1)
 shader_parameter/height_falloff = 0.67
 shader_parameter/edge_fade = 0.1
@@ -448,7 +459,47 @@ shader_parameter/density_texture = SubResource("NoiseTexture3D_s4sqn")
 size = Vector3(14.315186, 12.039673, 68.32031)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtse2"]
-size = Vector3(942.193, 59.42, 5.5)
+size = Vector3(942.193, 177.48055, 5.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_reosq"]
+frequency = 0.005
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ftjc2"]
+noise = SubResource("FastNoiseLite_reosq")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_exqqg"]
+frequency = 0.005
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xm6r1"]
+noise = SubResource("FastNoiseLite_exqqg")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftjc2"]
+render_priority = 0
+shader = ExtResource("49_reosq")
+shader_parameter/color_base = Color(0.12, 0.18, 0.28, 1)
+shader_parameter/color_retazo_1 = Color(0.3518467, 0.6602921, 0.6929923, 1)
+shader_parameter/color_retazo_2 = Color(0.25, 0.75, 0.85, 1)
+shader_parameter/color_brillo = Color(0.9438873, 0.955206, 0.97207624, 1)
+shader_parameter/velocidad_capa_base = Vector2(0.002, -0.01)
+shader_parameter/velocidad_retazo_1 = Vector2(-0.003, 0.002)
+shader_parameter/velocidad_retazo_2 = Vector2(0.002, 0.003)
+shader_parameter/noise_pincelada_1 = SubResource("NoiseTexture2D_ftjc2")
+shader_parameter/noise_pincelada_2 = SubResource("NoiseTexture2D_xm6r1")
+shader_parameter/escala_mundo = 0.003
+shader_parameter/deformacion_vertices = 10.0
+shader_parameter/suavizado_proximidad = 13.0
+shader_parameter/fade_dissolve = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_exqqg"]
+material = SubResource("ShaderMaterial_ftjc2")
+size = Vector3(40, 40, 40)
+subdivide_width = 80
+subdivide_height = 30
+subdivide_depth = 2
 
 [node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
 
@@ -465,7 +516,12 @@ shadow_enabled = true
 
 [node name="DirectionalLight3DDebug" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1387043691]
 transform = Transform3D(0.9085082, 0.36188352, 0.20893352, 0, 0.49999997, -0.86602545, -0.41786706, 0.7867912, 0.45425406, 0, 0, 0)
-visible = false
+layers = 6
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+
+[node name="DirectionalLight3DDebug2" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1326005706]
+transform = Transform3D(0.45709798, 0, -0.88941634, 0, 1, 0, 0.88941634, 0, 0.45709798, 0, 0, 0)
 layers = 6
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
@@ -1587,6 +1643,13 @@ titulo_personalizado = "Señal"
 transform = Transform3D(1, 0, 0, 0, 0.98185295, 0.18964384, 0, -0.18964384, 0.98185295, -205.8797, -14.25342, 128.19595)
 texto_a_mostrar = "Las cosechas son cada vez mas ||Siguiente pagina||Fin."
 
+[node name="FogGate" parent="WorldObjects/InteractibleObjects" unique_id=1038753867 instance=ExtResource("35_ui0oi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.169365, -5.6535916, 126.17376)
+puerta_id = "MistBarrier1"
+
+[node name="EnergySphere" parent="WorldObjects/InteractibleObjects/FogGate" unique_id=2144371339 instance=ExtResource("36_reosq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4185205, 0)
+
 [node name="WorldEffects" type="Node3D" parent="WorldObjects" unique_id=1087287346]
 
 [node name="Waterfall Particles" type="GPUParticles3D" parent="WorldObjects/WorldEffects" unique_id=708485512]
@@ -2251,12 +2314,12 @@ transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.186
 [node name="MistBarriersBody" type="StaticBody3D" parent="MistBarriers" unique_id=827459629]
 collision_layer = 2
 
-[node name="MistBarrier1" type="CollisionShape3D" parent="MistBarriers/MistBarriersBody" unique_id=1638222908 node_paths=PackedStringArray("fogVolume")]
-transform = Transform3D(0.008325079, 0, -0.99996537, 0, 1, 0, 0.99996537, 0, 0.008325079, -119.46609, 20.48981, 84.49946)
+[node name="MistBarrier1" type="CollisionShape3D" parent="MistBarriers/MistBarriersBody" unique_id=1638222908 node_paths=PackedStringArray("meshInstance")]
+transform = Transform3D(0.008325079, 0, -0.99996537, 0, 1, 0, 0.99996537, 0, 0.008325079, -119.46609, 54.481102, 84.49946)
 shape = SubResource("BoxShape3D_mtse2")
 script = ExtResource("46_7n1e8")
 puerta_id = "MistBarrier1"
-fogVolume = NodePath("FogVolume")
+meshInstance = NodePath("MistBarrierMesh")
 
-[node name="FogVolume" type="FogVolume" parent="MistBarriers/MistBarriersBody/MistBarrier1" unique_id=350963676]
-material = ExtResource("47_r1w47")
+[node name="MistBarrierMesh" type="MeshInstance3D" parent="MistBarriers/MistBarriersBody/MistBarrier1" unique_id=769127062]
+mesh = SubResource("BoxMesh_exqqg")

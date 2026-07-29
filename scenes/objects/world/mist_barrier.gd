@@ -5,34 +5,47 @@ extends CollisionShape3D
 @export_group("Configuración de Barrera")
 # Debe coincidir exactamente con el target_id del MechanismSwitch
 @export var puerta_id: String = ""
-@export var fogVolume: FogVolume 
+@export var meshInstance: MeshInstance3D
 
 var ya_abierto: bool = false
 
 func _ready() -> void:
-	# 1. Unirse al grupo según puerta_id para recibir la llamada de call_group()
+	# 1. Unirse al grupo correspondiente
 	if puerta_id != "":
 		add_to_group(puerta_id)
 	else:
 		push_warning("Advertencia: puerta_id no asignado en la barrera de niebla: ", name)
 
-	# 2. Si no asignaste el FogVolume en el Inspector, intentamos obtenerlo de los hijos
-	if fogVolume == null and has_node("FogVolume"):
-		fogVolume = $FogVolume as FogVolume
+	# 2. Si no se asignó la malla en el inspector, buscarla en los hijos
+	if meshInstance == null and has_node("MeshInstance3D"):
+		meshInstance = $MeshInstance3D as MeshInstance3D
 
-	# 3. Igualar el tamaño del FogVolume al del CollisionShape3D
+	# 3. Igualar el tamaño del BoxMesh al del BoxShape3D
 	_sincronizar_tamano_niebla()
 
 
 func _sincronizar_tamano_niebla() -> void:
-	if fogVolume != null and shape is BoxShape3D:
+	if meshInstance != null and shape is BoxShape3D:
 		var box_shape := shape as BoxShape3D
-		fogVolume.size = box_shape.size
+		
+		# Verificamos que tenga asignada una BoxMesh
+		if meshInstance.mesh is BoxMesh:
+			# Duplicamos la malla para que el cambio de tamaño no altere a otras barreras
+			meshInstance.mesh = meshInstance.mesh.duplicate()
+			var box_mesh := meshInstance.mesh as BoxMesh
+			box_mesh.size = box_shape.size
+			
+			# IMPORTANTE: Subdividir la malla para que el shader pueda deformar los vértices
+			box_mesh.subdivide_width = 10
+			box_mesh.subdivide_height = 10
+			box_mesh.subdivide_depth = 10
+		else:
+			# Si es un modelo importado genérico, ajustamos su escala
+			meshInstance.scale = box_shape.size
 
 
 # Método estándar llamado por MechanismSwitch mediante call_group()
 func open(id_recibido: String = "") -> void:
-	# Verificamos que sea para esta barrera y que no se haya activado previamente
 	if id_recibido != puerta_id and puerta_id != "":
 		return
 		
@@ -40,36 +53,35 @@ func open(id_recibido: String = "") -> void:
 		return
 		
 	ya_abierto = true
-	print("open() ejecutado con éxito en barrera de niebla: ", id_recibido)
+	print("open() ejecutado con éxito en barrera de niebla con malla: ", id_recibido)
 	animacionQuitarNiebla()
 
 
 func animacionQuitarNiebla() -> void:
-	# 1. Desactivamos la colisión de inmediato para que el jugador pueda avanzar
+	# 1. Desactivar la colisión de inmediato
 	set_deferred("disabled", true)
 
-	if fogVolume == null:
-		_eliminar_nodo_padre_o_self()
+	if meshInstance == null:
+		queue_free()
 		return
 
-	# 2. Preparamos el Tween para una animación fluida
+	# 2. Duplicar el material del shader para animar solo esta instancia
+	var mat_shader = meshInstance.get_active_material(0)
+	if mat_shader is ShaderMaterial:
+		mat_shader = mat_shader.duplicate()
+		meshInstance.set_surface_override_material(0, mat_shader)
+
+	# 3. Tween paralelo: Encoger en la altura (Y) y desvanecer alfa
 	var fogTween: Tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
-	# Reducimos la altura (eje Y) progresivamente
-	fogTween.tween_property(fogVolume, "size:y", 0.01, 2.0)
-	
-	# Si el FogVolume usa un FogMaterial, desvanecemos la densidad a 0
-	if fogVolume.material is FogMaterial:
-		# Duplicamos el material en tiempo de ejecución para evitar modificar a otras nieblas
-		fogVolume.material = fogVolume.material.duplicate()
-		fogTween.tween_property(fogVolume.material, "density", 0.0, 2.0)
+	#if meshInstance.mesh is BoxMesh:
+	#	fogTween.tween_property(meshInstance.mesh, "size:y", 0.01, 2.0)
+	#else:
+	#	fogTween.tween_property(meshInstance, "scale:y", 0.01, 2.0)
+		
+	if mat_shader is ShaderMaterial:
+		fogTween.tween_property(mat_shader, "shader_parameter/fade_dissolve", 0.0, 6)
 
-	# 3. Esperamos a que la animación de 2 segundos termine
+	# 4. Esperar a que termine la animación y eliminar este nodo
 	await fogTween.finished
-
-	# 4. Eliminamos el StaticBody3D contenedor
-	_eliminar_nodo_padre_o_self()
-
-
-func _eliminar_nodo_padre_o_self() -> void:
-		queue_free()
+	queue_free()

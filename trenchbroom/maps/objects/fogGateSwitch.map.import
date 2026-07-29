@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://d3uo8thkvm285"
+path="res://.godot/imported/fogGateSwitch.map-ae058182d8cdfa65f0f5a7968b3f8afa.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/fogGateSwitch.map"
+dest_files=["res://.godot/imported/fogGateSwitch.map-ae058182d8cdfa65f0f5a7968b3f8afa.tres"]
+
+[params]
+

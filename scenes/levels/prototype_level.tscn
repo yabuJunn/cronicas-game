@@ -25,6 +25,8 @@
 [ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="23_oj5qw"]
 [ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="24_65iqy"]
 [ext_resource type="PackedScene" uid="uid://p84eg01kgbv5" path="res://scenes/objects/interactible_objects/fog_gate_switch.tscn" id="25_65iqy"]
+[ext_resource type="PackedScene" uid="uid://dgakho2y1lux7" path="res://scenes/objects/world/houses/ruined_tower1.tscn" id="26_xoou4"]
+[ext_resource type="PackedScene" uid="uid://bjb335p8csuev" path="res://scenes/objects/world/houses/ruined_tower(2).tscn" id="27_nnv55"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2g36m"]
 
@@ -1270,3 +1272,9 @@ target_id = "MistBarrierTest"
 
 [node name="FogGateSwitch" parent="." unique_id=1246060721 instance=ExtResource("25_65iqy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.996403, 22.112843, 19.594786)
+
+[node name="RuinedTower(1)" parent="." unique_id=491349758 instance=ExtResource("26_xoou4")]
+transform = Transform3D(0.041317612, 0, 0.99914604, 0, 1, 0, -0.99914604, 0, 0.041317612, -40.41512, 21.908789, 5.0208263)
+
+[node name="RuinedTower(2)" parent="." unique_id=1154110306 instance=ExtResource("27_nnv55")]
+transform = Transform3D(-0.48770732, 0, 0.87300724, 0, 1, 0, -0.87300724, 0, -0.48770732, -44.915714, 21.7145, 22.902514)

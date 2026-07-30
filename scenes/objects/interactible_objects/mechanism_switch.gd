@@ -7,7 +7,7 @@ class_name MechanismSwitch
 @export_group("Configuración Específica del Mecanismo")
 @export var tiempo_escena: float = 6.0
 # 'targetname' del marcador de cámara en el mapa
-@export var camera_marker_id: String = "RockBridgeMarker" 
+@export var camera_marker_id: String
 # Grupo/ID de la puerta o puente que se levantará
 @export var target_id: String 
 

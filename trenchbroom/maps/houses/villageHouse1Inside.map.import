@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dsgdho53py6d"
+path="res://.godot/imported/villageHouse1Inside.map-706700586704f4bebc27d1f4ec728e3b.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/houses/villageHouse1Inside.map"
+dest_files=["res://.godot/imported/villageHouse1Inside.map-706700586704f4bebc27d1f4ec728e3b.tres"]
+
+[params]
+

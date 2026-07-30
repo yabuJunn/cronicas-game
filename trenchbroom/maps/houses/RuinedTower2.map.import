@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cjegqx3knv18n"
+path="res://.godot/imported/RuinedTower2.map-36d5da4417d5a6a6774b1304dcee184b.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/houses/RuinedTower2.map"
+dest_files=["res://.godot/imported/RuinedTower2.map-36d5da4417d5a6a6774b1304dcee184b.tres"]
+
+[params]
+

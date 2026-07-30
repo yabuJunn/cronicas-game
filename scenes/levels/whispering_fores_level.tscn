@@ -556,8 +556,26 @@ size = Vector3(402.89136, 211, 10.805664)
 [sub_resource type="BoxShape3D" id="BoxShape3D_exqqg"]
 size = Vector3(116.11273, 7.8945007, 7.85083)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_epb6w"]
+size = Vector3(15.728516, 14.910767, 201.4502)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4k7r"]
+size = Vector3(26.571777, 14.910767, 201.4502)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwc23"]
+size = Vector3(26.571777, 14.910767, 63.220642)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5uq1w"]
+size = Vector3(26.571777, 14.910767, 44.779076)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_60qc2"]
+size = Vector3(45.592285, 14.910767, 56.051704)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_xm6r1"]
 size = Vector3(112.99689, 3.7211914, 27.914795)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uu8qh"]
+size = Vector3(100.728516, 8.889404, 827.08545)
 
 [node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
 
@@ -574,14 +592,12 @@ shadow_enabled = true
 
 [node name="DirectionalLight3DDebug" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1387043691]
 transform = Transform3D(0.9085082, 0.36188352, 0.20893352, 0, 0.49999997, -0.86602545, -0.41786706, 0.7867912, 0.45425406, 0, 0, 0)
-visible = false
 layers = 6
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 
 [node name="DirectionalLight3DDebug2" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1326005706]
 transform = Transform3D(0.45709798, 0, -0.88941634, 0, 1, 0, 0.88941634, 0, 0.45709798, 0, 0, 0)
-visible = false
 layers = 6
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
@@ -2554,36 +2570,163 @@ material = SubResource("ShaderMaterial_exqqg")
 
 [node name="CheckpointAreas" type="Node3D" parent="RespawnAreas" unique_id=154454542]
 
-[node name="Area3D" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=1648949128 node_paths=PackedStringArray("punto_de_aparicion")]
+[node name="Zone2Pit1" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=1648949128 node_paths=PackedStringArray("punto_de_aparicion")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.02432, 0, 0)
 script = ExtResource("52_xm6r1")
 punto_de_aparicion = NodePath("Marker3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Area3D" unique_id=879458209]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone2Pit1" unique_id=879458209]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.289276, -13.536041, 9.366476)
 shape = SubResource("BoxShape3D_exqqg")
 
-[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Area3D" unique_id=185806129]
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone2Pit1" unique_id=185806129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7013702, -15.039418, 11.410118)
 
-[node name="Area3D2" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=436827398 node_paths=PackedStringArray("punto_de_aparicion")]
+[node name="Zone2Pit2" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=436827398 node_paths=PackedStringArray("punto_de_aparicion")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.02432, 0, -38.264023)
 script = ExtResource("52_xm6r1")
 punto_de_aparicion = NodePath("Marker3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Area3D2" unique_id=945613036]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone2Pit2" unique_id=945613036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.289276, -12.722061, 9.366476)
 shape = SubResource("BoxShape3D_exqqg")
 
-[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Area3D2" unique_id=306823088]
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone2Pit2" unique_id=306823088]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.908096, -15.009693, 8.1164055)
+
+[node name="Zone3River1" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=579012177 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.66834, -4.085772, 131.83339)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River1" unique_id=1293293925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.659668, -4.887878, 0)
+shape = SubResource("BoxShape3D_epb6w")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River1" unique_id=1540715405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0869064, -3.55093, 0)
+
+[node name="Zone3River2" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=836005346 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.029, -4.085772, -65.75813)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River2" unique_id=866700734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.761963, -4.887878, 0)
+shape = SubResource("BoxShape3D_t4k7r")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River2" unique_id=1807995351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.347168, -3.55093, 0)
+
+[node name="Zone3River7" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=1555299166 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(0.9955997, 0, 0.09370866, 0, 1, 0, -0.09370866, 0, 0.9955997, 24.451378, -4.085772, -52.062157)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River7" unique_id=1577274079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.761963, -4.887878, 0)
+shape = SubResource("BoxShape3D_t4k7r")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River7" unique_id=11544666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.648077, -3.55093, -12.36694)
+
+[node name="Zone3River8" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=1515115818 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(0.9998034, 0, -0.019825652, 0, 1, 0, 0.019825652, 0, 0.9998034, 14.3695755, -4.085772, 146.00171)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River8" unique_id=783578427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.761963, -4.887878, 0)
+shape = SubResource("BoxShape3D_t4k7r")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River8" unique_id=1939244711]
+transform = Transform3D(1.0000005, 0, -3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1.0000005, 5.5072594, -3.55093, -15.318771)
+
+[node name="Zone3River9" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=1285483944 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(0.9998034, 0, -0.019825652, 0, 1, 0, 0.019825652, 0, 0.9998034, 24.57508, -4.085772, 344.3692)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River9" unique_id=1807302851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.761963, -4.887878, 0)
+shape = SubResource("BoxShape3D_t4k7r")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River9" unique_id=2074864607]
+transform = Transform3D(1.0000005, 0, -3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1.0000005, 5.5072594, -3.55093, -15.318771)
+
+[node name="Zone3River10" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=1678331734 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(0.9998034, 0, -0.019825652, 0, 1, 0, 0.019825652, 0, 0.9998034, -37.106976, -4.085772, 331.53186)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River10" unique_id=30428761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.761963, -4.887878, 0)
+shape = SubResource("BoxShape3D_t4k7r")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River10" unique_id=757797688]
+transform = Transform3D(1.0000007, 0, -3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1.0000007, -15.9023, -3.55093, 5.9871216)
+
+[node name="Zone3River6" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=478418144 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.481686, -4.085772, -244.38997)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River6" unique_id=1030281576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.761963, -4.887878, 0)
+shape = SubResource("BoxShape3D_t4k7r")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River6" unique_id=268961735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4047871, -3.8334327, -13.704147)
+
+[node name="Zone3River3" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=2013289899 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.322174, -4.085772, -229.73947)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River3" unique_id=73916176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.761963, -4.887878, 23.983093)
+shape = SubResource("BoxShape3D_dwc23")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River3" unique_id=469367585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.161652, -3.55093, 23.049835)
+
+[node name="Zone3River4" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=985614275 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(0.8915052, 0, 0.45301053, 0, 1, 0, -0.45301053, 0, 0.8915052, -58.48538, -4.085772, -315.58844)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River4" unique_id=390706856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.762024, -4.887878, 22.815308)
+shape = SubResource("BoxShape3D_5uq1w")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River4" unique_id=1377169396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.677307, -3.55093, 54.246307)
+
+[node name="Zone3River5" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=2072213949 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(0.19806792, 0, -0.9801883, 0, 1, 0, 0.9801883, 0, 0.19806792, 1.8247414, -4.085772, -263.7677)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Zone3River5" unique_id=1695455306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26019287, -4.887878, 21.476898)
+shape = SubResource("BoxShape3D_60qc2")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Zone3River5" unique_id=744457196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.136978, -3.55093, 32.22576)
 
 [node name="KillAreas" type="Node3D" parent="RespawnAreas" unique_id=1057048644]
 
-[node name="Area3D" type="Area3D" parent="RespawnAreas/KillAreas" unique_id=1648973578]
+[node name="Zone2Pit" type="Area3D" parent="RespawnAreas/KillAreas" unique_id=1648973578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -241.13098, -25.539495, -7.9098783)
 script = ExtResource("53_jikva")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/KillAreas/Area3D" unique_id=1275168190]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/KillAreas/Zone2Pit" unique_id=1275168190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.203278, 1.3605957, -1.19519)
 shape = SubResource("BoxShape3D_xm6r1")
+
+[node name="MainRiver" type="Area3D" parent="RespawnAreas/KillAreas" unique_id=564389340]
+script = ExtResource("53_jikva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/KillAreas/MainRiver" unique_id=830187242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.833263, 36.427002)
+shape = SubResource("BoxShape3D_uu8qh")

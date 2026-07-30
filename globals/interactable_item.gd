@@ -126,5 +126,5 @@ func interactuar() -> bool:
 		queue_free()
 		return true # Indica que el objeto se ha recogido
 	else:
-		print("Has interactuado con: ", item_name, " (Objeto estático / Puerta)")
+		#print("Has interactuado con: ", item_name, " (Objeto estático / Puerta)")
 		return false # Indica que NO es un objeto de recogida

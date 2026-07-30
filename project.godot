@@ -25,6 +25,7 @@ Inventory="*uid://db5s7xpd84wk1"
 MusicManager="*uid://60pekbby728h"
 TransicionGlobal="*uid://dp7ojkhjkw6i6"
 DialogueSystem="*uid://b4h2v3mc7aneb"
+RespawnManager="*uid://dhkxsov43dwwg"
 
 [editor]
 

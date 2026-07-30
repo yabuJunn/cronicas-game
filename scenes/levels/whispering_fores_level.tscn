@@ -49,8 +49,11 @@
 [ext_resource type="PackedScene" uid="uid://c5coqdgnve1ds" path="res://scenes/objects/interactible_objects/mist_gate.tscn" id="35_ui0oi"]
 [ext_resource type="PackedScene" uid="uid://d065ca8nie10" path="res://scenes/objects/interactible_objects/mist_core.tscn" id="36_exqqg"]
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="36_reosq"]
+[ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="45_uu8qh"]
 [ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="46_7n1e8"]
 [ext_resource type="Shader" uid="uid://dn25ff07u6xum" path="res://shaders/mist_barrier_shader.gdshader" id="49_reosq"]
+[ext_resource type="Script" uid="uid://b2hmc24838gbt" path="res://globals/checkpoint_area.gd" id="52_xm6r1"]
+[ext_resource type="Script" uid="uid://ccoeqv1lj1y61" path="res://globals/death_zone_area.gd" id="53_jikva"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
 
@@ -548,6 +551,12 @@ shader_parameter/density_texture = SubResource("NoiseTexture3D_eolq4")
 [sub_resource type="BoxShape3D" id="BoxShape3D_reosq"]
 size = Vector3(402.89136, 211, 10.805664)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_exqqg"]
+size = Vector3(116.11273, 7.8945007, 7.85083)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xm6r1"]
+size = Vector3(112.99689, 3.7211914, 27.914795)
+
 [node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1640846100]
@@ -960,6 +969,7 @@ metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 transform = Transform3D(0.80411625, 0, 0.59447205, 0, 1, 0, -0.59447205, 0, 0.80411625, -225.95688, 16.396755, 35.28599)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
+depth = 33.13
 density = 0.27
 hardness = 1.0
 rect_size = Vector2(32.0586, 67.023865)
@@ -1099,6 +1109,7 @@ metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -304.36465, 14.425888, -18.083313)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
+depth = 33.245
 density = 0.27
 hardness = 1.0
 shape = 1
@@ -1109,6 +1120,7 @@ metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 transform = Transform3D(0.85403234, 0, 0.52021986, 0, 1, 0, -0.52021986, 0, 0.85403234, -287.0075, 14.425888, 15.623745)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
+depth = 31.46
 density = 0.27
 hardness = 1.0
 shape = 1
@@ -1119,6 +1131,7 @@ metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -193.17322, 14.425888, -47.78749)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
+depth = 32.28
 density = 0.27
 hardness = 1.0
 shape = 1
@@ -1733,7 +1746,7 @@ Derecha: Puesto de leñadoress"
 titulo_personalizado = "Señal de Madera"
 
 [node name="WoodenInfoSign3" parent="WorldObjects/InteractibleObjects" unique_id=1907048722 instance=ExtResource("30_q5fs3")]
-transform = Transform3D(-0.8589956, 0, -0.511983, 0, 1, 0, 0.511983, 0, -0.8589956, -171.54463, -15.304406, 75.132805)
+transform = Transform3D(-0.8589956, 0, -0.511983, 0, 1, 0, 0.511983, 0, -0.8589956, -171.54463, -16.373398, 75.132805)
 texto_a_mostrar = "Derecha: Pueblo
 Izquierda: Lago"
 titulo_personalizado = "Señal de Madera"
@@ -2038,6 +2051,11 @@ layers = 2
 size = Vector3(78.357574, 8.316406, 693.2748)
 material = SubResource("ShaderMaterial_ean77")
 
+[node name="FogVolume" type="FogVolume" parent="Fog" unique_id=2050301263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210.97957, -24.445763, -6.6132545)
+size = Vector3(124.93414, 7.6758423, 38.77173)
+material = ExtResource("45_uu8qh")
+
 [node name="Ligths" type="Node3D" parent="." unique_id=1228484181]
 
 [node name="WodenLampPost" parent="Ligths" unique_id=1509113217 instance=ExtResource("32_t4hbk")]
@@ -2095,10 +2113,25 @@ transform = Transform3D(-0.020436347, 0, -0.9997912, 0, 1, 0, 0.9997912, 0, -0.0
 transform = Transform3D(-0.020436347, 0, -0.9997912, 0, 1, 0, 0.9997912, 0, -0.020436347, -335.4829, -15.626808, 80.67847)
 
 [node name="WodenLampPost14" parent="Ligths" unique_id=1454611295 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(-0.19875233, 0, 0.9800498, 0, 1, 0, -0.9800498, 0, -0.19875233, -172.70076, -14.80254, 74.046036)
+transform = Transform3D(-0.19875233, 0, 0.9800498, 0, 1, 0, -0.9800498, 0, -0.19875233, -172.70076, -15.661271, 74.046036)
+
+[node name="WodenLampPost86" parent="Ligths" unique_id=1133453237 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.8105019, 0, -0.58573604, 0, 1, 0, 0.58573604, 0, -0.8105019, -187.2233, -15.718273, 55.393566)
+
+[node name="WodenLampPost88" parent="Ligths" unique_id=699483169 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.8105019, 0, -0.58573604, 0, 1, 0, 0.58573604, 0, -0.8105019, -221.3787, -15.718273, 9.167593)
+
+[node name="WodenLampPost89" parent="Ligths" unique_id=91578784 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.8445523, 0, 0.53547305, 0, 1, 0, -0.53547305, 0, 0.8445523, -237.52884, -15.718273, -27.81228)
+
+[node name="WodenLampPost87" parent="Ligths" unique_id=1220636484 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.79112744, 0, 0.6116513, 0, 1, 0, -0.6116513, 0, 0.79112744, -196.59773, -15.718273, 29.135239)
 
 [node name="WodenLampPost16" parent="Ligths" unique_id=687496011 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(0.8525853, 0, 0.522588, 0, 1, 0, -0.522588, 0, 0.8525853, -156.44533, -13.653028, 85.7373)
+transform = Transform3D(0.8525853, 0, 0.522588, 0, 1, 0, -0.522588, 0, 0.8525853, -156.44533, -15.575241, 85.7373)
+
+[node name="WodenLampPost85" parent="Ligths" unique_id=1944206018 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.44691604, 0, 0.8945761, 0, 1, 0, -0.8945761, 0, 0.44691604, -163.43967, -15.575241, 71.20195)
 
 [node name="WodenLampPost17" parent="Ligths" unique_id=1470598755 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(-0.872368, 0, -0.48884988, 0, 1, 0, 0.48884988, 0, -0.872368, -155.46735, -15.327715, 101.06678)
@@ -2502,3 +2535,41 @@ mesh = SubResource("BoxMesh_exqqg")
 
 [node name="FogVolume" type="FogVolume" parent="MistBarriers/MistBarriersBody/MistBarrier2" unique_id=289073190]
 material = SubResource("ShaderMaterial_exqqg")
+
+[node name="RespawnAreas" type="Node3D" parent="." unique_id=171287544]
+
+[node name="CheckpointAreas" type="Node3D" parent="RespawnAreas" unique_id=154454542]
+
+[node name="Area3D" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=1648949128 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.02432, 0, 0)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Area3D" unique_id=879458209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.289276, -13.536041, 9.366476)
+shape = SubResource("BoxShape3D_exqqg")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Area3D" unique_id=185806129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7013702, -15.039418, 11.410118)
+
+[node name="Area3D2" type="Area3D" parent="RespawnAreas/CheckpointAreas" unique_id=436827398 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.02432, 0, -38.264023)
+script = ExtResource("52_xm6r1")
+punto_de_aparicion = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/CheckpointAreas/Area3D2" unique_id=945613036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.289276, -12.722061, 9.366476)
+shape = SubResource("BoxShape3D_exqqg")
+
+[node name="Marker3D" type="Marker3D" parent="RespawnAreas/CheckpointAreas/Area3D2" unique_id=306823088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.908096, -15.009693, 8.1164055)
+
+[node name="KillAreas" type="Node3D" parent="RespawnAreas" unique_id=1057048644]
+
+[node name="Area3D" type="Area3D" parent="RespawnAreas/KillAreas" unique_id=1648973578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -241.13098, -25.539495, -7.9098783)
+script = ExtResource("53_jikva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/KillAreas/Area3D" unique_id=1275168190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.203278, 1.3605957, -1.19519)
+shape = SubResource("BoxShape3D_xm6r1")

@@ -33,9 +33,10 @@ emission_energy_multiplier = 0.0
 material = SubResource("StandardMaterial3D_i0wg0")
 size = Vector3(1.135, 0.4, 0.4)
 
-[node name="FogGate" type="Node3D" unique_id=1038753867]
+[node name="FogGate" type="Node3D" unique_id=1038753867 node_paths=PackedStringArray("mesh")]
 script = ExtResource("1_ar1sg")
 se_puede_recoger = false
+mesh = NodePath("GateStaticBody/GateMesh")
 
 [node name="GateStaticBody" type="StaticBody3D" parent="." unique_id=1019932808]
 collision_mask = 0

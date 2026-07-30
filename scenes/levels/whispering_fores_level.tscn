@@ -65,7 +65,8 @@ background_mode = 1
 background_color = Color(0.015686275, 0.14901961, 0.21176471, 1)
 sky = SubResource("Sky_4p7th")
 ambient_light_source = 2
-ambient_light_color = Color(0.034815427, 0.23589951, 0.3219112, 1)
+ambient_light_color = Color(0.05178666, 0.28874603, 0.39090547, 1)
+ambient_light_energy = 1.54
 reflected_light_source = 2
 tonemap_mode = 3
 ssao_enabled = true
@@ -495,7 +496,8 @@ shader_parameter/color_base = Color(0.2045747, 0.28878275, 0.42903468, 1)
 shader_parameter/color_retazo_1 = Color(0.85, 0.45, 0.65, 1)
 shader_parameter/color_retazo_2 = Color(0.77072144, 0.94450945, 0.98940986, 1)
 shader_parameter/color_brillo = Color(0.6928727, 0.86727226, 0.8552524, 1)
-shader_parameter/intensidad_emision = 0.4630000219925
+shader_parameter/intensidad_emision_colores = 0.414000019665
+shader_parameter/intensidad_emision_brillo = 1.00800004788
 shader_parameter/velocidad_capa_base = Vector2(0.015, -0.01)
 shader_parameter/velocidad_retazo_1 = Vector2(-0.025, 0.02)
 shader_parameter/velocidad_retazo_2 = Vector2(0.02, 0.03)
@@ -2051,7 +2053,7 @@ layers = 2
 size = Vector3(78.357574, 8.316406, 693.2748)
 material = SubResource("ShaderMaterial_ean77")
 
-[node name="FogVolume" type="FogVolume" parent="Fog" unique_id=2050301263]
+[node name="Zone2Pit" type="FogVolume" parent="Fog" unique_id=2050301263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210.97957, -24.445763, -6.6132545)
 size = Vector3(124.93414, 7.6758423, 38.77173)
 material = ExtResource("45_uu8qh")
@@ -2134,10 +2136,13 @@ transform = Transform3D(0.8525853, 0, 0.522588, 0, 1, 0, -0.522588, 0, 0.8525853
 transform = Transform3D(0.44691604, 0, 0.8945761, 0, 1, 0, -0.8945761, 0, 0.44691604, -163.43967, -15.575241, 71.20195)
 
 [node name="WodenLampPost17" parent="Ligths" unique_id=1470598755 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(-0.872368, 0, -0.48884988, 0, 1, 0, 0.48884988, 0, -0.872368, -155.46735, -15.327715, 101.06678)
+transform = Transform3D(-0.872368, 0, -0.48884988, 0, 1, 0, 0.48884988, 0, -0.872368, -155.46735, -15.74305, 101.06678)
 
 [node name="WodenLampPost18" parent="Ligths" unique_id=349531728 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.9220322, 0, 0.38711345, 0, 1, 0, -0.38711345, 0, 0.9220322, -143.77054, -13.101653, 108.96659)
+
+[node name="WodenLampPost91" parent="Ligths" unique_id=792630980 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.6851574, 0, -0.7283951, 0, 1, 0, 0.7283951, 0, -0.6851574, -149.80792, -13.101653, 115.32963)
 
 [node name="WodenLampPost20" parent="Ligths" unique_id=732361453 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.29360646, 0, 0.9559264, 0, 1, 0, -0.9559264, 0, 0.29360646, -128.17688, -8.2377825, 120.96853)
@@ -2312,6 +2317,15 @@ transform = Transform3D(-0.69160134, 0, 0.7222794, 0, 1, 0, -0.7222794, 0, -0.69
 
 [node name="WodenLampPost19" parent="Ligths" unique_id=108388798 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(-0.37837398, 0, -0.925653, 0, 1, 0, 0.925653, 0, -0.37837398, -143.77054, -11.282587, 124.496735)
+
+[node name="WodenLampPost90" parent="Ligths" unique_id=1216598829 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.8243929, 0, 0.56601787, 0, 1, 0, -0.56601787, 0, 0.8243929, -137.55309, -11.282587, 115.779564)
+
+[node name="WodenLampPost92" parent="Ligths" unique_id=1227702189 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.21320075, 0, -0.97700834, 0, 1, 0, 0.97700834, 0, -0.21320075, -131.7308, -8.837386, 128.6547)
+
+[node name="WodenLampPost93" parent="Ligths" unique_id=1393954550 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.97528064, 0, -0.22096957, 0, 1, 0, 0.22096957, 0, 0.97528064, -138.58347, -11.617889, 129.40112)
 
 [node name="WodenLampPost15" parent="Ligths" unique_id=1014281420 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -195.83311, -15.626808, 80.502075)

@@ -32,7 +32,7 @@ func _ready() -> void:
 
 # Método estándar llamado por cualquier MechanismSwitch mediante call_group()
 func open(id_recibido: String = "") -> void:
-	print("Open on mist gate", id_recibido)
+	#print("Open on mist gate", id_recibido)
 	# 1. Validaciones para evitar llamadas erróneas o repetidas
 	if id_recibido != puerta_id and puerta_id != "":
 		return
@@ -56,24 +56,21 @@ func open(id_recibido: String = "") -> void:
 		var mat_unico = mat_activo.duplicate()
 		activeIndicatorMesh.set_surface_override_material(0, mat_unico)
 		
-		# Asegurar estado inicial ANTES de la animación (opcional, ya se hizo en ready, pero por seguridad)
-		# Configuración inicial de emisión
+		# Asegurar estado inicial ANTES de la animación
 		mat_unico.emission_enabled = true
 		mat_unico.emission = color_emision
 		mat_unico.emission_energy_multiplier = 0.0
 		
-		#Configuracion Inicial de Luces (para asegurar que empiezan en 0 para el fade)
+		# Configuracion Inicial de Luces
 		ligth1.light_energy = 0
 		ligth2.light_energy = 0
 		
-		# --- Testear con Animación Lineal para confirmar que funciona ---
-		# Animamos el multiplicador de energía de 0 al máximo en 6 segundos
-		# Usamos TRANS_LINEAR para que el fade sea constante y perceptible.
-		# Usamos EASE_IN_OUT para un comienzo y final suaves (opcional, TRANS_LINEAR funciona solo con linear).
+		# SOLUCIÓN: Usamos un solo create_tween() y le encadenamos toda la configuración
 		var activatedAnimationTween = create_tween().set_parallel(true)
-		create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-		# activatedAnimationTween.set_ease(Tween.EASE_IN_OUT) # Opcional si usas LINEAR
+		activatedAnimationTween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+		
 		activatedAnimationTween.tween_property(mat_unico, "emission_energy_multiplier", multiplicador_energia_max, animationTime)
 		activatedAnimationTween.tween_property(ligth1, "light_energy", 2, animationTime)
 		activatedAnimationTween.tween_property(ligth2, "light_energy", 2, animationTime)
-		print("Animación de test lineal iniciada")
+		
+		#print("Animación iniciada")

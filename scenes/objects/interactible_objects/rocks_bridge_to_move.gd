@@ -32,7 +32,7 @@ func levantar_puente() -> void:
 
 # Método estándar llamado por cualquier MechanismSwitch
 func open(id_recibido: String = "") -> void:
-	print("open() ejecutado con éxito en: ", name)
+	print("open() ejecutado con éxito en: ", name, id_recibido)
 	levantar_puente()
 
 

@@ -9,8 +9,10 @@ uniform vec4 color_retazo_2 : source_color = vec4(0.25, 0.75, 0.85, 1.0); // Pin
 uniform vec4 color_brillo : source_color = vec4(0.95, 0.95, 1.00, 1.0);   // Crestas/Campos de Energía
 
 group_uniforms Emision_Energia;
-// Controla la intensidad del brillo/luz emitida por el campo de energía
-uniform float intensidad_emision : hint_range(0.0, 10.0) = 3.0;
+// Controla la luz emitida por los colores base y los retazos
+uniform float intensidad_emision_colores : hint_range(0.0, 10.0) = 1.0; 
+// Controla la intensidad del brillo máximo en las crestas
+uniform float intensidad_emision_brillo : hint_range(0.0, 10.0) = 3.0;
 
 group_uniforms Direcciones_y_Movimiento;
 uniform vec2 velocidad_capa_base = vec2(0.015, -0.010);
@@ -79,20 +81,27 @@ void fragment() {
 	vec3 color_tricolor = (color_base.rgb * w_base + color_retazo_1.rgb * w_ret1 + color_retazo_2.rgb * w_ret2) / peso_total;
 
 	// --- 4. Vetas incandescentes (Color Brillo) ---
-	// Se generan en las intersecciones de mayor densidad de ruido
 	float peak_energy = (n_base * 0.35) + (n_ret1 * 0.35) + (n_ret2 * 0.35);
 	float zonas_brillo = smoothstep(0.58, 0.82, peak_energy);
-
+	
 	vec3 color_mezclado = mix(color_tricolor, color_brillo.rgb, zonas_brillo);
 
-	// --- 5. Proximity Fade (Suavizado contra paredes/suelo) ---
+	// --- 5. Cálculo de Emisión Independiente ---
+	// Separamos el brillo de los colores base y el brillo de las crestas
+	vec3 emision_base = color_tricolor * intensidad_emision_colores;
+	vec3 emision_crestas = color_brillo.rgb * intensidad_emision_brillo;
+	
+	// Mezclamos ambas emisiones según las zonas de brillo
+	vec3 emision_final = mix(emision_base, emision_crestas, zonas_brillo);
+
+	// --- 6. Proximity Fade ---
 	float depth_tex = texture(depth_texture, SCREEN_UV).r;
 	vec4 world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth_tex, 1.0);
 	world_pos.xyz /= world_pos.w;
 	float prox_fade = clamp(1.0 - smoothstep(world_pos.z + suavizado_proximidad, world_pos.z, VERTEX.z), 0.0, 1.0);
 
-	// --- 6. Resultado Final (Albedo, Emisión y Opacidad) ---
+	// --- 7. Resultado Final (Albedo, Emisión y Opacidad) ---
 	ALBEDO = color_mezclado;
-	EMISSION = color_brillo.rgb * zonas_brillo * intensidad_emision * prox_fade * fade_dissolve;
+	EMISSION = emision_final * prox_fade * fade_dissolve;
 	ALPHA = prox_fade * fade_dissolve;
 }

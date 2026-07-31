@@ -8,21 +8,10 @@ script = ExtResource("1_hsp76")
 
 [node name="Control" type="Control" parent="." unique_id=1488355940]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="BackgroundTextBox" type="ColorRect" parent="Control" unique_id=207233801]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 0
 color = Color(0.047058824, 0.1254902, 0.29803923, 0.5803922)
 
 [node name="TitleText" type="RichTextLabel" parent="Control/BackgroundTextBox" unique_id=1277283863]
@@ -38,7 +27,7 @@ fit_content = true
 scroll_active = false
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/BackgroundTextBox" unique_id=1866096512]
-layout_mode = 1
+layout_mode = 0
 offset_right = 161.0
 offset_bottom = 160.0
 theme_override_constants/margin_left = 80

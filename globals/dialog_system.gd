@@ -38,6 +38,14 @@ func _ajustar_layout_dinamico() -> void:
 	if pantalla_size.x <= 0 or pantalla_size.y <= 0:
 		return
 
+	# --- SOLUCIÓN DE WARNINGS ---
+	# Reseteamos las anclas a "Top Left" para que el motor no sobreescriba nuestras matemáticas
+	control_ui.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	backgroundTextBox.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	title_label.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	margin.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	# ----------------------------
+
 	# 1. Expandir el contenedor raíz a toda la pantalla
 	control_ui.size = pantalla_size
 	control_ui.position = Vector2.ZERO
@@ -74,7 +82,7 @@ func _ajustar_layout_dinamico() -> void:
 	# Centrado horizontal relativo a la caja y posicionado justo arriba del borde superior
 	title_label.position.x = (box_w - title_w) / 2.0
 	title_label.position.y = -title_h - gap_y
-
+	
 func iniciar_dialogo(texto_completo: String, separador: String, titulo: String = "") -> void:
 	if esta_activo: return
 

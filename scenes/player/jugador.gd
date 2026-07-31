@@ -74,6 +74,12 @@ func _physics_process(delta: float) -> void:
 			velocity.y -= gravity * delta
 		move_and_slide()
 		_update_head_bob(delta) 
+		
+		# NUEVO: Asegurarnos de ocultar el texto de interacción si perdemos el control
+		interact_prompt.hide()
+		if current_interactable != null and is_instance_valid(current_interactable):
+			current_interactable.set_highlight(false)
+			
 		return
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -150,21 +156,27 @@ func _physics_process(delta: float) -> void:
 			
 		if collider != null and collider.is_in_group("interactibleObjects") and not collider.is_queued_for_deletion():
 			current_interactable = collider
-			current_interactable.set_highlight(true)
-			interact_prompt.show()
 		else:
 			current_interactable = null
 			interact_prompt.hide()
 
-	# Actualizamos el texto de la UI
+	# Actualizamos el texto de la UI y controlamos visibilidad durante diálogos
 	if current_interactable != null and is_instance_valid(current_interactable):
-		if "texto_interaccion" in current_interactable:
-			interact_prompt.text = current_interactable.texto_interaccion
-		elif "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
-			interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
+		# NUEVO: Si el diálogo está activo, forzamos a ocultar todo
+		if DialogueSystem.esta_activo:
+			interact_prompt.hide()
+			current_interactable.set_highlight(false) # Apaga el outline del objeto
 		else:
-			interact_prompt.text = "[ E ] Interactuar"
-
+			# Si NO hay diálogo, mostramos el texto y el outline normalmente
+			interact_prompt.show()
+			current_interactable.set_highlight(true)
+			
+			if "texto_interaccion" in current_interactable:
+				interact_prompt.text = current_interactable.texto_interaccion
+			elif "se_puede_recoger" in current_interactable and current_interactable.se_puede_recoger:
+				interact_prompt.text = "[ E ] Recoger " + current_interactable.item_name
+			else:
+				interact_prompt.text = "[ E ] Interactuar"
 
 func _unhandled_input(event):
 	if !camera_enabled or controles_bloqueados:

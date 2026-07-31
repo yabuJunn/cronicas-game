@@ -2695,9 +2695,6 @@ bus = &"Ambient"
 area_mask = 15
 parameters/looping = true
 
-[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("27_jvg85")]
-transform = Transform3D(0.05315514, 0, -0.9985863, 0, 1, 0, 0.9985863, 0, 0.05315514, -316.02603, -11.00526, 77.868645)
-
 [node name="MistBarriers" type="Node3D" parent="." unique_id=982872186]
 
 [node name="MistBarriersBody" type="StaticBody3D" parent="MistBarriers" unique_id=827459629]
@@ -2921,3 +2918,6 @@ script = ExtResource("53_jikva")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnAreas/KillAreas/MainRiver" unique_id=830187242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.833263, 36.427002)
 shape = SubResource("BoxShape3D_uu8qh")
+
+[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("27_jvg85")]
+transform = Transform3D(0.05315514, 0, -0.9985863, 0, 1, 0, 0.9985863, 0, 0.05315514, -316.02603, -11.00526, 77.868645)

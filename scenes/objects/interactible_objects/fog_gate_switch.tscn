@@ -26,6 +26,7 @@ data = PackedVector3Array(0.25, 0.5, -0.25, 0, 0.5, -0.25, 0, 0.375, -0.25, 0.25
 collision_layer = 10
 script = ExtResource("1_blilr")
 placedEnergySphere = NodePath("MistCore")
+usar_audio = false
 se_puede_recoger = false
 es_puerta = true
 item_clave_requerido = "Esfera de Energía"

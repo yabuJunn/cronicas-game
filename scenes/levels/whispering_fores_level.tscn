@@ -58,7 +58,14 @@
 [ext_resource type="Script" uid="uid://b2hmc24838gbt" path="res://globals/checkpoint_area.gd" id="52_xm6r1"]
 [ext_resource type="Script" uid="uid://ccoeqv1lj1y61" path="res://globals/death_zone_area.gd" id="53_jikva"]
 
+[sub_resource type="Gradient" id="Gradient_dwc23"]
+colors = PackedColorArray(0.0036906735, 0.04679802, 0.080188565, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5uq1w"]
+gradient = SubResource("Gradient_dwc23")
+
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_5tvve"]
+ground_color = Color(0.020087477, 0.2034584, 0.31021526, 1)
 
 [sub_resource type="Sky" id="Sky_4p7th"]
 sky_material = SubResource("PhysicalSkyMaterial_5tvve")
@@ -68,26 +75,30 @@ background_mode = 1
 background_color = Color(0.015686275, 0.14901961, 0.21176471, 1)
 sky = SubResource("Sky_4p7th")
 ambient_light_source = 2
-ambient_light_color = Color(0.06718411, 0.3426809, 0.46012664, 1)
-ambient_light_energy = 1.84
+ambient_light_color = Color(0.11806696, 0.4959116, 0.6587382, 1)
 reflected_light_source = 2
 tonemap_mode = 3
+tonemap_exposure = 0.9
 ssao_enabled = true
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.0027221325, 0.043296054, 0.07352313, 1)
+fog_sun_scatter = 0.1
 fog_density = 1.0
-fog_height = 43.58
+fog_height = 53.06
 fog_height_density = -0.1135
-fog_depth_end = 421.7
+fog_depth_end = 400.0
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.04
 volumetric_fog_albedo = Color(0.4382773, 0.43827733, 0.4382773, 1)
 volumetric_fog_emission = Color(0.04599952, 0.13572797, 0.14800471, 1)
+volumetric_fog_length = 40.3
 adjustment_enabled = true
 adjustment_brightness = 0.79
-adjustment_contrast = 1.03
+adjustment_contrast = 1.1
 adjustment_saturation = 0.68
+adjustment_color_correction = SubResource("GradientTexture1D_5uq1w")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eolq4"]
 noise_type = 2
@@ -589,8 +600,7 @@ environment = SubResource("Environment_0scc7")
 transform = Transform3D(0.9715621, 0.07439373, -0.22479486, 0.17169054, -0.8751146, 0.4524347, -0.16306293, -0.4781637, -0.86300063, 0, 0, 0)
 layers = 6
 light_color = Color(0.49774963, 0.8341563, 0.9465696, 1)
-light_energy = 0.1
-light_volumetric_fog_energy = 0.44
+light_energy = 0.3
 shadow_enabled = true
 
 [node name="DirectionalLight3DDebug" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1387043691]
@@ -1792,6 +1802,8 @@ transform = Transform3D(0.99674517, 0, -0.08061645, 0, 1, 0, 0.08061645, 0, 0.99
 
 [node name="EnergySphereDeactivated" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=1256466068 instance=ExtResource("18_xeu51")]
 transform = Transform3D(-0.020226955, 0, -0.9997961, 0, 1, 0, 0.9997961, 0, -0.020226955, -0.004119873, 0.8535681, -0.05102539)
+x_direction = 1.0
+z_direction = 0.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Houses/ForestLumberjackStation/MedievalBox7" unique_id=297782030]
 transform = Transform3D(0.9962518, 0, 0.0865125, 0, 1, 0, -0.0865125, 0, 0.9962518, -0.22541809, 0.6854172, 0.20489502)

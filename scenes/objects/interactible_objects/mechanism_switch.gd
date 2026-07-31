@@ -13,6 +13,9 @@ class_name MechanismSwitch
 
 # --- REFERENCIAS INTERNAS ---
 @export var placedEnergySphere: StaticBody3D 
+
+# NUEVA OPCIÓN: Define si este interruptor debe buscar y reproducir audio
+@export var usar_audio: bool = true 
 var energySphereAudio: AudioStreamPlayer3D
 
 var ya_activado: bool = false
@@ -36,8 +39,6 @@ func _ready() -> void:
 
 
 func _preparar_esfera_y_audio() -> void:
-	_obtener_audio_esfera()
-	
 	if placedEnergySphere:
 		# 1. Sacamos la esfera del grupo para evitar interacciones directas con ella
 		if placedEnergySphere.is_in_group("interactibleObjects"):
@@ -53,10 +54,14 @@ func _preparar_esfera_y_audio() -> void:
 			
 		placedEnergySphere.visible = false
 
-	if energySphereAudio:
-		energySphereAudio.playing = false
-	else:
-		print("Error en energySphereAudio: ", energySphereAudio)
+	# 4. Lógica de audio condicionada
+	if usar_audio:
+		_obtener_audio_esfera()
+		if energySphereAudio:
+			energySphereAudio.playing = false
+		else:
+			# Cambiado a warning por si marcaste "usar_audio" pero olvidaste poner el nodo
+			push_warning("usar_audio está activo, pero no se encontró un AudioStreamPlayer3D en: ", name)
 
 
 # --- SOBREESCRITURA DE TEXTOS DE INTERACCIÓN ---
@@ -84,7 +89,9 @@ func interactuar() -> bool:
 	
 	if placedEnergySphere:
 		placedEnergySphere.visible = true
-	if energySphereAudio:
+		
+	# Solo reproduce si usar_audio es true y el nodo existe
+	if usar_audio and energySphereAudio:
 		energySphereAudio.playing = true
 		
 	set_highlight(false)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dldnbul1hdve6"
+path="res://.godot/imported/rhomboidPrism3D.map-c26bff52f45eb3acc8dbedab6235ca0f.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/rhomboidPrism3D.map"
+dest_files=["res://.godot/imported/rhomboidPrism3D.map-c26bff52f45eb3acc8dbedab6235ca0f.tres"]
+
+[params]
+

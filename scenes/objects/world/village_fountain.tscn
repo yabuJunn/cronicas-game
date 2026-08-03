@@ -184,7 +184,7 @@ light_color = Color(0.9923704, 0.8375789, 0.71857196, 1)
 light_energy = 10.651
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
-spot_range = 7.5775814
+spot_range = 15.0
 spot_angle = 37.529972
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=1832337784]
@@ -193,7 +193,7 @@ light_color = Color(0.9923704, 0.8375789, 0.71857196, 1)
 light_energy = 10.651
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
-spot_range = 7.5775814
+spot_range = 15.0
 spot_angle = 37.529972
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="." unique_id=762529999]
@@ -202,7 +202,7 @@ light_color = Color(0.9923704, 0.8375789, 0.71857196, 1)
 light_energy = 10.651
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
-spot_range = 7.5775814
+spot_range = 15.0
 spot_angle = 37.529972
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1318369555]
@@ -290,6 +290,6 @@ draw_pass_1 = SubResource("QuadMesh_brenf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.170199, 0)
 stream = ExtResource("4_brenf")
 autoplay = true
-max_distance = 8.0
+max_distance = 6.0
 bus = &"Ambient"
 parameters/looping = true

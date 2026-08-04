@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://da5w1ojflrjgt"]
 
 [ext_resource type="Script" uid="uid://cr03vo7aas7by" path="res://scenes/screenshots/3d_screenshots.gd" id="1_sdeym"]
+[ext_resource type="PackedScene" uid="uid://b38n6orfr5cq0" path="res://scenes/objects/world/old_key.tscn" id="2_sdeym"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ut2b3"]
 
@@ -46,3 +47,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=1300817631]
 environment = SubResource("Environment_sdeym")
+
+[node name="OldKey" parent="SubViewport" unique_id=256675615 instance=ExtResource("2_sdeym")]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, 0, 0, 0)

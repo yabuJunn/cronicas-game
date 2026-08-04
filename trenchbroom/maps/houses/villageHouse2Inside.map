@@ -6,23 +6,14 @@
 "classname" "worldspawn"
 // brush 0
 {
-( -92 -160 -40 ) ( -92 16 -40 ) ( -92 -160 56 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -3.6739403974420594e-16 -1 0 32 ] [ 0 0 -1 -40 ] 0 1 1
-( -60 12 56 ) ( -92 12 56 ) ( -92 12 184 ) kenney_retro-textures-fantasy/door_wood_handle [ 1 -3.6739403974420594e-16 0 56 ] [ 0 0 -1 -80 ] 0 0.5 0.5
-( -60 -160 -40 ) ( -60 16 -40 ) ( -92 -160 -40 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 1 -3.6739403974420594e-16 0 60 ] [ 3.6739403974420594e-16 1 0 -32 ] 180 0.2 0.2
-( -92 -160 24 ) ( -92 16 24 ) ( -60 -160 24 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -1 3.6739403974420594e-16 0 -48 ] [ 3.6739403974420594e-16 1 0 -21.33332 ] 270 0.25 0.1875
-( -92 16 56 ) ( -92 16 -40 ) ( -60 16 56 ) kenney_retro-textures-fantasy/door_wood_handle [ 1 -3.6739403974420594e-16 0 56 ] [ 0 0 -1 -80 ] 0 0.5 0.5
-( -60 -160 56 ) ( -60 16 56 ) ( -60 -160 -40 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 3.6739403974420594e-16 1 0 -48 ] [ 0 0 -1 -40 ] 0 1 1
-}
-// brush 1
-{
 ( -64 -96 56 ) ( -64 -104 56 ) ( -64 -104 48 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.5000000000000001 0 0.5000000000000002 -4 ] [ 0 -1.0000000000000002 0 32 ] 0 1 1
-( -64 -96 56 ) ( 0 -96 128 ) ( 0 -104 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.04938177523804619 -0.9615384615384617 -0.05555449714282424 35.64293 ] [ -0.5925813028566937 5.204170427930421e-17 -0.6666539657137731 -8.561047 ] 59.64801 1 1.35
+( -64 -96 56 ) ( 0 -96 128 ) ( 0 -104 128 ) kenney_retro-textures-fantasy/roof_clay_red_bottom [ -0.04938177523804619 -0.9615384615384617 -0.05555449714282424 41.87032 ] [ -0.5925813028566937 5.204170427930421e-17 -0.6666539657137731 46.61769 ] 59.64801 0.9891679 1.55
 ( -64 -104 56 ) ( 0 -104 128 ) ( 0 -104 120 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0.7474092539029501 0 -0.6643639117082112 25.297112 ] [ -0.6643639117082112 0 -0.7474092539029501 -33.93877 ] 221.63354 1 1
 ( 0 -96 120 ) ( 0 -96 128 ) ( -64 -96 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.5 0 0.5 -4 ] [ -0.7071067811865476 -1.1102230246251565e-16 0.7071067811865476 -20.852814 ] 270 1 1
 ( 0 -104 120 ) ( 0 -96 120 ) ( -64 -96 48 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -0.055172413793104585 -1 -0.06206896551724037 39.448273 ] [ -0.7474235581707803 0 -0.7474235581707448 -30.613094 ] 241.73038 1 1
 ( 0 -104 128 ) ( 0 -96 128 ) ( 0 -96 120 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.30151134457776113 -1.9999999999999996 0.9999999999999999 0 ] [ -0.12060453783110904 -1.5999999999999985 -0.6000000000000004 28.799995 ] 114.3347 1 1
 }
-// brush 2
+// brush 1
 {
 ( -76 12 -48 ) ( -76 12 -47 ) ( -76 11 -48 ) Bricks/Brick_09-256x256 [ 0 0 1.0000000000000002 76 ] [ 0 -1.0000000000000002 0 32 ] 90 0.2 0.2
 ( -72 -16 -44 ) ( -72 -16 -43 ) ( -71 -16 -44 ) Bricks/Brick_09-256x256 [ 0 0 -1.0000000000000002 68 ] [ -1.0000000000000002 0 0 -84 ] 90 0.2 0.2
@@ -31,7 +22,7 @@
 ( -76 16 -48 ) ( -75 16 -48 ) ( -76 16 -47 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 -72 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( -72 -12 -44 ) ( -72 -13 -44 ) ( -72 -12 -43 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 1.8369701987210297e-16 1 0 0 ] [ 0 0 -1 -40 ] 90 1 1
 }
-// brush 3
+// brush 2
 {
 ( -68 96 44 ) ( -68 97 44 ) ( -68 96 45 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0 -1 0 32 ] [ 0 0 -1 0 ] 270 1 1
 ( -68 -96 44 ) ( -68 -96 45 ) ( -67 -96 44 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 1 0 0 56 ] [ 0 0 -1 0 ] 180 1 1
@@ -40,7 +31,7 @@
 ( -64 96 48 ) ( -63 96 48 ) ( -64 96 49 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -1 0 0 -56 ] [ 0 0 -1 0 ] 270 1 1
 ( -64 104 48 ) ( -64 104 49 ) ( -64 105 48 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0 1 0 -32 ] [ 0 0 -1 0 ] 90 1 1
 }
-// brush 4
+// brush 3
 {
 ( -72 96 48 ) ( -64 96 56 ) ( -64 -112 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -1.209374236733777e-15 -1 9.770517340267622e-16 16 ] [ -0.5000000000000014 2.6027629604221713e-18 -0.4999999999999982 -12 ] 176.24457 1 1
 ( -72 -104 48 ) ( -64 -104 56 ) ( -64 -104 48 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -1.1815642486645572e-07 0 -1.9999999999999976 -19.000015 ] [ -1.9999999999999973 0 1.1815642497747803e-07 -15.000038 ] 229.39868 1 1
@@ -48,7 +39,7 @@
 ( -64 104 48 ) ( -64 104 56 ) ( -72 104 48 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -1.1815642486645572e-07 0 -1.9999999999999976 -19.000015 ] [ -1.9999999999999973 0 1.1815642497747803e-07 -15.000038 ] 40.60132 1 1
 ( -64 -112 56 ) ( -64 96 56 ) ( -64 96 48 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0 1 0 -8 ] [ 0 0 -1 -8 ] 180 1 1
 }
-// brush 5
+// brush 4
 {
 ( -72 16 -48 ) ( -72 16 -47 ) ( -72 15 -48 ) Bricks/Brick_09-256x256 [ 0 0 1.0000000000000002 96 ] [ 0 -1.0000000000000002 0 32 ] 90 0.2 0.2
 ( -64 -16 -40 ) ( -64 -16 -39 ) ( -63 -16 -40 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 136 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -57,23 +48,23 @@
 ( -72 16 -48 ) ( -71 16 -48 ) ( -72 16 -47 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 -72 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( -64 -16 -40 ) ( -64 -17 -40 ) ( -64 -16 -39 ) Bricks/Brick_09-256x256 [ 1.8369701987210297e-16 1 0 -8 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 6
+// brush 5
 {
 ( 0 96 128 ) ( 0 -96 128 ) ( 0 -96 56 ) Bricks/Brick_09-256x256 [ 0.02127178149057895 -1.9583333333333335 0 92.000015 ] [ 0 0 -1 -40 ] 180 1 1
 ( 0 -96 128 ) ( 64 -96 56 ) ( 0 -96 56 ) kenney_retro-textures-fantasy/wall_timber_structure_diagonal [ 1 0 0 0 ] [ 0 0 -1 -27.677433 ] 180 1.1 1.55
 ( 64 -96 56 ) ( 64 96 56 ) ( 0 96 56 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -1 0 0 -8 ] [ 0 -1 0 0 ] 180 1 1
 ( 0 96 56 ) ( 64 96 56 ) ( 0 96 128 ) kenney_retro-textures-fantasy/wall_timber_structure_diagonal [ 1 0 0 0 ] [ 0 0 -1 -27.677433 ] 180 1.1 1.55
-( 0 96 128 ) ( 64 96 56 ) ( 64 -96 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.049316517798989934 0.9615460495734838 -0.05548108252383403 -19.373047 ] [ 0.5925812997648044 9.111662479033213e-05 -0.666653962235321 -10.047451 ] 239.64209 1 1.35
+( 0 96 128 ) ( 64 96 56 ) ( 64 -96 56 ) kenney_retro-textures-fantasy/roof_clay_red_bottom [ 0.04933794405061745 0.9615435592747938 -0.05550518705692222 226.6311 ] [ 0.5925813014618062 6.11999964246292e-05 -0.6666539641445398 -80.95107 ] 239.64407 0.9891679 1.55
 }
-// brush 7
+// brush 6
 {
-( 0 96 128 ) ( -64 -96 56 ) ( -64 96 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.04938177523804619 -0.9615384615384617 -0.05555449714282424 35.642925 ] [ -0.5925813028566937 5.204170427930421e-17 -0.6666539657137731 -8.561047 ] 59.64801 1 1.35
+( 0 96 128 ) ( -64 -96 56 ) ( -64 96 56 ) kenney_retro-textures-fantasy/roof_clay_red_bottom [ -0.04938177523804619 -0.9615384615384617 -0.05555449714282424 41.87032 ] [ -0.5925813028566937 5.204170427930421e-17 -0.6666539657137731 46.61769 ] 59.64801 0.9891679 1.55
 ( 0 -96 128 ) ( 0 -96 56 ) ( -64 -96 56 ) kenney_retro-textures-fantasy/wall_timber_structure_diagonal [ 1 0 0 -63.999992 ] [ 0 0 -1 -27.677433 ] 180 -1.1 1.55
 ( -64 -96 56 ) ( 0 96 56 ) ( -64 96 56 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -1 0 0 -8 ] [ 0 -1 0 0 ] 180 1 1
 ( 0 96 56 ) ( 0 96 128 ) ( -64 96 56 ) kenney_retro-textures-fantasy/wall_timber_structure_diagonal [ 1 0 0 -63.999992 ] [ 0 0 -1 -27.677433 ] 180 -1.1 1.55
 ( 0 96 128 ) ( 0 -96 56 ) ( 0 -96 128 ) Bricks/Brick_09-256x256 [ -0.02127178149057895 -1.9583333333333335 0 92.000015 ] [ 0 0 -1 -40 ] 90 1 1
 }
-// brush 8
+// brush 7
 {
 ( 64 -112 56 ) ( 64 96 48 ) ( 64 96 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0 1 0 -8 ] [ 0 0 -1 -8 ] 0 1 1
 ( 72 -104 48 ) ( 64 -104 48 ) ( 64 -104 56 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 1.1815642486645572e-07 0 -1.9999999999999976 -18.999985 ] [ 1.9999999999999973 0 1.1815642497747803e-07 48.99997 ] 49.39868 1 1
@@ -81,34 +72,34 @@
 ( 64 104 48 ) ( 72 104 48 ) ( 64 104 56 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 1.1815642486645572e-07 0 -1.9999999999999976 -18.999985 ] [ 1.9999999999999973 0 1.1815642497747803e-07 48.99997 ] 40.60132 1 1
 ( 72 96 48 ) ( 64 -112 56 ) ( 64 96 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 1.209374236733777e-15 -1 9.770517340267622e-16 16 ] [ 0.5000000000000014 2.6027629604221713e-18 -0.4999999999999982 -12 ] 356.24457 1 1
 }
-// brush 9
+// brush 8
 {
 ( 0 -104 128 ) ( 0 -96 120 ) ( 0 -96 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.30151134457776113 -1.9999999999999996 0.9999999999999999 0 ] [ 0.12060453783110904 -1.5999999999999985 -0.6000000000000004 28.799995 ] 134.99088 1 1
 ( 0 -104 120 ) ( 64 -96 48 ) ( 0 -96 120 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0.055172413793104585 -1 -0.06206896551724037 39.448273 ] [ 0.7474235581707803 0 -0.7474235581707448 -30.613087 ] 175.63477 1 1
 ( 64 -104 56 ) ( 0 -104 120 ) ( 0 -104 128 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -0.7474092539029501 0 -0.6643639117082112 25.297127 ] [ 0.6643639117082112 0 -0.7474092539029501 -33.938747 ] 138.36646 1 1
 ( 0 -96 120 ) ( 64 -96 56 ) ( 0 -96 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.5 0 0.5 -4 ] [ 0.7071067811865476 -1.1102230246251565e-16 0.7071067811865476 -20.852814 ] 180 1 1
-( 64 -96 56 ) ( 0 -104 128 ) ( 0 -96 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.049316517798989934 0.9615460495734838 -0.05548108252383403 -19.373047 ] [ 0.5925812997648044 9.111662479033213e-05 -0.666653962235321 -10.047449 ] 239.64209 1 1.35
+( 64 -96 56 ) ( 0 -104 128 ) ( 0 -96 128 ) kenney_retro-textures-fantasy/roof_clay_red_bottom [ 0.04933794405061745 0.9615435592747938 -0.05550518705692222 226.6311 ] [ 0.5925813014618062 6.11999964246292e-05 -0.6666539641445398 -80.95107 ] 239.64407 0.9891679 1.55
 ( 64 -96 56 ) ( 64 -104 48 ) ( 64 -104 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.5000000000000001 0 0.5000000000000002 -4 ] [ 0 -1.0000000000000002 0 32 ] 0 1 1
 }
-// brush 10
+// brush 9
 {
 ( -64 96 56 ) ( -64 104 48 ) ( -64 104 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.5000000000000001 0 0.5000000000000002 -4 ] [ 0 1.0000000000000002 0 -32 ] 0 1 1
-( -64 96 56 ) ( 0 104 128 ) ( 0 96 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.04938177523804619 0.9615384615384617 -0.05555449714282424 -28.35707 ] [ -0.5925813028566937 -5.204170427930421e-17 -0.6666539657137731 -8.561047 ] 325.5883 1 1.35
+( -64 96 56 ) ( 0 104 128 ) ( 0 96 128 ) kenney_retro-textures-fantasy/roof_clay_red_bottom [ -0.04938177523804619 -0.9615384615384617 -0.05555449714282424 41.87032 ] [ -0.5925813028566937 5.204170427930421e-17 -0.6666539657137731 46.61769 ] 59.64801 0.9891679 1.55
 ( 0 96 120 ) ( -64 96 56 ) ( 0 96 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.5 0 0.5 -4 ] [ -0.7071067811865476 1.1102230246251565e-16 0.7071067811865476 -20.852814 ] 180 1 1
 ( -64 104 56 ) ( 0 104 120 ) ( 0 104 128 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0.7474092539029501 0 -0.6643639117082112 25.297112 ] [ -0.6643639117082112 0 -0.7474092539029501 -33.93877 ] 138.36646 1 1
 ( 0 104 120 ) ( -64 96 48 ) ( 0 96 120 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -0.055172413793104585 1 -0.06206896551724037 -24.551735 ] [ -0.7474235581707803 0 -0.7474235581707448 -30.613094 ] 355.5511 1 1
 ( 0 104 128 ) ( 0 96 120 ) ( 0 96 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.30151134457776113 1.9999999999999996 0.9999999999999999 0 ] [ -0.12060453783110904 1.5999999999999985 -0.6000000000000004 -35.200005 ] 294.57678 1 1
 }
-// brush 11
+// brush 10
 {
 ( 0 104 128 ) ( 0 96 128 ) ( 0 96 120 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.30151134457776113 1.9999999999999996 0.9999999999999999 0 ] [ 0.12060453783110904 1.5999999999999985 -0.6000000000000004 -35.200005 ] 314.7484 1 1
 ( 0 104 120 ) ( 0 96 120 ) ( 64 96 48 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0.055172413793104585 1 -0.06206896551724037 -24.551727 ] [ 0.7474235581707803 0 -0.7474235581707448 -30.613087 ] 61.813934 1 1
 ( 0 96 120 ) ( 0 96 128 ) ( 64 96 56 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.5 0 0.5 -4 ] [ 0.7071067811865476 1.1102230246251565e-16 0.7071067811865476 -20.852814 ] 270 1 1
 ( 64 104 56 ) ( 0 104 128 ) ( 0 104 120 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -0.7474092539029501 0 -0.6643639117082112 25.297127 ] [ 0.6643639117082112 0 -0.7474092539029501 -33.938747 ] 221.63354 1 1
-( 64 96 56 ) ( 0 96 128 ) ( 0 104 128 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ 0.049316517798989934 0.9615460495734838 -0.05548108252383403 -19.37304 ] [ 0.5925812997648044 9.111662479033213e-05 -0.666653962235321 -10.047453 ] 239.64209 1 1.35
+( 64 96 56 ) ( 0 96 128 ) ( 0 104 128 ) kenney_retro-textures-fantasy/roof_clay_red_bottom [ 0.04933794405061745 0.9615435592747938 -0.05550518705692222 226.6311 ] [ 0.5925813014618062 6.11999964246292e-05 -0.6666539641445398 -80.95107 ] 239.64407 0.9891679 1.55
 ( 64 96 56 ) ( 64 104 56 ) ( 64 104 48 ) kenney_retro-textures-fantasy/roof_clay_grey_bottom [ -0.5000000000000001 0 0.5000000000000002 -4 ] [ 0 1.0000000000000002 0 -32 ] 0 1 1
 }
-// brush 12
+// brush 11
 {
 ( -64 92 40 ) ( -64 96 40 ) ( -68 96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 0 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 50.264404 1 1
 ( -68 92 44 ) ( -64 92 44 ) ( -64 92 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -116,7 +107,7 @@
 ( -64 96 40 ) ( -64 96 44 ) ( -68 96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( -64 92 44 ) ( -64 96 44 ) ( -64 96 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 13
+// brush 12
 {
 ( -68 92 44 ) ( -68 96 44 ) ( -72 96 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 0 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 309.7356 1 1
 ( -72 92 48 ) ( -68 92 48 ) ( -68 92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -124,7 +115,7 @@
 ( -68 96 44 ) ( -68 96 48 ) ( -72 96 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( -68 92 48 ) ( -68 96 48 ) ( -68 96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 14
+// brush 13
 {
 ( -64 -2 40 ) ( -64 2 40 ) ( -68 2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 34 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 50.264404 1 1
 ( -68 -2 44 ) ( -64 -2 44 ) ( -64 -2 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -132,7 +123,7 @@
 ( -64 2 40 ) ( -64 2 44 ) ( -68 2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( -64 -2 44 ) ( -64 2 44 ) ( -64 2 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -34 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 15
+// brush 14
 {
 ( -68 -2 44 ) ( -68 2 44 ) ( -72 2 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 34 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 309.7356 1 1
 ( -72 -2 48 ) ( -68 -2 48 ) ( -68 -2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -140,7 +131,7 @@
 ( -68 2 44 ) ( -68 2 48 ) ( -72 2 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( -68 -2 48 ) ( -68 2 48 ) ( -68 2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -34 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 16
+// brush 15
 {
 ( -64 76 40 ) ( -64 80 40 ) ( -68 80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 48 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 140.2644 1 1
 ( -68 76 44 ) ( -64 76 44 ) ( -64 76 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -148,7 +139,7 @@
 ( -64 80 40 ) ( -64 80 44 ) ( -68 80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -64 76 44 ) ( -64 80 44 ) ( -64 80 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 17
+// brush 16
 {
 ( -68 76 44 ) ( -68 80 44 ) ( -72 80 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 48 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 39.735596 1 1
 ( -72 76 48 ) ( -68 76 48 ) ( -68 76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -156,7 +147,7 @@
 ( -68 80 44 ) ( -68 80 48 ) ( -72 80 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -68 76 48 ) ( -68 80 48 ) ( -68 80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 18
+// brush 17
 {
 ( -64 60 40 ) ( -64 64 40 ) ( -68 64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 32 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 140.2644 1 1
 ( -68 60 44 ) ( -64 60 44 ) ( -64 60 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -164,7 +155,7 @@
 ( -64 64 40 ) ( -64 64 44 ) ( -68 64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -64 60 44 ) ( -64 64 44 ) ( -64 64 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -32 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 19
+// brush 18
 {
 ( -68 60 44 ) ( -68 64 44 ) ( -72 64 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 32 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 39.735596 1 1
 ( -72 60 48 ) ( -68 60 48 ) ( -68 60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -172,7 +163,7 @@
 ( -68 64 44 ) ( -68 64 48 ) ( -72 64 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -68 60 48 ) ( -68 64 48 ) ( -68 64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -32 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 20
+// brush 19
 {
 ( -64 44 40 ) ( -64 48 40 ) ( -68 48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 16 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 140.2644 1 1
 ( -68 44 44 ) ( -64 44 44 ) ( -64 44 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -180,7 +171,7 @@
 ( -64 48 40 ) ( -64 48 44 ) ( -68 48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -64 44 44 ) ( -64 48 44 ) ( -64 48 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -16 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 21
+// brush 20
 {
 ( -68 44 44 ) ( -68 48 44 ) ( -72 48 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 16 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 39.735596 1 1
 ( -72 44 48 ) ( -68 44 48 ) ( -68 44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -188,7 +179,7 @@
 ( -68 48 44 ) ( -68 48 48 ) ( -72 48 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -68 44 48 ) ( -68 48 48 ) ( -68 48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -16 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 22
+// brush 21
 {
 ( -64 28 40 ) ( -64 32 40 ) ( -68 32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 0 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 140.2644 1 1
 ( -68 28 44 ) ( -64 28 44 ) ( -64 28 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -196,7 +187,7 @@
 ( -64 32 40 ) ( -64 32 44 ) ( -68 32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -64 28 44 ) ( -64 32 44 ) ( -64 32 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 23
+// brush 22
 {
 ( -68 28 44 ) ( -68 32 44 ) ( -72 32 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 0 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 39.735596 1 1
 ( -72 28 48 ) ( -68 28 48 ) ( -68 28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -204,7 +195,7 @@
 ( -68 32 44 ) ( -68 32 48 ) ( -72 32 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -68 28 48 ) ( -68 32 48 ) ( -68 32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 24
+// brush 23
 {
 ( -64 12 40 ) ( -64 16 40 ) ( -68 16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 48 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 320.2644 1 1
 ( -68 12 44 ) ( -64 12 44 ) ( -64 12 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 90 1 1
@@ -212,7 +203,7 @@
 ( -64 16 40 ) ( -64 16 44 ) ( -68 16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 90 1 1
 ( -64 12 44 ) ( -64 16 44 ) ( -64 16 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 90 1 1
 }
-// brush 25
+// brush 24
 {
 ( -68 12 44 ) ( -68 16 44 ) ( -72 16 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 48 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 219.7356 1 1
 ( -72 12 48 ) ( -68 12 48 ) ( -68 12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 90 1 1
@@ -220,7 +211,7 @@
 ( -68 16 44 ) ( -68 16 48 ) ( -72 16 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 90 1 1
 ( -68 12 48 ) ( -68 16 48 ) ( -68 16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 90 1 1
 }
-// brush 26
+// brush 25
 {
 ( -64 -16 40 ) ( -64 -12 40 ) ( -68 -12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 20 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 140.2644 1 1
 ( -68 -16 44 ) ( -64 -16 44 ) ( -64 -16 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -228,7 +219,7 @@
 ( -64 -12 40 ) ( -64 -12 44 ) ( -68 -12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -64 -16 44 ) ( -64 -12 44 ) ( -64 -12 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 27
+// brush 26
 {
 ( -68 -16 44 ) ( -68 -12 44 ) ( -72 -12 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 20 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 39.735596 1 1
 ( -72 -16 48 ) ( -68 -16 48 ) ( -68 -16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -236,7 +227,7 @@
 ( -68 -12 44 ) ( -68 -12 48 ) ( -72 -12 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( -68 -16 48 ) ( -68 -12 48 ) ( -68 -12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 270 1 1
 }
-// brush 28
+// brush 27
 {
 ( -68 -32 44 ) ( -68 -28 44 ) ( -72 -28 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 4 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 129.7356 1 1
 ( -72 -32 48 ) ( -68 -32 48 ) ( -68 -32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -244,7 +235,7 @@
 ( -68 -28 44 ) ( -68 -28 48 ) ( -72 -28 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -68 -32 48 ) ( -68 -28 48 ) ( -68 -28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 29
+// brush 28
 {
 ( -64 -32 40 ) ( -64 -28 40 ) ( -68 -28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 4 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 230.2644 1 1
 ( -68 -32 44 ) ( -64 -32 44 ) ( -64 -32 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -252,7 +243,7 @@
 ( -64 -28 40 ) ( -64 -28 44 ) ( -68 -28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -64 -32 44 ) ( -64 -28 44 ) ( -64 -28 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 30
+// brush 29
 {
 ( -64 -48 40 ) ( -64 -44 40 ) ( -68 -44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 52 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 230.2644 1 1
 ( -68 -48 44 ) ( -64 -48 44 ) ( -64 -48 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -260,7 +251,7 @@
 ( -64 -44 40 ) ( -64 -44 44 ) ( -68 -44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -64 -48 44 ) ( -64 -44 44 ) ( -64 -44 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -52 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 31
+// brush 30
 {
 ( -68 -48 44 ) ( -68 -44 44 ) ( -72 -44 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 52 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 129.7356 1 1
 ( -72 -48 48 ) ( -68 -48 48 ) ( -68 -48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -268,7 +259,7 @@
 ( -68 -44 44 ) ( -68 -44 48 ) ( -72 -44 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -68 -48 48 ) ( -68 -44 48 ) ( -68 -44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -52 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 32
+// brush 31
 {
 ( -68 -64 44 ) ( -68 -60 44 ) ( -72 -60 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 36 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 129.7356 1 1
 ( -72 -64 48 ) ( -68 -64 48 ) ( -68 -64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -276,7 +267,7 @@
 ( -68 -60 44 ) ( -68 -60 48 ) ( -72 -60 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -68 -64 48 ) ( -68 -60 48 ) ( -68 -60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -36 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 33
+// brush 32
 {
 ( -64 -64 40 ) ( -64 -60 40 ) ( -68 -60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 36 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 230.2644 1 1
 ( -68 -64 44 ) ( -64 -64 44 ) ( -64 -64 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -284,7 +275,7 @@
 ( -64 -60 40 ) ( -64 -60 44 ) ( -68 -60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -64 -64 44 ) ( -64 -60 44 ) ( -64 -60 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -36 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 34
+// brush 33
 {
 ( -64 -80 40 ) ( -64 -76 40 ) ( -68 -76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 20 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 230.2644 1 1
 ( -68 -80 44 ) ( -64 -80 44 ) ( -64 -80 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -292,7 +283,7 @@
 ( -64 -76 40 ) ( -64 -76 44 ) ( -68 -76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -64 -80 44 ) ( -64 -76 44 ) ( -64 -76 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 35
+// brush 34
 {
 ( -68 -80 44 ) ( -68 -76 44 ) ( -72 -76 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 20 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 129.7356 1 1
 ( -72 -80 48 ) ( -68 -80 48 ) ( -68 -80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -300,7 +291,7 @@
 ( -68 -76 44 ) ( -68 -76 48 ) ( -72 -76 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( -68 -80 48 ) ( -68 -76 48 ) ( -68 -76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 0 1 1
 }
-// brush 36
+// brush 35
 {
 ( -68 -96 44 ) ( -68 -92 44 ) ( -72 -92 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 4 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 309.7356 1 1
 ( -72 -96 48 ) ( -68 -96 48 ) ( -68 -96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -308,7 +299,7 @@
 ( -68 -92 44 ) ( -68 -92 48 ) ( -72 -92 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( -68 -96 48 ) ( -68 -92 48 ) ( -68 -92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 37
+// brush 36
 {
 ( -64 -96 40 ) ( -64 -92 40 ) ( -68 -92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 4 ] [ 0.5000000000000026 0 -0.4999999999999974 36 ] 50.264404 1 1
 ( -68 -96 44 ) ( -64 -96 44 ) ( -64 -96 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -316,7 +307,7 @@
 ( -64 -92 40 ) ( -64 -92 44 ) ( -68 -92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -8.000004 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( -64 -96 44 ) ( -64 -92 44 ) ( -64 -92 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 38
+// brush 37
 {
 ( 68 92 48 ) ( 68 96 44 ) ( 68 96 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 0 1 1
 ( 72 92 48 ) ( 68 92 44 ) ( 68 92 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -324,7 +315,7 @@
 ( 68 96 44 ) ( 72 96 48 ) ( 68 96 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( 68 92 44 ) ( 72 96 48 ) ( 68 96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 0 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 129.7356 1 1
 }
-// brush 39
+// brush 38
 {
 ( 64 104 48 ) ( 64 105 48 ) ( 64 104 49 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0 1 0 -32 ] [ 0 0 -1 0 ] 270 1 1
 ( 68 -96 44 ) ( 67 -96 44 ) ( 68 -96 45 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ -1 0 0 -8 ] [ 0 0 -1 0 ] 180 1 1
@@ -333,7 +324,7 @@
 ( 64 96 48 ) ( 64 96 49 ) ( 63 96 48 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 1 0 0 8 ] [ 0 0 -1 0 ] 270 1 1
 ( 68 96 44 ) ( 68 96 45 ) ( 68 97 44 ) kenney_retro-textures-fantasy/floor_wood_planks_depth [ 0 -1 0 32 ] [ 0 0 -1 0 ] 90 1 1
 }
-// brush 40
+// brush 39
 {
 ( 68 76 48 ) ( 68 80 44 ) ( 68 80 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 90 1 1
 ( 72 76 48 ) ( 68 76 44 ) ( 68 76 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -341,7 +332,7 @@
 ( 68 80 44 ) ( 72 80 48 ) ( 68 80 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 68 76 44 ) ( 72 80 48 ) ( 68 80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 48 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 219.7356 1 1
 }
-// brush 41
+// brush 40
 {
 ( 68 60 48 ) ( 68 64 44 ) ( 68 64 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -32 ] [ 0 0 -1 -40 ] 90 1 1
 ( 72 60 48 ) ( 68 60 44 ) ( 68 60 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -349,7 +340,7 @@
 ( 68 64 44 ) ( 72 64 48 ) ( 68 64 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 68 60 44 ) ( 72 64 48 ) ( 68 64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 32 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 219.7356 1 1
 }
-// brush 42
+// brush 41
 {
 ( 68 44 48 ) ( 68 48 44 ) ( 68 48 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -16 ] [ 0 0 -1 -40 ] 90 1 1
 ( 72 44 48 ) ( 68 44 44 ) ( 68 44 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -357,7 +348,7 @@
 ( 68 48 44 ) ( 72 48 48 ) ( 68 48 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 68 44 44 ) ( 72 48 48 ) ( 68 48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 16 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 219.7356 1 1
 }
-// brush 43
+// brush 42
 {
 ( 68 28 48 ) ( 68 32 44 ) ( 68 32 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 90 1 1
 ( 72 28 48 ) ( 68 28 44 ) ( 68 28 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -365,7 +356,7 @@
 ( 68 32 44 ) ( 72 32 48 ) ( 68 32 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 68 28 44 ) ( 72 32 48 ) ( 68 32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 0 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 219.7356 1 1
 }
-// brush 44
+// brush 43
 {
 ( 68 12 48 ) ( 68 16 44 ) ( 68 16 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 270 1 1
 ( 72 12 48 ) ( 68 12 44 ) ( 68 12 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 90 1 1
@@ -373,7 +364,7 @@
 ( 68 16 44 ) ( 72 16 48 ) ( 68 16 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 90 1 1
 ( 68 12 44 ) ( 72 16 48 ) ( 68 16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 48 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 39.735596 1 1
 }
-// brush 45
+// brush 44
 {
 ( 68 -2 48 ) ( 68 2 44 ) ( 68 2 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -34 ] [ 0 0 -1 -40 ] 0 1 1
 ( 72 -2 48 ) ( 68 -2 44 ) ( 68 -2 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -381,7 +372,7 @@
 ( 68 2 44 ) ( 72 2 48 ) ( 68 2 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( 68 -2 44 ) ( 72 2 48 ) ( 68 2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 34 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 129.7356 1 1
 }
-// brush 46
+// brush 45
 {
 ( 68 -16 48 ) ( 68 -12 44 ) ( 68 -12 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 90 1 1
 ( 72 -16 48 ) ( 68 -16 44 ) ( 68 -16 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -389,7 +380,7 @@
 ( 68 -12 44 ) ( 72 -12 48 ) ( 68 -12 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 68 -16 44 ) ( 72 -12 48 ) ( 68 -12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 20 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 219.7356 1 1
 }
-// brush 47
+// brush 46
 {
 ( 68 -32 48 ) ( 68 -28 44 ) ( 68 -28 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 180 1 1
 ( 72 -32 48 ) ( 68 -32 44 ) ( 68 -32 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -397,7 +388,7 @@
 ( 68 -28 44 ) ( 72 -28 48 ) ( 68 -28 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 68 -32 44 ) ( 72 -28 48 ) ( 68 -28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 4 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 309.7356 1 1
 }
-// brush 48
+// brush 47
 {
 ( 68 -48 48 ) ( 68 -44 44 ) ( 68 -44 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -52 ] [ 0 0 -1 -40 ] 180 1 1
 ( 72 -48 48 ) ( 68 -48 44 ) ( 68 -48 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -405,7 +396,7 @@
 ( 68 -44 44 ) ( 72 -44 48 ) ( 68 -44 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 68 -48 44 ) ( 72 -44 48 ) ( 68 -44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 52 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 309.7356 1 1
 }
-// brush 49
+// brush 48
 {
 ( 68 -64 48 ) ( 68 -60 44 ) ( 68 -60 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -36 ] [ 0 0 -1 -40 ] 180 1 1
 ( 72 -64 48 ) ( 68 -64 44 ) ( 68 -64 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -413,7 +404,7 @@
 ( 68 -60 44 ) ( 72 -60 48 ) ( 68 -60 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 68 -64 44 ) ( 72 -60 48 ) ( 68 -60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 36 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 309.7356 1 1
 }
-// brush 50
+// brush 49
 {
 ( 68 -80 48 ) ( 68 -76 44 ) ( 68 -76 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 180 1 1
 ( 72 -80 48 ) ( 68 -80 44 ) ( 68 -80 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -421,7 +412,7 @@
 ( 68 -76 44 ) ( 72 -76 48 ) ( 68 -76 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 68 -80 44 ) ( 72 -76 48 ) ( 68 -76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 20 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 309.7356 1 1
 }
-// brush 51
+// brush 50
 {
 ( 68 -96 48 ) ( 68 -92 44 ) ( 68 -92 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 0 1 1
 ( 72 -96 48 ) ( 68 -96 44 ) ( 68 -96 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -429,7 +420,7 @@
 ( 68 -92 44 ) ( 72 -92 48 ) ( 68 -92 48 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( 68 -96 44 ) ( 72 -92 48 ) ( 68 -92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1.3877787807814457e-16 -1 0 4 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 129.7356 1 1
 }
-// brush 52
+// brush 51
 {
 ( 64 -96 44 ) ( 64 -92 40 ) ( 64 -92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 0 1 1
 ( 68 -96 44 ) ( 64 -96 40 ) ( 64 -96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -437,7 +428,7 @@
 ( 64 -92 40 ) ( 68 -92 44 ) ( 64 -92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( 64 -96 40 ) ( 68 -92 44 ) ( 64 -92 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 4 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 230.2644 1 1
 }
-// brush 53
+// brush 52
 {
 ( 64 -80 44 ) ( 64 -76 40 ) ( 64 -76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 180 1 1
 ( 68 -80 44 ) ( 64 -80 40 ) ( 64 -80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -445,7 +436,7 @@
 ( 64 -76 40 ) ( 68 -76 44 ) ( 64 -76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 64 -80 40 ) ( 68 -76 44 ) ( 64 -76 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 20 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 50.264404 1 1
 }
-// brush 54
+// brush 53
 {
 ( 64 -64 44 ) ( 64 -60 40 ) ( 64 -60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -36 ] [ 0 0 -1 -40 ] 180 1 1
 ( 68 -64 44 ) ( 64 -64 40 ) ( 64 -64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -453,7 +444,7 @@
 ( 64 -60 40 ) ( 68 -60 44 ) ( 64 -60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 64 -64 40 ) ( 68 -60 44 ) ( 64 -60 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 36 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 50.264404 1 1
 }
-// brush 55
+// brush 54
 {
 ( 64 -48 44 ) ( 64 -44 40 ) ( 64 -44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -52 ] [ 0 0 -1 -40 ] 180 1 1
 ( 68 -48 44 ) ( 64 -48 40 ) ( 64 -48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -461,7 +452,7 @@
 ( 64 -44 40 ) ( 68 -44 44 ) ( 64 -44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 64 -48 40 ) ( 68 -44 44 ) ( 64 -44 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 52 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 50.264404 1 1
 }
-// brush 56
+// brush 55
 {
 ( 64 -32 44 ) ( 64 -28 40 ) ( 64 -28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -4 ] [ 0 0 -1 -40 ] 180 1 1
 ( 68 -32 44 ) ( 64 -32 40 ) ( 64 -32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
@@ -469,7 +460,7 @@
 ( 64 -28 40 ) ( 68 -28 44 ) ( 64 -28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 0 1 1
 ( 64 -32 40 ) ( 68 -28 44 ) ( 64 -28 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 4 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 50.264404 1 1
 }
-// brush 57
+// brush 56
 {
 ( 64 -16 44 ) ( 64 -12 40 ) ( 64 -12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -20 ] [ 0 0 -1 -40 ] 90 1 1
 ( 68 -16 44 ) ( 64 -16 40 ) ( 64 -16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -477,7 +468,7 @@
 ( 64 -12 40 ) ( 68 -12 44 ) ( 64 -12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 64 -16 40 ) ( 68 -12 44 ) ( 64 -12 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 20 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 320.2644 1 1
 }
-// brush 58
+// brush 57
 {
 ( 64 -2 44 ) ( 64 2 40 ) ( 64 2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -34 ] [ 0 0 -1 -40 ] 0 1 1
 ( 68 -2 44 ) ( 64 -2 40 ) ( 64 -2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -485,7 +476,7 @@
 ( 64 2 40 ) ( 68 2 44 ) ( 64 2 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( 64 -2 40 ) ( 68 2 44 ) ( 64 2 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 34 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 230.2644 1 1
 }
-// brush 59
+// brush 58
 {
 ( 64 12 44 ) ( 64 16 40 ) ( 64 16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 270 1 1
 ( 68 12 44 ) ( 64 12 40 ) ( 64 12 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 90 1 1
@@ -493,7 +484,7 @@
 ( 64 16 40 ) ( 68 16 44 ) ( 64 16 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 90 1 1
 ( 64 12 40 ) ( 68 16 44 ) ( 64 16 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 48 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 140.2644 1 1
 }
-// brush 60
+// brush 59
 {
 ( 64 28 44 ) ( 64 32 40 ) ( 64 32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 90 1 1
 ( 68 28 44 ) ( 64 28 40 ) ( 64 28 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -501,7 +492,7 @@
 ( 64 32 40 ) ( 68 32 44 ) ( 64 32 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 64 28 40 ) ( 68 32 44 ) ( 64 32 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 0 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 320.2644 1 1
 }
-// brush 61
+// brush 60
 {
 ( 64 44 44 ) ( 64 48 40 ) ( 64 48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -16 ] [ 0 0 -1 -40 ] 90 1 1
 ( 68 44 44 ) ( 64 44 40 ) ( 64 44 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -509,7 +500,7 @@
 ( 64 48 40 ) ( 68 48 44 ) ( 64 48 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 64 44 40 ) ( 68 48 44 ) ( 64 48 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 16 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 320.2644 1 1
 }
-// brush 62
+// brush 61
 {
 ( 64 92 44 ) ( 64 96 40 ) ( 64 96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 0 ] [ 0 0 -1 -40 ] 0 1 1
 ( 68 92 44 ) ( 64 92 40 ) ( 64 92 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
@@ -517,7 +508,7 @@
 ( 64 96 40 ) ( 68 96 44 ) ( 64 96 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 180 1 1
 ( 64 92 40 ) ( 68 96 44 ) ( 64 96 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 0 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 230.2644 1 1
 }
-// brush 63
+// brush 62
 {
 ( 64 76 44 ) ( 64 80 40 ) ( 64 80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -48 ] [ 0 0 -1 -40 ] 90 1 1
 ( 68 76 44 ) ( 64 76 40 ) ( 64 76 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -525,7 +516,7 @@
 ( 64 80 40 ) ( 68 80 44 ) ( 64 80 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 64 76 40 ) ( 68 80 44 ) ( 64 80 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 48 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 320.2644 1 1
 }
-// brush 64
+// brush 63
 {
 ( 64 60 44 ) ( 64 64 40 ) ( 64 64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 0 1 0 -32 ] [ 0 0 -1 -40 ] 90 1 1
 ( 68 60 44 ) ( 64 60 40 ) ( 64 60 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 0 0 -55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
@@ -533,7 +524,7 @@
 ( 64 64 40 ) ( 68 64 44 ) ( 64 64 44 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 0 0 55.999992 ] [ 0 0 -1 -39.999996 ] 270 1 1
 ( 64 60 40 ) ( 68 64 44 ) ( 64 64 40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1.3877787807814457e-16 -1 0 32 ] [ -0.5000000000000026 0 -0.4999999999999974 36 ] 320.2644 1 1
 }
-// brush 65
+// brush 64
 {
 ( -64 96 56 ) ( -64 16 56 ) ( -64 96 -40 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -64 16 56 ) ( -48 16 56 ) ( -64 16 -40 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 16 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -542,7 +533,7 @@
 ( -64 96 -40 ) ( -48 96 -40 ) ( -64 96 56 ) Bricks/Brick_09-256x256 [ -1 0 0 0 ] [ 0 0 -1 56 ] 270 0.2 0.2
 ( -60 96 -40 ) ( -60 16 -40 ) ( -60 96 56 ) Bricks/Brick_09-256x256 [ 0 1 0 -32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 66
+// brush 65
 {
 ( -64 -16 56 ) ( -64 -16 24 ) ( -64 16 56 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -48 -16 56 ) ( -48 -16 24 ) ( -64 -16 56 ) __TB_empty [ 1 -1.8369701987210297e-16 0 16 ] [ 0 0 -1 -8 ] 0 1 1
@@ -551,7 +542,7 @@
 ( -64 16 56 ) ( -64 16 24 ) ( -48 16 56 ) __TB_empty [ -1 1.8369701987210297e-16 0 0 ] [ 0 0 -1 -8 ] 0 1 1
 ( -60 16 56 ) ( -60 16 24 ) ( -60 -16 56 ) Bricks/Brick_09-256x256 [ 0 1 0 -32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 67
+// brush 66
 {
 ( -60 -96 -40 ) ( -60 -95 -40 ) ( -60 -96 -39 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 -8 ] 180 1 1
 ( -60 -96 -40 ) ( -60 -96 -39 ) ( -59 -96 -40 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 64 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -560,7 +551,7 @@
 ( 52 -92 -36 ) ( 53 -92 -36 ) ( 52 -92 -35 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 232 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 60 -92 -36 ) ( 60 -92 -35 ) ( 60 -91 -36 ) __TB_empty [ 0 1 0 0 ] [ 0 0 -1 -8 ] 90 1 1
 }
-// brush 68
+// brush 67
 {
 ( -60 92 -40 ) ( -60 93 -40 ) ( -60 92 -39 ) Bricks/Brick_09-256x256 [ 0 -1 0 0 ] [ 0 0 -1 -40 ] 180 1 1
 ( -60 92 -40 ) ( -60 92 -39 ) ( -59 92 -40 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 -40 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -569,7 +560,7 @@
 ( 60 96 -36 ) ( 61 96 -36 ) ( 60 96 -35 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 60 96 -36 ) ( 60 96 -35 ) ( 60 97 -36 ) Bricks/Brick_09-256x256 [ 0 1 0 0 ] [ 0 0 -1 -40 ] 180 1 1
 }
-// brush 69
+// brush 68
 {
 ( -96 -72 -10 ) ( -96 -72 -9 ) ( -96 -73 -10 ) kenney_retro-textures-fantasy/floor_wood_planks [ -2.4147350785597155e-15 -1 0 48 ] [ 0 0 -1 6 ] 270 1 1
 ( -108 -75 -10 ) ( -109 -75 -10 ) ( -108 -75 -9 ) kenney_retro-textures-fantasy/window_square_divided [ -0.9999999999999999 2.3869795029440866e-15 0 -42.666664 ] [ 0 0 -1 -32.000008 ] 90 0.5625 0.5625
@@ -578,7 +569,7 @@
 ( -60 -71 -18 ) ( -60 -71 -17 ) ( -61 -71 -18 ) kenney_retro-textures-fantasy/window_square_divided [ -0.9999999999999999 2.3869795029440866e-15 0 -42.666664 ] [ 0 0 -1 -32.000008 ] 0 0.5625 0.5625
 ( -60 -24 -18 ) ( -60 -25 -18 ) ( -60 -24 -17 ) kenney_retro-textures-fantasy/floor_wood_planks [ 2.4147350785597155e-15 1 0 -48 ] [ 0 0 -1 6 ] 180 1 1
 }
-// brush 70
+// brush 69
 {
 ( -64 -16 56 ) ( -64 -39 56 ) ( -64 -16 -40 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -60 -39 -40 ) ( -64 -39 -40 ) ( -60 -39 56 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 27 ] 90 0.2 0.2
@@ -587,7 +578,7 @@
 ( -64 -16 -40 ) ( -60 -16 -40 ) ( -64 -16 56 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 -208 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( -60 -16 -40 ) ( -60 -39 -40 ) ( -60 -16 56 ) Bricks/Brick_09-256x256 [ 0 1 0 -32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 71
+// brush 70
 {
 ( -64 -96 -40 ) ( -64 -75 -40 ) ( -64 -96 56 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -64 -96 56 ) ( -60 -96 56 ) ( -64 -96 -40 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 64 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -596,7 +587,7 @@
 ( -64 -75 56 ) ( -64 -75 -40 ) ( -60 -75 56 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 -1.8369701987210297e-16 0 57 ] [ 0 0 -1 6 ] 180 1 1
 ( -60 -96 56 ) ( -60 -75 56 ) ( -60 -96 -40 ) Bricks/Brick_09-256x256 [ 0 1 0 -32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 72
+// brush 71
 {
 ( -64 -75 56 ) ( -64 -75 18 ) ( -64 -39 56 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -60 -75 56 ) ( -60 -75 18 ) ( -64 -75 56 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 -1.8369701987210297e-16 0 57 ] [ 0 0 -1 6 ] 180 1 1
@@ -605,7 +596,7 @@
 ( -64 -39 56 ) ( -64 -39 18 ) ( -60 -39 56 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 1.8369701987210297e-16 0 -57 ] [ 0 0 -1 6 ] 90 1 1
 ( -60 -39 56 ) ( -60 -39 18 ) ( -60 -75 56 ) Bricks/Brick_09-256x256 [ 0 1 0 -32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 73
+// brush 72
 {
 ( -64 -39 -40 ) ( -64 -39 -18 ) ( -64 -75 -40 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -64 -75 -40 ) ( -64 -75 -18 ) ( -60 -75 -40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 -1.8369701987210297e-16 0 57 ] [ 0 0 -1 6 ] 180 1 1
@@ -614,7 +605,7 @@
 ( -60 -39 -40 ) ( -60 -39 -18 ) ( -64 -39 -40 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 1.8369701987210297e-16 0 -57 ] [ 0 0 -1 6 ] 90 1 1
 ( -60 -75 -40 ) ( -60 -75 -18 ) ( -60 -39 -40 ) Bricks/Brick_09-256x256 [ 0 1 0 -32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 74
+// brush 73
 {
 ( -60 -16 -40 ) ( -60 0 -40 ) ( -60 0 88 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -64 -96 -48 ) ( -64 -96 -47 ) ( -63 -96 -48 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 64 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -623,7 +614,7 @@
 ( 64 96 -40 ) ( 65 96 -40 ) ( 64 96 -39 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 64 96 -40 ) ( 64 96 -39 ) ( 64 97 -40 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 75
+// brush 74
 {
 ( -64 -96 -48 ) ( -64 -95 -48 ) ( -64 -96 -47 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 ( -64 -96 -48 ) ( -64 -96 -47 ) ( -63 -96 -48 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 64 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -632,7 +623,7 @@
 ( 64 96 -40 ) ( 65 96 -40 ) ( 64 96 -39 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( -60 -16 -40 ) ( -60 0 88 ) ( -60 0 -40 ) Bricks/Brick_09-256x256 [ 0 1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 76
+// brush 75
 {
 ( 60 96 56 ) ( 60 18 56 ) ( 60 96 -40 ) Bricks/Brick_09-256x256 [ 0 1.0000000000000002 0 -32 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 64 18 -40 ) ( 60 18 -40 ) ( 64 18 56 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 -148 ] 90 0.2 0.2
@@ -641,7 +632,7 @@
 ( 60 96 -40 ) ( 64 96 -40 ) ( 60 96 56 ) Bricks/Brick_09-256x256 [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 64 96 -40 ) ( 64 18 -40 ) ( 64 96 56 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 77
+// brush 76
 {
 ( 60 -96 -40 ) ( 60 -18 -40 ) ( 60 -96 56 ) Bricks/Brick_09-256x256 [ 0 1.0000000000000002 0 -32 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 60 -96 56 ) ( 64 -96 56 ) ( 60 -96 -40 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 64 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
@@ -650,7 +641,7 @@
 ( 60 -18 56 ) ( 60 -18 -40 ) ( 64 -18 56 ) Bricks/Brick_09-256x256 [ 1.0000000000000002 0 0 0 ] [ 0 0 1.0000000000000002 66 ] 90 0.2 0.2
 ( 64 -96 56 ) ( 64 -18 56 ) ( 64 -96 -40 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 78
+// brush 77
 {
 ( 60 -18 56 ) ( 60 -18 18 ) ( 60 18 56 ) Bricks/Brick_09-256x256 [ 0 1.0000000000000002 0 -32 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 64 -18 56 ) ( 64 -18 18 ) ( 60 -18 56 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 -2.5984320984318186e-15 0 9 ] [ 0 0 -1 6 ] 0 1 1
@@ -659,7 +650,7 @@
 ( 60 18 56 ) ( 60 18 18 ) ( 64 18 56 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 2.5984320984318186e-15 0 -9 ] [ 0 0 -1 6 ] 90 1 1
 ( 64 18 56 ) ( 64 18 18 ) ( 64 -18 56 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 79
+// brush 78
 {
 ( 60 18 -40 ) ( 60 18 -18 ) ( 60 -18 -40 ) Bricks/Brick_09-256x256 [ 0 1.0000000000000002 0 -32 ] [ 0 0 -1.0000000000000002 56 ] 90 0.2 0.2
 ( 60 -18 -40 ) ( 60 -18 -18 ) ( 64 -18 -40 ) kenney_retro-textures-fantasy/floor_wood_planks [ 1 -2.5984320984318186e-15 0 9 ] [ 0 0 -1 6 ] 0 1 1
@@ -668,7 +659,7 @@
 ( 64 18 -40 ) ( 64 18 -18 ) ( 60 18 -40 ) kenney_retro-textures-fantasy/floor_wood_planks [ -1 2.5984320984318186e-15 0 -9 ] [ 0 0 -1 6 ] 90 1 1
 ( 64 -18 -40 ) ( 64 -18 -18 ) ( 64 18 -40 ) Bricks/Brick_09-256x256 [ 0 -1 0 32 ] [ 0 0 -1 56 ] 90 0.2 0.2
 }
-// brush 80
+// brush 79
 {
 ( 60 -15 -10 ) ( 60 -15 -9 ) ( 60 -16 -10 ) kenney_retro-textures-fantasy/floor_wood_planks [ -2.4147350785597155e-15 -1 0 41 ] [ 0 0 -1 6 ] 90 1 1
 ( 48 -18 -10 ) ( 47 -18 -10 ) ( 48 -18 -9 ) kenney_retro-textures-fantasy/window_square_divided [ -0.9999999999999999 2.3869795029440866e-15 0 -21.333328 ] [ 0 0 -1 -32.000008 ] 270 0.5625 0.5625

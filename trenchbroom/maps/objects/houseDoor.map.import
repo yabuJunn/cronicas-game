@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bsy4vcrtpi87w"
+path="res://.godot/imported/houseDoor.map-87c6a48a8a6158694bcc46fd9283534f.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/objects/houseDoor.map"
+dest_files=["res://.godot/imported/houseDoor.map-87c6a48a8a6158694bcc46fd9283534f.tres"]
+
+[params]
+

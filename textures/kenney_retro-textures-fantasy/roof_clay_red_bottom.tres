@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dnr81ncddkgek"]
+
+[ext_resource type="Texture2D" uid="uid://b7qbkcmv0ggf7" path="res://textures/kenney_retro-textures-fantasy/roof_clay_red_bottom.png" id="1_0rtun"]
+
+[resource]
+albedo_texture = ExtResource("1_0rtun")
+metallic_specular = 0.0
+texture_filter = 2

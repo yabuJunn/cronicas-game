@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b38n6orfr5cq0"]
+
+[ext_resource type="ArrayMesh" uid="uid://cjtlstm3fd2em" path="res://objs/old-rusty-key-rawscan/source/chiave/chiave.obj" id="1_cxpon"]
+[ext_resource type="Script" uid="uid://c3ncip6k10un" path="res://scenes/objects/world/old_key.gd" id="1_oo03i"]
+[ext_resource type="Texture2D" uid="uid://c7ap5ec4ejood" path="res://icons/inventory/old_key_icon.png" id="2_8fatp"]
+[ext_resource type="Texture2D" uid="uid://c5px8orgw23tc" path="res://objs/old-rusty-key-rawscan/source/chiave/textures/chiave.jpg" id="2_oo03i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fatp"]
+albedo_texture = ExtResource("2_oo03i")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8fatp"]
+radius = 2.301369
+height = 13.534148
+
+[node name="OldKey" type="StaticBody3D" unique_id=256675615 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+collision_layer = 10
+script = ExtResource("1_oo03i")
+shine_width = 0.021
+x_direction = 1.0
+z_direction = 0.0
+item_name = "Llave"
+item_description = "Una llave muy antigua"
+item_icon = ExtResource("2_8fatp")
+ruta_modelo3d = "uid://cpjp53if7e8sv"
+mesh = NodePath("Chiave")
+
+[node name="Chiave" type="MeshInstance3D" parent="." unique_id=1726453691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34622836, 0, -0.1304946)
+mesh = ExtResource("1_cxpon")
+surface_material_override/0 = SubResource("StandardMaterial3D_8fatp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=462948599]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.34622836, 0, -0.1304946)
+shape = SubResource("CapsuleShape3D_8fatp")

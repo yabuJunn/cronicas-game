@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://p84eg01kgbv5" path="res://scenes/objects/interactible_objects/fog_gate_switch.tscn" id="25_65iqy"]
 [ext_resource type="PackedScene" uid="uid://dgakho2y1lux7" path="res://scenes/objects/world/houses/ruined_tower1.tscn" id="26_xoou4"]
 [ext_resource type="PackedScene" uid="uid://bjb335p8csuev" path="res://scenes/objects/world/houses/ruined_tower(2).tscn" id="27_nnv55"]
+[ext_resource type="PackedScene" uid="uid://cc32sp5rej11r" path="res://scenes/objects/world/houses/HouseObjects/openable_house_door.tscn" id="28_v881o"]
+[ext_resource type="PackedScene" uid="uid://b38n6orfr5cq0" path="res://scenes/objects/world/old_key.tscn" id="29_ff81r"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2g36m"]
 
@@ -1278,3 +1280,14 @@ transform = Transform3D(0.041317612, 0, 0.99914604, 0, 1, 0, -0.99914604, 0, 0.0
 
 [node name="RuinedTower(2)" parent="." unique_id=1154110306 instance=ExtResource("27_nnv55")]
 transform = Transform3D(-0.48770732, 0, 0.87300724, 0, 1, 0, -0.87300724, 0, -0.48770732, -44.915714, 21.7145, 22.902514)
+
+[node name="OpenableHouseDoor" parent="." unique_id=526210421 instance=ExtResource("28_v881o")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -30.632336, 23.01827, 36.818367)
+puerta_id = "DefaultDoor"
+es_puerta = true
+item_clave_requerido = "Llave"
+texto_con_objeto = "[E] Abrir"
+texto_sin_objeto = "No tienes algo con lo que abrir esta puerta"
+
+[node name="OldKey" parent="OpenableHouseDoor" unique_id=256675615 instance=ExtResource("29_ff81r")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, -0.5771694, 1.0752296)

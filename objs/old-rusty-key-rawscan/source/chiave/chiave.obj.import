@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cjtlstm3fd2em"
+path="res://.godot/imported/chiave.obj-75bd24fa7b12d514562c4053a9a6cfeb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/chiave.obj-75bd24fa7b12d514562c4053a9a6cfeb.mesh"]
+
+source_file="res://objs/old-rusty-key-rawscan/source/chiave/chiave.obj"
+dest_files=["res://.godot/imported/chiave.obj-75bd24fa7b12d514562c4053a9a6cfeb.mesh", "res://.godot/imported/chiave.obj-75bd24fa7b12d514562c4053a9a6cfeb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -30,18 +30,24 @@
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="22_ymrg4"]
 [ext_resource type="Texture2D" uid="uid://dq4bk6oapdpl4" path="res://textures/Plaster/Plaster_01-256x256.png" id="23_s5ea7"]
 [ext_resource type="AudioStream" uid="uid://di4bbfa8h1ltd" path="res://sounds/ambient/soundsforyou-waterfall-ambient-sounds-116395.mp3" id="24_rr26k"]
+[ext_resource type="PackedScene" uid="uid://cc32sp5rej11r" path="res://scenes/objects/world/houses/HouseObjects/openable_house_door.tscn" id="25_60qc2"]
 [ext_resource type="PackedScene" uid="uid://cym1mdnjomtrf" path="res://scenes/world/paths/short_wavy_straight_path_decal.tscn" id="25_h3dir"]
 [ext_resource type="PackedScene" uid="uid://duus3jv4lch8k" path="res://scenes/world/paths/long_wavy_path_decal.tscn" id="25_jvg85"]
 [ext_resource type="Script" uid="uid://ch8qjgln2jxr3" path="res://scenes/levels/next_level_area_to_sea.gd" id="26_4p7th"]
 [ext_resource type="PackedScene" uid="uid://do5k0chm32wdf" path="res://scenes/objects/world/houses/village_house_inside2.tscn" id="26_5uq1w"]
+[ext_resource type="PackedScene" uid="uid://xyp4mvwpmf6r" path="res://scenes/objects/world/houses/HouseObjects/table_5.tscn" id="26_uc07v"]
 [ext_resource type="PackedScene" uid="uid://dbm4gimtnqn0k" path="res://scenes/world/paths/short_straight_path_decal.tscn" id="27_0xfjq"]
 [ext_resource type="Texture2D" uid="uid://vwkq3kw1jh47" path="res://textures/Bricks/Brick_10-256x256.png" id="27_60qc2"]
 [ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="27_jvg85"]
+[ext_resource type="PackedScene" uid="uid://b86euptsdphy7" path="res://scenes/objects/world/houses/HouseObjects/chair_14.tscn" id="27_qm663"]
 [ext_resource type="PackedScene" uid="uid://de1o4orf880wf" path="res://scenes/world/paths/circle_path_decal.tscn" id="27_r1yae"]
+[ext_resource type="PackedScene" uid="uid://d4gmcxwngwkyj" path="res://scenes/objects/world/houses/HouseObjects/bed_single_1.tscn" id="28_8b8ma"]
 [ext_resource type="PackedScene" uid="uid://cuwi17ck3g0dm" path="res://scenes/objects/world/houses/ruined_house_3.tscn" id="28_y8p3x"]
 [ext_resource type="PackedScene" uid="uid://wwpq12jyjqwf" path="res://scenes/objects/world/houses/ruined_house_2.tscn" id="29_ltbvo"]
 [ext_resource type="PackedScene" uid="uid://c21x4ng50iman" path="res://scenes/objects/world/houses/ruined_house_1.tscn" id="30_ftjc2"]
 [ext_resource type="PackedScene" uid="uid://dn4udve851g52" path="res://scenes/objects/world/wooden_info_sign.tscn" id="30_q5fs3"]
+[ext_resource type="PackedScene" uid="uid://d3crj1f6d000r" path="res://scenes/objects/world/medieval_box_2.tscn" id="30_yr5eh"]
+[ext_resource type="PackedScene" uid="uid://ucdlyqbyy5t6" path="res://scenes/objects/world/medieval_box_3.tscn" id="31_3wj3j"]
 [ext_resource type="PackedScene" uid="uid://bjb335p8csuev" path="res://scenes/objects/world/houses/ruined_tower(2).tscn" id="31_epb6w"]
 [ext_resource type="PackedScene" uid="uid://ql87akcuk6rk" path="res://scenes/objects/world/woden_lamp_post.tscn" id="32_t4hbk"]
 [ext_resource type="PackedScene" uid="uid://dgakho2y1lux7" path="res://scenes/objects/world/houses/ruined_tower1.tscn" id="32_t4k7r"]
@@ -52,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://c5coqdgnve1ds" path="res://scenes/objects/interactible_objects/mist_gate.tscn" id="35_ui0oi"]
 [ext_resource type="PackedScene" uid="uid://d065ca8nie10" path="res://scenes/objects/interactible_objects/mist_core.tscn" id="36_exqqg"]
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="36_reosq"]
+[ext_resource type="PackedScene" uid="uid://b38n6orfr5cq0" path="res://scenes/objects/world/old_key.tscn" id="36_yr5eh"]
 [ext_resource type="PackedScene" uid="uid://c58bdski58bfp" path="res://scenes/objects/world/houses/village_house_inside1.tscn" id="45_dwc23"]
 [ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="45_uu8qh"]
 [ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="46_7n1e8"]
@@ -2155,381 +2162,6 @@ titulo_personalizado = "Notas del Vigilante"
 
 [node name="Village" type="Node3D" parent="WorldObjects/Houses" unique_id=15152725]
 
-[node name="VillageHouse(1)" parent="WorldObjects/Houses/Village" unique_id=2003100932 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.4087128, 0, -0.91266304, 0, 1, 0, 0.91266304, 0, 0.4087128, 237.84567, -1.796565, 63.99645)
-
-[node name="VillageHouse(1)21" parent="WorldObjects/Houses/Village" unique_id=692108529 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.57158744, 0, -0.8205412, 0, 1, 0, 0.8205412, 0, -0.57158744, 250.16383, -1.796565, 64.65971)
-
-[node name="VillageHouse(1)27" parent="WorldObjects/Houses/Village" unique_id=808456967 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.79008013, 0, -0.61300355, 0, 1, 0, 0.61300355, 0, 0.79008013, 252.28119, -1.796565, 84.97643)
-
-[node name="VillageHouse(1)28" parent="WorldObjects/Houses/Village" unique_id=1718121320 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.8089247, 0, -0.5879123, 0, 1, 0, 0.5879123, 0, 0.8089247, 242.44902, -1.796565, 98.12853)
-
-[node name="VillageHouse(1)29" parent="WorldObjects/Houses/Village" unique_id=310407254 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.75864625, 0, 0.6515027, 0, 1, 0, -0.6515027, 0, -0.75864625, 245.81499, -1.796565, 109.60412)
-
-[node name="VillageHouse(1)20" parent="WorldObjects/Houses/Village" unique_id=1926262791 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.54261744, 0, 0.83997995, 0, 1, 0, -0.83997995, 0, 0.54261744, 269.1849, -1.796565, 70.72234)
-
-[node name="VillageHouse(1)22" parent="WorldObjects/Houses/Village" unique_id=457159781 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.553348, 0, -0.8329502, 0, 1, 0, 0.8329502, 0, -0.553348, 262.97, -1.796565, 73.51079)
-
-[node name="VillageHouse(1)12" parent="WorldObjects/Houses/Village" unique_id=1277530128 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.89518344, 0, 0.4456979, 0, 1, 0, -0.4456979, 0, -0.89518344, 241.022, -1.796565, 25.62385)
-
-[node name="VillageHouse(1)9" parent="WorldObjects/Houses/Village" unique_id=126784342 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.9997639, 0, -0.021727651, 0, 1, 0, 0.021727651, 0, -0.9997639, 217.57153, -1.796565, 11.310696)
-
-[node name="VillageHouse(1)2" parent="WorldObjects/Houses/Village" unique_id=1495875669 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.78407276, 0, 0.62066895, 0, 1, 0, -0.62066895, 0, -0.78407276, 212.04085, -1.796565, 37.35517)
-
-[node name="VillageHouse(1)7" parent="WorldObjects/Houses/Village" unique_id=966832542 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.54975206, 0, 0.83532804, 0, 1, 0, -0.83532804, 0, 0.54975206, 243.35611, -1.796565, 36.080532)
-
-[node name="VillageHouse(1)13" parent="WorldObjects/Houses/Village" unique_id=2067643243 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.9910323, 0, 0.1336229, 0, 1, 0, -0.1336229, 0, -0.9910323, 247.3907, -1.796565, 2.543273)
-
-[node name="VillageHouse(1)16" parent="WorldObjects/Houses/Village" unique_id=1191163489 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.07473495, 0, 0.99720347, 0, 1, 0, -0.99720347, 0, 0.07473495, 250.61163, -1.796565, -3.2588456)
-
-[node name="VillageHouse(1)14" parent="WorldObjects/Houses/Village" unique_id=74027463 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.96670294, 0, -0.2559014, 0, 1, 0, 0.2559014, 0, 0.96670294, 236.3736, -1.796565, 7.8551655)
-
-[node name="VillageHouse(1)8" parent="WorldObjects/Houses/Village" unique_id=88583901 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.9979426, 0, 0.06411433, 0, 1, 0, -0.06411433, 0, 0.9979426, 224.03503, -1.796565, 17.633009)
-
-[node name="VillageHouse(1)30" parent="WorldObjects/Houses/Village" unique_id=1294204484 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.9979426, 0, 0.06411433, 0, 1, 0, -0.06411433, 0, 0.9979426, 224.03503, -1.796565, 17.633009)
-
-[node name="VillageHouse(1)6" parent="WorldObjects/Houses/Village" unique_id=1930984628 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.51051295, 0, -0.85987, 0, 1, 0, 0.85987, 0, -0.51051295, 218.45715, -1.796565, 65.244156)
-
-[node name="VillageHouse(1)19" parent="WorldObjects/Houses/Village" unique_id=1236060032 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.8788087, 0, -0.47717413, 0, 1, 0, 0.47717413, 0, 0.8788087, 215.8435, -1.796565, 85.155685)
-
-[node name="VillageHouse(1)3" parent="WorldObjects/Houses/Village" unique_id=1091095658 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.06273827, 0, 0.99803, 0, 1, 0, -0.99803, 0, -0.06273827, 199.68161, -1.796565, 42.083565)
-
-[node name="VillageHouse(1)10" parent="WorldObjects/Houses/Village" unique_id=1076442853 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.97685933, 0, -0.21388291, 0, 1, 0, 0.21388291, 0, 0.97685933, 227.57997, -1.796565, -9.381608)
-
-[node name="VillageHouse(1)15" parent="WorldObjects/Houses/Village" unique_id=53514452 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.17022674, 0, 0.98540497, 0, 1, 0, -0.98540497, 0, 0.17022674, 239.45192, -1.796565, -3.9905715)
-
-[node name="VillageHouse(1)17" parent="WorldObjects/Houses/Village" unique_id=1304194651 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.16504757, 0, 0.9862856, 0, 0.9999999, 0, -0.9862856, 0, 0.16504757, 228.27359, -0.4659425, -23.299587)
-
-[node name="VillageHouse(1)4" parent="WorldObjects/Houses/Village" unique_id=1013243341 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.45652357, 0, -0.8897113, 0, 1, 0, 0.8897113, 0, 0.45652357, 190.99544, -1.796565, 51.021915)
-
-[node name="VillageHouse(1)11" parent="WorldObjects/Houses/Village" unique_id=86658757 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.855816, 0, -0.5172803, 0, 1, 0, 0.5172803, 0, 0.855816, 221.17181, -1.796565, 74.35424)
-
-[node name="VillageHouse(1)18" parent="WorldObjects/Houses/Village" unique_id=1793516784 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.8820283, 0, 0.47119668, 0, 1, 0, -0.47119668, 0, -0.8820283, 210.75607, -1.796565, 79.759094)
-
-[node name="VillageHouse(1)23" parent="WorldObjects/Houses/Village" unique_id=252619849 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.8820283, 0, 0.47119668, 0, 1, 0, -0.47119668, 0, -0.8820283, 193.81784, -1.796565, 99.00219)
-
-[node name="VillageHouse(1)25" parent="WorldObjects/Houses/Village" unique_id=1449041544 instance=ExtResource("4_anfc4")]
-transform = Transform3D(0.47536322, 0, 0.8797897, 0, 1, 0, -0.8797897, 0, 0.47536322, 224.00616, -1.796565, 102.19312)
-
-[node name="VillageHouse(1)26" parent="WorldObjects/Houses/Village" unique_id=1406022866 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.44283655, 0, -0.89660245, 0, 1, 0, 0.89660245, 0, -0.44283655, 229.69725, -1.796565, 109.14081)
-
-[node name="VillageHouse(1)24" parent="WorldObjects/Houses/Village" unique_id=1435119226 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.513676, 0, -0.8579842, 0, 1, 0, 0.8579842, 0, -0.513676, 196.15207, -1.796565, 107.23888)
-
-[node name="VillageHouse(1)5" parent="WorldObjects/Houses/Village" unique_id=1746036153 instance=ExtResource("4_anfc4")]
-transform = Transform3D(-0.6835669, 0, 0.7298878, 0, 1, 0, -0.7298878, 0, -0.6835669, 164.20198, -1.796565, 55.77851)
-
-[node name="VillageHouse(2)" parent="WorldObjects/Houses/Village" unique_id=1274955824 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.40132454, 0, 0.9159359, 0, 1, 0, -0.9159359, 0, 0.40132454, 236.72641, -1.796565, 30.406376)
-
-[node name="VillageHouse(2)13" parent="WorldObjects/Houses/Village" unique_id=1281560166 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.7709469, 0, 0.6368996, 0, 1, 0, -0.6368996, 0, -0.7709469, 242.25565, -1.796565, 83.04245)
-
-[node name="VillageHouse(2)18" parent="WorldObjects/Houses/Village" unique_id=67112604 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.83802354, 0, 0.54563427, 0, 1, 0, -0.54563427, 0, -0.83802354, 235.67389, -1.796565, 92.66592)
-
-[node name="VillageHouse(2)17" parent="WorldObjects/Houses/Village" unique_id=444727303 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.77689314, 0, -0.6296326, 0, 1, 0, 0.6296326, 0, 0.77689314, 251.92593, -1.796565, 90.2575)
-
-[node name="VillageHouse(2)15" parent="WorldObjects/Houses/Village" unique_id=816884931 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.768641, 0, -0.63968074, 0, 1, 0, 0.63968074, 0, 0.768641, 207.27414, -1.796565, 107.30447)
-
-[node name="VillageHouse(2)14" parent="WorldObjects/Houses/Village" unique_id=370342781 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.49541354, 0, 0.8686574, 0, 1, 0, -0.8686574, 0, 0.49541354, 216.61964, -1.796565, 94.978096)
-
-[node name="VillageHouse(2)16" parent="WorldObjects/Houses/Village" unique_id=436086573 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.4623062, 0, -0.8867205, 0, 1, 0, 0.8867205, 0, -0.4623062, 218.83154, -1.796565, 107.164375)
-
-[node name="VillageHouse(2)4" parent="WorldObjects/Houses/Village" unique_id=1303348900 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.97411025, 0, -0.22607349, 0, 1, 0, 0.22607349, 0, 0.97411025, 254.40024, -1.796565, 48.437523)
-
-[node name="VillageHouse(2)2" parent="WorldObjects/Houses/Village" unique_id=455680763 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.5689349, 0, -0.82238257, 0, 1, 0, 0.82238257, 0, 0.5689349, 181.90631, -1.796565, 58.224403)
-
-[node name="VillageHouse(2)3" parent="WorldObjects/Houses/Village" unique_id=538632912 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.38703257, 0, 0.92206603, 0, 1, 0, -0.92206603, 0, -0.38703257, 179.18161, -1.796565, 42.715187)
-
-[node name="VillageHouse(2)5" parent="WorldObjects/Houses/Village" unique_id=1773419351 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.9892443, 0, -0.14627327, 0, 1, 0, 0.14627327, 0, 0.9892443, 227.50409, -1.796565, -0.82262754)
-
-[node name="VillageHouse(2)11" parent="WorldObjects/Houses/Village" unique_id=241911479 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.23587178, 0, 0.97178423, 0, 1, 0, -0.97178423, 0, 0.23587178, 235.46075, -1.796565, -8.370509)
-
-[node name="VillageHouse(2)12" parent="WorldObjects/Houses/Village" unique_id=1991219263 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.9717348, 0, -0.23607536, -0.073918514, 0.9497155, -0.30426386, 0.22420442, 0.31311408, 0.9228716, 233.61748, -0.39706087, -21.116335)
-
-[node name="VillageHouse(2)10" parent="WorldObjects/Houses/Village" unique_id=112741753 instance=ExtResource("16_h3dir")]
-transform = Transform3D(0.9892443, 0, -0.14627327, 0, 1, 0, 0.14627327, 0, 0.9892443, 253.09464, -1.796565, 8.582152)
-
-[node name="VillageHouse(2)9" parent="WorldObjects/Houses/Village" unique_id=883294556 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.9797992, 0, 0.19998388, 0, 1, 0, -0.19998388, 0, -0.9797992, 242.12952, -1.796565, 14.032373)
-
-[node name="VillageHouse(2)6" parent="WorldObjects/Houses/Village" unique_id=1688390662 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.98381, 0, 0.17921457, 0, 1, 0, -0.17921457, 0, -0.98381, 215.46217, -1.796565, 6.6610203)
-
-[node name="VillageHouse(2)8" parent="WorldObjects/Houses/Village" unique_id=207342448 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.96906304, 0, 0.24681321, 0, 1, 0, -0.24681321, 0, -0.96906304, 220.70529, -1.796565, -16.273272)
-
-[node name="VillageHouse(2)7" parent="WorldObjects/Houses/Village" unique_id=2138229303 instance=ExtResource("16_h3dir")]
-transform = Transform3D(-0.9940068, 0, 0.1093182, 0, 1, 0, -0.1093182, 0, -0.9940068, 218.06389, -1.796565, -4.701543)
-
-[node name="VillageHouse(3)" parent="WorldObjects/Houses/Village" unique_id=2039322746 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.17648, -1.796565, 65.89357)
-
-[node name="VillageHouse(3)20" parent="WorldObjects/Houses/Village" unique_id=1792755593 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.8384043, 0, 0.5450489, 0, 1, 0, -0.5450489, 0, -0.8384043, 262.0216, -1.796565, 63.830116)
-
-[node name="VillageHouse(3)21" parent="WorldObjects/Houses/Village" unique_id=262278459 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.6075977, 0, -0.794245, 0, 1, 0, 0.794245, 0, -0.6075977, 253.14745, -1.796565, 72.24124)
-
-[node name="VillageHouse(3)25" parent="WorldObjects/Houses/Village" unique_id=947138220 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.5783419, 0, -0.8157946, 0, 1, 0, 0.8157946, 0, -0.5783419, 241.43848, -1.796565, 85.95446)
-
-[node name="VillageHouse(3)27" parent="WorldObjects/Houses/Village" unique_id=762323741 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.8003758, 0, -0.59949875, 0, 1, 0, 0.59949875, 0, 0.8003758, 269.29697, -1.796565, 80.09336)
-
-[node name="VillageHouse(3)28" parent="WorldObjects/Houses/Village" unique_id=1025985351 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.8003758, 0, -0.59949875, 0, 1, 0, 0.59949875, 0, 0.8003758, 277.50116, -1.796565, 73.725136)
-
-[node name="VillageHouse(3)16" parent="WorldObjects/Houses/Village" unique_id=1736653439 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.47204313, 0, 0.8815756, 0, 1, 0, -0.8815756, 0, 0.47204313, 218.1455, -1.796565, 82.897835)
-
-[node name="VillageHouse(3)17" parent="WorldObjects/Houses/Village" unique_id=1999553852 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.47204313, 0, 0.8815756, 0, 1, 0, -0.8815756, 0, 0.47204313, 207.48499, -1.796565, 105.13832)
-
-[node name="VillageHouse(3)23" parent="WorldObjects/Houses/Village" unique_id=1036927380 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.47204313, 0, 0.8815756, 0, 1, 0, -0.8815756, 0, 0.47204313, 207.48499, -1.796565, 105.13832)
-
-[node name="VillageHouse(3)22" parent="WorldObjects/Houses/Village" unique_id=676739676 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.48667094, 0, -0.8735855, 0, 1, 0, 0.8735855, 0, -0.48667094, 204.49998, -1.796565, 87.470665)
-
-[node name="VillageHouse(3)18" parent="WorldObjects/Houses/Village" unique_id=961766166 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.8922867, 0, -0.4514694, 0, 1, 0, 0.4514694, 0, 0.8922867, 211.95377, -1.796565, 102.79069)
-
-[node name="VillageHouse(3)24" parent="WorldObjects/Houses/Village" unique_id=259254583 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.8821023, 0, 0.471058, 0, 1, 0, -0.471058, 0, -0.8821023, 232.73701, -1.796565, 104.14611)
-
-[node name="VillageHouse(3)19" parent="WorldObjects/Houses/Village" unique_id=1879843776 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.8922867, 0, -0.4514694, 0, 1, 0, 0.4514694, 0, 0.8922867, 231.25175, -1.796565, 111.919716)
-
-[node name="VillageHouse(3)26" parent="WorldObjects/Houses/Village" unique_id=343080010 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.49962208, 0, -0.8662436, 0, 1, 0, 0.8662436, 0, -0.49962208, 239.86386, -1.796565, 114.00899)
-
-[node name="VillageHouse(3)3" parent="WorldObjects/Houses/Village" unique_id=562281382 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.98173696, 0, 0.1902436, 0, 1, 0, -0.1902436, 0, 0.98173696, 202.09236, -1.796565, 50.745155)
-
-[node name="VillageHouse(3)4" parent="WorldObjects/Houses/Village" unique_id=1493017361 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.7580888, 0, -0.6521513, 0, 1, 0, 0.6521513, 0, -0.7580888, 171.03766, -1.796565, 48.306053)
-
-[node name="VillageHouse(3)7" parent="WorldObjects/Houses/Village" unique_id=718014886 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.80756813, 0, 0.5897745, 0, 1, 0, -0.5897745, 0, 0.80756813, 167.34676, -1.796565, 65.31094)
-
-[node name="VillageHouse(3)6" parent="WorldObjects/Houses/Village" unique_id=1314793536 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.9818397, 0, -0.18971232, 0, 1, 0, 0.18971232, 0, -0.9818397, 188.70122, -1.796565, 41.131374)
-
-[node name="VillageHouse(3)9" parent="WorldObjects/Houses/Village" unique_id=1734852908 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.1633949, 0, 0.98656076, 0, 1, 0, -0.98656076, 0, 0.1633949, 225.02042, -1.796565, 7.849684)
-
-[node name="VillageHouse(3)11" parent="WorldObjects/Houses/Village" unique_id=956103436 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.32310826, 0, 0.946362, 0, 1, 0, -0.946362, 0, 0.32310826, 230.09592, -1.796565, -12.260496)
-
-[node name="VillageHouse(3)12" parent="WorldObjects/Houses/Village" unique_id=869766501 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.22964215, 0, 0.9732752, 0, 1, 0, -0.9732752, 0, 0.22964215, 249.32343, -1.796565, 23.599682)
-
-[node name="VillageHouse(3)13" parent="WorldObjects/Houses/Village" unique_id=361663402 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.2189779, 0, -0.97572976, 0, 1, 0, 0.97572976, 0, -0.2189779, 244.79384, -1.796565, 5.462152)
-
-[node name="VillageHouse(3)14" parent="WorldObjects/Houses/Village" unique_id=1936328620 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.13967437, 0, 0.9901974, 0, 1, 0, -0.9901974, 0, 0.13967437, 253.82053, -1.796565, 4.8838644)
-
-[node name="VillageHouse(3)5" parent="WorldObjects/Houses/Village" unique_id=2035468082 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.8320316, 0, 0.55472827, 0, 1, 0, -0.55472827, 0, 0.8320316, 183.80981, -1.796565, 56.659042)
-
-[node name="VillageHouse(3)2" parent="WorldObjects/Houses/Village" unique_id=490282102 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(0.5293419, 0, -0.8484086, 0, 1, 0, 0.8484086, 0, 0.5293419, 207.35216, -1.796565, 53.932377)
-
-[node name="VillageHouse(3)8" parent="WorldObjects/Houses/Village" unique_id=2120148171 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.020366602, 0, -0.9997926, 0, 1, 0, 0.9997926, 0, -0.020366602, 216.286, -1.796565, 21.809113)
-
-[node name="VillageHouse(3)10" parent="WorldObjects/Houses/Village" unique_id=2008243161 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.23687206, 0, -0.97154087, 0, 1, 0, 0.97154087, 0, -0.23687206, 218.5516, -1.796565, -2.0184689)
-
-[node name="VillageHouse(3)15" parent="WorldObjects/Houses/Village" unique_id=166886774 instance=ExtResource("17_gj0yl")]
-transform = Transform3D(-0.23687205, -1.8283163e-09, -0.97154087, -0.20494603, 0.9774969, 0.049968034, 0.9496783, 0.21094951, -0.23154178, 223.41736, 0.10720301, -24.679335)
-
-[node name="VillageHouse(4)" parent="WorldObjects/Houses/Village" unique_id=1664160948 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.7370769, 0, -0.6758089, 0, 1, 0, 0.6758089, 0, 0.7370769, 213.28148, -1.752136, 62.0178)
-
-[node name="VillageHouse(4)16" parent="WorldObjects/Houses/Village" unique_id=1070947227 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.4851607, 0, -0.87442493, 0, 1, 0, 0.87442493, 0, -0.4851607, 213.28148, -1.752136, 74.281075)
-
-[node name="VillageHouse(4)34" parent="WorldObjects/Houses/Village" unique_id=223822301 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.4851607, 0, -0.87442493, 0, 1, 0, 0.87442493, 0, -0.4851607, 207.06122, -1.752136, 83.90882)
-
-[node name="VillageHouse(4)33" parent="WorldObjects/Houses/Village" unique_id=2065038134 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.49204373, 0, 0.87057036, 0, 1, 0, -0.87057036, 0, 0.49204373, 214.26193, -1.752136, 91.01056)
-
-[node name="VillageHouse(4)38" parent="WorldObjects/Houses/Village" unique_id=1999820791 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.8642133, 0, 0.5031254, 0, 1, 0, -0.5031254, 0, -0.8642133, 220.47298, -1.752136, 98.33042)
-
-[node name="VillageHouse(4)39" parent="WorldObjects/Houses/Village" unique_id=1622516841 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.8832589, 0, -0.46888575, 0, 1, 0, 0.46888575, 0, 0.8832589, 223.6552, -1.752136, 108.11947)
-
-[node name="VillageHouse(4)35" parent="WorldObjects/Houses/Village" unique_id=52777986 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.80501807, 0, -0.59325016, 0, 1, 0, 0.59325016, 0, -0.80501807, 195.85188, -1.752136, 94.18025)
-
-[node name="VillageHouse(4)37" parent="WorldObjects/Houses/Village" unique_id=1301451957 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.9798343, 0, 0.19981232, 0, 1, 0, -0.19981232, 0, 0.9798343, 200.971, -1.752136, 109.416695)
-
-[node name="VillageHouse(4)36" parent="WorldObjects/Houses/Village" unique_id=1882981932 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.32598042, 0, -0.94537646, 0, 1, 0, 0.94537646, 0, 0.32598042, 191.9302, -1.752136, 104.00608)
-
-[node name="VillageHouse(4)8" parent="WorldObjects/Houses/Village" unique_id=1251570729 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.7072919, 0, -0.70692164, 0, 1, 0, 0.70692164, 0, 0.7072919, 243.81953, -1.752136, 63.119164)
-
-[node name="VillageHouse(4)32" parent="WorldObjects/Houses/Village" unique_id=1423419748 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.6206689, 0, -0.7840728, 0, 1, 0, 0.7840728, 0, -0.6206689, 247.18713, -1.752136, 79.48837)
-
-[node name="VillageHouse(4)42" parent="WorldObjects/Houses/Village" unique_id=76188540 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.50006044, 0, -0.8659905, 0, 1, 0, 0.8659905, 0, -0.50006044, 234.23445, -1.752136, 97.98934)
-
-[node name="VillageHouse(4)43" parent="WorldObjects/Houses/Village" unique_id=1297147876 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.6119826, 0, 0.79087126, 0, 1, 0, -0.79087126, 0, 0.6119826, 240.30054, -1.752136, 103.71149)
-
-[node name="VillageHouse(4)40" parent="WorldObjects/Houses/Village" unique_id=1404388408 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.59243494, 0, 0.8056182, 0, 1, 0, -0.8056182, 0, 0.59243494, 257.1351, -1.752136, 81.46654)
-
-[node name="VillageHouse(4)41" parent="WorldObjects/Houses/Village" unique_id=25050303 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.59243494, 0, 0.8056182, 0, 1, 0, -0.8056182, 0, 0.59243494, 247.49675, -1.752136, 93.914116)
-
-[node name="VillageHouse(4)2" parent="WorldObjects/Houses/Village" unique_id=703648182 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.9611221, 0, 0.27612376, 0, 1, 0, -0.27612376, 0, -0.9611221, 231.27705, -1.752136, 29.772812)
-
-[node name="VillageHouse(4)10" parent="WorldObjects/Houses/Village" unique_id=1651767491 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.7567556, 0, 0.65369797, 0, 1, 0, -0.65369797, 0, -0.7567556, 248.83208, -1.752136, 38.724453)
-
-[node name="VillageHouse(4)9" parent="WorldObjects/Houses/Village" unique_id=97507092 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.5427053, 0, 0.83992314, 0, 1, 0, -0.83992314, 0, 0.5427053, 250.09413, -1.752136, 53.654972)
-
-[node name="VillageHouse(4)27" parent="WorldObjects/Houses/Village" unique_id=1460588854 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.82907665, 0, 0.5591349, 0, 1, 0, -0.5591349, 0, -0.82907665, 253.92377, -1.752136, 58.157738)
-
-[node name="VillageHouse(4)28" parent="WorldObjects/Houses/Village" unique_id=1294464047 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.82907665, 0, 0.5591349, 0, 1, 0, -0.5591349, 0, -0.82907665, 253.92377, -1.752136, 58.157738)
-
-[node name="VillageHouse(4)29" parent="WorldObjects/Houses/Village" unique_id=1887361793 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.82907665, 0, 0.5591349, 0, 1, 0, -0.5591349, 0, -0.82907665, 265.30103, -1.752136, 66.41849)
-
-[node name="VillageHouse(4)31" parent="WorldObjects/Houses/Village" unique_id=1568195718 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.8286666, 0, -0.55974257, 0, 1, 0, 0.55974257, 0, 0.8286666, 266.51385, -1.752136, 77.86695)
-
-[node name="VillageHouse(4)44" parent="WorldObjects/Houses/Village" unique_id=926627311 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.8010345, 0, 0.5986182, 0, 1, 0, -0.5986182, 0, -0.8010345, 274.61218, -1.752136, 71.77255)
-
-[node name="VillageHouse(4)30" parent="WorldObjects/Houses/Village" unique_id=167324343 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.81982225, 0, -0.57261825, 0, 1, 0, 0.57261825, 0, 0.81982225, 253.90187, -1.752136, 69.328285)
-
-[node name="VillageHouse(4)3" parent="WorldObjects/Houses/Village" unique_id=1236091405 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.9933928, 0, -0.11476371, 0, 1, 0, 0.11476371, 0, -0.9933928, 205.87257, -1.752136, 40.16887)
-
-[node name="VillageHouse(4)12" parent="WorldObjects/Houses/Village" unique_id=104489450 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.09971909, 0, -0.9950156, 0, 1, 0, 0.9950156, 0, 0.09971909, 216.66656, -1.752136, 17.792677)
-
-[node name="VillageHouse(4)17" parent="WorldObjects/Houses/Village" unique_id=974596206 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.41186437, 0, 0.9112451, 0, 1, 0, -0.9112451, 0, 0.41186437, 248.03355, -1.752136, 27.193188)
-
-[node name="VillageHouse(4)19" parent="WorldObjects/Houses/Village" unique_id=224419194 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.19408035, 0, 0.9809855, 0, 1, 0, -0.9809855, 0, 0.19408035, 250.88295, -1.752136, 14.011617)
-
-[node name="VillageHouse(4)24" parent="WorldObjects/Houses/Village" unique_id=1360159364 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.98752934, 0, -0.15743434, 0, 1, 0, 0.15743434, 0, 0.98752934, 259.5521, -1.752136, 9.541473)
-
-[node name="VillageHouse(4)25" parent="WorldObjects/Houses/Village" unique_id=972217783 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.9863114, 0, 0.16489284, 0, 1, 0, -0.16489284, 0, -0.9863114, 259.05252, -1.752136, 3.9571867)
-
-[node name="VillageHouse(4)26" parent="WorldObjects/Houses/Village" unique_id=43100999 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.14226627, 0, 0.98982835, 0, 1, 0, -0.98982835, 0, 0.14226627, 263.3371, -1.752136, 7.454115)
-
-[node name="VillageHouse(4)23" parent="WorldObjects/Houses/Village" unique_id=821087600 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.19408035, 0, 0.9809855, 0, 1, 0, -0.9809855, 0, 0.19408035, 250.88295, -1.752136, 14.011617)
-
-[node name="VillageHouse(4)22" parent="WorldObjects/Houses/Village" unique_id=488617431 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.9984201, 0, 0.05618757, 0, 1, 0, -0.05618757, 0, -0.9984201, 244.9169, -1.752136, -5.03736)
-
-[node name="VillageHouse(4)18" parent="WorldObjects/Houses/Village" unique_id=945390901 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.26486635, 0, -0.96428514, 0, 1, 0, 0.96428514, 0, -0.26486635, 241.90984, -1.752136, 19.616747)
-
-[node name="VillageHouse(4)20" parent="WorldObjects/Houses/Village" unique_id=930837654 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.22224653, 0, 0.97499055, 0, 1, 0, -0.97499055, 0, 0.22224653, 238.69077, -1.752136, 2.3567038)
-
-[node name="VillageHouse(4)21" parent="WorldObjects/Houses/Village" unique_id=1520783115 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.12505645, 0, -0.9921496, 0, 1, 0, 0.9921496, 0, -0.12505645, 228.84604, -1.752136, 4.9956927)
-
-[node name="VillageHouse(4)14" parent="WorldObjects/Houses/Village" unique_id=635845857 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.15317565, 0, -0.98819894, 0, 1, 0, 0.98819894, 0, -0.15317565, 220.347, -1.752136, -10.448184)
-
-[node name="VillageHouse(4)11" parent="WorldObjects/Houses/Village" unique_id=613239480 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.763052, 0, -0.64633703, 0, 1, 0, 0.64633703, 0, -0.763052, 214.87529, -1.752136, 32.09451)
-
-[node name="VillageHouse(4)7" parent="WorldObjects/Houses/Village" unique_id=1144700145 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.9955636, 0, -0.09409085, 0, 1, 0, 0.09409085, 0, -0.9955636, 193.09698, -1.752136, 41.10948)
-
-[node name="VillageHouse(4)13" parent="WorldObjects/Houses/Village" unique_id=716271927 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.12041417, 0, 0.9927238, 0, 1, 0, -0.9927238, 0, 0.12041417, 224.54036, -1.752136, 11.7249565)
-
-[node name="VillageHouse(4)5" parent="WorldObjects/Houses/Village" unique_id=849357341 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(-0.9175188, 0, -0.39769238, 0, 1, 0, 0.39769238, 0, -0.9175188, 174.93033, -1.752136, 46.48199)
-
-[node name="VillageHouse(4)15" parent="WorldObjects/Houses/Village" unique_id=1159656006 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.4587271, 0, 0.88857716, 0, 1, 0, -0.88857716, 0, 0.4587271, 225.17555, -1.752136, 69.81609)
-
-[node name="VillageHouse(4)6" parent="WorldObjects/Houses/Village" unique_id=75422339 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.87934965, 0, 0.47617674, 0, 1, 0, -0.47617674, 0, 0.87934965, 175.96707, -1.752136, 60.231033)
-
-[node name="VillageHouse(4)4" parent="WorldObjects/Houses/Village" unique_id=1519722351 instance=ExtResource("18_0xfjq")]
-transform = Transform3D(0.999998, 0, -0.002007231, 0, 1, 0, 0.002007231, 0, 0.999998, 197.60068, -1.752136, 50.43019)
-
-[node name="VillageTower(1)" parent="WorldObjects/Houses/Village" unique_id=977565960 instance=ExtResource("19_r1yae")]
-transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 256.32654, 29.134, 42.356)
-
-[node name="VillageTower(1)2" parent="WorldObjects/Houses/Village" unique_id=174608859 instance=ExtResource("19_r1yae")]
-transform = Transform3D(-0.2783346, 0, -0.33041844, 0, 0.525, 0, 0.30104792, 0, -0.30548915, 160.89641, 29.134, 45.069496)
-
-[node name="VillageTower(1)3" parent="WorldObjects/Houses/Village" unique_id=1341018536 instance=ExtResource("19_r1yae")]
-transform = Transform3D(-0.38647348, 0, -0.15024269, 0, 0.525, 0, 0.13688776, 0, -0.42417818, 173.98431, 29.134, 70.61059)
-
-[node name="VillageTower(2)" parent="WorldObjects/Houses/Village" unique_id=383602282 instance=ExtResource("20_rr26k")]
-transform = Transform3D(-0.39895827, 0, 0.44814312, 0, 0.59999996, 0, -0.44814312, 0, -0.39895827, 157.40437, 34.812542, 86.252304)
-
-[node name="VillageTower(2)2" parent="WorldObjects/Houses/Village" unique_id=1830047245 instance=ExtResource("20_rr26k")]
-transform = Transform3D(0.012565455, 0, 0.5998684, 0, 0.7, 0, -0.5998684, 0, 0.012565455, 167.506, 42.64, 105.596)
-
 [node name="VillageFountain" parent="WorldObjects/Houses/Village" unique_id=117244724 instance=ExtResource("16_xfv3t")]
 transform = Transform3D(1.715, 0, 0, 0, 1.715, 0, 0, 0, 1.715, 227.28903, 8.011441, 47.722927)
 
@@ -2538,6 +2170,71 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.89005, 3.8233738, 100.411
 
 [node name="VillageHouseInside(1)" parent="WorldObjects/Houses/Village" unique_id=1368966052 instance=ExtResource("45_dwc23")]
 transform = Transform3D(0.058069497, 0, 0.9983125, 0, 1, 0, -0.9983125, 0, 0.058069497, 225.37437, -1.796565, 30.740932)
+
+[node name="OpenableHouseDoor" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=526210421 instance=ExtResource("25_60qc2")]
+transform = Transform3D(-0.0013744198, 0, -1.0499986, 0, 1.05, 0, 1.0499986, 0, -0.0013744198, 0.16932297, 1.0348568, -0.53356934)
+puerta_id = "MajorHouse"
+es_puerta = true
+item_clave_requerido = "Llave del Alcalde"
+
+[node name="Table5" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=1586532265 instance=ExtResource("26_uc07v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7116556, 0.37492788, -1.5131226)
+
+[node name="Chair14" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=382955274 instance=ExtResource("27_qm663")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6262703, 0.63126564, -1.223526)
+
+[node name="BedSingle1" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=1057544546 instance=ExtResource("28_8b8ma")]
+transform = Transform3D(-0.99962914, 0, 0.027223725, 0, 1, 0, -0.027223725, 0, -0.99962914, 0.8460617, 2.9759426, -1.5269165)
+
+[node name="MedievalBox1" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=203957198 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.8512419, 0, 0.52477354, 0, 1, 0, -0.52477354, 0, 0.8512419, 8.876987, 0.5277431, 1.4421539)
+
+[node name="MedievalBox4" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=945768367 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.9971393, 0, -0.07558791, 0, 1, 0, 0.07558791, 0, 0.9971393, 4.0287066, 3.4497542, -1.6373596)
+
+[node name="MedievalBox2" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=614759537 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(0.9719156, 0, -0.23532872, 0, 1, 0, 0.23532872, 0, 0.9719156, 7.537691, 0.50976706, 1.0891113)
+
+[node name="MedievalBox3" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=33641548 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(0.9900036, 0, 0.14103931, 0, 1, 0, -0.14103931, 0, 0.9900036, 5.0922365, 3.500469, -1.6330261)
+
+[node name="MistCore" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=1700695504 instance=ExtResource("36_exqqg")]
+transform = Transform3D(0.99204457, 0, 0.12588732, 0, 1, 0, -0.12588732, 0, 0.99204457, 5.0317373, 4.2217197, -1.5392303)
+
+[node name="MedievalBox5" parent="WorldObjects/Houses/Village/VillageHouseInside(1)" unique_id=55975235 instance=ExtResource("31_3wj3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7944317, 4.419117, -1.6684875)
+
+[node name="VillageHouseInside(1)2" parent="WorldObjects/Houses/Village" unique_id=319302307 instance=ExtResource("45_dwc23")]
+transform = Transform3D(0.058069497, 0, 0.9983125, 0, 1, 0, -0.9983125, 0, 0.058069497, 225.37437, -1.796565, 30.740932)
+
+[node name="OpenableHouseDoor" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=1726520698 instance=ExtResource("25_60qc2")]
+transform = Transform3D(-0.0013744198, 0, -1.0499986, 0, 1.05, 0, 1.0499986, 0, -0.0013744198, 0.16932297, 1.0348568, -0.53356934)
+puerta_id = "MajorHouse"
+es_puerta = true
+item_clave_requerido = "Llave del Alcalde"
+
+[node name="Table5" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=306173942 instance=ExtResource("26_uc07v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7116556, 0.37492788, -1.5131226)
+
+[node name="Chair14" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=1958303396 instance=ExtResource("27_qm663")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6262703, 0.63126564, -1.223526)
+
+[node name="BedSingle1" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=1384668004 instance=ExtResource("28_8b8ma")]
+transform = Transform3D(-0.99962914, 0, 0.027223725, 0, 1, 0, -0.027223725, 0, -0.99962914, 0.8460617, 2.9759426, -1.5269165)
+
+[node name="MedievalBox1" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=100397520 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.8512419, 0, 0.52477354, 0, 1, 0, -0.52477354, 0, 0.8512419, 8.876987, 0.5277431, 1.4421539)
+
+[node name="MedievalBox2" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=502399340 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(0.9719156, 0, -0.23532872, 0, 1, 0, 0.23532872, 0, 0.9719156, 7.537691, 0.50976706, 1.0891113)
+
+[node name="MedievalBox3" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=754045111 instance=ExtResource("31_3wj3j")]
+transform = Transform3D(0.84437466, 0, 0.53575313, 0, 1, 0, -0.53575313, 0, 0.84437466, 6.3616695, 0.4722792, -1.2149353)
+
+[node name="LoreNote" parent="WorldObjects/Houses/Village/VillageHouseInside(1)2" unique_id=1096086885 instance=ExtResource("34_mtse2")]
+transform = Transform3D(0.43136162, 0, -0.9021791, 0, 1, 0, 0.9021791, 0, 0.43136162, 4.4995823, 0.75575614, -1.4703217)
+mostrar_titulo = true
+titulo_personalizado = "Notas del Alcalde"
 
 [node name="WodenLampPost" parent="WorldObjects/Houses/Village" unique_id=501504409 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.67729986, 0, -0.7357072, 0, 1, 0, 0.7357072, 0, 0.67729986, 222.8635, -1.59366, 44.810104)
@@ -2565,6 +2262,12 @@ transform = Transform3D(-0.009215221, 0, 0.9999575, 0, 1, 0, -0.9999575, 0, -0.0
 
 [node name="VillageHouseInside(2)" parent="WorldObjects/Houses/Village" unique_id=1885260580 instance=ExtResource("26_5uq1w")]
 transform = Transform3D(0.9558802, 0, -0.29375672, 0, 1, 0, 0.29375672, 0, 0.9558802, 232.49718, -0.5238695, 10.833476)
+
+[node name="OpenableHouseDoor" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=817055622 instance=ExtResource("25_60qc2")]
+transform = Transform3D(-1.0499977, 0, -0.0019609034, 0, 1.0499997, 0, 0.0019609034, 0, -1.0499977, 0.51841736, -0.204373, -1.8213882)
+puerta_id = "PeasantHouse"
+es_puerta = true
+item_clave_requerido = "Llave del Campesino"
 
 [node name="VillageHouseInside(2)2" parent="WorldObjects/Houses/Village" unique_id=992755675 instance=ExtResource("26_5uq1w")]
 transform = Transform3D(-0.80709434, 0, 0.59042245, 0, 1, 0, -0.59042245, 0, -0.80709434, 259.3749, -0.5238695, 103.459755)
@@ -3108,11 +2811,11 @@ transform = Transform3D(0.29248846, 0, 0.9562691, 0, 1, 0, -0.9562691, 0, 0.2924
 shape = SubResource("ConcavePolygonShape3D_u6l01")
 
 [node name="MeshInstanceWall95" type="MeshInstance3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=2058629107]
-transform = Transform3D(0.16330867, 0, 0.98657507, 0, 1, 0, -0.98657507, 0, 0.16330867, 226.49136, -2.3712711, 20.583746)
+transform = Transform3D(0.011396676, 0, 0.9999351, 0, 1, 0, -0.9999351, 0, 0.011396676, 226.90677, -2.3712711, 19.060444)
 mesh = SubResource("BoxMesh_ju63t")
 
 [node name="CollisionShape3D69" type="CollisionShape3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=258069824]
-transform = Transform3D(0.16330867, 0, 0.98657507, 0, 1, 0, -0.98657507, 0, 0.16330867, 226.49136, -2.3712711, 20.583746)
+transform = Transform3D(0.011396676, 0, 0.9999351, 0, 1, 0, -0.9999351, 0, 0.011396676, 226.90677, -2.3712711, 19.060444)
 shape = SubResource("ConcavePolygonShape3D_ewgra")
 
 [node name="MeshInstanceWall96" type="MeshInstance3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=2022501916]
@@ -3498,6 +3201,404 @@ mesh = SubResource("BoxMesh_uc07v")
 [node name="FogGate" parent="WorldObjects/Houses/Village" unique_id=1038753867 instance=ExtResource("35_ui0oi")]
 transform = Transform3D(0.82041144, 0, -0.57177365, 0, 1, 0, 0.57177365, 0, 0.82041144, 269.99304, 0.85046613, 74.379295)
 
+[node name="VillageHouses" type="Node3D" parent="WorldObjects/Houses/Village" unique_id=1381908281]
+
+[node name="VillageHouse(1)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2003100932 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.4087128, 0, -0.91266304, 0, 1, 0, 0.91266304, 0, 0.4087128, 237.84567, -1.796565, 63.99645)
+
+[node name="VillageHouse(1)21" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=692108529 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.57158744, 0, -0.8205412, 0, 1, 0, 0.8205412, 0, -0.57158744, 250.16383, -1.796565, 64.65971)
+
+[node name="VillageHouse(1)27" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=808456967 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.79008013, 0, -0.61300355, 0, 1, 0, 0.61300355, 0, 0.79008013, 252.28119, -1.796565, 84.97643)
+
+[node name="VillageHouse(1)28" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1718121320 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.8089247, 0, -0.5879123, 0, 1, 0, 0.5879123, 0, 0.8089247, 242.44902, -1.796565, 98.12853)
+
+[node name="VillageHouse(1)29" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=310407254 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.75864625, 0, 0.6515027, 0, 1, 0, -0.6515027, 0, -0.75864625, 245.81499, -1.796565, 109.60412)
+
+[node name="VillageHouse(1)20" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1926262791 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.54261744, 0, 0.83997995, 0, 1, 0, -0.83997995, 0, 0.54261744, 269.1849, -1.796565, 70.72234)
+
+[node name="VillageHouse(1)22" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=457159781 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.553348, 0, -0.8329502, 0, 1, 0, 0.8329502, 0, -0.553348, 262.97, -1.796565, 73.51079)
+
+[node name="VillageHouse(1)12" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1277530128 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.89518344, 0, 0.4456979, 0, 1, 0, -0.4456979, 0, -0.89518344, 241.022, -1.796565, 25.62385)
+
+[node name="VillageHouse(1)9" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=126784342 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.9997639, 0, -0.021727651, 0, 1, 0, 0.021727651, 0, -0.9997639, 217.57153, -1.796565, 11.310696)
+
+[node name="VillageHouse(1)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1495875669 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.78407276, 0, 0.62066895, 0, 1, 0, -0.62066895, 0, -0.78407276, 212.04085, -1.796565, 37.35517)
+
+[node name="VillageHouse(1)7" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=966832542 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.54975206, 0, 0.83532804, 0, 1, 0, -0.83532804, 0, 0.54975206, 243.35611, -1.796565, 36.080532)
+
+[node name="VillageHouse(1)13" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2067643243 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.9910323, 0, 0.1336229, 0, 1, 0, -0.1336229, 0, -0.9910323, 247.3907, -1.796565, 2.543273)
+
+[node name="VillageHouse(1)16" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1191163489 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.07473495, 0, 0.99720347, 0, 1, 0, -0.99720347, 0, 0.07473495, 250.61163, -1.796565, -3.2588456)
+
+[node name="VillageHouse(1)14" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=74027463 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.96670294, 0, -0.2559014, 0, 1, 0, 0.2559014, 0, 0.96670294, 236.3736, -1.796565, 7.8551655)
+
+[node name="VillageHouse(1)8" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=88583901 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.9979426, 0, 0.06411433, 0, 1, 0, -0.06411433, 0, 0.9979426, 224.03503, -1.796565, 17.633009)
+
+[node name="VillageHouse(1)30" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1294204484 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.9979426, 0, 0.06411433, 0, 1, 0, -0.06411433, 0, 0.9979426, 224.03503, -1.796565, 17.633009)
+
+[node name="VillageHouse(1)6" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1930984628 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.51051295, 0, -0.85987, 0, 1, 0, 0.85987, 0, -0.51051295, 218.45715, -1.796565, 65.244156)
+
+[node name="VillageHouse(1)19" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1236060032 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.8788087, 0, -0.47717413, 0, 1, 0, 0.47717413, 0, 0.8788087, 215.8435, -1.796565, 85.155685)
+
+[node name="VillageHouse(1)3" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1091095658 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.06273827, 0, 0.99803, 0, 1, 0, -0.99803, 0, -0.06273827, 199.68161, -1.796565, 42.083565)
+
+[node name="VillageHouse(1)10" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1076442853 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.97685933, 0, -0.21388291, 0, 1, 0, 0.21388291, 0, 0.97685933, 227.57997, -1.796565, -9.381608)
+
+[node name="VillageHouse(1)15" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=53514452 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.17022674, 0, 0.98540497, 0, 1, 0, -0.98540497, 0, 0.17022674, 239.45192, -1.796565, -3.9905715)
+
+[node name="VillageHouse(1)17" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1304194651 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.16504757, 0, 0.9862856, 0, 0.9999999, 0, -0.9862856, 0, 0.16504757, 228.27359, -0.4659425, -23.299587)
+
+[node name="VillageHouse(1)4" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1013243341 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.45652357, 0, -0.8897113, 0, 1, 0, 0.8897113, 0, 0.45652357, 190.99544, -1.796565, 51.021915)
+
+[node name="VillageHouse(1)11" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=86658757 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.855816, 0, -0.5172803, 0, 1, 0, 0.5172803, 0, 0.855816, 221.17181, -1.796565, 74.35424)
+
+[node name="VillageHouse(1)18" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1793516784 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.8820283, 0, 0.47119668, 0, 1, 0, -0.47119668, 0, -0.8820283, 210.75607, -1.796565, 79.759094)
+
+[node name="VillageHouse(1)23" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=252619849 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.8820283, 0, 0.47119668, 0, 1, 0, -0.47119668, 0, -0.8820283, 193.81784, -1.796565, 99.00219)
+
+[node name="VillageHouse(1)25" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1449041544 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.47536322, 0, 0.8797897, 0, 1, 0, -0.8797897, 0, 0.47536322, 224.00616, -1.796565, 102.19312)
+
+[node name="VillageHouse(1)26" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1406022866 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.44283655, 0, -0.89660245, 0, 1, 0, 0.89660245, 0, -0.44283655, 229.69725, -1.796565, 109.14081)
+
+[node name="VillageHouse(1)24" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1435119226 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.513676, 0, -0.8579842, 0, 1, 0, 0.8579842, 0, -0.513676, 196.15207, -1.796565, 107.23888)
+
+[node name="VillageHouse(1)5" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1746036153 instance=ExtResource("4_anfc4")]
+transform = Transform3D(-0.6835669, 0, 0.7298878, 0, 1, 0, -0.7298878, 0, -0.6835669, 164.20198, -1.796565, 55.77851)
+
+[node name="VillageHouse(2)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1274955824 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.40132454, 0, 0.9159359, 0, 1, 0, -0.9159359, 0, 0.40132454, 236.72641, -1.796565, 30.406376)
+
+[node name="VillageHouse(2)13" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1281560166 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.7709469, 0, 0.6368996, 0, 1, 0, -0.6368996, 0, -0.7709469, 242.25565, -1.796565, 83.04245)
+
+[node name="VillageHouse(2)18" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=67112604 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.83802354, 0, 0.54563427, 0, 1, 0, -0.54563427, 0, -0.83802354, 235.67389, -1.796565, 92.66592)
+
+[node name="VillageHouse(2)17" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=444727303 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.77689314, 0, -0.6296326, 0, 1, 0, 0.6296326, 0, 0.77689314, 251.92593, -1.796565, 90.2575)
+
+[node name="VillageHouse(2)15" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=816884931 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.768641, 0, -0.63968074, 0, 1, 0, 0.63968074, 0, 0.768641, 207.27414, -1.796565, 107.30447)
+
+[node name="VillageHouse(2)14" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=370342781 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.49541354, 0, 0.8686574, 0, 1, 0, -0.8686574, 0, 0.49541354, 216.61964, -1.796565, 94.978096)
+
+[node name="VillageHouse(2)16" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=436086573 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.4623062, 0, -0.8867205, 0, 1, 0, 0.8867205, 0, -0.4623062, 218.83154, -1.796565, 107.164375)
+
+[node name="VillageHouse(2)4" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1303348900 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.97411025, 0, -0.22607349, 0, 1, 0, 0.22607349, 0, 0.97411025, 254.40024, -1.796565, 48.437523)
+
+[node name="VillageHouse(2)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=455680763 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.5689349, 0, -0.82238257, 0, 1, 0, 0.82238257, 0, 0.5689349, 181.90631, -1.796565, 58.224403)
+
+[node name="VillageHouse(2)3" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=538632912 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.38703257, 0, 0.92206603, 0, 1, 0, -0.92206603, 0, -0.38703257, 179.18161, -1.796565, 42.715187)
+
+[node name="VillageHouse(2)5" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1773419351 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.9892443, 0, -0.14627327, 0, 1, 0, 0.14627327, 0, 0.9892443, 227.50409, -1.796565, -0.82262754)
+
+[node name="VillageHouse(2)11" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=241911479 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.23587178, 0, 0.97178423, 0, 1, 0, -0.97178423, 0, 0.23587178, 235.46075, -1.796565, -8.370509)
+
+[node name="VillageHouse(2)12" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1991219263 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.9717348, 0, -0.23607536, -0.073918514, 0.9497155, -0.30426386, 0.22420442, 0.31311408, 0.9228716, 233.61748, -0.39706087, -21.116335)
+
+[node name="VillageHouse(2)10" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=112741753 instance=ExtResource("16_h3dir")]
+transform = Transform3D(0.9892443, 0, -0.14627327, 0, 1, 0, 0.14627327, 0, 0.9892443, 253.09464, -1.796565, 8.582152)
+
+[node name="VillageHouse(2)9" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=883294556 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.9797992, 0, 0.19998388, 0, 1, 0, -0.19998388, 0, -0.9797992, 242.12952, -1.796565, 14.032373)
+
+[node name="VillageHouse(2)6" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1688390662 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.98381, 0, 0.17921457, 0, 1, 0, -0.17921457, 0, -0.98381, 215.46217, -1.796565, 6.6610203)
+
+[node name="VillageHouse(2)8" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=207342448 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.96906304, 0, 0.24681321, 0, 1, 0, -0.24681321, 0, -0.96906304, 220.70529, -1.796565, -16.273272)
+
+[node name="VillageHouse(2)7" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2138229303 instance=ExtResource("16_h3dir")]
+transform = Transform3D(-0.9940068, 0, 0.1093182, 0, 1, 0, -0.1093182, 0, -0.9940068, 218.06389, -1.796565, -4.701543)
+
+[node name="VillageHouse(3)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2039322746 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.17648, -1.796565, 65.89357)
+
+[node name="VillageHouse(3)20" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1792755593 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.8384043, 0, 0.5450489, 0, 1, 0, -0.5450489, 0, -0.8384043, 262.0216, -1.796565, 63.830116)
+
+[node name="VillageHouse(3)21" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=262278459 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.6075977, 0, -0.794245, 0, 1, 0, 0.794245, 0, -0.6075977, 253.14745, -1.796565, 72.24124)
+
+[node name="VillageHouse(3)25" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=947138220 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.5783419, 0, -0.8157946, 0, 1, 0, 0.8157946, 0, -0.5783419, 241.43848, -1.796565, 85.95446)
+
+[node name="VillageHouse(3)27" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=762323741 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.8003758, 0, -0.59949875, 0, 1, 0, 0.59949875, 0, 0.8003758, 269.29697, -1.796565, 80.09336)
+
+[node name="VillageHouse(3)28" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1025985351 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.8003758, 0, -0.59949875, 0, 1, 0, 0.59949875, 0, 0.8003758, 277.50116, -1.796565, 73.725136)
+
+[node name="VillageHouse(3)16" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1736653439 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.47204313, 0, 0.8815756, 0, 1, 0, -0.8815756, 0, 0.47204313, 218.1455, -1.796565, 82.897835)
+
+[node name="VillageHouse(3)17" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1999553852 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.47204313, 0, 0.8815756, 0, 1, 0, -0.8815756, 0, 0.47204313, 207.48499, -1.796565, 105.13832)
+
+[node name="VillageHouse(3)23" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1036927380 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.47204313, 0, 0.8815756, 0, 1, 0, -0.8815756, 0, 0.47204313, 207.48499, -1.796565, 105.13832)
+
+[node name="VillageHouse(3)22" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=676739676 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.48667094, 0, -0.8735855, 0, 1, 0, 0.8735855, 0, -0.48667094, 204.49998, -1.796565, 87.470665)
+
+[node name="VillageHouse(3)18" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=961766166 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.8922867, 0, -0.4514694, 0, 1, 0, 0.4514694, 0, 0.8922867, 211.95377, -1.796565, 102.79069)
+
+[node name="VillageHouse(3)24" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=259254583 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.8821023, 0, 0.471058, 0, 1, 0, -0.471058, 0, -0.8821023, 232.73701, -1.796565, 104.14611)
+
+[node name="VillageHouse(3)19" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1879843776 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.8922867, 0, -0.4514694, 0, 1, 0, 0.4514694, 0, 0.8922867, 231.25175, -1.796565, 111.919716)
+
+[node name="VillageHouse(3)26" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=343080010 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.49962208, 0, -0.8662436, 0, 1, 0, 0.8662436, 0, -0.49962208, 239.86386, -1.796565, 114.00899)
+
+[node name="VillageHouse(3)3" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=562281382 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.98173696, 0, 0.1902436, 0, 1, 0, -0.1902436, 0, 0.98173696, 202.09236, -1.796565, 50.745155)
+
+[node name="VillageHouse(3)4" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1493017361 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.7580888, 0, -0.6521513, 0, 1, 0, 0.6521513, 0, -0.7580888, 171.03766, -1.796565, 48.306053)
+
+[node name="VillageHouse(3)7" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=718014886 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.80756813, 0, 0.5897745, 0, 1, 0, -0.5897745, 0, 0.80756813, 167.34676, -1.796565, 65.31094)
+
+[node name="VillageHouse(3)6" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1314793536 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.9818397, 0, -0.18971232, 0, 1, 0, 0.18971232, 0, -0.9818397, 188.70122, -1.796565, 41.131374)
+
+[node name="VillageHouse(3)9" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1734852908 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.1633949, 0, 0.98656076, 0, 1, 0, -0.98656076, 0, 0.1633949, 225.02042, -1.796565, 7.849684)
+
+[node name="VillageHouse(3)11" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=956103436 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.32310826, 0, 0.946362, 0, 1, 0, -0.946362, 0, 0.32310826, 230.09592, -1.796565, -12.260496)
+
+[node name="VillageHouse(3)12" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=869766501 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.22964215, 0, 0.9732752, 0, 1, 0, -0.9732752, 0, 0.22964215, 249.32343, -1.796565, 23.599682)
+
+[node name="VillageHouse(3)13" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=361663402 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.2189779, 0, -0.97572976, 0, 1, 0, 0.97572976, 0, -0.2189779, 244.79384, -1.796565, 5.462152)
+
+[node name="VillageHouse(3)14" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1936328620 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.13967437, 0, 0.9901974, 0, 1, 0, -0.9901974, 0, 0.13967437, 253.82053, -1.796565, 4.8838644)
+
+[node name="VillageHouse(3)5" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2035468082 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.8320316, 0, 0.55472827, 0, 1, 0, -0.55472827, 0, 0.8320316, 183.80981, -1.796565, 56.659042)
+
+[node name="VillageHouse(3)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=490282102 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.5293419, 0, -0.8484086, 0, 1, 0, 0.8484086, 0, 0.5293419, 207.35216, -1.796565, 53.932377)
+
+[node name="VillageHouse(3)8" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2120148171 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.020366602, 0, -0.9997926, 0, 1, 0, 0.9997926, 0, -0.020366602, 216.286, -1.796565, 21.809113)
+
+[node name="VillageHouse(3)10" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2008243161 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.23687206, 0, -0.97154087, 0, 1, 0, 0.97154087, 0, -0.23687206, 218.5516, -1.796565, -2.0184689)
+
+[node name="VillageHouse(3)15" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=166886774 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.23687205, -1.8283163e-09, -0.97154087, -0.20494603, 0.9774969, 0.049968034, 0.9496783, 0.21094951, -0.23154178, 223.41736, 0.10720301, -24.679335)
+
+[node name="VillageHouse(4)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1664160948 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.7370769, 0, -0.6758089, 0, 1, 0, 0.6758089, 0, 0.7370769, 213.28148, -1.752136, 62.0178)
+
+[node name="VillageHouse(4)16" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1070947227 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.4851607, 0, -0.87442493, 0, 1, 0, 0.87442493, 0, -0.4851607, 213.28148, -1.752136, 74.281075)
+
+[node name="VillageHouse(4)34" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=223822301 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.4851607, 0, -0.87442493, 0, 1, 0, 0.87442493, 0, -0.4851607, 207.06122, -1.752136, 83.90882)
+
+[node name="VillageHouse(4)33" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2065038134 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.49204373, 0, 0.87057036, 0, 1, 0, -0.87057036, 0, 0.49204373, 214.26193, -1.752136, 91.01056)
+
+[node name="VillageHouse(4)38" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1999820791 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.8642133, 0, 0.5031254, 0, 1, 0, -0.5031254, 0, -0.8642133, 220.47298, -1.752136, 98.33042)
+
+[node name="VillageHouse(4)39" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1622516841 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.8832589, 0, -0.46888575, 0, 1, 0, 0.46888575, 0, 0.8832589, 223.6552, -1.752136, 108.11947)
+
+[node name="VillageHouse(4)35" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=52777986 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.80501807, 0, -0.59325016, 0, 1, 0, 0.59325016, 0, -0.80501807, 195.85188, -1.752136, 94.18025)
+
+[node name="VillageHouse(4)37" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1301451957 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.9798343, 0, 0.19981232, 0, 1, 0, -0.19981232, 0, 0.9798343, 200.971, -1.752136, 109.416695)
+
+[node name="VillageHouse(4)36" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1882981932 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.32598042, 0, -0.94537646, 0, 1, 0, 0.94537646, 0, 0.32598042, 191.9302, -1.752136, 104.00608)
+
+[node name="VillageHouse(4)8" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1251570729 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.7072919, 0, -0.70692164, 0, 1, 0, 0.70692164, 0, 0.7072919, 243.81953, -1.752136, 63.119164)
+
+[node name="VillageHouse(4)32" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1423419748 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.6206689, 0, -0.7840728, 0, 1, 0, 0.7840728, 0, -0.6206689, 247.18713, -1.752136, 79.48837)
+
+[node name="VillageHouse(4)42" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=76188540 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.50006044, 0, -0.8659905, 0, 1, 0, 0.8659905, 0, -0.50006044, 234.23445, -1.752136, 97.98934)
+
+[node name="VillageHouse(4)43" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1297147876 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.6119826, 0, 0.79087126, 0, 1, 0, -0.79087126, 0, 0.6119826, 240.30054, -1.752136, 103.71149)
+
+[node name="VillageHouse(4)40" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1404388408 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.59243494, 0, 0.8056182, 0, 1, 0, -0.8056182, 0, 0.59243494, 257.1351, -1.752136, 81.46654)
+
+[node name="VillageHouse(4)41" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=25050303 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.59243494, 0, 0.8056182, 0, 1, 0, -0.8056182, 0, 0.59243494, 247.49675, -1.752136, 93.914116)
+
+[node name="VillageHouse(4)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=703648182 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.9611221, 0, 0.27612376, 0, 1, 0, -0.27612376, 0, -0.9611221, 231.27705, -1.752136, 29.772812)
+
+[node name="VillageHouse(4)10" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1651767491 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.7567556, 0, 0.65369797, 0, 1, 0, -0.65369797, 0, -0.7567556, 248.83208, -1.752136, 38.724453)
+
+[node name="VillageHouse(4)9" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=97507092 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.5427053, 0, 0.83992314, 0, 1, 0, -0.83992314, 0, 0.5427053, 250.09413, -1.752136, 53.654972)
+
+[node name="VillageHouse(4)27" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1460588854 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.82907665, 0, 0.5591349, 0, 1, 0, -0.5591349, 0, -0.82907665, 253.92377, -1.752136, 58.157738)
+
+[node name="VillageHouse(4)28" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1294464047 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.82907665, 0, 0.5591349, 0, 1, 0, -0.5591349, 0, -0.82907665, 253.92377, -1.752136, 58.157738)
+
+[node name="VillageHouse(4)29" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1887361793 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.82907665, 0, 0.5591349, 0, 1, 0, -0.5591349, 0, -0.82907665, 265.30103, -1.752136, 66.41849)
+
+[node name="VillageHouse(4)31" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1568195718 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.8286666, 0, -0.55974257, 0, 1, 0, 0.55974257, 0, 0.8286666, 266.51385, -1.752136, 77.86695)
+
+[node name="VillageHouse(4)44" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=926627311 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.8010345, 0, 0.5986182, 0, 1, 0, -0.5986182, 0, -0.8010345, 274.61218, -1.752136, 71.77255)
+
+[node name="VillageHouse(4)30" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=167324343 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.81982225, 0, -0.57261825, 0, 1, 0, 0.57261825, 0, 0.81982225, 253.90187, -1.752136, 69.328285)
+
+[node name="VillageHouse(4)3" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1236091405 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.9933928, 0, -0.11476371, 0, 1, 0, 0.11476371, 0, -0.9933928, 205.87257, -1.752136, 40.16887)
+
+[node name="VillageHouse(4)12" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=104489450 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.09971909, 0, -0.9950156, 0, 1, 0, 0.9950156, 0, 0.09971909, 216.66656, -1.752136, 17.792677)
+
+[node name="VillageHouse(4)17" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=974596206 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.41186437, 0, 0.9112451, 0, 1, 0, -0.9112451, 0, 0.41186437, 248.03355, -1.752136, 27.193188)
+
+[node name="VillageHouse(4)19" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=224419194 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.19408035, 0, 0.9809855, 0, 1, 0, -0.9809855, 0, 0.19408035, 250.88295, -1.752136, 14.011617)
+
+[node name="VillageHouse(4)24" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1360159364 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.98752934, 0, -0.15743434, 0, 1, 0, 0.15743434, 0, 0.98752934, 259.5521, -1.752136, 9.541473)
+
+[node name="VillageHouse(4)25" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=972217783 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.9863114, 0, 0.16489284, 0, 1, 0, -0.16489284, 0, -0.9863114, 259.05252, -1.752136, 3.9571867)
+
+[node name="VillageHouse(4)26" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=43100999 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.14226627, 0, 0.98982835, 0, 1, 0, -0.98982835, 0, 0.14226627, 263.3371, -1.752136, 7.454115)
+
+[node name="VillageHouse(4)23" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=821087600 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.19408035, 0, 0.9809855, 0, 1, 0, -0.9809855, 0, 0.19408035, 250.88295, -1.752136, 14.011617)
+
+[node name="VillageHouse(4)22" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=488617431 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.9984201, 0, 0.05618757, 0, 1, 0, -0.05618757, 0, -0.9984201, 244.9169, -1.752136, -5.03736)
+
+[node name="VillageHouse(4)18" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=945390901 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.26486635, 0, -0.96428514, 0, 1, 0, 0.96428514, 0, -0.26486635, 241.90984, -1.752136, 19.616747)
+
+[node name="VillageHouse(4)20" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=930837654 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.22224653, 0, 0.97499055, 0, 1, 0, -0.97499055, 0, 0.22224653, 238.69077, -1.752136, 2.3567038)
+
+[node name="VillageHouse(4)21" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1520783115 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.12505645, 0, -0.9921496, 0, 1, 0, 0.9921496, 0, -0.12505645, 228.84604, -1.752136, 4.9956927)
+
+[node name="VillageHouse(4)14" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=635845857 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.15317565, 0, -0.98819894, 0, 1, 0, 0.98819894, 0, -0.15317565, 220.347, -1.752136, -10.448184)
+
+[node name="VillageHouse(4)11" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=613239480 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.763052, 0, -0.64633703, 0, 1, 0, 0.64633703, 0, -0.763052, 214.87529, -1.752136, 32.09451)
+
+[node name="VillageHouse(4)7" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1144700145 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.9955636, 0, -0.09409085, 0, 1, 0, 0.09409085, 0, -0.9955636, 193.09698, -1.752136, 41.10948)
+
+[node name="VillageHouse(4)13" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=716271927 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.12041417, 0, 0.9927238, 0, 1, 0, -0.9927238, 0, 0.12041417, 224.54036, -1.752136, 11.7249565)
+
+[node name="VillageHouse(4)5" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=849357341 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(-0.9175188, 0, -0.39769238, 0, 1, 0, 0.39769238, 0, -0.9175188, 174.93033, -1.752136, 46.48199)
+
+[node name="VillageHouse(4)15" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1159656006 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.4587271, 0, 0.88857716, 0, 1, 0, -0.88857716, 0, 0.4587271, 225.17555, -1.752136, 69.81609)
+
+[node name="VillageHouse(4)6" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=75422339 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.87934965, 0, 0.47617674, 0, 1, 0, -0.47617674, 0, 0.87934965, 175.96707, -1.752136, 60.231033)
+
+[node name="VillageHouse(4)4" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1519722351 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.999998, 0, -0.002007231, 0, 1, 0, 0.002007231, 0, 0.999998, 197.60068, -1.752136, 50.43019)
+
+[node name="VillageTower(1)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=977565960 instance=ExtResource("19_r1yae")]
+transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 256.32654, 29.134, 42.356)
+
+[node name="VillageTower(1)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=174608859 instance=ExtResource("19_r1yae")]
+transform = Transform3D(-0.2783346, 0, -0.33041844, 0, 0.525, 0, 0.30104792, 0, -0.30548915, 160.89641, 29.134, 45.069496)
+
+[node name="VillageTower(1)3" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1341018536 instance=ExtResource("19_r1yae")]
+transform = Transform3D(-0.38647348, 0, -0.15024269, 0, 0.525, 0, 0.13688776, 0, -0.42417818, 173.98431, 29.134, 70.61059)
+
+[node name="VillageTower(2)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=383602282 instance=ExtResource("20_rr26k")]
+transform = Transform3D(-0.39895827, 0, 0.44814312, 0, 0.59999996, 0, -0.44814312, 0, -0.39895827, 157.40437, 34.812542, 86.252304)
+
+[node name="VillageTower(2)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1830047245 instance=ExtResource("20_rr26k")]
+transform = Transform3D(0.012565455, 0, 0.5998684, 0, 0.7, 0, -0.5998684, 0, 0.012565455, 167.506, 42.64, 105.596)
+
+[node name="VillageKeysObjects" type="Node3D" parent="WorldObjects/Houses/Village" unique_id=1818064065]
+
+[node name="OldKey" parent="WorldObjects/Houses/Village/VillageKeysObjects" unique_id=256675615 instance=ExtResource("36_yr5eh")]
+transform = Transform3D(0.029808179, -0.00010899019, -0.0033853557, 0.0033436678, 0.005733801, 0.02925651, 0.00054074294, -0.029446756, 0.0057092872, 230.49281, -1.2913373, 42.025185)
+item_name = "Llave del Campesino"
+
+[node name="Table5" parent="WorldObjects/Houses/Village/VillageKeysObjects" unique_id=283721402 instance=ExtResource("26_uc07v")]
+transform = Transform3D(0.85243034, 0, -0.5228408, 0, 1, 0, 0.5228408, 0, 0.85243034, 230.51376, -1.6804271, 41.996838)
+
+[node name="MedievalBox1" parent="WorldObjects/Houses/Village/VillageKeysObjects/Table5" unique_id=893178293 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.91156125, 0, 0.41116428, 0, 1, 0, -0.41116428, 0, 0.91156125, -1.073761, 0, 1.3910828)
+
+[node name="MedievalBox4" parent="WorldObjects/Houses/Village/VillageKeysObjects/Table5" unique_id=1927972608 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.8122973, 0, 0.5832433, 0, 1, 0, -0.5832433, 0, 0.8122973, -2.2444153, 0, 0.54228973)
+
+[node name="MedievalBox2" parent="WorldObjects/Houses/Village/VillageKeysObjects/Table5" unique_id=919101535 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.91156125, 0, 0.41116425, 0, 1, 0, -0.41116425, 0, 0.91156125, 0.99790955, 0, 1.491333)
+
+[node name="MedievalBox3" parent="WorldObjects/Houses/Village/VillageKeysObjects/Table5" unique_id=819605670 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.33794957, 0, 0.9411641, 0, 1, 0, -0.9411641, 0, 0.33794957, 0.99790955, 1.0234499, 1.491333)
+
 [node name="ForestLumberjackStation" type="Node3D" parent="WorldObjects/Houses" unique_id=1499057351]
 
 [node name="VillageHouse(4)" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=1116907304 instance=ExtResource("18_0xfjq")]
@@ -3524,7 +3625,7 @@ transform = Transform3D(-0.817568, 7.1473984e-08, 0.5758342, -8.742279e-08, -0.9
 [node name="VillageHouse(3)" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=152232434 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(0.8216371, 0, 0.570011, 0, 1, 0, -0.570011, 0, 0.8216371, -236.09377, -15.791772, 325.4099)
 
-[node name="MedievalBox1" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=203957198 instance=ExtResource("21_d1dbm")]
+[node name="MedievalBox1" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=277944554 instance=ExtResource("21_d1dbm")]
 transform = Transform3D(0.8021093, 0, 0.59717727, 0, 1, 0, -0.59717727, 0, 0.8021093, -239.45499, -15.595572, 326.68387)
 
 [node name="MedievalBox4" parent="WorldObjects/Houses/ForestLumberjackStation" unique_id=305038888 instance=ExtResource("21_d1dbm")]
@@ -3707,7 +3808,7 @@ Anexo:
 La comida y las esferas de energía son cada vez más escazas, ¿que es lo que esta pasando allá capitan? Solo nos quedan innumerables de esferas descargadas, con eso no podemos hacer nada.
 "
 
-[node name="MistCore" parent="WorldObjects/InteractibleObjects" unique_id=1700695504 instance=ExtResource("36_exqqg")]
+[node name="MistCore" parent="WorldObjects/InteractibleObjects" unique_id=1176752527 instance=ExtResource("36_exqqg")]
 transform = Transform3D(0.13644186, 0, -0.9906482, 0, 1, 0, 0.9906482, 0, 0.13644186, -231.12755, -15.174525, 252.06532)
 
 [node name="FogGate" parent="WorldObjects/InteractibleObjects" unique_id=607001283 instance=ExtResource("35_ui0oi")]

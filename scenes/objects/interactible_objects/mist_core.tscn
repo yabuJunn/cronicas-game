@@ -1,9 +1,8 @@
 [gd_scene format=4 uid="uid://d065ca8nie10"]
 
 [ext_resource type="Texture2D" uid="uid://bknk1ym352wd" path="res://textures/Plaster/Plaster_16-256x256.png" id="1_4nvkp"]
-[ext_resource type="Script" uid="uid://ddtla1shy7ay0" path="res://globals/interactible_item_highlight.gd" id="1_r0sox"]
+[ext_resource type="Script" uid="uid://cyq107fg0ukkf" path="res://scenes/objects/interactible_objects/mist_core.gd" id="1_lq3qb"]
 [ext_resource type="Texture2D" uid="uid://bka4ub13uu7uy" path="res://textures/Metal/Metal_10-256x256.png" id="2_lq3qb"]
-[ext_resource type="Texture2D" uid="uid://hoyw4at5tkp1" path="res://icons/inventory/mistCore.png" id="2_wr0ly"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wr0ly"]
 albedo_texture = ExtResource("2_lq3qb")
@@ -60,16 +59,9 @@ material = SubResource("StandardMaterial3D_80jk7")
 size = Vector2(0.04, 0.04)
 orientation = 2
 
-[node name="MistCore" type="StaticBody3D" unique_id=1700695504 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
+[node name="MistCore" type="StaticBody3D" unique_id=1700695504 groups=["interactibleObjects"]]
 collision_layer = 10
-script = ExtResource("1_r0sox")
-shine_color = Color(0, 0, 0, 1)
-item_name = "Núcleo de niebla"
-item_description = "Se siente como niebla al tacto"
-item_icon = ExtResource("2_wr0ly")
-ruta_modelo3d = "uid://cdnhnkyooy554"
-texto_recoger = "[E] Núcleo de niebla"
-mesh = NodePath("MistCoreMesh")
+script = ExtResource("1_lq3qb")
 
 [node name="MistCoreMesh" type="MeshInstance3D" parent="." unique_id=710814133]
 transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.34, 0, 0.16992682, 0)

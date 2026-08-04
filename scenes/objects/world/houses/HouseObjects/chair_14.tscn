@@ -49,7 +49,6 @@ data = PackedVector3Array(-0.0013, 0.0018, -0.0004, -0.0013, -0.0018, -0.0004, -
 
 [node name="Chair_14" type="MeshInstance3D" parent="." unique_id=2137071008]
 transform = Transform3D(0, -118.77159, -3.5396693e-06, -3.5396693e-06, 0, 118.77159, -118.77159, 3.5396693e-06, 0, 0, 0, 0.0952611)
-layers = 2
 mesh = SubResource("ArrayMesh_be0gs")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Chair_14" unique_id=1950799397]

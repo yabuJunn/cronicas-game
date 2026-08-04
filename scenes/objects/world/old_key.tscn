@@ -9,8 +9,8 @@
 albedo_texture = ExtResource("2_oo03i")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8fatp"]
-radius = 2.301369
-height = 13.534148
+radius = 4.720215
+height = 21.432617
 
 [node name="OldKey" type="StaticBody3D" unique_id=256675615 node_paths=PackedStringArray("mesh") groups=["interactibleObjects"]]
 collision_layer = 10

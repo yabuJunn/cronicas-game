@@ -132,5 +132,4 @@ shadow_mesh = SubResource("ArrayMesh_rbon8")
 
 [node name="Bed Single" type="MeshInstance3D" parent="." unique_id=1296044338]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.9254013, 0, 0.41354024)
-layers = 2
 mesh = SubResource("ArrayMesh_ynrjc")

@@ -356,6 +356,9 @@ points = PackedVector3Array(0.5625, -0.5625, 2, 0.5625, -1.25, 2, -0.5625, -0.56
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cq1t7"]
 points = PackedVector3Array(-0.4375, 0.5625, 3, -0.4375, -0.5625, 3, -0.5625, 0.5625, 3, -0.5625, -0.5625, 3, -0.4375, 0.5625, 1.875, -0.4375, -0.5625, 1.875, -0.5625, 0.5625, 1.875, -0.5625, -0.5625, 1.875)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_feoyy"]
+size = Vector3(1.5314941, 1.9215088, 0.8536377)
+
 [node name="VillageHouseInside(2)" type="Node3D" unique_id=1885260580]
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1085462394]
@@ -615,3 +618,14 @@ transform = Transform3D(2.928663e-08, 4.4221583e-15, -0.67, 1.0116719e-07, -0.67
 
 [node name="WallLamp2" parent="." unique_id=1393468211 instance=ExtResource("11_feoyy")]
 transform = Transform3D(-0.67, 5.8573267e-08, 0, -5.857326e-08, -0.6700001, 0, 0, 0, 0.67, 2.610542, 1.7266871, 0.19541359)
+
+[node name="HouseBarriers" type="StaticBody3D" parent="." unique_id=725111417]
+collision_layer = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HouseBarriers" unique_id=1554166469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67001, 0.012885809, -2.3197498)
+shape = SubResource("BoxShape3D_feoyy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HouseBarriers" unique_id=1998797080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07725829, 0.012885809, 2.3667238)
+shape = SubResource("BoxShape3D_feoyy")

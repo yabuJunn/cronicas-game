@@ -33,7 +33,6 @@ collision_layer = 2
 collision_mask = 15
 
 [node name="MedievalBoxMesh" type="MeshInstance3D" parent="MedievalBoxStaticBody" unique_id=2073589743]
-layers = 2
 mesh = SubResource("ArrayMesh_24obp")
 
 [node name="MedievalBoxCollision" type="CollisionShape3D" parent="MedievalBoxStaticBody" unique_id=1204742365]

@@ -2307,6 +2307,47 @@ transform = Transform3D(0.8353567, 0, 0.54970825, 0, 1, 0, -0.54970825, 0, 0.835
 [node name="VillageHouseInside(2)2" parent="WorldObjects/Houses/Village" unique_id=992755675 instance=ExtResource("26_5uq1w")]
 transform = Transform3D(-0.80709434, 0, 0.59042245, 0, 1, 0, -0.59042245, 0, -0.80709434, 259.3749, -0.5238695, 103.459755)
 
+[node name="OpenableHouseDoor" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=1581939877 instance=ExtResource("25_60qc2")]
+transform = Transform3D(-1.0499977, 0, -0.0019609034, 0, 1.0499997, 0, 0.0019609034, 0, -1.0499977, 0.51841736, -0.204373, -1.8213882)
+puerta_id = "FarmerHouse"
+es_puerta = true
+item_clave_requerido = "Llave del Granjero"
+
+[node name="MedievalBox3" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=603075681 instance=ExtResource("31_3wj3j")]
+transform = Transform3D(0.84135985, 0, -0.5404754, 0, 1, 0, 0.5404754, 0, 0.84135985, 2.0141296, -0.85696304, 1.0577545)
+
+[node name="MedievalBox6" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=292794085 instance=ExtResource("31_3wj3j")]
+transform = Transform3D(-0.116636306, 0, -0.99317515, 0, 1, 0, 0.99317515, 0, -0.116636306, -1.8784485, -0.85696304, -0.9821625)
+
+[node name="MedievalBox1" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=2131103065 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.072506934, 0, -0.99736816, 0, 1, 0, 0.99736816, 0, 0.072506934, 0.60653687, -0.7976749, 0.8291321)
+
+[node name="MedievalBox5" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=2014623723 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(-0.5299642, 0, -0.8480206, 0, 1, 0, 0.8480206, 0, -0.5299642, -1.9997253, -0.7976749, 0.645607)
+
+[node name="MedievalBox7" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=981065088 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(-0.9977511, 0, 0.06704053, 0, 1, 0, -0.06704053, 0, -0.9977511, -2.091278, 0.10839653, -0.035339355)
+
+[node name="MedievalBox2" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=1929422560 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5499878, -0.800048, -0.65226746)
+
+[node name="MedievalBox8" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=1536131819 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(0.93004614, 0, -0.36744297, 0, 1, 0, 0.36744297, 0, 0.93004614, -0.9533081, -0.800048, 0.8609085)
+
+[node name="MedievalBox9" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=586794482 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(0.9803127, 0, 0.19745204, 0, 1, 0, -0.19745204, 0, 0.9803127, 0.20626831, 0.18935561, 0.89121246)
+
+[node name="MedievalBox4" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=66210089 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(0.8769785, 0, -0.48052967, 0, 1, 0, 0.48052967, 0, 0.8769785, 2.1000366, 0.07456505, 0.09963989)
+
+[node name="LoreNote" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=916668949 instance=ExtResource("34_mtse2")]
+transform = Transform3D(0.7820538, 0, -0.623211, 0, 1, 0, 0.623211, 0, 0.7820538, 1.3100281, -0.29617298, -0.621933)
+
+[node name="OldKey" parent="WorldObjects/Houses/Village/VillageHouseInside(2)2" unique_id=831978426 instance=ExtResource("36_yr5eh")]
+transform = Transform3D(0.018837793, 0.022411976, -0.0065453174, 0.0033436676, 0.005733801, 0.02925651, 0.02310753, -0.019100446, 0.0011024671, -0.85723877, -0.28611118, 0.784111)
+item_name = "Llave del Alcalde"
+item_description = "Una llave muy antigua, abre la casa del alcalde, es muy importante."
+
 [node name="VillageWalls" type="StaticBody3D" parent="WorldObjects/Houses/Village" unique_id=690516316]
 
 [node name="MeshInstanceWall" type="MeshInstance3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=1193064958]

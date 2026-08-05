@@ -222,8 +222,65 @@ func _input(event):
 			current_interactable = null
 			interact_prompt.hide()
 
+func ejecutar_cinematica(transform_destino: Transform3D, duracion_total: float = 4.0) -> void:
+	if en_cinematica:
+		return
+		
+	en_cinematica = true
+	controles_bloqueados = true
+	interact_prompt.hide()
+	if current_interactable != null:
+		current_interactable.set_highlight(false)
+	
+	var original_local_transform = camera_3d.transform
+	var tiempo_transicion : float = 2.0
+	var tiempo_espera = max(0.1, duracion_total - (tiempo_transicion * 2.0))
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(camera_3d, "global_transform", transform_destino, tiempo_transicion)
+	tween.tween_interval(tiempo_espera)
+	tween.tween_property(camera_3d, "transform", original_local_transform, tiempo_transicion)
+	
+	tween.tween_callback(func(): 
+		en_cinematica = false
+		controles_bloqueados = false
+	)
+
+# --- SISTEMA DE MENÚ CINEMÁTICO ---
+
+func preparar_camara_menu(transform_menu: Transform3D) -> void:
+	en_cinematica = true # Evita que _physics_process llame a _update_head_bob
+	controles_bloqueados = true
+	camera_enabled = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	camera_3d.top_level = true
+	camera_3d.global_transform = transform_menu
+
+
+func transicionar_a_jugador(duracion: float = 3.5) -> void:
+	var target_transform = camera_pivot.global_transform
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(camera_3d, "global_transform", target_transform, duracion)
+	
+	tween.tween_callback(func():
+		camera_3d.top_level = false
+		camera_3d.position = default_camera_pos
+		camera_3d.rotation = Vector3.ZERO
+		
+		en_cinematica = false
+		controles_bloqueados = false
+		camera_enabled = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	)
+
 
 func _update_head_bob(delta: float) -> void:
+	# Protección: Si la cámara está desacoplada del jugador, no tocar su posición
+	if camera_3d.top_level:
+		return
+
 	if controles_bloqueados:
 		camera_3d.position = camera_3d.position.lerp(default_camera_pos, delta * 10.0)
 		return
@@ -250,28 +307,3 @@ func _update_head_bob(delta: float) -> void:
 	landing_bounce = lerp(landing_bounce, 0.0, delta * 10.0)
 	target_pos.y += landing_bounce
 	camera_3d.position = camera_3d.position.lerp(target_pos, delta * 12.0)
-
-
-func ejecutar_cinematica(transform_destino: Transform3D, duracion_total: float = 4.0) -> void:
-	if en_cinematica:
-		return
-		
-	en_cinematica = true
-	controles_bloqueados = true
-	interact_prompt.hide()
-	if current_interactable != null:
-		current_interactable.set_highlight(false)
-	
-	var original_local_transform = camera_3d.transform
-	var tiempo_transicion : float = 2.0
-	var tiempo_espera = max(0.1, duracion_total - (tiempo_transicion * 2.0))
-	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	
-	tween.tween_property(camera_3d, "global_transform", transform_destino, tiempo_transicion)
-	tween.tween_interval(tiempo_espera)
-	tween.tween_property(camera_3d, "transform", original_local_transform, tiempo_transicion)
-	
-	tween.tween_callback(func(): 
-		en_cinematica = false
-		controles_bloqueados = false
-	)

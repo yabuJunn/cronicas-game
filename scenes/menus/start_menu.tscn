@@ -1,87 +1,7 @@
 [gd_scene format=3 uid="uid://d4c034u64chjf"]
 
 [ext_resource type="Script" uid="uid://dtfypofmotivr" path="res://scenes/menus/start_menu.gd" id="1_8tuso"]
-[ext_resource type="PackedScene" uid="uid://bpdddgyyg2rpc" path="res://scenes/levels/maps/Whispering_forest_map.scn" id="2_ifl8t"]
 [ext_resource type="Texture2D" uid="uid://c2bnmxj7xnaxy" path="res://textures/Particle Textures/smoke.png" id="2_r2ayf"]
-[ext_resource type="Script" uid="uid://8ewcp6y5t36e" path="res://addons/ScatterShot/zone.gd" id="3_fnyec"]
-[ext_resource type="Script" uid="uid://1b47ci4ks7ew" path="res://addons/ScatterShot/layer.gd" id="4_gmtu0"]
-[ext_resource type="Script" uid="uid://jhw5h6gwpjmr" path="res://addons/ScatterShot/collection.gd" id="5_wh12j"]
-[ext_resource type="MeshLibrary" uid="uid://dql2y2bcrp4gf" path="res://library/trees_library.tres" id="6_pm0y6"]
-[ext_resource type="Script" uid="uid://gwqrknegmc0e" path="res://addons/ScatterShot/collection_meshes.gd" id="7_6e57w"]
-[ext_resource type="MeshLibrary" uid="uid://bfe6u2ejyptuv" path="res://library/bush_library.tres" id="8_uc52v"]
-[ext_resource type="Script" uid="uid://dyltpy7s15mtf" path="res://addons/ScatterShot/pattern.gd" id="9_gp6u6"]
-[ext_resource type="PackedScene" uid="uid://duus3jv4lch8k" path="res://scenes/world/paths/long_wavy_path_decal.tscn" id="10_gmtu0"]
-
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ifl8t"]
-ground_color = Color(0.19165215, 0.504012, 0.6223743, 1)
-
-[sub_resource type="Sky" id="Sky_yrra7"]
-sky_material = SubResource("PhysicalSkyMaterial_ifl8t")
-
-[sub_resource type="Environment" id="Environment_mxv33"]
-background_mode = 2
-background_color = Color(0.361864, 0.647419, 0.75454575, 1)
-sky = SubResource("Sky_yrra7")
-ambient_light_source = 2
-ambient_light_color = Color(0.3346886, 0.71881086, 0.8148487, 1)
-ambient_light_energy = 0.14
-reflected_light_source = 2
-tonemap_mode = 3
-fog_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.13104072, 0.31304422, 0.3627033, 1)
-fog_density = 1.0
-fog_depth_curve = 2.9281712
-fog_depth_begin = 0.0
-fog_depth_end = 150.0
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0548
-volumetric_fog_albedo = Color(0.3898493, 0.6642744, 0.7293618, 1)
-volumetric_fog_emission = Color(0.0930867, 0.22663963, 0.24753043, 1)
-volumetric_fog_gi_inject = 0.32
-volumetric_fog_anisotropy = 0.8
-adjustment_enabled = true
-adjustment_contrast = 1.1
-adjustment_saturation = 0.75
-
-[sub_resource type="Resource" id="Resource_s4sqn"]
-script = ExtResource("7_6e57w")
-mesh_library = ExtResource("6_pm0y6")
-mesh_proportions = Array[int]([10])
-collision_user_data = null
-align = 2
-min_scale = 0.519
-max_scale = 0.7
-metadata/_custom_type_script = "uid://gwqrknegmc0e"
-
-[sub_resource type="Resource" id="Resource_rws65"]
-script = ExtResource("4_gmtu0")
-collections = Array[ExtResource("5_wh12j")]([SubResource("Resource_s4sqn")])
-raycast_mask = 15
-view_distance = 200.0
-fade_distance = 150.0
-metadata/_custom_type_script = "uid://1b47ci4ks7ew"
-
-[sub_resource type="Resource" id="Resource_ymrg4"]
-script = ExtResource("7_6e57w")
-mesh_library = ExtResource("8_uc52v")
-mesh_proportions = Array[int]([10])
-collision_user_data = null
-align = 1
-min_scale = 0.2
-max_scale = 0.3
-metadata/_custom_type_script = "uid://gwqrknegmc0e"
-
-[sub_resource type="Resource" id="Resource_v2mpa"]
-script = ExtResource("4_gmtu0")
-collections = Array[ExtResource("5_wh12j")]([SubResource("Resource_ymrg4")])
-variation = 1
-metadata/_custom_type_script = "uid://1b47ci4ks7ew"
-
-[sub_resource type="Resource" id="Resource_f8yhk"]
-script = ExtResource("9_gp6u6")
-layers = Array[ExtResource("4_gmtu0")]([SubResource("Resource_rws65"), SubResource("Resource_v2mpa")])
-metadata/_custom_type_script = "uid://dyltpy7s15mtf"
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8tuso"]
 blend_mode = 1
@@ -125,83 +45,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8tuso")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1582859081]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1783034385]
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=392002129]
-
-[node name="WhisperingForestMap" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1316323218 instance=ExtResource("2_ifl8t")]
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=672627717]
-transform = Transform3D(0.15355495, 0, -0.9881401, 0, 1, 0, 0.9881401, 0, 0.15355495, -170.10582, -7.8739786, 120.40457)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Node3D" unique_id=2054794102]
-environment = SubResource("Environment_mxv33")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1774632151]
-transform = Transform3D(0.8910335, 0.41212454, 0.1902966, -0.16672364, -0.0927972, 0.98162717, 0.42221153, -0.90638983, -0.013974499, 0, 0, 0)
-layers = 6
-light_energy = 0.442
-light_volumetric_fog_energy = 0.148
-shadow_enabled = true
-
-[node name="ScatterShotZoneCircle18" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1283026462]
-transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -113.7837, 14.425888, 180.30646)
-script = ExtResource("3_fnyec")
-pattern = SubResource("Resource_f8yhk")
-density = 0.1200000000000001
-hardness = 1.0
-shape = 1
-rect_size = Vector2(34.434067, 50)
-metadata/_custom_type_script = "uid://8ewcp6y5t36e"
-
-[node name="ScatterShotZoneCircle19" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1416756554]
-transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -113.7837, 14.425888, 62.524017)
-script = ExtResource("3_fnyec")
-pattern = SubResource("Resource_f8yhk")
-density = 0.1200000000000001
-hardness = 1.0
-shape = 1
-rect_size = Vector2(34.434067, 50)
-metadata/_custom_type_script = "uid://8ewcp6y5t36e"
-
-[node name="ScatterShotZoneCircle20" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1655029992]
-transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -187.64018, 14.425888, 62.524017)
-script = ExtResource("3_fnyec")
-pattern = SubResource("Resource_f8yhk")
-density = 0.1200000000000001
-hardness = 1.0
-shape = 1
-rect_size = Vector2(34.434067, 50)
-metadata/_custom_type_script = "uid://8ewcp6y5t36e"
-
-[node name="ScatterShotZoneCircle21" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=130875941]
-transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, -199.07793, 14.425888, 136.62721)
-script = ExtResource("3_fnyec")
-pattern = SubResource("Resource_f8yhk")
-density = 0.1200000000000001
-hardness = 1.0
-shape = 1
-rect_size = Vector2(34.434067, 50)
-metadata/_custom_type_script = "uid://8ewcp6y5t36e"
-
-[node name="LongWavyStraightPathDecal" parent="SubViewportContainer/SubViewport/Node3D" unique_id=80287129 instance=ExtResource("10_gmtu0")]
-transform = Transform3D(0.008621855, 0, -0.9999628, 0, 1, 0, 0.9999628, 0, 0.008621855, -79.828094, -11.854952, 125.45797)
-
-[node name="LongWavyStraightPathDecal2" parent="SubViewportContainer/SubViewport/Node3D" unique_id=714622077 instance=ExtResource("10_gmtu0")]
-transform = Transform3D(-0.8664963, 0, -0.49918365, 0, 1, 0, 0.49918365, 0, -0.8664963, -170.54506, -17.928701, 68.964676)
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=165202373]
 material = SubResource("CanvasItemMaterial_8tuso")
 position = Vector2(-194.5, -136.5)
@@ -229,7 +72,7 @@ layout_mode = 2
 
 [node name="GameTitle" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2113622510]
 layout_mode = 2
-text = "Cronicas de un mundo perdido"
+text = "Crónicas de un mundo perdido"
 label_settings = SubResource("LabelSettings_8tuso")
 horizontal_alignment = 1
 

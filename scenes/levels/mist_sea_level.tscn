@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://c62sk6j3203tb" path="res://scenes/objects/world/tree_1.tscn" id="19_i1rk8"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="21_qu8ma"]
 [ext_resource type="Script" uid="uid://obxfmef2ovdq" path="res://scenes/levels/next_level_area_sea.gd" id="22_dfwsi"]
+[ext_resource type="PackedScene" uid="uid://d4c034u64chjf" path="res://scenes/menus/start_menu.tscn" id="26_dlujj"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i1rk8"]
 _surfaces = [{
@@ -6107,7 +6108,7 @@ shape = SubResource("ConvexPolygonShape3D_mb5k1")
 shape = SubResource("ConvexPolygonShape3D_52rtf")
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
-transform = Transform3D(-0.1868498, 0, 0.9823885, 0, 1, 0, -0.9823885, 0, -0.1868498, -57.238617, 10.551292, 192.05962)
+transform = Transform3D(0.1754699, 0, -0.9844848, 0, 1, 0, 0.9844848, 0, 0.1754699, -52.891193, 10.100396, 191.60042)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969109660]
 transform = Transform3D(-0.7301208, -0.4904965, 0.4757486, 0.06111845, 0.64656574, 0.76040596, -0.68057907, 0.5842653, -0.4420928, -91.278076, 18.917465, 0)
@@ -6920,10 +6921,15 @@ script = ExtResource("17_pbm7r")
 [node name="CinemaMarkers" type="Node3D" parent="." unique_id=2081044657]
 
 [node name="CinemaMarkerDoor" type="Marker3D" parent="CinemaMarkers" unique_id=242369393 groups=["cinemaMarkers"]]
-transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.99858993, 0.045445226, 0.85155946, -0.00046140258, 0.52425796, 26.713533, 11.430074, 0.4255377)
+transform = Transform3D(0.52353954, 0.05308339, -0.8503461, -0.027437037, 0.99858993, 0.045445226, 0.85155946, -0.00046140258, 0.52425796, 26.714, 20.415, 0.426)
 gizmo_extents = 10.0
 script = ExtResource("21_qu8ma")
 targetname = "Door"
+
+[node name="MenuCameraMarker" type="Marker3D" parent="CinemaMarkers" unique_id=401572066 groups=["cinemaMarkers"]]
+transform = Transform3D(0.27152693, 0.05119804, -0.9610681, -0.027437031, 0.9985899, 0.045445226, 0.96203965, 0.014029253, 0.27254897, -96.951096, 14.521332, 201.19019)
+gizmo_extents = 10.0
+script = ExtResource("21_qu8ma")
 
 [node name="NextLevelArea" type="Area3D" parent="." unique_id=1701596315]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.92251, 13.7847805, -14.176397)
@@ -6934,3 +6940,5 @@ siguiente_nivel_ruta = "uid://dx1r5d1kp4lk0"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NextLevelArea" unique_id=1985903699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.088379, 2.9402466, 0)
 shape = SubResource("BoxShape3D_qu8ma")
+
+[node name="StartMenu" parent="." unique_id=689224197 instance=ExtResource("26_dlujj")]

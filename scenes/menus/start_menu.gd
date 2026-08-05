@@ -59,4 +59,5 @@ func _on_ajustes_pressed() -> void:
 
 
 func _on_salir_pressed() -> void:
+	salir_presionado.emit()
 	get_tree().quit()

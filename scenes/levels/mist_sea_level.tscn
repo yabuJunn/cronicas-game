@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_0abja"]
 [ext_resource type="AudioStream" uid="uid://bjd6itlfpw0xm" path="res://sounds/music/OST - Mist Sea.mp3" id="2_i1rk8"]
 [ext_resource type="CompressedTexture3D" uid="uid://bknn4a6af1nr0" path="res://scenes/levels/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr" id="3_73vye"]
+[ext_resource type="AudioStream" uid="uid://bp0ovvdq8d0qt" path="res://sounds/music/one (start menu music from Crow Shade).mp3" id="3_k3r7x"]
 [ext_resource type="Material" uid="uid://bfvbp485t8l3n" path="res://textures/Stone/Stone_03-256x256.tres" id="3_vww24"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cciah"]
 [ext_resource type="Material" uid="uid://bdlb4ujhaa5cx" path="res://textures/Stone/Stone_05-256x256.tres" id="5_klac0"]
@@ -3118,6 +3119,7 @@ size = Vector3(14.315186, 12.039673, 8.999756)
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
 script = ExtResource("1_bvfmd")
 musica_playa = ExtResource("2_i1rk8")
+startMenuMusic = ExtResource("3_k3r7x")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=30706746]
 script = ExtResource("1_qc4ln")

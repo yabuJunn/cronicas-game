@@ -2269,6 +2269,41 @@ puerta_id = "PeasantHouse"
 es_puerta = true
 item_clave_requerido = "Llave del Campesino"
 
+[node name="Table5" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=894808354 instance=ExtResource("26_uc07v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.969162, -0.9093189, 0.6283722)
+
+[node name="Chair14" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=1523121784 instance=ExtResource("27_qm663")]
+transform = Transform3D(0.025723308, 0, 0.9996691, 0, 1, 0, -0.9996691, 0, 0.025723308, 2.0466309, -0.74643993, 0.62135315)
+
+[node name="Chair15" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=1454035207 instance=ExtResource("27_qm663")]
+transform = Transform3D(0.9997954, 0, -0.02024436, 0, 1, 0, 0.02024436, 0, 0.9997954, 1.273468, -0.74643993, 1.3452072)
+
+[node name="Chair16" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=478718056 instance=ExtResource("27_qm663")]
+transform = Transform3D(0.9978156, 0, 0.066064924, 0, 1, 0, -0.066064924, 0, 0.9978156, 0.6246948, -0.74643993, 1.32864)
+
+[node name="BedSingle1" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=427059269 instance=ExtResource("28_8b8ma")]
+transform = Transform3D(-0.014730096, 0, -0.9998915, 0, 1, 0, 0.9998915, 0, -0.014730096, -2.2687378, -1.3643665, 0.6972046)
+
+[node name="BedSingle2" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=1951265578 instance=ExtResource("28_8b8ma")]
+transform = Transform3D(-0.99970794, 0, -0.024170429, 0, 1, 0, 0.024170429, 0, -0.99970794, -1.5710602, -1.3643665, -1.3145142)
+
+[node name="OldKey" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=256675615 instance=ExtResource("36_yr5eh")]
+transform = Transform3D(0.029808179, -0.00010899361, -0.0033853566, 0.0033436678, 0.005733801, 0.02925651, 0.0005407436, -0.029446764, 0.0057092877, 1.193985, -0.53087103, 0.61312103)
+item_name = "Llave del Granjero"
+item_description = "Una llave muy antigua, abre la casa del granjero."
+
+[node name="LoreNote" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=1956528219 instance=ExtResource("34_mtse2")]
+transform = Transform3D(0.5646502, 0, 0.8253305, 0, 1, 0, -0.8253305, 0, 0.5646502, 0.5505829, -0.53169894, 0.64053726)
+
+[node name="MedievalBox1" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=496153875 instance=ExtResource("21_d1dbm")]
+transform = Transform3D(0.7659323, 0, -0.6429213, 0, 1, 0, 0.6429213, 0, 0.7659323, 1.9152222, -0.80126905, -0.85100937)
+
+[node name="MedievalBox2" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=99927430 instance=ExtResource("30_yr5eh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.130371, 0.19629455, -0.8633461)
+
+[node name="MedievalBox3" parent="WorldObjects/Houses/Village/VillageHouseInside(2)" unique_id=1820066653 instance=ExtResource("31_3wj3j")]
+transform = Transform3D(0.8353567, 0, 0.54970825, 0, 1, 0, -0.54970825, 0, 0.8353567, -0.92066956, -0.8049493, 1.0981674)
+
 [node name="VillageHouseInside(2)2" parent="WorldObjects/Houses/Village" unique_id=992755675 instance=ExtResource("26_5uq1w")]
 transform = Transform3D(-0.80709434, 0, 0.59042245, 0, 1, 0, -0.59042245, 0, -0.80709434, 259.3749, -0.5238695, 103.459755)
 
@@ -3580,9 +3615,10 @@ transform = Transform3D(0.012565455, 0, 0.5998684, 0, 0.7, 0, -0.5998684, 0, 0.0
 
 [node name="VillageKeysObjects" type="Node3D" parent="WorldObjects/Houses/Village" unique_id=1818064065]
 
-[node name="OldKey" parent="WorldObjects/Houses/Village/VillageKeysObjects" unique_id=256675615 instance=ExtResource("36_yr5eh")]
+[node name="OldKey" parent="WorldObjects/Houses/Village/VillageKeysObjects" unique_id=1742471314 instance=ExtResource("36_yr5eh")]
 transform = Transform3D(0.029808179, -0.00010899019, -0.0033853557, 0.0033436678, 0.005733801, 0.02925651, 0.00054074294, -0.029446756, 0.0057092872, 230.49281, -1.2913373, 42.025185)
 item_name = "Llave del Campesino"
+item_description = "Una llave muy antigua, abre alguna casa de un campesino."
 
 [node name="Table5" parent="WorldObjects/Houses/Village/VillageKeysObjects" unique_id=283721402 instance=ExtResource("26_uc07v")]
 transform = Transform3D(0.85243034, 0, -0.5228408, 0, 1, 0, 0.5228408, 0, 0.85243034, 230.51376, -1.6804271, 41.996838)

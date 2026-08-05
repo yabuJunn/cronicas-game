@@ -29,8 +29,8 @@ placedEnergySphere = NodePath("MistCore")
 usar_audio = false
 se_puede_recoger = false
 es_puerta = true
-item_clave_requerido = "Esfera de Energía"
-texto_con_objeto = "Coloca esfera de energía"
+item_clave_requerido = "Núcleo de niebla"
+texto_con_objeto = "Colocar núcleo de niebla"
 texto_sin_objeto = "No tienes nada que encaje aquí"
 mesh = NodePath("FogGateSwitchMesh")
 

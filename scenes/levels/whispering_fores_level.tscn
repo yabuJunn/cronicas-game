@@ -62,7 +62,6 @@
 [ext_resource type="PackedScene" uid="uid://c58bdski58bfp" path="res://scenes/objects/world/houses/village_house_inside1.tscn" id="45_dwc23"]
 [ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="45_uu8qh"]
 [ext_resource type="Script" uid="uid://oygd1qog5wr7" path="res://scenes/objects/world/mist_barrier.gd" id="46_7n1e8"]
-[ext_resource type="Shader" uid="uid://dn25ff07u6xum" path="res://shaders/mist_barrier_shader.gdshader" id="49_reosq"]
 [ext_resource type="Script" uid="uid://b2hmc24838gbt" path="res://globals/checkpoint_area.gd" id="52_xm6r1"]
 [ext_resource type="Script" uid="uid://ccoeqv1lj1y61" path="res://globals/death_zone_area.gd" id="53_jikva"]
 
@@ -98,7 +97,7 @@ fog_height = 53.06
 fog_height_density = -0.1135
 fog_depth_end = 400.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.04
+volumetric_fog_density = 0.0802
 volumetric_fog_albedo = Color(0.4382773, 0.43827733, 0.4382773, 1)
 volumetric_fog_emission = Color(0.04599952, 0.13572797, 0.14800471, 1)
 volumetric_fog_length = 40.3
@@ -495,6 +494,16 @@ data = PackedVector3Array(-2.1325, 3.2475, 2.1325, 2.1325, 3.2475, 2.1325, -2.13
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qd3j2"]
 data = PackedVector3Array(-2.1325, 3.2475, 2.1325, 2.1325, 3.2475, 2.1325, -2.1325, -3.2475, 2.1325, 2.1325, 3.2475, 2.1325, 2.1325, -3.2475, 2.1325, -2.1325, -3.2475, 2.1325, 2.1325, 3.2475, -2.1325, -2.1325, 3.2475, -2.1325, 2.1325, -3.2475, -2.1325, -2.1325, 3.2475, -2.1325, -2.1325, -3.2475, -2.1325, 2.1325, -3.2475, -2.1325, 2.1325, 3.2475, 2.1325, 2.1325, 3.2475, -2.1325, 2.1325, -3.2475, 2.1325, 2.1325, 3.2475, -2.1325, 2.1325, -3.2475, -2.1325, 2.1325, -3.2475, 2.1325, -2.1325, 3.2475, -2.1325, -2.1325, 3.2475, 2.1325, -2.1325, -3.2475, -2.1325, -2.1325, 3.2475, 2.1325, -2.1325, -3.2475, 2.1325, -2.1325, -3.2475, -2.1325, 2.1325, 3.2475, 2.1325, -2.1325, 3.2475, 2.1325, 2.1325, 3.2475, -2.1325, -2.1325, 3.2475, 2.1325, -2.1325, 3.2475, -2.1325, 2.1325, 3.2475, -2.1325, -2.1325, -3.2475, 2.1325, 2.1325, -3.2475, 2.1325, -2.1325, -3.2475, -2.1325, 2.1325, -3.2475, 2.1325, 2.1325, -3.2475, -2.1325, -2.1325, -3.2475, -2.1325)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yr5eh"]
+albedo_texture = SubResource("CompressedTexture2D_60qc2")
+uv1_scale = Vector3(14.125, 6.085, 3.09)
+uv2_scale = Vector3(5.04, 5.04, 5.04)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_3wj3j"]
+material = SubResource("StandardMaterial3D_yr5eh")
+size = Vector3(17, 4.355, 4.265)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ihohn"]
 data = PackedVector3Array(-2.1325, 3.2475, 2.1325, 2.1325, 3.2475, 2.1325, -2.1325, -3.2475, 2.1325, 2.1325, 3.2475, 2.1325, 2.1325, -3.2475, 2.1325, -2.1325, -3.2475, 2.1325, 2.1325, 3.2475, -2.1325, -2.1325, 3.2475, -2.1325, 2.1325, -3.2475, -2.1325, -2.1325, 3.2475, -2.1325, -2.1325, -3.2475, -2.1325, 2.1325, -3.2475, -2.1325, 2.1325, 3.2475, 2.1325, 2.1325, 3.2475, -2.1325, 2.1325, -3.2475, 2.1325, 2.1325, 3.2475, -2.1325, 2.1325, -3.2475, -2.1325, 2.1325, -3.2475, 2.1325, -2.1325, 3.2475, -2.1325, -2.1325, 3.2475, 2.1325, -2.1325, -3.2475, -2.1325, -2.1325, 3.2475, 2.1325, -2.1325, -3.2475, 2.1325, -2.1325, -3.2475, -2.1325, 2.1325, 3.2475, 2.1325, -2.1325, 3.2475, 2.1325, 2.1325, 3.2475, -2.1325, -2.1325, 3.2475, 2.1325, -2.1325, 3.2475, -2.1325, 2.1325, 3.2475, -2.1325, -2.1325, -3.2475, 2.1325, 2.1325, -3.2475, 2.1325, -2.1325, -3.2475, -2.1325, 2.1325, -3.2475, 2.1325, 2.1325, -3.2475, -2.1325, -2.1325, -3.2475, -2.1325)
@@ -908,22 +917,131 @@ frequency = 0.0401
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jikva"]
 noise = SubResource("FastNoiseLite_xm6r1")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_reosq"]
+[sub_resource type="Shader" id="Shader_8b8ma"]
+code = "// Shader de Niebla Pintoresca Multicolor (Mezcla Orgánica Balanceada de 4 Colores)
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+group_uniforms Colores_Pintura;
+uniform vec4 color_base : source_color = vec4(0.12, 0.18, 0.28, 1.0);
+uniform vec4 color_retazo_1 : source_color = vec4(0.85, 0.45, 0.65, 1.0); // Pincelada A
+uniform vec4 color_retazo_2 : source_color = vec4(0.25, 0.75, 0.85, 1.0); // Pincelada B
+uniform vec4 color_brillo : source_color = vec4(0.95, 0.95, 1.00, 1.0);   // Crestas/Campos de Energía
+
+group_uniforms Emision_Energia;
+// Controla la luz emitida por los colores base y los retazos
+uniform float intensidad_emision_colores : hint_range(0.0, 10.0) = 1.0; 
+// Controla la intensidad del brillo máximo en las crestas
+uniform float intensidad_emision_brillo : hint_range(0.0, 10.0) = 3.0;
+
+group_uniforms Direcciones_y_Movimiento;
+uniform vec2 velocidad_capa_base = vec2(0.015, -0.010);
+uniform vec2 velocidad_retazo_1 = vec2(-0.025, 0.020);
+uniform vec2 velocidad_retazo_2 = vec2(0.020, 0.030);
+
+group_uniforms Texturas_y_Forma;
+uniform sampler2D noise_pincelada_1 : hint_default_white, repeat_enable;
+uniform sampler2D noise_pincelada_2 : hint_default_white, repeat_enable;
+uniform float escala_mundo = 0.2; // Escala global continua
+uniform float deformacion_vertices : hint_range(0.0, 20.0) = 0.15;
+// Controla qué tan orgánicas y curvadas son las nubes de los retazos (elimina líneas rectas)
+uniform float distorsion_organica_nubes : hint_range(0.0, 1.0) = 0.5;
+
+group_uniforms Disolucion_y_Mezcla;
+uniform sampler2D depth_texture : hint_depth_texture;
+uniform float suavizado_proximidad = 1.0; // Integración suave contra paredes/suelo
+uniform float fade_dissolve : hint_range(0.0, 1.0) = 1.0; // Controlado por GDScript
+
+varying vec3 world_pos_var;
+
+void vertex() {
+	// 1. Guardamos la posición global real del vértice
+	world_pos_var = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	
+	// 2. Ondulación de vértices con deformación continua
+	vec2 uv_v1 = (world_pos_var.xz * escala_mundo) + (TIME * velocidad_capa_base);
+	vec2 uv_v2 = (world_pos_var.xy * escala_mundo * 1.5) + (TIME * velocidad_retazo_1);
+	
+	float n1 = texture(noise_pincelada_1, uv_v1).r;
+	float n2 = texture(noise_pincelada_2, uv_v2).r;
+	float desplazamiento_ondulado = (n1 - 0.5) + (n2 - 0.5);
+
+	VERTEX += NORMAL * desplazamiento_ondulado * deformacion_vertices;
+}
+
+void fragment() {
+	// --- 1. Muestreo de Ruido Semilla para Deformación Fluida ---
+	vec2 uv_semilla = (world_pos_var.xz * escala_mundo) + (TIME * velocidad_capa_base);
+	float ruido_semilla = texture(noise_pincelada_1, uv_semilla).r;
+
+	// Distorsión tridimensional (curvada, sin rectas)
+	vec2 distorsion_uv = vec2(
+		sin(world_pos_var.y * 0.4 + TIME * 0.2) + (ruido_semilla - 0.5),
+		cos(world_pos_var.x * 0.4 - TIME * 0.25) + (ruido_semilla - 0.5)
+	) * distorsion_organica_nubes;
+
+	// --- 2. Coordenadas Únicas y Continuas para Cada Capa ---
+	vec2 uv_base = (vec2(world_pos_var.x, world_pos_var.z + world_pos_var.y * 0.3) * escala_mundo) + (TIME * velocidad_capa_base) + distorsion_uv;
+	vec2 uv_retazo1 = (vec2(world_pos_var.x * 0.85 + world_pos_var.y * 0.5, world_pos_var.z * 0.85 + world_pos_var.y * 0.5) * escala_mundo * 1.1) + (TIME * velocidad_retazo_1) - distorsion_uv * 1.2;
+	vec2 uv_retazo2 = (vec2(world_pos_var.z * 0.9 - world_pos_var.y * 0.6, world_pos_var.x * 0.9 + world_pos_var.y * 0.4) * escala_mundo * 0.95) + (TIME * velocidad_retazo_2) + distorsion_uv.yx;
+
+	float n_base = texture(noise_pincelada_1, uv_base).r;
+	float n_ret1 = texture(noise_pincelada_2, uv_retazo1).r;
+	float n_ret2 = texture(noise_pincelada_1, uv_retazo2).r;
+
+	// --- 3. Cálculo de Pesos Balanceados (Ningún color se opaca) ---
+	float w_base = smoothstep(0.7, 0.1, n_base);    // Presente en valles de ruido
+	float w_ret1 = smoothstep(0.2, 0.8, n_ret1);    // Presente en picos del retazo 1
+	float w_ret2 = smoothstep(0.2, 0.8, n_ret2);    // Presente en picos del retazo 2
+
+	// Normalizamos la suma para que siempre sumen 100% de color
+	float peso_total = max(w_base + w_ret1 + w_ret2, 0.001);
+
+	// Mezcla suave y fluida de los 3 colores principales
+	vec3 color_tricolor = (color_base.rgb * w_base + color_retazo_1.rgb * w_ret1 + color_retazo_2.rgb * w_ret2) / peso_total;
+
+	// --- 4. Vetas incandescentes (Color Brillo) ---
+	float peak_energy = (n_base * 0.35) + (n_ret1 * 0.35) + (n_ret2 * 0.35);
+	float zonas_brillo = smoothstep(0.58, 0.82, peak_energy);
+	
+	vec3 color_mezclado = mix(color_tricolor, color_brillo.rgb, zonas_brillo);
+
+	// --- 5. Cálculo de Emisión Independiente ---
+	// Separamos el brillo de los colores base y el brillo de las crestas
+	vec3 emision_base = color_tricolor * intensidad_emision_colores;
+	vec3 emision_crestas = color_brillo.rgb * intensidad_emision_brillo;
+	
+	// Mezclamos ambas emisiones según las zonas de brillo
+	vec3 emision_final = mix(emision_base, emision_crestas, zonas_brillo);
+
+	// --- 6. Proximity Fade ---
+	float depth_tex = texture(depth_texture, SCREEN_UV).r;
+	vec4 world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth_tex, 1.0);
+	world_pos.xyz /= world_pos.w;
+	float prox_fade = clamp(1.0 - smoothstep(world_pos.z + suavizado_proximidad, world_pos.z, VERTEX.z), 0.0, 1.0);
+
+	// --- 7. Resultado Final (Albedo, Emisión y Opacidad) ---
+	ALBEDO = color_mezclado;
+	EMISSION = emision_final * prox_fade * fade_dissolve;
+	ALPHA = prox_fade * fade_dissolve;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yr5eh"]
 seed = 1
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ftjc2"]
-noise = SubResource("FastNoiseLite_reosq")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3wj3j"]
+noise = SubResource("FastNoiseLite_yr5eh")
 seamless = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_exqqg"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_57jtc"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xm6r1"]
-noise = SubResource("FastNoiseLite_exqqg")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kokwv"]
+noise = SubResource("FastNoiseLite_57jtc")
 seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftjc2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktlgh"]
 render_priority = 0
-shader = ExtResource("49_reosq")
+shader = SubResource("Shader_8b8ma")
 shader_parameter/color_base = Color(0.2045747, 0.28878275, 0.42903468, 1)
 shader_parameter/color_retazo_1 = Color(0.85, 0.45, 0.65, 1)
 shader_parameter/color_retazo_2 = Color(0.77072144, 0.94450945, 0.98940986, 1)
@@ -933,16 +1051,16 @@ shader_parameter/intensidad_emision_brillo = 1.00800004788
 shader_parameter/velocidad_capa_base = Vector2(0.015, -0.01)
 shader_parameter/velocidad_retazo_1 = Vector2(-0.025, 0.02)
 shader_parameter/velocidad_retazo_2 = Vector2(0.02, 0.03)
-shader_parameter/noise_pincelada_1 = SubResource("NoiseTexture2D_ftjc2")
-shader_parameter/noise_pincelada_2 = SubResource("NoiseTexture2D_xm6r1")
+shader_parameter/noise_pincelada_1 = SubResource("NoiseTexture2D_3wj3j")
+shader_parameter/noise_pincelada_2 = SubResource("NoiseTexture2D_kokwv")
 shader_parameter/escala_mundo = 0.009
-shader_parameter/deformacion_vertices = 9.706000461035
+shader_parameter/deformacion_vertices = 0.0
 shader_parameter/distorsion_organica_nubes = 0.0
 shader_parameter/suavizado_proximidad = 1.0
 shader_parameter/fade_dissolve = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_exqqg"]
-material = SubResource("ShaderMaterial_ftjc2")
+material = SubResource("ShaderMaterial_ktlgh")
 subdivide_width = 100
 subdivide_height = 100
 subdivide_depth = 2
@@ -984,6 +1102,9 @@ shader_parameter/density_texture = SubResource("NoiseTexture3D_eolq4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_reosq"]
 size = Vector3(402.89136, 211, 10.805664)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yr5eh"]
+size = Vector3(3.5430908, 31.562096, 16.928429)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_exqqg"]
 size = Vector3(116.11273, 7.8945007, 7.85083)
@@ -2722,6 +2843,18 @@ shape = SubResource("ConcavePolygonShape3D_qd3j2")
 transform = Transform3D(0.5932502, 0, 0.80501825, 0, 1, 0, -0.80501825, 0, 0.5932502, 262.73434, -1.847886, 62.867607)
 mesh = SubResource("BoxMesh_ju63t")
 
+[node name="MeshInstanceWall118" type="MeshInstance3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=230830091]
+transform = Transform3D(0.6151111, 0, 0.7884406, 0, 1, 0, -0.7884406, 0, 0.6151111, 275.05475, 26.87695, 78.417404)
+mesh = SubResource("BoxMesh_3wj3j")
+
+[node name="MeshInstanceWall119" type="MeshInstance3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=1908666652]
+transform = Transform3D(0.41988015, 0.45026633, 0.78801084, -0.7313537, 0.6819984, 0, -0.537422, -0.57631457, 0.61566156, 279.60925, 21.156963, 73.0948)
+mesh = SubResource("BoxMesh_3wj3j")
+
+[node name="MeshInstanceWall120" type="MeshInstance3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=1011216145]
+transform = Transform3D(0.41988015, -0.45026633, 0.78801084, 0.7313537, 0.6819984, 0, -0.537422, 0.57631457, 0.61566156, 271.03238, 21.156963, 84.04934)
+mesh = SubResource("BoxMesh_3wj3j")
+
 [node name="CollisionShape3D48" type="CollisionShape3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=663854739]
 transform = Transform3D(0.5932502, 0, 0.80501825, 0, 1, 0, -0.80501825, 0, 0.5932502, 262.73434, -1.847886, 62.867607)
 shape = SubResource("ConcavePolygonShape3D_ihohn")
@@ -3276,6 +3409,11 @@ mesh = SubResource("BoxMesh_uc07v")
 
 [node name="FogGate" parent="WorldObjects/Houses/Village" unique_id=1038753867 instance=ExtResource("35_ui0oi")]
 transform = Transform3D(0.82041144, 0, -0.57177365, 0, 1, 0, 0.57177365, 0, 0.82041144, 269.99304, 0.85046613, 74.379295)
+puerta_id = "VillageBarrier"
+es_puerta = true
+item_clave_requerido = "Núcleo de niebla"
+texto_con_objeto = "[E] Colocar Núcleo de Niebla"
+texto_sin_objeto = "No tienes nada que encaje aquí"
 
 [node name="VillageHouses" type="Node3D" parent="WorldObjects/Houses/Village" unique_id=1381908281]
 
@@ -3437,6 +3575,24 @@ transform = Transform3D(-0.5783419, 0, -0.8157946, 0, 1, 0, 0.8157946, 0, -0.578
 
 [node name="VillageHouse(3)27" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=762323741 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(0.8003758, 0, -0.59949875, 0, 1, 0, 0.59949875, 0, 0.8003758, 269.29697, -1.796565, 80.09336)
+
+[node name="VillageHouse(3)29" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1149988826 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.828569, 0, 0.55988723, 0, 1, 0, -0.55988723, 0, -0.828569, 268.1991, 2.4244246, 80.997955)
+
+[node name="VillageHouse(3)30" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2089700327 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.828569, 0, 0.55988723, 0, 1, 0, -0.55988723, 0, -0.828569, 274.253, 2.4244237, 84.328766)
+
+[node name="VillageHouse(3)31" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1273619931 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.82004213, 0, -0.5723034, 0, 1, 0, 0.5723034, 0, 0.82004213, 277.23816, 2.4244246, 71.7017)
+
+[node name="VillageHouse(3)33" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2076475034 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.828569, 0, 0.55988723, 0, 1, 0, -0.55988723, 0, -0.828569, 274.253, 7.9819307, 84.328766)
+
+[node name="VillageHouse(3)34" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2087336199 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.82004213, 0, -0.5723034, 0, 1, 0, 0.5723034, 0, 0.82004213, 277.23816, 7.9819326, 71.7017)
+
+[node name="VillageHouse(3)32" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=930786125 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(0.82004213, 0, -0.5723034, 0, 1, 0, 0.5723034, 0, 0.82004213, 271.2351, 2.4244237, 68.28008)
 
 [node name="VillageHouse(3)28" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1025985351 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(0.8003758, 0, -0.59949875, 0, 1, 0, 0.59949875, 0, 0.8003758, 277.50116, -1.796565, 73.725136)
@@ -3641,6 +3797,12 @@ transform = Transform3D(0.999998, 0, -0.002007231, 0, 1, 0, 0.002007231, 0, 0.99
 
 [node name="VillageTower(1)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=977565960 instance=ExtResource("19_r1yae")]
 transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 256.32654, 29.134, 42.356)
+
+[node name="VillageTower(1)4" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=24059140 instance=ExtResource("19_r1yae")]
+transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 279.687, 29.134, 70.476)
+
+[node name="VillageTower(1)5" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1195650257 instance=ExtResource("19_r1yae")]
+transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 268.472, 29.134, 84.531)
 
 [node name="VillageTower(1)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=174608859 instance=ExtResource("19_r1yae")]
 transform = Transform3D(-0.2783346, 0, -0.33041844, 0, 0.525, 0, 0.30104792, 0, -0.30548915, 160.89641, 29.134, 45.069496)
@@ -4197,8 +4359,8 @@ layers = 6
 size = Vector3(30.465096, 62.179897, 108.37401)
 material = SubResource("FogMaterial_jvg85")
 
-[node name="TransitionLevelPathFog4" type="FogVolume" parent="Fog" unique_id=1428856423]
-transform = Transform3D(0.7975945, 0, -0.603194, 0, 1, 0, 0.603194, 0, 0.7975945, 284.54156, -10.249771, 85.827095)
+[node name="TransitionLevelVillageFog1" type="FogVolume" parent="Fog" unique_id=1428856423]
+transform = Transform3D(0.7975945, 0, -0.603194, 0, 1, 0, 0.603194, 0, 0.7975945, 290.27167, -10.249771, 85.83634)
 layers = 6
 size = Vector3(30.465096, 29.720703, 28.435905)
 material = SubResource("FogMaterial_jvg85")
@@ -4509,11 +4671,18 @@ script = ExtResource("22_ymrg4")
 targetname = "MistBarrier1"
 metadata/_custom_type_script = "uid://fbk2erjs31o0"
 
-[node name="MistBarrier3" type="Marker3D" parent="CinemaMarkers" unique_id=251869085]
+[node name="MistBarrier3" type="Marker3D" parent="CinemaMarkers" unique_id=251869085 groups=["cinemaMarkers"]]
 transform = Transform3D(0.4751482, 0, -0.8799057, 0, 1, 0, 0.8799057, 0, 0.4751482, 67.818375, 5.904523, 80.87141)
 gizmo_extents = 10.0
 script = ExtResource("22_ymrg4")
 targetname = "MistBarrier3"
+metadata/_custom_type_script = "uid://fbk2erjs31o0"
+
+[node name="VillageMistBarrier" type="Marker3D" parent="CinemaMarkers" unique_id=1055015210 groups=["cinemaMarkers"]]
+transform = Transform3D(-0.4775317, -0.5179225, -0.7097321, -0.08613768, 0.8314915, -0.5488192, 0.8743819, -0.20094386, -0.44167608, 262.16168, 0.25482988, 69.18189)
+gizmo_extents = 10.0
+script = ExtResource("22_ymrg4")
+targetname = "VillageBarrier"
 metadata/_custom_type_script = "uid://fbk2erjs31o0"
 
 [node name="NextLevelMarkers" type="Node3D" parent="." unique_id=1662106790]
@@ -4717,6 +4886,20 @@ duracion_desvanecimiento = 7.0
 mesh = SubResource("BoxMesh_exqqg")
 
 [node name="FogVolume" type="FogVolume" parent="MistBarriers/MistBarriersBody/MistBarrier2" unique_id=289073190]
+material = SubResource("ShaderMaterial_exqqg")
+
+[node name="VillageMistBarrier" type="CollisionShape3D" parent="MistBarriers/MistBarriersBody" unique_id=2096528202 node_paths=PackedStringArray("meshInstance", "fogVolume")]
+transform = Transform3D(0.7910954, 0, -0.6116928, 0, 1, 0, 0.6116928, 0, 0.7910954, 276.11383, 12.441185, 78.94054)
+shape = SubResource("BoxShape3D_yr5eh")
+script = ExtResource("46_7n1e8")
+puerta_id = "VillageBarrier"
+meshInstance = NodePath("MistBarrierMesh")
+fogVolume = NodePath("FogVolume")
+
+[node name="MistBarrierMesh" type="MeshInstance3D" parent="MistBarriers/MistBarriersBody/VillageMistBarrier" unique_id=42910115]
+mesh = SubResource("BoxMesh_exqqg")
+
+[node name="FogVolume" type="FogVolume" parent="MistBarriers/MistBarriersBody/VillageMistBarrier" unique_id=181710038]
 material = SubResource("ShaderMaterial_exqqg")
 
 [node name="RespawnAreas" type="Node3D" parent="." unique_id=171287544]

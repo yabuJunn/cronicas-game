@@ -906,6 +906,9 @@ shader_parameter/density_texture = SubResource("NoiseTexture3D_s4sqn")
 [sub_resource type="BoxShape3D" id="BoxShape3D_jvg85"]
 size = Vector3(14.315186, 12.039673, 68.32031)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8b8ma"]
+size = Vector3(14.315186, 12.039673, 27.962318)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtse2"]
 size = Vector3(850, 211, 20.766785)
 
@@ -1144,14 +1147,12 @@ shadow_enabled = true
 
 [node name="DirectionalLight3DDebug" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1387043691]
 transform = Transform3D(0.9085082, 0.36188352, 0.20893352, 0, 0.49999997, -0.86602545, -0.41786706, 0.7867912, 0.45425406, 0, 0, 0)
-visible = false
 layers = 6
 light_angular_distance = 90.0
 shadow_enabled = true
 
 [node name="DirectionalLight3DDebug2" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1326005706]
 transform = Transform3D(0.45709798, 0, -0.88941634, 0, 1, 0, 0.88941634, 0, 0.45709798, 0, 0, 0)
-visible = false
 layers = 6
 light_angular_distance = 90.0
 shadow_enabled = true
@@ -2069,29 +2070,52 @@ circle_radius = 62.540646
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
 [node name="ScatterShotZoneCircle39" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=798468039]
-transform = Transform3D(0.5532962, -7.714468e-05, 0.8329845, 5.53488e-05, 1, 5.584598e-05, -0.8329845, 1.5197433e-05, 0.5532962, 263.28342, 14.425888, 98.84398)
+transform = Transform3D(0.7674736, -6.6689427e-06, -0.64108056, 5.534881e-05, 1, 5.584598e-05, 0.64108056, -7.834404e-05, 0.7674736, 254.68076, 2.4397964, 100.250244)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
-hardness = 0.0
-rect_size = Vector2(7.882538, 21.374279)
+depth = 5.52
+hardness = 0.76
+rect_size = Vector2(2.456418, 21.374279)
 circle_radius = 62.540646
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
-[node name="ScatterShotZoneCircle40" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1799995953]
-transform = Transform3D(0.5532962, -7.714468e-05, 0.8329845, 5.53488e-05, 1, 5.584598e-05, -0.8329845, 1.5197433e-05, 0.5532962, 238.05818, 14.425888, 132.9112)
+[node name="ScatterShotZoneCircle40" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=584423907]
+transform = Transform3D(0.851366, -1.7819002e-05, -0.52457213, 5.534881e-05, 1, 5.584598e-05, 0.52457213, -7.658164e-05, 0.851366, 238.42438, 2.4397964, 126.49083)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
-hardness = 0.0
-rect_size = Vector2(6.8353252, 20.142673)
+depth = 5.52
+hardness = 0.76
+rect_size = Vector2(5.648591, 10.855498)
 circle_radius = 62.540646
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
-[node name="ScatterShotZoneCircle41" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1623012530]
-transform = Transform3D(0.8317366, -1.5023696e-05, -0.55517024, 5.53488e-05, 1, 5.584598e-05, 0.55517024, -7.717869e-05, 0.8317366, 258.14294, 14.425888, 119.69817)
+[node name="ScatterShotZoneCircle41" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1512169868]
+transform = Transform3D(-0.5265768, 7.662343e-05, -0.8501277, 5.5348813e-05, 1, 5.584598e-05, 0.8501277, -1.7638502e-05, -0.5265768, 240.30923, 2.4397964, 131.00578)
 script = ExtResource("6_jxsfi")
 pattern = SubResource("Resource_a1d46")
-hardness = 0.0
-rect_size = Vector2(6.858872, 48.578854)
+depth = 5.52
+hardness = 0.76
+rect_size = Vector2(5.648591, 15.270432)
+circle_radius = 62.540646
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle42" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1057894221]
+transform = Transform3D(-0.5265768, 7.662343e-05, -0.8501277, 5.5348813e-05, 1, 5.584598e-05, 0.8501277, -1.7638502e-05, -0.5265768, 263.35156, 2.4397964, 100.30808)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+depth = 5.52
+hardness = 0.76
+rect_size = Vector2(3.2675877, 15.270432)
+circle_radius = 62.540646
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle43" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1347202579]
+transform = Transform3D(-0.814253, 1.2640785e-05, 0.58051044, 5.534882e-05, 1, 5.584599e-05, -0.58051044, 7.7604636e-05, -0.814253, 256.49384, 2.4397964, 119.118256)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+depth = 5.52
+hardness = 0.76
+rect_size = Vector2(3.2675877, 42.99659)
 circle_radius = 62.540646
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
@@ -3415,6 +3439,9 @@ item_clave_requerido = "Núcleo de niebla"
 texto_con_objeto = "[E] Colocar Núcleo de Niebla"
 texto_sin_objeto = "No tienes nada que encaje aquí"
 
+[node name="MistCore" parent="WorldObjects/Houses/Village/FogGate" unique_id=78648738 instance=ExtResource("36_exqqg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8649902, 0, 0.48683167)
+
 [node name="VillageHouses" type="Node3D" parent="WorldObjects/Houses/Village" unique_id=1381908281]
 
 [node name="VillageHouse(1)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=2003100932 instance=ExtResource("4_anfc4")]
@@ -4706,6 +4733,16 @@ siguiente_nivel_ruta = "uid://di1d1ewmv5vyc"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NextLevelMarkers/NextLevelArea2" unique_id=719193581]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8217163, 2.9402466, 0)
 shape = SubResource("BoxShape3D_jvg85")
+
+[node name="NextLevelArea3" type="Area3D" parent="NextLevelMarkers" unique_id=644423489]
+transform = Transform3D(0.79688853, 0, -0.60412633, 0, 1, 0, 0.60412633, 0, 0.79688853, 288.59933, -10.249771, 81.02112)
+collision_layer = 16
+script = ExtResource("26_4p7th")
+siguiente_nivel_ruta = "uid://d4c034u64chjf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NextLevelMarkers/NextLevelArea3" unique_id=2040537924]
+transform = Transform3D(0.9993705, 0, 0.035475135, 0, 1, 0, -0.035475135, 0, 0.9993705, -3.9904785, 10.742508, 4.6508102)
+shape = SubResource("BoxShape3D_8b8ma")
 
 [node name="Sounds" type="Node3D" parent="." unique_id=1305400593]
 

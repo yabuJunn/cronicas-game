@@ -1147,12 +1147,14 @@ shadow_enabled = true
 
 [node name="DirectionalLight3DDebug" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1387043691]
 transform = Transform3D(0.9085082, 0.36188352, 0.20893352, 0, 0.49999997, -0.86602545, -0.41786706, 0.7867912, 0.45425406, 0, 0, 0)
+visible = false
 layers = 6
 light_angular_distance = 90.0
 shadow_enabled = true
 
 [node name="DirectionalLight3DDebug2" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1326005706]
 transform = Transform3D(0.45709798, 0, -0.88941634, 0, 1, 0, 0.88941634, 0, 0.45709798, 0, 0, 0)
+visible = false
 layers = 6
 light_angular_distance = 90.0
 shadow_enabled = true
@@ -2400,10 +2402,142 @@ transform = Transform3D(-0.84381324, 0, 0.53663707, 0, 1, 0, -0.53663707, 0, -0.
 transform = Transform3D(6.984174e-05, 0, -1, 0, 1, 0, 1, 0, 6.984174e-05, 227.5927, -1.59366, 42.32082)
 
 [node name="WodenLampPost8" parent="WorldObjects/Houses/Village" unique_id=1719070294 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(-0.9910439, 0, 0.13353647, 0, 1, 0, -0.13353647, 0, -0.9910439, 233.4974, -2.1563768, 0.5424206)
+transform = Transform3D(-0.14951809, 0, -0.988759, 0, 1, 0, 0.988759, 0, -0.14951809, 235.19519, -2.1563768, -1.0332487)
 
 [node name="WodenLampPost7" parent="WorldObjects/Houses/Village" unique_id=11409993 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(-0.009215221, 0, 0.9999575, 0, 1, 0, -0.9999575, 0, -0.009215221, 231.44608, -1.59366, 32.804825)
+
+[node name="WodenLampPost15" parent="WorldObjects/Houses/Village" unique_id=1729819282 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.9292874, 0, 0.3693575, 0, 1, 0, -0.3693575, 0, -0.9292874, 240.77264, -1.59366, 28.58895)
+
+[node name="WodenLampPost16" parent="WorldObjects/Houses/Village" unique_id=1292819858 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.9292874, 0, 0.3693575, 0, 1, 0, -0.3693575, 0, -0.9292874, 244.77069, -1.59366, 17.564749)
+
+[node name="WodenLampPost18" parent="WorldObjects/Houses/Village" unique_id=820312696 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.9996411, 0, -0.026787668, 0, 1, 0, 0.026787668, 0, 0.9996411, 249.31992, -1.59366, 10.273796)
+
+[node name="WodenLampPost19" parent="WorldObjects/Houses/Village" unique_id=1457664640 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.9901437, 0, 0.1400545, 0, 1, 0, -0.1400545, 0, -0.9901437, 248.74986, -1.59366, 0.837523)
+
+[node name="WodenLampPost20" parent="WorldObjects/Houses/Village" unique_id=1984451970 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.21672924, 0, 0.9762318, 0, 1, 0, -0.9762318, 0, 0.21672924, 241.37888, -1.59366, -2.8948636)
+
+[node name="WodenLampPost21" parent="WorldObjects/Houses/Village" unique_id=2010276885 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.21672924, 0, 0.9762318, 0, 1, 0, -0.9762318, 0, 0.21672924, 230.64244, -1.59366, -5.6002636)
+
+[node name="WodenLampPost24" parent="WorldObjects/Houses/Village" unique_id=1745337907 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.9888294, 0, -0.14905205, 0, 1, 0, 0.14905205, 0, 0.9888294, 223.90778, -1.59366, 0.9174911)
+
+[node name="WodenLampPost25" parent="WorldObjects/Houses/Village" unique_id=1521049079 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.99633783, 0, 0.08550378, 0, 1, 0, -0.08550378, 0, -0.99633783, 218.79514, -1.59366, 9.306698)
+
+[node name="WodenLampPost26" parent="WorldObjects/Houses/Village" unique_id=1718506417 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.98785174, 0, 0.15540007, 0, 1, 0, -0.15540007, 0, 0.98785174, 223.41832, -1.59366, 20.173565)
+
+[node name="WodenLampPost27" parent="WorldObjects/Houses/Village" unique_id=1512753415 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.9901781, 0, 0.1398127, 0, 1, 0, -0.1398127, 0, -0.9901781, 218.79578, -1.59366, 29.43849)
+
+[node name="WodenLampPost22" parent="WorldObjects/Houses/Village" unique_id=1644431316 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.9805634, 0, 0.19620281, 0, 1, 0, -0.19620281, 0, -0.9805634, 223.45137, -1.59366, -12.790858)
+
+[node name="WodenLampPost23" parent="WorldObjects/Houses/Village" unique_id=1356282638 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.9644099, 0, -0.2644118, 0, 1, 0, 0.2644118, 0, 0.9644099, 229.2284, -1.3943192, -18.548965)
+
+[node name="WodenLampPost17" parent="WorldObjects/Houses/Village" unique_id=1228824464 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.95384806, 0, -0.30028963, 0, 1, 0, 0.30028963, 0, 0.95384806, 246.74731, -1.59366, 24.002773)
+
+[node name="WodenLampPost9" parent="WorldObjects/Houses/Village" unique_id=1969804549 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.93973434, 0, 0.34190527, 0, 1, 0, -0.34190527, 0, 0.93973434, 244.46912, -1.59366, 38.839928)
+
+[node name="WodenLampPost10" parent="WorldObjects/Houses/Village" unique_id=1825091651 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.9964827, 0, -0.08379966, 0, 1, 0, 0.08379966, 0, 0.9964827, 248.92479, -1.59366, 49.285416)
+
+[node name="WodenLampPost11" parent="WorldObjects/Houses/Village" unique_id=558274199 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.65868944, 0, -0.752415, 0, 1, 0, 0.752415, 0, 0.65868944, 240.12732, -1.59366, 60.130302)
+
+[node name="WodenLampPost12" parent="WorldObjects/Houses/Village" unique_id=306695239 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.65868944, 0, -0.752415, 0, 1, 0, 0.752415, 0, 0.65868944, 225.92004, -1.59366, 64.56263)
+
+[node name="WodenLampPost28" parent="WorldObjects/Houses/Village" unique_id=236459371 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.8842633, 0, -0.4669887, 0, 1, 0, 0.4669887, 0, 0.8842633, 222.02203, -1.59366, 71.89251)
+
+[node name="WodenLampPost29" parent="WorldObjects/Houses/Village" unique_id=1368276321 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.8371655, 0, 0.54694974, 0, 1, 0, -0.54694974, 0, -0.8371655, 216.09714, -1.59366, 73.84105)
+
+[node name="WodenLampPost30" parent="WorldObjects/Houses/Village" unique_id=1515069231 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.8389652, 0, -0.5441852, 0, 1, 0, 0.5441852, 0, 0.8389652, 215.95241, -1.59366, 82.451385)
+
+[node name="WodenLampPost31" parent="WorldObjects/Houses/Village" unique_id=875991523 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.85687053, 0, 0.5155317, 0, 1, 0, -0.5155317, 0, -0.85687053, 206.94527, -1.59366, 88.29859)
+
+[node name="WodenLampPost32" parent="WorldObjects/Houses/Village" unique_id=1535195274 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.9306797, 0, 0.36583522, 0, 1, 0, -0.36583522, 0, 0.9306797, 209.94405, -1.59366, 94.71326)
+
+[node name="WodenLampPost36" parent="WorldObjects/Houses/Village" unique_id=313314609 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.45552945, 0, -0.8902207, 0, 1, 0, 0.8902207, 0, -0.45552945, 217.68669, -1.59366, 102.55075)
+
+[node name="WodenLampPost37" parent="WorldObjects/Houses/Village" unique_id=656014771 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.403705, 0, 0.9148892, 0, 1, 0, -0.9148892, 0, 0.403705, 225.98958, -1.59366, 104.070114)
+
+[node name="WodenLampPost38" parent="WorldObjects/Houses/Village" unique_id=1067394652 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.34691933, 0, -0.93789494, 0, 1, 0, 0.93789494, 0, -0.34691933, 233.07872, -1.59366, 109.27656)
+
+[node name="WodenLampPost44" parent="WorldObjects/Houses/Village" unique_id=1882988752 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.84566253, 0, 0.5337179, 0, 1, 0, -0.5337179, 0, -0.84566253, 234.17102, -1.59366, 102.37624)
+
+[node name="WodenLampPost45" parent="WorldObjects/Houses/Village" unique_id=1372297613 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.80190074, 0, -0.59745723, 0, 1, 0, 0.59745723, 0, 0.80190074, 243.2694, -1.59366, 95.166954)
+
+[node name="WodenLampPost46" parent="WorldObjects/Houses/Village" unique_id=1360245706 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.8020259, 0, 0.59728926, 0, 1, 0, -0.59728926, 0, -0.8020259, 243.80228, -1.59366, 86.98243)
+
+[node name="WodenLampPost47" parent="WorldObjects/Houses/Village" unique_id=2114615962 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.78719336, 0, -0.6167063, 0, 1, 0, 0.6167063, 0, 0.78719336, 253.70268, -1.59366, 82.214096)
+
+[node name="WodenLampPost48" parent="WorldObjects/Houses/Village" unique_id=1141657792 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.825153, 0, 0.56490946, 0, 1, 0, -0.56490946, 0, -0.825153, 257.53354, -1.59366, 70.275154)
+
+[node name="WodenLampPost49" parent="WorldObjects/Houses/Village" unique_id=585456594 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.5962669, 0, 0.80278635, 0, 1, 0, -0.80278635, 0, 0.5962669, 264.75204, -1.59366, 68.99669)
+
+[node name="WodenLampPost50" parent="WorldObjects/Houses/Village" unique_id=1597828499 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.6506814, 0, -0.75935096, 0, 1, 0, 0.75935096, 0, -0.6506814, 271.5033, -1.59366, 77.685295)
+
+[node name="WodenLampPost51" parent="WorldObjects/Houses/Village" unique_id=1819711773 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.5438482, 0, -0.8391836, 0, 1, 0, 0.8391836, 0, -0.5438482, 253.3948, -1.59366, 65.01331)
+
+[node name="WodenLampPost52" parent="WorldObjects/Houses/Village" unique_id=606102290 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.48375586, 0, 0.8752031, 0, 1, 0, -0.8752031, 0, 0.48375586, 246.44734, -1.59366, 56.098377)
+
+[node name="WodenLampPost39" parent="WorldObjects/Houses/Village" unique_id=1909793807 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.61995715, 0, 0.7846356, 0, 1, 0, -0.7846356, 0, 0.61995715, 243.84709, -1.59366, 111.81148)
+
+[node name="WodenLampPost40" parent="WorldObjects/Houses/Village" unique_id=558254171 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.41845387, 0, -0.90823793, 0, 1, 0, 0.90823793, 0, -0.41845387, 242.47446, -1.59366, 115.01016)
+
+[node name="WodenLampPost41" parent="WorldObjects/Houses/Village" unique_id=624770459 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.41845387, 0, -0.90823793, 0, 1, 0, 0.90823793, 0, -0.41845387, 242.47446, -1.59366, 115.01016)
+
+[node name="WodenLampPost42" parent="WorldObjects/Houses/Village" unique_id=425050758 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.41845387, 0, -0.90823793, 0, 1, 0, 0.90823793, 0, -0.41845387, 245.67946, -1.59366, 129.37817)
+
+[node name="WodenLampPost43" parent="WorldObjects/Houses/Village" unique_id=1810174431 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.45799768, 0, 0.8889534, 0, 1, 0, -0.8889534, 0, -0.45799768, 252.06483, -1.59366, 107.672295)
+
+[node name="WodenLampPost33" parent="WorldObjects/Houses/Village" unique_id=1005725248 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.29222137, 0, -0.9563506, 0, 1, 0, 0.9563506, 0, 0.29222137, 202.53586, -1.59366, 106.14891)
+
+[node name="WodenLampPost34" parent="WorldObjects/Houses/Village" unique_id=133343919 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.84534574, 0, -0.5342195, 0, 1, 0, 0.5342195, 0, -0.84534574, 195.55362, -1.59366, 104.99469)
+
+[node name="WodenLampPost35" parent="WorldObjects/Houses/Village" unique_id=1406356219 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.75067633, 0, 0.6606701, 0, 1, 0, -0.6606701, 0, -0.75067633, 195.55362, -1.59366, 98.05155)
+
+[node name="WodenLampPost13" parent="WorldObjects/Houses/Village" unique_id=1943507640 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.8341074, 0, -0.5516021, 0, 1, 0, 0.5516021, 0, -0.8341074, 214.2305, -1.59366, 57.631832)
+
+[node name="WodenLampPost14" parent="WorldObjects/Houses/Village" unique_id=1002337511 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.9953928, 0, 0.09588063, 0, 1, 0, -0.09588063, 0, -0.9953928, 209.1074, -1.59366, 50.119514)
 
 [node name="VillageHouseInside(2)" parent="WorldObjects/Houses/Village" unique_id=1885260580 instance=ExtResource("26_5uq1w")]
 transform = Transform3D(0.9558802, 0, -0.29375672, 0, 1, 0, 0.29375672, 0, 0.9558802, 232.49718, -0.5238695, 10.833476)
@@ -2876,7 +3010,7 @@ transform = Transform3D(0.41988015, 0.45026633, 0.78801084, -0.7313537, 0.681998
 mesh = SubResource("BoxMesh_3wj3j")
 
 [node name="MeshInstanceWall120" type="MeshInstance3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=1011216145]
-transform = Transform3D(0.41988015, -0.45026633, 0.78801084, 0.7313537, 0.6819984, 0, -0.537422, 0.57631457, 0.61566156, 271.03238, 21.156963, 84.04934)
+transform = Transform3D(0.41988015, -0.45026633, 0.78801084, 0.7313537, 0.6819984, 0, -0.537422, 0.57631457, 0.61566156, 271.43613, 21.156963, 83.40496)
 mesh = SubResource("BoxMesh_3wj3j")
 
 [node name="CollisionShape3D48" type="CollisionShape3D" parent="WorldObjects/Houses/Village/VillageWalls" unique_id=663854739]
@@ -3829,7 +3963,7 @@ transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 
 transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 279.687, 29.134, 70.476)
 
 [node name="VillageTower(1)5" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1195650257 instance=ExtResource("19_r1yae")]
-transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 268.472, 29.134, 84.531)
+transform = Transform3D(0.06696363, 0, -0.44395745, 0, 0.525, 0, 0.40449458, 0, 0.07349666, 269.30936, 29.134, 83.45274)
 
 [node name="VillageTower(1)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=174608859 instance=ExtResource("19_r1yae")]
 transform = Transform3D(-0.2783346, 0, -0.33041844, 0, 0.525, 0, 0.30104792, 0, -0.30548915, 160.89641, 29.134, 45.069496)
@@ -4599,6 +4733,48 @@ transform = Transform3D(0.14090127, 0, -0.9900237, 0, 0.9999999, 0, 0.9900238, 0
 
 [node name="WodenLampPost75" parent="Ligths" unique_id=1111600058 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.14090127, 0, -0.9900237, 0, 0.9999999, 0, 0.9900238, 0, 0.14090125, 165.9003, -2.0147634, 71.190056)
+
+[node name="WodenLampPost102" parent="Ligths" unique_id=561650933 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.6135413, 0, -0.7896628, 0, 1, 0, 0.7896628, 0, 0.6135412, 164.44989, -2.0147629, 63.309563)
+
+[node name="WodenLampPost103" parent="Ligths" unique_id=107782089 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.6561513, 0, 0.7546294, 0, 1, 0, -0.7546294, 0, -0.65615124, 161.93387, -2.0147626, 61.016674)
+
+[node name="WodenLampPost104" parent="Ligths" unique_id=509210244 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.55087423, 0, -0.8345884, 0, 0.9999999, 0, 0.83458847, 0, 0.5508741, 161.86346, -2.014763, 66.17757)
+
+[node name="WodenLampPost105" parent="Ligths" unique_id=613637049 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.5960568, 0, 0.8029423, 0, 1, 0, -0.8029423, 0, -0.59605676, 158.94624, -2.0147629, 62.90426)
+
+[node name="WodenLampPost106" parent="Ligths" unique_id=372475268 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.46233693, 0, -0.88670444, 0, 1, 0, 0.88670456, 0, 0.4623368, 158.56499, -2.014763, 67.986404)
+
+[node name="WodenLampPost107" parent="Ligths" unique_id=919494983 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.510528, 0, 0.85986114, 0, 1, 0, -0.8598612, 0, -0.51052797, 155.64557, -2.0147629, 63.55847)
+
+[node name="WodenLampPost94" parent="Ligths" unique_id=2146661669 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.639989, 0, 0.76838416, 0, 0.9999999, 0, -0.7683842, 0, -0.63998896, 166.76997, -2.0147634, 54.63164)
+
+[node name="WodenLampPost95" parent="Ligths" unique_id=237192203 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.5147687, 0, 0.85732913, 0, 1, 0, -0.8573292, 0, -0.5147686, 179.19852, -2.0147634, 47.188446)
+
+[node name="WodenLampPost99" parent="Ligths" unique_id=2037873628 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.5223795, 0, -0.85271305, 0, 1, 0, 0.8527131, 0, 0.5223794, 177.50713, -2.0147634, 55.37169)
+
+[node name="WodenLampPost100" parent="Ligths" unique_id=577930813 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.15953666, 0, -0.9871919, 0, 1, 0, 0.98719203, 0, 0.15953654, 188.6135, -2.0147634, 50.012066)
+
+[node name="WodenLampPost101" parent="Ligths" unique_id=1112863046 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(0.15953666, 0, -0.9871919, 0, 1, 0, 0.98719203, 0, 0.15953654, 206.45862, -2.0147634, 47.145615)
+
+[node name="WodenLampPost96" parent="Ligths" unique_id=1905457422 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.085277736, 0, 0.9963572, 0, 1, 0, -0.9963572, 0, -0.08527765, 196.88042, -2.0147634, 43.269505)
+
+[node name="WodenLampPost97" parent="Ligths" unique_id=1536099272 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.8852394, 0, 0.46513578, 0, 1, 0, -0.4651357, 0, -0.88523936, 210.38753, -2.0147634, 40.29164)
+
+[node name="WodenLampPost98" parent="Ligths" unique_id=114524456 instance=ExtResource("32_t4hbk")]
+transform = Transform3D(-0.7557277, 0, 0.65488607, 0, 1, 0, -0.654886, 0, -0.75572765, 215.2573, -2.0147634, 36.461212)
 
 [node name="WodenLampPost55" parent="Ligths" unique_id=1302455198 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(-0.99421287, 0, 0.10742687, 0, 1, 0, -0.10742687, 0, -0.99421287, 30.012451, -8.53628, -183.53264)

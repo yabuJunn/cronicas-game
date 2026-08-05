@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dx1r5d1kp4lk0"]
 
 [ext_resource type="PackedScene" uid="uid://bpdddgyyg2rpc" path="res://scenes/levels/maps/Whispering_forest_map.scn" id="1_dl5xd"]
+[ext_resource type="Script" uid="uid://dataauy4q81to" path="res://scenes/levels/whispering_fores_level.gd" id="1_ktlgh"]
 [ext_resource type="PackedScene" uid="uid://bkvg0mv2fsciu" path="res://scenes/objects/world/houses/VillageHouse1.tscn" id="4_anfc4"]
 [ext_resource type="Shader" uid="uid://b3fm0ispndsjh" path="res://shaders/river_shader.tres" id="5_dnt3s"]
 [ext_resource type="Script" uid="uid://8ewcp6y5t36e" path="res://addons/ScatterShot/zone.gd" id="6_jxsfi"]
@@ -1141,6 +1142,7 @@ size = Vector3(112.99689, 40.455368, 27.914795)
 size = Vector3(100.728516, 8.889404, 827.08545)
 
 [node name="WhisperingForesLevel" type="Node3D" unique_id=452352603]
+script = ExtResource("1_ktlgh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1640846100]
 environment = SubResource("Environment_0scc7")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://baont3qs8we8m"
+path="res://.godot/imported/3 El bosque susurrante (ingame) - Normal Forest.mp3-a8043c8176122dc34ee2c2c0be7a7c69.mp3str"
+
+[deps]
+
+source_file="res://sounds/music/3 El bosque susurrante (ingame) - Normal Forest.mp3"
+dest_files=["res://.godot/imported/3 El bosque susurrante (ingame) - Normal Forest.mp3-a8043c8176122dc34ee2c2c0be7a7c69.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -290,6 +290,6 @@ draw_pass_1 = SubResource("QuadMesh_brenf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.170199, 0)
 stream = ExtResource("4_brenf")
 autoplay = true
-max_distance = 6.0
+max_distance = 9.0
 bus = &"Ambient"
 parameters/looping = true

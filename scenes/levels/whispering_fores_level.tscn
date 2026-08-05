@@ -1140,6 +1140,7 @@ environment = SubResource("Environment_0scc7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1874530262]
 transform = Transform3D(0.9715621, 0.07439373, -0.22479486, 0.17169054, -0.8751146, 0.4524347, -0.16306293, -0.4781637, -0.86300063, 0, 0, 0)
+visible = false
 layers = 6
 light_color = Color(0.49774963, 0.8341563, 0.9465696, 1)
 light_energy = 0.3
@@ -1154,7 +1155,6 @@ shadow_enabled = true
 
 [node name="DirectionalLight3DDebug2" type="DirectionalLight3D" parent="DirectionalLight3D" unique_id=1326005706]
 transform = Transform3D(0.45709798, 0, -0.88941634, 0, 1, 0, 0.88941634, 0, 0.45709798, 0, 0, 0)
-visible = false
 layers = 6
 light_angular_distance = 90.0
 shadow_enabled = true
@@ -1917,6 +1917,17 @@ rect_size = Vector2(34.434067, 50)
 circle_radius = 54.172638
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
+[node name="ScatterShotZoneCircle46" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=276134142]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 139.00679, 12.958397, -30.484406)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.27
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
 [node name="ScatterShotZoneCircle31" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=329741147]
 transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 99.37352, 14.425888, 143.1428)
 script = ExtResource("6_jxsfi")
@@ -1926,6 +1937,72 @@ hardness = 1.0
 shape = 1
 rect_size = Vector2(34.434067, 50)
 circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle44" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1304591262]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 120.753525, 14.789082, 133.36786)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.27
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle45" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1695906845]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 184.88643, 8.938202, 161.4278)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.27
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 54.172638
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle47" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1843756885]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 161.63495, 8.938202, 91.89389)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.27
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 18.784044
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle48" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=1129714249]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 141.95306, 8.938202, 48.027435)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.27
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 18.784044
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle49" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=568254853]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 127.22142, 8.938202, 48.76041)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.27
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 18.784044
+metadata/_custom_type_script = "uid://8ewcp6y5t36e"
+
+[node name="ScatterShotZoneCircle50" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=422795858]
+transform = Transform3D(0.8538275, -7.632736e-05, 0.520556, 5.53488e-05, 1, 5.5845972e-05, -0.520556, -1.8878494e-05, 0.8538275, 101.87506, 8.938202, 95.664314)
+script = ExtResource("6_jxsfi")
+pattern = SubResource("Resource_a1d46")
+density = 0.27
+hardness = 1.0
+shape = 1
+rect_size = Vector2(34.434067, 50)
+circle_radius = 18.784044
 metadata/_custom_type_script = "uid://8ewcp6y5t36e"
 
 [node name="ScatterShotZoneCircle32" type="Node3D" parent="WorldObjects/ScatterObjects" unique_id=35601262]
@@ -3668,6 +3745,9 @@ transform = Transform3D(-0.513676, 0, -0.8579842, 0, 1, 0, 0.8579842, 0, -0.5136
 [node name="VillageHouse(1)5" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1746036153 instance=ExtResource("4_anfc4")]
 transform = Transform3D(-0.6835669, 0, 0.7298878, 0, 1, 0, -0.7298878, 0, -0.6835669, 164.20198, -1.796565, 55.77851)
 
+[node name="VillageHouse(1)31" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=556308408 instance=ExtResource("4_anfc4")]
+transform = Transform3D(0.9999943, 0, 0.0033686757, 0, 1, 0, -0.0033686757, 0, 0.9999943, 152.21982, -1.796565, 33.218304)
+
 [node name="VillageHouse(2)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1274955824 instance=ExtResource("16_h3dir")]
 transform = Transform3D(0.40132454, 0, 0.9159359, 0, 1, 0, -0.9159359, 0, 0.40132454, 236.72641, -1.796565, 30.406376)
 
@@ -3788,8 +3868,23 @@ transform = Transform3D(0.98173696, 0, 0.1902436, 0, 1, 0, -0.1902436, 0, 0.9817
 [node name="VillageHouse(3)4" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1493017361 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(-0.7580888, 0, -0.6521513, 0, 1, 0, 0.6521513, 0, -0.7580888, 171.03766, -1.796565, 48.306053)
 
+[node name="VillageHouse(3)36" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=147197233 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.16174158, 0, 0.9868331, 0, 1, 0, -0.9868331, 0, -0.16174158, 153.6216, -1.796565, 49.12512)
+
+[node name="RuinedHouse(1)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=480450169 instance=ExtResource("30_ftjc2")]
+transform = Transform3D(-0.9861613, -0.080635615, -0.14486124, -0.058077347, 0.98640823, -0.15370607, 0.15528658, -0.14316574, -0.97744066, 123.75361, -0.84909153, 78.08704)
+
+[node name="RuinedHouse(2)" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=453507046 instance=ExtResource("29_ltbvo")]
+transform = Transform3D(-0.9818171, 0, 0.18983242, 0, 0.99999994, 0, -0.18983245, 0, -0.981817, 114.30844, -1.7738625, 65.01555)
+
+[node name="VillageHouse(3)37" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=278417060 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.98614407, 0, -0.16589098, 0, 1, 0, 0.16589098, 0, -0.98614407, 141.22272, -1.796565, 61.980873)
+
 [node name="VillageHouse(3)7" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=718014886 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(0.80756813, 0, 0.5897745, 0, 1, 0, -0.5897745, 0, 0.80756813, 167.34676, -1.796565, 65.31094)
+
+[node name="VillageHouse(3)35" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=951597366 instance=ExtResource("17_gj0yl")]
+transform = Transform3D(-0.3544544, 0, 0.9350735, 0, 1, 0, -0.9350735, 0, -0.3544544, 176.54752, -1.796565, 83.09311)
 
 [node name="VillageHouse(3)6" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1314793536 instance=ExtResource("17_gj0yl")]
 transform = Transform3D(-0.9818397, 0, -0.18971232, 0, 1, 0, 0.18971232, 0, -0.9818397, 188.70122, -1.796565, 41.131374)
@@ -3953,6 +4048,12 @@ transform = Transform3D(0.4587271, 0, 0.88857716, 0, 1, 0, -0.88857716, 0, 0.458
 [node name="VillageHouse(4)6" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=75422339 instance=ExtResource("18_0xfjq")]
 transform = Transform3D(0.87934965, 0, 0.47617674, 0, 1, 0, -0.47617674, 0, 0.87934965, 175.96707, -1.752136, 60.231033)
 
+[node name="VillageHouse(4)45" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1469123667 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.1192185, 0, 0.9928682, 0, 1, 0, -0.9928682, 0, 0.1192185, 167.19273, -1.752136, 72.872406)
+
+[node name="VillageHouse(4)46" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=535733357 instance=ExtResource("18_0xfjq")]
+transform = Transform3D(0.9998451, 0, 0.017609432, 0, 1, 0, -0.017609432, 0, 0.9998451, 142.74918, -0.6937485, 78.919624)
+
 [node name="VillageHouse(4)4" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1519722351 instance=ExtResource("18_0xfjq")]
 transform = Transform3D(0.999998, 0, -0.002007231, 0, 1, 0, 0.002007231, 0, 0.999998, 197.60068, -1.752136, 50.43019)
 
@@ -3976,6 +4077,9 @@ transform = Transform3D(-0.39895827, 0, 0.44814312, 0, 0.59999996, 0, -0.4481431
 
 [node name="VillageTower(2)2" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1830047245 instance=ExtResource("20_rr26k")]
 transform = Transform3D(0.012565455, 0, 0.5998684, 0, 0.7, 0, -0.5998684, 0, 0.012565455, 167.506, 42.64, 105.596)
+
+[node name="VillageTower(2)3" parent="WorldObjects/Houses/Village/VillageHouses" unique_id=1951512437 instance=ExtResource("20_rr26k")]
+transform = Transform3D(0.07564661, 0, -0.59521216, 0, 0.69999987, 0, 0.59521216, 0, 0.07564661, 299.5798, 42.64, 69.49776)
 
 [node name="VillageKeysObjects" type="Node3D" parent="WorldObjects/Houses/Village" unique_id=1818064065]
 
@@ -4096,7 +4200,7 @@ transform = Transform3D(-0.4103736, 0, -0.25051844, 0, 0.653, 0, 0.2768005, 0, -
 
 [node name="RuinsForest" type="Node3D" parent="WorldObjects/Houses" unique_id=1841445270]
 
-[node name="RuinedHouse(3)" parent="WorldObjects/Houses/RuinsForest" unique_id=480450169 instance=ExtResource("28_y8p3x")]
+[node name="RuinedHouse(3)" parent="WorldObjects/Houses/RuinsForest" unique_id=1944579091 instance=ExtResource("28_y8p3x")]
 transform = Transform3D(0.8448979, 0, 0.53492755, 0, 1, 0, -0.53492755, 0, 0.8448979, -207.1438, -15.89285, 82.384575)
 
 [node name="RuinedHouse(3)2" parent="WorldObjects/Houses/RuinsForest" unique_id=1119308886 instance=ExtResource("28_y8p3x")]
@@ -4732,7 +4836,7 @@ transform = Transform3D(-0.0819385, 0, 0.99663734, 0, 0.9999997, 0, -0.9966375, 
 transform = Transform3D(0.14090127, 0, -0.9900237, 0, 0.9999999, 0, 0.9900238, 0, 0.14090125, 131.3324, -2.0147634, 75.61217)
 
 [node name="WodenLampPost75" parent="Ligths" unique_id=1111600058 instance=ExtResource("32_t4hbk")]
-transform = Transform3D(0.14090127, 0, -0.9900237, 0, 0.9999999, 0, 0.9900238, 0, 0.14090125, 165.9003, -2.0147634, 71.190056)
+transform = Transform3D(0.95129365, 0, -0.30828655, 0, 0.9999999, 0, 0.3082866, 0, 0.9512935, 167.60287, -1.7802312, 77.89861)
 
 [node name="WodenLampPost102" parent="Ligths" unique_id=561650933 instance=ExtResource("32_t4hbk")]
 transform = Transform3D(0.6135413, 0, -0.7896628, 0, 1, 0, 0.7896628, 0, 0.6135412, 164.44989, -2.0147629, 63.309563)

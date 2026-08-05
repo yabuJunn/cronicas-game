@@ -12,11 +12,17 @@ func _ready() -> void:
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-# --- NUEVA FUNCIÓN PARA HACER FADE IN DESDE NEGRO ---
-func realizar_fade_in(duracion: float = 1.0) -> void:
-	color_rect.color.a = 1.0 # Se pone en negro de inmediato antes de mostrar la escena
+# --- FADE IN CON FRAMES DE CORTESÍA ---
+func realizar_fade_in(duracion: float = 1.0, cuadros_espera: int = 3) -> void:
+	color_rect.color.a = 1.0 # Pone la pantalla en negro inmediato
 	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
 	loading_text.visible = false
+	
+	# FRAMES DE CORTESÍA:
+	# Congela la ejecución en negro durante N fotogramas para que Godot 
+	# termine de compilar shaders e inicializar nodos en segundo plano.
+	for i in range(cuadros_espera):
+		await get_tree().process_frame
 	
 	var tween = create_tween()
 	tween.tween_property(color_rect, "color:a", 0.0, duracion)
@@ -67,13 +73,16 @@ func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 				cargado_exitoso = false
 				break
 
-	# 4. CAMBIAR DE ESCENA Y FADE IN
+	# 4. CAMBIAR DE ESCENA Y FADE IN CON ESPERA
 	if cargado_exitoso:
 		var mapa_empaquetado = ResourceLoader.load_threaded_get(ruta_siguiente_nivel) as PackedScene
 		get_tree().change_scene_to_packed(mapa_empaquetado)
 		
 		loading_text.visible = false
-		await get_tree().process_frame
+		
+		# Espera 3 fotogramas con la pantalla en negro antes de desvanecer
+		for i in range(3):
+			await get_tree().process_frame
 		
 		# 5. FADE IN
 		var tween_in = create_tween()

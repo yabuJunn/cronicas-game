@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://b86euptsdphy7"]
 
-[ext_resource type="Texture2D" uid="uid://dqf50po4qk8ce" path="res://objs/All/Textures/Wood_07.jpg" id="1_n136h"]
+[ext_resource type="Texture2D" uid="uid://1v6llrbtii87" path="res://textures/Wood/Wood_10-256x256.png" id="1_n136h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cin64"]
 resource_name = "Wood_07"

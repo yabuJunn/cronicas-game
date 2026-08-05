@@ -1,0 +1,55 @@
+[gd_scene format=4 uid="uid://rd33ifids4ed"]
+
+[ext_resource type="Texture2D" uid="uid://bknk1ym352wd" path="res://textures/Plaster/Plaster_16-256x256.png" id="1_y2wht"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mea1q"]
+resource_name = "_0048_PaleGoldenrod.003"
+cull_mode = 2
+albedo_color = Color(0.9701036, 0.9592555, 0.836007, 1)
+albedo_texture = ExtResource("1_y2wht")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_puh0h"]
+_surfaces = [{
+"aabb": AABB(-2.8876446e-15, -0.37500003, -0.125, 0.375, 0.375, 0.12500004),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAACAAQABAACAAMABQABAAAAAAAEAAYABwAFAAAABwAAAAYABgAEAAgACAAHAAYABAADAAkACgAHAAgACgAFAAcABAALAAgACgAIAAsABAAJAAsADAALAAkACgALAAwAAwAMAAkACgANAAUADQAKAAwADQABAAUAAwAOAAwADQAMAA4AAQAPAAMADQAPAAEADgADAA8ADwANAA4A"),
+"name": "_0048_PaleGoldenrod.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("+koAAAAAAAAAAPpKAAAAALk9uT3//wAAuT1Fwv7/AABFwrk9//8AALk9uT3B9QAABLUAAAAAAABFwrk9wfUAAP//+koAAAAARcJFwv7/AABFwkXCwfUAAP//BLUAAAAABLX//wAAAAC5PUXCwfUAAPpK//8AAAAAAAAEtQAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wu6oo"]
+resource_name = "3D Retro Medieval Fantasy Kit_ID93"
+_surfaces = [{
+"aabb": AABB(-2.8876446e-15, -0.37500003, -0.125, 0.375, 0.375, 0.12500004),
+"attribute_data": PackedByteArray("DnZyeP9ncniSc3KIDnZyeGyMcojwiXJ4knNyiIyH8ImMd5JzjHdsjIyHDnaSc86H/2dyeA52cnhsjM6HDnZyePCJcniSc86HjIf/l4x3bIyMh/CJbIxsjJJzknNsjJJzknNsjA52cniSc3KI/2dyeDB4knOMh/CJMHhsjIyHDnb/l3J4bIzOh/CJcnhsjJJzknNsjGyMbIySc5JzjHdsjIyHDnaMh/CJjHeSc5JzcojwiXJ4bIxyiA52cnj/Z3J4knPOhw52cngweJJzjIfwiYyHDnYweGyMknPOh/CJcngOdnJ4bIzOh4yH/2eMhw52jHeSczB4knOMhw52jIf/Zw=="),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUAAwAGAAQABwAIAAkABwAKAAgACwAMAA0ADgAPABAADgARAA8AEgATABQAFQAWABcAFQAYABYAGQAaABsAHAAdAB4AHAAfAB0AIAAhACIAIwAkACUAIwAmACQAJwAoACkAJwAqACgAKwAsAC0AKwAuACwALwAwADEAMgAzADQAMgA1ADMANgA3ADgANgA5ADcAOgA7ADwAPQA+AD8A"),
+"material": SubResource("StandardMaterial3D_mea1q"),
+"name": "_0048_PaleGoldenrod.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("+koAAAAAUBQAAPpKAACKDLk9uT3//w1W+koAAAAA6hNFwrk9//+wYwS1AAAAAOoTuT25Pf//sGMAAPpKAAANEbk9RcL+/2wMuT25Pf//bAwAAAS1AAANEbk9uT3B9djmAAD6SgAAc/P6SgAAAACv60XCuT3B9brr+koAAAAAE+wEtQAAAAAU7Lk9uT3B9bzrBLUAAAAA0+tFwrk9///Gn///+koAAAPwRcK5Pf//Tpy5PUXC/v9OnEXCRcL+/06cuT25Pf//Tpz6Sv//AACu67k9RcL+//GpAAAEtQAAdPO5PUXCwfUT6gAA+koAAJPuuT25PcH1E+oAAAS1AACT7v//+koAAHPzRcK5PcH12OYEtQAAAACv60XCRcLB9UIUuT25PcH1QhRFwrk9wfVCFLk9RcLB9UIURcK5Pf//tp7//wS1AADb9P//+koAANr0RcJFwv7/tp65PUXC/v9OnAS1//8AABTsRcJFwv7/Tpz6Sv//AAAU7AAABLUAAIsMuT1FwsH1Jxn6Sv//AABPFEXCRcLB9eEP///6SgAAkwr//wS1AACSCkXCuT3B9eAPuT1FwsH1RBQEtf//AADrE/pK//8AAOoTRcJFwsH1QhQEtf//AADT6///BLUAAAPwRcJFwv7/xp9FwkXCwfU4D///BLUAAAwPBLX//wAANhSHIoOlTDNUollOj5SyCLqBSDV1PL4BS3eJQ0i1m6od4hHu7BgSZxFuHGJg1SDS+V1KM1OiiCKDpQH66JyzCL2BuwFNdxjjBXq9KUxavlrWSBMy30BLNXM8s8qLw3a8t0qIQ0e1etqGom7rWs6q3UyzRXExIu6nZOQxoroOZWQQ2FQitEz63dutgyV3Xekc/IUY4wV6BPrmnPoFGGORV8lHKNGaY2gcJlHIx20otsqJw0z3RH51vLZKQP6ziKrdSrMFIiFSe9qHojgnEHIBGvNS9dIAZg/yxVj9BRZjS/dBfkP+sYjmHPmFS9pBVt7A603XyEEleynNb1PEhFIc21lX")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_puh0h")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y2wht"]
+data = PackedVector3Array(0.109799996, -0.375, -0.125, 0, -0.2652, -0.125, 0.090399995, -0.2846, 0, 0.109799996, -0.375, -0.125, 0.2846, -0.2846, 0, 0.2652, -0.375, -0.125, 0.109799996, -0.375, -0.125, 0.090399995, -0.2846, 0, 0.2846, -0.2846, 0, 0, -0.2652, -0.125, 0.090399995, -0.090399995, 0, 0.090399995, -0.2846, 0, 0, -0.2652, -0.125, 0, -0.109799996, -0.125, 0.090399995, -0.090399995, 0, 0.090399995, -0.2846, -0.005, 0, -0.2652, -0.125, 0.109799996, -0.375, -0.125, 0.2846, -0.2846, -0.005, 0.109799996, -0.375, -0.125, 0.2652, -0.375, -0.125, 0.2846, -0.2846, -0.005, 0.090399995, -0.2846, -0.005, 0.109799996, -0.375, -0.125, 0.2652, -0.375, -0.125, 0.2846, -0.2846, 0, 0.375, -0.2652, -0.125, 0.2846, -0.2846, 0, 0.090399995, -0.090399995, 0, 0.2846, -0.090399995, 0, 0.2846, -0.2846, 0, 0.090399995, -0.2846, 0, 0.090399995, -0.090399995, 0, 0.109799996, 0, -0.125, 0.090399995, -0.090399995, 0, 0, -0.109799996, -0.125, 0.090399995, -0.090399995, -0.005, 0, -0.2652, -0.125, 0.090399995, -0.2846, -0.005, 0.090399995, -0.090399995, -0.005, 0, -0.109799996, -0.125, 0, -0.2652, -0.125, 0.375, -0.2652, -0.125, 0.2846, -0.2846, -0.005, 0.2652, -0.375, -0.125, 0.2846, -0.090399995, -0.005, 0.090399995, -0.2846, -0.005, 0.2846, -0.2846, -0.005, 0.2846, -0.090399995, -0.005, 0.090399995, -0.090399995, -0.005, 0.090399995, -0.2846, -0.005, 0.2846, -0.2846, 0, 0.375, -0.109799996, -0.125, 0.375, -0.2652, -0.125, 0.2846, -0.2846, 0, 0.2846, -0.090399995, 0, 0.375, -0.109799996, -0.125, 0.090399995, -0.090399995, 0, 0.2652, 0, -0.125, 0.2846, -0.090399995, 0, 0.090399995, -0.090399995, 0, 0.109799996, 0, -0.125, 0.2652, 0, -0.125, 0, -0.109799996, -0.125, 0.090399995, -0.090399995, -0.005, 0.109799996, 0, -0.125, 0.2846, -0.090399995, -0.005, 0.375, -0.2652, -0.125, 0.375, -0.109799996, -0.125, 0.2846, -0.090399995, -0.005, 0.2846, -0.2846, -0.005, 0.375, -0.2652, -0.125, 0.090399995, -0.090399995, -0.005, 0.2652, 0, -0.125, 0.109799996, 0, -0.125, 0.090399995, -0.090399995, -0.005, 0.2846, -0.090399995, -0.005, 0.2652, 0, -0.125, 0.2652, 0, -0.125, 0.375, -0.109799996, -0.125, 0.2846, -0.090399995, 0, 0.2846, -0.090399995, -0.005, 0.375, -0.109799996, -0.125, 0.2652, 0, -0.125)
+
+[node name="Dish" type="StaticBody3D" unique_id=1550900457]
+collision_layer = 8
+
+[node name="Cooking Dish" type="MeshInstance3D" parent="." unique_id=66047549]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.18161774, 0, 0.18818769)
+mesh = SubResource("ArrayMesh_wu6oo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1631934029]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.18161774, 0, 0.18818769)
+shape = SubResource("ConcavePolygonShape3D_y2wht")

@@ -8,27 +8,23 @@ resource_name = "_0048_PaleGoldenrod.002"
 cull_mode = 2
 albedo_color = Color(0.95002764, 0.95291835, 0.951055, 1)
 albedo_texture = ExtResource("1_d81ff")
-roughness = 0.17
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3mrx"]
 resource_name = "_0068_LightGreen.002"
 cull_mode = 2
 albedo_color = Color(1, 0.8156863, 0.72156864, 1)
 albedo_texture = ExtResource("2_1nku2")
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2mkh"]
 resource_name = "_0125_Plum.002"
 cull_mode = 2
 albedo_texture = ExtResource("2_1nku2")
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3vmc"]
 resource_name = "_0026_LightSalmon.002"
 cull_mode = 2
 albedo_color = Color(1, 0.8137818, 0.7209683, 1)
 albedo_texture = ExtResource("2_1nku2")
-roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rbon8"]
 _surfaces = [{

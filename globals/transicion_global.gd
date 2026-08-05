@@ -11,6 +11,20 @@ func _ready() -> void:
 	color_rect.color.a = 0.0
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
+
+# --- NUEVA FUNCIÓN PARA HACER FADE IN DESDE NEGRO ---
+func realizar_fade_in(duracion: float = 1.0) -> void:
+	color_rect.color.a = 1.0 # Se pone en negro de inmediato antes de mostrar la escena
+	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+	loading_text.visible = false
+	
+	var tween = create_tween()
+	tween.tween_property(color_rect, "color:a", 0.0, duracion)
+	await tween.finished
+	
+	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
 func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 	if cargando:
 		return
@@ -36,7 +50,7 @@ func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 
 	# 3. BUCLE DE ESPERA ASÍNCRONO
 	var cargado_exitoso := false
-	var progreso := [] # Declarado fuera del bucle para no saturar memoria
+	var progreso := []
 	
 	while true:
 		var estado = ResourceLoader.load_threaded_get_status(ruta_siguiente_nivel, progreso)
@@ -46,8 +60,6 @@ func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 				cargado_exitoso = true
 				break
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-				# Opcional: Si agregas una ProgressBar, usas progreso[0] (da un valor float de 0.0 a 1.0)
-				# $ProgressBar.value = progreso[0] * 100
 				await get_tree().process_frame
 			_:
 				push_error("Error en hilos de carga. Código: ", estado)

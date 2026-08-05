@@ -9,15 +9,20 @@ extends Node3D
 
 
 func _ready() -> void:
-	# 1. Reproducimos la música del menú inicial
+	# 1. Ejecutamos el Fade In desde negro (1.5 segundos de duración)
+	# Cambia 'TransicionEscenas' por el nombre de tu Autoload
+	if TransicionGlobal:
+		TransicionGlobal.realizar_fade_in(5)
+
+	# 2. Reproducimos la música del menú inicial
 	if startMenuMusic:
 		MusicManager.reproducir(startMenuMusic)
 		
 	if start_menu and menu_camera_marker and player:
-		# 2. Posicionamos la cámara en la vista panorámica del menú
+		# 3. Posicionamos la cámara en la vista panorámica del menú
 		player.preparar_camara_menu(menu_camera_marker.global_transform)
 		
-		# 3. Conectamos la señal de "Jugar"
+		# 4. Conectamos la señal de "Jugar"
 		start_menu.jugar_presionado.connect(_on_jugar_presionado)
 
 

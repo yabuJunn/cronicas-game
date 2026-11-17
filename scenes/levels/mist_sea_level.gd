@@ -1,38 +1,15 @@
 extends Node3D
+class_name level_map
 
-@export var musica_playa: AudioStream
-@export var startMenuMusic: AudioStream
+@export var musica_nivel: AudioStream
 
 @onready var player: CharacterBody3D = $Jugador
-@onready var menu_camera_marker: Marker3D = $CinemaMarkers/MenuCameraMarker
-@onready var start_menu: Control = $StartMenu
-
 
 func _ready() -> void:
-	# 1. Ejecutamos el Fade In desde negro (1.5 segundos de duración)
-	# Cambia 'TransicionEscenas' por el nombre de tu Autoload
+	# 1. Ejecutamos el Fade In desde negro al terminar de cargar este nivel (1.5 segundos)
 	if TransicionGlobal:
 		TransicionGlobal.realizar_fade_in(1.5)
 
-	# 2. Reproducimos la música del menú inicial
-	if startMenuMusic:
-		MusicManager.reproducir(startMenuMusic)
-		
-	if start_menu and menu_camera_marker and player:
-		# 3. Posicionamos la cámara en la vista panorámica del menú
-		player.preparar_camara_menu(menu_camera_marker.global_transform)
-		
-		# 4. Conectamos la señal de "Jugar"
-		start_menu.jugar_presionado.connect(_on_jugar_presionado)
-
-
-func _on_jugar_presionado() -> void:
-	# Ocultamos la interfaz del menú
-	start_menu.ocultar_menu(1.0)
-	
-	# Transición suave de cámara hacia el jugador (dura 3.5s)
-	player.transicionar_a_jugador(3.5)
-	
-	# Hacemos crossfade a la música del nivel durante 2.5 segundos
-	if musica_playa:
-		MusicManager.reproducir(musica_playa, 2.5)
+	# 2. Reproducimos directamente la música del nivel de la playa
+	if musica_nivel and MusicManager:
+		MusicManager.reproducir(musica_nivel, 2.0)

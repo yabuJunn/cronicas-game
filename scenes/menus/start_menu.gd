@@ -4,6 +4,10 @@ signal jugar_presionado
 signal ajustes_presionados
 signal salir_presionado
 
+# --- CONFIGURACIÓN DE ESCENA ---
+# Permite arrastrar y soltar la escena del siguiente nivel o cinemática directamente desde el inspector
+@export_file("*.tscn") var escena_siguiente: String
+
 # UI components
 @onready var boton_jugar: Button = $MarginContainer/VBoxContainer/PlayButton
 @onready var boton_ajustes: Button = $MarginContainer/VBoxContainer/ConfigButton
@@ -11,7 +15,6 @@ signal salir_presionado
 
 # Background components
 @onready var backgroundParticles: GPUParticles2D = $GPUParticles2D
-
 
 func _ready() -> void:
 	boton_jugar.pressed.connect(_on_jugar_pressed)
@@ -44,14 +47,29 @@ func _ajustar_componentes_fondo() -> void:
 
 
 func _on_jugar_pressed() -> void:
+	# Desactivar botones para evitar múltiples clics
 	boton_jugar.disabled = true
+	boton_ajustes.disabled = true
+	boton_salir.disabled = true
+	
 	jugar_presionado.emit()
-
-
-func ocultar_menu(duracion: float = 1.0) -> void:
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, duracion)
-	tween.tween_callback(hide)
+	
+	if escena_siguiente != "":
+		# Silenciamos la música del menú base usando el manager global
+		if MusicManager:
+			MusicManager.quitar_musica(1.2)
+			
+		# Iniciamos la carga en segundo plano usando la transición global
+		if TransicionGlobal:
+			TransicionGlobal.cambiar_de_nivel(escena_siguiente)
+		else:
+			push_error("TransicionGlobal no está disponible. Revisa tus AutoLoads.")
+	else:
+		push_warning("Falta asignar 'Escena Siguiente' en el inspector del menú.")
+		# Rehabilitar botones por si faltó la escena, para no dejar el menú bloqueado
+		boton_jugar.disabled = false
+		boton_ajustes.disabled = false
+		boton_salir.disabled = false
 
 
 func _on_ajustes_pressed() -> void:

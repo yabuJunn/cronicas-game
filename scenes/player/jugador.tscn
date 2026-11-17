@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://byi2ieieyik82" path="res://scenes/player/jugador.gd" id="1_c8qk1"]
 [ext_resource type="AudioStream" uid="uid://p3644kyejdjx" path="res://sounds/player/concrete-footstep.wav" id="2_168c5"]
+[ext_resource type="AudioStream" uid="uid://dqk3abqfma3c7" path="res://sounds/player/soft landing.wav" id="2_snmy0"]
 [ext_resource type="Script" uid="uid://cxoylpy1de16y" path="res://scenes/player/inventory_window.gd" id="3_yg7j8"]
+[ext_resource type="AudioStream" uid="uid://dpxnlbuxcyx6b" path="res://sounds/player/hard landing.wav" id="4_chtk5"]
 [ext_resource type="AudioStream" uid="uid://ptjrafpkf735" path="res://sounds/player/Jump Sound.mp3" id="4_s8rxn"]
 [ext_resource type="AudioStream" uid="uid://cp6akttc54eap" path="res://sounds/player/Landing Sound.mp3" id="5_xsyj2"]
 
@@ -30,9 +32,9 @@ ssao_radius = 0.5
 collision_mask = 255
 floor_snap_length = 0.4
 script = ExtResource("1_c8qk1")
-sound_landing_small = ExtResource("4_s8rxn")
-sound_landing_normal = ExtResource("4_s8rxn")
-sound_landing_hard = ExtResource("4_s8rxn")
+sound_landing_small = ExtResource("2_snmy0")
+sound_landing_normal = ExtResource("5_xsyj2")
+sound_landing_hard = ExtResource("4_chtk5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1856987923]
 shape = SubResource("CapsuleShape3D_8q00i")

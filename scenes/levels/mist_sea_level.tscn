@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_0abja"]
 [ext_resource type="AudioStream" uid="uid://bjd6itlfpw0xm" path="res://sounds/music/OST - Mist Sea.mp3" id="2_i1rk8"]
 [ext_resource type="CompressedTexture3D" uid="uid://bknn4a6af1nr0" path="res://scenes/levels/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr" id="3_73vye"]
-[ext_resource type="AudioStream" uid="uid://bp0ovvdq8d0qt" path="res://sounds/music/one (start menu music from Crow Shade).mp3" id="3_k3r7x"]
 [ext_resource type="Material" uid="uid://bfvbp485t8l3n" path="res://textures/Stone/Stone_03-256x256.tres" id="3_vww24"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cciah"]
 [ext_resource type="Material" uid="uid://bdlb4ujhaa5cx" path="res://textures/Stone/Stone_05-256x256.tres" id="5_klac0"]
@@ -26,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://1g8blibkl2ct" path="res://scenes/objects/world/houses/HouseObjects/wall_lamp_1.tscn" id="20_k3r7x"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="21_qu8ma"]
 [ext_resource type="Script" uid="uid://obxfmef2ovdq" path="res://scenes/levels/next_level_area_sea.gd" id="22_dfwsi"]
-[ext_resource type="PackedScene" uid="uid://d4c034u64chjf" path="res://scenes/menus/start_menu.tscn" id="26_dlujj"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i1rk8"]
 _surfaces = [{
@@ -3118,8 +3116,7 @@ size = Vector3(14.315186, 12.039673, 8.999756)
 
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
 script = ExtResource("1_bvfmd")
-musica_playa = ExtResource("2_i1rk8")
-startMenuMusic = ExtResource("3_k3r7x")
+musica_nivel = ExtResource("2_i1rk8")
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=30706746]
 script = ExtResource("1_qc4ln")
@@ -6109,9 +6106,6 @@ shape = SubResource("ConvexPolygonShape3D_mb5k1")
 [node name="entity_0_brush_991_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1888317086]
 shape = SubResource("ConvexPolygonShape3D_52rtf")
 
-[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
-transform = Transform3D(0.1754699, 0, -0.9844848, 0, 1, 0, 0.9844848, 0, 0.1754699, -52.891193, 10.100396, 191.60042)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969109660]
 transform = Transform3D(-0.7301208, -0.4904965, 0.4757486, 0.06111845, 0.64656574, 0.76040596, -0.68057907, 0.5842653, -0.4420928, -91.278076, 18.917465, 0)
 light_color = Color(0.8093096, 0.97609526, 0.934499, 1)
@@ -6949,4 +6943,5 @@ siguiente_nivel_ruta = "uid://dx1r5d1kp4lk0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.088379, 2.9402466, 0)
 shape = SubResource("BoxShape3D_qu8ma")
 
-[node name="StartMenu" parent="." unique_id=689224197 instance=ExtResource("26_dlujj")]
+[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
+transform = Transform3D(0.1754699, 0, -0.9844848, 0, 1, 0, 0.9844848, 0, 0.1754699, -52.891193, 10.100396, 191.60042)

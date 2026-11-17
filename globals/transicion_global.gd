@@ -1,4 +1,5 @@
 extends CanvasLayer
+#Transicion Global Manager
 
 @onready var color_rect: ColorRect = $ColorRect
 @onready var loading_text: Label = $LoadingText

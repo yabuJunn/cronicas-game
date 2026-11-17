@@ -47,6 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8tuso")
+escena_siguiente = "uid://di1d1ewmv5vyc"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=165202373]
 visible = false

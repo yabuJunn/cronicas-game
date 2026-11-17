@@ -1,4 +1,5 @@
 extends Node
+#Music Manager
 
 # --- CONFIGURACIÓN DE TIEMPOS DE FADE ---
 @export var tiempo_fade_normal: float = 1.2   # Transición suave entre niveles/eventos

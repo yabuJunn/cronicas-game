@@ -57,8 +57,6 @@ shader_parameter/radio_minimo_hojas = 0.15
 shader_parameter/niveles_sombra = 3
 shader_parameter/nitidez_sombra = 0.5
 shader_parameter/tinte_sombra = Color(0.35, 0.38, 0.45, 1)
-shader_parameter/desaturacion = 0.25
-shader_parameter/aclarar_textura = 0.15
 shader_parameter/activar_depuracion_visual = false
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fv8wu"]

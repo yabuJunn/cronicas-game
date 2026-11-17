@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cv51w7qabjyip"
+path="res://.godot/imported/testLloronaMap.map-54f2be3a66b94c7343b28ca5db9f0c1e.tres"
+
+[deps]
+
+source_file="res://trenchbroom/testLloronaMap.map"
+dest_files=["res://.godot/imported/testLloronaMap.map-54f2be3a66b94c7343b28ca5db9f0c1e.tres"]
+
+[params]
+

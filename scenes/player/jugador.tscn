@@ -30,6 +30,9 @@ ssao_radius = 0.5
 collision_mask = 255
 floor_snap_length = 0.4
 script = ExtResource("1_c8qk1")
+sound_landing_small = ExtResource("4_s8rxn")
+sound_landing_normal = ExtResource("4_s8rxn")
+sound_landing_hard = ExtResource("4_s8rxn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1856987923]
 shape = SubResource("CapsuleShape3D_8q00i")

@@ -8,9 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://c603q11s3rrf2" path="res://scenes/player/jugador.tscn" id="6_7kxsd"]
 [ext_resource type="Material" uid="uid://m3tshs51n1qq" path="res://textures/Roofs/Roofs_14-256x256.tres" id="6_js2ys"]
 [ext_resource type="Material" uid="uid://cnxa1r88tn32s" path="res://textures/Bricks/Bricks_06-256x256.tres" id="7_cx7x2"]
+[ext_resource type="AudioStream" uid="uid://dqk3abqfma3c7" path="res://sounds/player/soft landing.wav" id="9_3ml15"]
+[ext_resource type="AudioStream" uid="uid://cp6akttc54eap" path="res://sounds/player/Landing Sound.mp3" id="9_4dbkn"]
 [ext_resource type="Script" uid="uid://cp8cgdqni6oqh" path="res://scenes/objects/interactible_object.gd" id="9_w2f51"]
 [ext_resource type="Material" uid="uid://b7emn18uq0g50" path="res://materials/interactible_item_default_material_3d.tres" id="10_1qcro"]
 [ext_resource type="Texture2D" uid="uid://cqrgj12s375sd" path="res://icon.svg" id="10_qcc2t"]
+[ext_resource type="AudioStream" uid="uid://dpxnlbuxcyx6b" path="res://sounds/player/hard landing.wav" id="11_3ml15"]
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="12_1qcro"]
 [ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="13_xtll6"]
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="14_qcc2t"]
@@ -1154,6 +1157,9 @@ shape = SubResource("ConvexPolygonShape3D_22sf0")
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("6_7kxsd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.922886, 26.763367, 0)
+sound_landing_small = ExtResource("9_3ml15")
+sound_landing_normal = ExtResource("9_4dbkn")
+sound_landing_hard = ExtResource("11_3ml15")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=906694051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 106.29706, -169.22743)

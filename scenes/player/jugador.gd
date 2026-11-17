@@ -34,6 +34,13 @@ var breath_time := 0.0            # Acumulador de tiempo exclusivo para la respi
 var landing_bounce := 0.0         # Controla el impacto elástico al caer al suelo
 # ---------------------------------
 
+# --- CONFIGURACIÓN DE SONIDOS DE CAÍDA ---
+@export_group("Sonidos de Aterrizaje")
+@export var sound_landing_small: AudioStream
+@export var sound_landing_normal: AudioStream
+@export var sound_landing_hard: AudioStream
+# ---------------------------------
+
 @onready var camera_pivot := $CameraPivot
 @onready var camera_3d := $CameraPivot/Camera3D
 @onready var interact_ray := $CameraPivot/Camera3D/InteractionRayCast
@@ -121,11 +128,29 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	# DETECCIÓN DE ATERRIZAJE
+	# --- DETECCIÓN DE ATERRIZAJE ---
 	if is_on_floor() and not was_on_floor:
-		if last_velocity_y < -3.5: 
+		if last_velocity_y < -3.5:
+			
+			# 1. Asignar sonido dependiendo de la velocidad de caída
+			if last_velocity_y > -8.0:
+				landingSoundPlayer.stream = sound_landing_small
+			elif last_velocity_y > -15.0:
+				landingSoundPlayer.stream = sound_landing_normal
+			else:
+				landingSoundPlayer.stream = sound_landing_hard
+				
+			# 2. Volumen dinámico (a más caída, más fuerte)
+			var fall_speed = abs(last_velocity_y) # Convertimos a positivo para el cálculo
+			# Mapeamos la velocidad de caída (de 3.5 a 25.0) a decibeles (-15 dB pacito, +2 dB muy duro)
+			landingSoundPlayer.volume_db = remap(fall_speed, 3.5, 25.0, -15.0, 2.0)
+			
 			landingSoundPlayer.play()
-			landing_bounce = -0.25
+			
+			# 3. Rebote de cámara dinámico (opcional, pero mejora mucho la inmersión)
+			# En caídas pequeñas baja poco (-0.15), en grandes baja mucho (-0.6)
+			landing_bounce = clamp(last_velocity_y * 0.035, -0.6, -0.15)
+	# ---------------------------------
 	
 	was_on_floor = is_on_floor()
 	

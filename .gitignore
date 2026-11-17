@@ -4,3 +4,6 @@
 echo "captures/"
 captures
 ./captures
+echo "exports/"
+exports
+./exports

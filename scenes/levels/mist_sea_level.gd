@@ -12,7 +12,7 @@ func _ready() -> void:
 	# 1. Ejecutamos el Fade In desde negro (1.5 segundos de duración)
 	# Cambia 'TransicionEscenas' por el nombre de tu Autoload
 	if TransicionGlobal:
-		TransicionGlobal.realizar_fade_in(5)
+		TransicionGlobal.realizar_fade_in(1.5)
 
 	# 2. Reproducimos la música del menú inicial
 	if startMenuMusic:

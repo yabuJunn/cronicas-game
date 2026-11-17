@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cronicas de un Mundo Perdido"
-run/main_scene="uid://d4c034u64chjf"
+run/main_scene="uid://di1d1ewmv5vyc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://rhdtlier8ms1"
 
@@ -26,6 +26,10 @@ MusicManager="*uid://60pekbby728h"
 TransicionGlobal="*uid://dp7ojkhjkw6i6"
 DialogueSystem="*uid://b4h2v3mc7aneb"
 RespawnManager="*uid://dhkxsov43dwwg"
+
+[display]
+
+window/size/mode=3
 
 [editor]
 

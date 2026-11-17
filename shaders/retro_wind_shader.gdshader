@@ -20,10 +20,6 @@ uniform int niveles_sombra : hint_range(2, 6) = 3;
 uniform float nitidez_sombra : hint_range(0.0, 1.0) = 0.5; // 0.0 = Duro, 1.0 = Difuminado sutil
 uniform vec4 tinte_sombra : source_color = vec4(0.5, 0.55, 0.6, 1.0); // <-- Sube este color para aclarar las sombras
 
-group_uniforms Ajustes_Color_Estilo;
-uniform float desaturacion : hint_range(0.0, 1.0) = 0.25; // <-- Controla qué tan vivos/lavados se ven los colores
-uniform float aclarar_textura : hint_range(0.0, 1.0) = 0.15; // <-- Levanta el brillo general de la textura plana
-
 uniform bool activar_depuracion_visual = false; 
 
 void vertex() {
@@ -52,13 +48,7 @@ void fragment() {
 	vec4 color_textura = texture(albedo_tex, UV);
 	vec3 rgb = color_textura.rgb;
 	
-	// 1. DESATURACIÓN: Convertimos sutilmente a escala de grises según el valor de 'desaturacion'
-	float luma = dot(rgb, vec3(0.299, 0.587, 0.114));
-	rgb = mix(rgb, vec3(luma), desaturacion);
-	
-	// 2. ACLARADO BASE: Mezclamos ligeramente con blanco para suavizar la dureza del color puro
-	rgb = mix(rgb, vec3(1.0), aclarar_textura * 0.4);
-	
+	// Se asigna el color puro de la textura sin desaturar ni lavar
 	ALBEDO = rgb;
 	
 	// Forzamos al material a ser completamente mate en el renderizado base
@@ -94,9 +84,7 @@ void light() {
 	// FACTOR DE SOMBRA PROYECTADA: Evitamos que la atenuación rompa el color multiplicando por 0
 	float factor_luz_total = iluminacion_final * ATTENUATION;
 	
-	// 3. INTERPOLACIÓN LINEAL: En lugar de multiplicar el ALBEDO de forma destructiva,
-	// viajamos suavemente entre el Tinte de la Sombra (luz ambiental) y el color del Sol (LIGHT_COLOR).
-	// Esto mantiene los colores limpios y te permite aclarar las zonas oscuras por completo.
+	// INTERPOLACIÓN LINEAL: Viajamos suavemente entre el Tinte de la Sombra y el color de la luz.
 	vec3 iluminacion_combinada = mix(tinte_sombra.rgb, LIGHT_COLOR, factor_luz_total);
 	
 	DIFFUSE_LIGHT += ALBEDO * iluminacion_combinada;

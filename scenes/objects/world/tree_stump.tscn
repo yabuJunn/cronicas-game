@@ -1,0 +1,63 @@
+[gd_scene format=4 uid="uid://c6lf1g88ssebn"]
+
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_eynnd"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_2ghxb"]
+[ext_resource type="Texture2D" uid="uid://bo7yqdeh3qcda" path="res://textures/Wood/Wood_09-256x256.png" id="3_nmpab"]
+[ext_resource type="Texture2D" uid="uid://68jds15m6246" path="res://textures/Wood/Wood_19-256x256.png" id="4_pil6d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85s8e"]
+albedo_texture = ExtResource("3_nmpab")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g47xm"]
+albedo_texture = ExtResource("4_pil6d")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_omvg0"]
+_surfaces = [{
+"aabb": AABB(-0.6875, 0, -0.71875, 1.40625, 0.5, 1.46875),
+"attribute_data": PackedByteArray("4ZVFPQS3Bb3hlUU9BLcFveGVRT1+JL09uZFivX4kvT3h7Ew9LLvxvLc6W700kcM9tzpbvSy78byxIKG9SRa5PegnRD1u0w29OMWoPUkWuT0kI1q9Y6sDvXUETj1jqwO9ajKcvU4qvj2uQU89yX3RvOvlWL2OoMs96+VYvcl90bzKpy49xsgHvcqnLj3GyAe9yKcuPZ0bvD3Sf3m9nhu8PaWtZL3v3Lk9pa1kvSJGDL3zeUM9IkYMvbc6W70su/G84exMPSy78bxl6JM9NJHDPbc6W700kcM9thtBPcopsj3kC2e9yimyPbYbQT1srBu9FUNNPRIWvT0jR8C9jga/PRVDTT3b0wW9ww2qPYw7uj3CTTK9jDu6PcBNMr3piAu9vRm1ve04zD22iUS9PN7WvOOdYz083ta8rsGWPY6gyz3r5Vi9yX3RvK5BTz3JfdG8pyeyPVBxyT0pal29LLvxvG+9Sj0su/G8G9uwPW5LyT0+T369UmvDPUQDYL20UvK8"),
+"format": 34359742487,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABwAIAAkACgALAAwADQAOAA8AEAARABIAEAASABMAFAAVABYAFwAYABkAFwAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8A"),
+"material": SubResource("StandardMaterial3D_85s8e"),
+"name": "Wood/Wood_09-256x256",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AABgvgAAAD8AAAC/AABgvgAAAD8AAAC/AADAvgAAAAAAADC/AACAPgAAAAAAADi/AABgvgAAAD8AAAC/AACAPgAAAAAAADi/AABgPgAAAD8AAAC/AAA4PwAAAAAAAJC+AABgPgAAAD8AAAC/AACAPgAAAAAAADi/AAAAPwAAAD8AAGC+AABgPgAAAD8AAAC/AAA4PwAAAAAAAJC+AAAAvwAAAD8AAGC+AADAvgAAAAAAADC/AABgvgAAAD8AAAC/AAAAvwAAAD8AAGC+AAAAvwAAAD8AAGC+AAAwvwAAAAAAAJC+AADAvgAAAAAAADC/AAAwvwAAAAAAAJC+AAAAvwAAAD8AAGC+AAAAvwAAAD8AAGA+AAAAPwAAAD8AAGA+AAAAPwAAAD8AAGC+AAA4PwAAAAAAAJC+AAA4PwAAAAAAAIA+AAAovwAAAAAAAKA+AAAwvwAAAAAAAJC+AAAAvwAAAD8AAGA+AAA4PwAAAAAAAIA+AACwPgAAAAAAAEA/AAAAPwAAAD8AAGA+AACwvgAAAAAAADg/AAAovwAAAAAAAKA+AAAAvwAAAD8AAGA+AACwPgAAAAAAAEA/AABgPgAAAD8AAAA/AAAAPwAAAD8AAGA+AACwvgAAAAAAADg/AAAAvwAAAD8AAGA+AABgvgAAAD8AAAA/AACwPgAAAAAAAEA/AABgvgAAAD8AAAA/AABgPgAAAD8AAAA/AACwPgAAAAAAAEA/AACwvgAAAAAAADg/AABgvgAAAD8AAAA/tCKN+/skqMu0Io37+ySoy7Qijfv7JKjLtCKN+/skqMsK2f//PgaCuwrZ//8+BoK7Ctn//z4Ggrve5dHOvAFuoN7l0c68AW6g3uXRzrwBbqDm4wvOXAOvnubjC85cA6+e5uMLzlwDr56+IF7QfUBrvr4gXtB9QGu+viBe0H1Aa77rGt3GHE/SxOsa3cYcT9LE6xrdxhxP0sTrGt3GHE/SxOgi6KJte+a56CLoom175rnoIuiibXvmuQrZ9KbA+V2BCtn0psD5XYEK2fSmwPldgQrZ9KbA+V2B6CIBnnKK5sfoIgGecormx+giAZ5yiubHSLm+m9jv2+hIub6b2O/b6Ei5vpvY79vofkZCmly1WL5+RkKaXLVYvn5GQppctVi+iq7oour2uOOKruii6va444qu6KLq9rjjXlC9oFW9a75eUL2gVb1rvl5QvaBVvWu+/3+qqu72lbz/f6qq7vaVvP9/qqru9pW8GnxypmzpyLcafHKmbOnItxp8cqZs6ci3")
+}, {
+"aabb": AABB(-0.6875, 0, -0.71875, 1.40625, 0.5, 1.46875),
+"attribute_data": PackedByteArray("53j7vQAAYD84vZc+//+XP1a8XD8AAJQ/7VucPwAAWD/Rw5c/AQAgPhezKz8AAGC+oJYlPgAAYL4Trlm+AACAPqhlKT8AAAAAdkZ1PwAAkD4BAIA/AAA4Py7pQT8AAIA/tDStPgAAgD+/mCs9AAA4P1RMwjMAAJA+Ult4PgAAAAA="),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAUAAAAFAAYAAAAGAAcACAAJAAoACAAKAAsACAALAAwACAAMAA0ACAANAA4ACAAOAA8A"),
+"material": SubResource("StandardMaterial3D_g47xm"),
+"name": "Wood/Wood_19-256x256",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AADAvgAAAAAAADC/AAAwvwAAAAAAAJC+AAAovwAAAAAAAKA+AACwvgAAAAAAADg/AACwPgAAAAAAAEA/AAA4PwAAAAAAAIA+AAA4PwAAAAAAAJC+AACAPgAAAAAAADi/AAAAPwAAAD8AAGA+AABgPgAAAD8AAAA/AABgvgAAAD8AAAA/AAAAvwAAAD8AAGA+AAAAvwAAAD8AAGC+AABgvgAAAD8AAAC/AABgPgAAAD8AAAC/AAAAPwAAAD8AAGC+/38AAF50/z//fwAAXnT/P/9/AABedP8//38AAF50/z//fwAAXnT/P/9/AABedP8//38AAF50/z//fwAAXnT/P/9///9edP+//3///150/7//f///XnT/v/9///9edP+//3///150/7//f///XnT/v/9///9edP+//3///150/78=")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i25lb"]
+points = PackedVector3Array(-0.21874951, 0.49999845, 0.500001, 0.34374928, -4.1378607e-06, 0.7500009, 0.34374964, -7.961149e-07, 0.7500011, -0.21875148, 0.5, 0.5, 0.343748, 0, 0.75, -0.34375012, 0, 0.71874994, -0.21875004, 0.5, 0.5, -0.34375003, 0, 0.71875, 0.34375003, -4.4700448e-07, 0.7500004, 0.34374994, 0, 0.75000006, -0.34374997, 0, 0.71875, 0.34374994, 0, 0.75000006, -0.21875007, 0.5, 0.49999994, 0.34375027, -5.084674e-07, 0.7500003, 0.21874997, 0.5, 0.49999994, 0.34374994, 0, 0.75, 0.34374997, 0, 0.75, -0.5000001, 0.50000006, 0.21875, -0.49999994, 0.5, 0.21875009, -0.3437499, 0, 0.7187502, -0.49999988, 0.49999994, 0.21875007, -0.49999994, 0.5, 0.21875009, -0.49999943, 0.5000002, 0.21875013, -0.50000006, 0.5, 0.21875006, 0.4999999, 0.49999952, 0.21875009, 0.49999973, 0.5, 0.21875003, 0.3437498, 0, 0.74999994, 0.49999994, 0.5, 0.21875, -0.49999994, 0.5, 0.21875, -0.65624994, 0, 0.3125, -0.49999976, 0.50000024, 0.21874954, -0.50000006, 0.5, 0.21875006, 0.5, 0.5, 0.21874996, 0.71875, 0, 0.24999997, -0.5, 0.5, 0.21875091, -0.68750006, 0, -0.28124917, -0.6875, 0, -0.28124997, -0.68749946, 3.1823402e-07, -0.28125045, 0.5, 0.5, -0.21875003, 0.71875, 0, -0.28125003, 0.71874994, 0, -0.28125, 0.718749, 1.9209363e-06, -0.28125027, -0.5, 0.5, -0.21874991, -0.50000006, 0.5, -0.21875, -0.49999985, 0.5, -0.21875018, -0.21875001, 0.5, -0.5, -0.2187501, 0.5, -0.49999994, 0.21875109, 0.5, -0.4999995, 0.21875001, 0.5, -0.49999994, 0.21875006, 0.5, -0.49999994, -0.21874864, 0.5, -0.49999997, -0.6875, 0, -0.2812499, -0.37499976, 0, -0.6875003, -0.37499994, 0, -0.68749994, -0.37500006, 0, -0.6875, 0.7187506, 0, -0.2812494, 0.25000003, 0, -0.71874994, 0.25, 0, -0.71875, 0.25000125, 0, -0.71875, -0.49999988, 0.5000001, -0.21874958, -0.37500003, 6.875566e-07, -0.6874998, -0.2187502, 0.5000007, -0.49999976, 0.21875046, 0.5000002, -0.49999943, 0.24999993, -1.245745e-06, -0.71875)
+
+[node name="TreeStump" type="Node3D" unique_id=1059856656]
+
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=1877527649]
+script = ExtResource("1_eynnd")
+local_map_file = "uid://q7pwju7w3bcx"
+map_settings = ExtResource("2_2ghxb")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1428156939]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1926191017]
+mesh = SubResource("ArrayMesh_omvg0")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=72490306]
+shape = SubResource("ConvexPolygonShape3D_i25lb")

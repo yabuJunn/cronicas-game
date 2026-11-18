@@ -1,0 +1,49 @@
+OS:	Windows 10 Version 22H2
+Qt:	6.10.3
+GL_VENDOR:	Intel
+GL_RENDERER:	Intel(R) Iris(R) Xe Graphics
+GL_VERSION:	4.6.0 - Build 31.0.101.5333
+TrenchBroom Version:	2026.2
+TrenchBroom Build:	v2026.2 Release Win64
+Reason:	3221225477
+Stack trace (most recent call first):
+#0  0x00007ff77d2ce803 in tb::ui::`anonymous namespace'::TrenchBroomUnhandledExceptionFilter
+#1  0x00007fff4d1ec506 in UnhandledExceptionFilter
+#2  0x00007fff4f5758d7 in memset
+#3  0x00007fff4f55ce45 in _C_specific_handler
+#4  0x00007fff4f57296e in _chkstk
+#5  0x00007fff4f522553 in RtlRaiseException
+#6  0x00007fff4f57147d in KiUserExceptionDispatcher
+#7  0x00007ff77d9f4162 in public: unsigned __int64 __cdecl tb::mdl::Issue::lineNumber(void)const __ptr64
+#8  0x00007ff77d4499b5 in public: virtual class QVariant __cdecl tb::ui::IssueBrowserModel::data(class QModelIndex const & __ptr64,int)const __ptr64
+#9  0x00007ffed00fbf3d in QAbstractItemModel::multiData
+#10 0x00007ffed5d68780 in QStyledItemDelegate::initStyleOption
+#11 0x00007ffed5d69723 in QStyledItemDelegate::sizeHint
+#12 0x00007ffed5d97842 in QTableView::dropEvent
+#13 0x00007ffed5d9f176 in QTableView::sizeHintForRow
+#14 0x00007ffed5d57da2 in QHeaderView::resizeSections
+#15 0x00007ffed5d536e6 in QHeaderView::length
+#16 0x00007ffed5da0368 in QTableView::updateGeometries
+#17 0x00007ffed5d9fbd8 in QTableView::timerEvent
+#18 0x00007ffecff05397 in QObject::event
+#19 0x00007ffed5aca557 in QWidget::event
+#20 0x00007ffed5b29972 in QFrame::event
+#21 0x00007ffed5b24d33 in QAbstractScrollArea::event
+#22 0x00007ffed5a83520 in QApplicationPrivate::notify_helper
+#23 0x00007ffed5a8261d in QApplication::notify
+#24 0x00007ffecfeb9c50 in QCoreApplication::notifyInternal2
+#25 0x00007ffed0058fdd in QEventDispatcherWin32::event
+#26 0x00007ffed5a83520 in QApplicationPrivate::notify_helper
+#27 0x00007ffed5a8261d in QApplication::notify
+#28 0x00007ffecfeb9c50 in QCoreApplication::notifyInternal2
+#29 0x00007ffecfebc472 in QCoreApplicationPrivate::sendPostedEvents
+#30 0x00007ffed0ba57de in QWindowsGuiEventDispatcher::sendPostedEvents
+#31 0x00007ffed005921f in QEventDispatcherWin32::processEvents
+#32 0x00007ffed0ba5758 in QWindowsGuiEventDispatcher::processEvents
+#33 0x00007ffecfec0663 in QEventLoop::exec
+#34 0x00007ffecfeb8179 in QCoreApplication::exec
+#35 0x00007ff77d2a08b3 in main
+#36 0x00007ff77de2ddff in qtEntryPoint
+#37 0x00007ff77de25705 in __scrt_common_main_seh
+#38 0x00007fff4f007373 in BaseThreadInitThunk
+#39 0x00007fff4f51cc90 in RtlUserThreadStart

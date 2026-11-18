@@ -44,7 +44,11 @@ func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 	tween_out.tween_property(color_rect, "color:a", 1.0, duracion_fade)
 	await tween_out.finished
 	
+	loading_text.text = "Cargando"
 	loading_text.visible = true
+	
+	# REGISTRO DE TIEMPO: Guardamos el tiempo exacto antes de empezar la carga
+	var tiempo_inicio = Time.get_ticks_msec()
 	
 	# 2. INICIAR CARGA EN HILO SECUNDARIO
 	var error = ResourceLoader.load_threaded_request(ruta_siguiente_nivel)
@@ -59,6 +63,10 @@ func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 	var cargado_exitoso := false
 	var progreso := []
 	
+	# Variables para la animación de los puntos
+	var tiempo_puntos := 0.0
+	var cantidad_puntos := 0
+	
 	while true:
 		var estado = ResourceLoader.load_threaded_get_status(ruta_siguiente_nivel, progreso)
 		
@@ -67,6 +75,13 @@ func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 				cargado_exitoso = true
 				break
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+				# ANIMACIÓN DE LOS 3 PUNTOS
+				tiempo_puntos += get_process_delta_time()
+				if tiempo_puntos >= 0.3: # Cambia de frame cada 300 ms
+					tiempo_puntos = 0.0
+					cantidad_puntos = (cantidad_puntos + 1) % 4 # Cicla entre 0, 1, 2 y 3
+					loading_text.text = "Cargando" + ".".repeat(cantidad_puntos)
+					
 				await get_tree().process_frame
 			_:
 				push_error("Error en hilos de carga. Código: ", estado)
@@ -76,6 +91,10 @@ func cambiar_de_nivel(ruta_siguiente_nivel: String) -> void:
 
 	# 4. CAMBIAR DE ESCENA Y FADE IN CON ESPERA
 	if cargado_exitoso:
+		# REGISTRO DE TIEMPO: Calculamos e imprimimos la diferencia al terminar
+		var tiempo_fin = Time.get_ticks_msec()
+		print("⏱️ Mapa cargado en: ", tiempo_fin - tiempo_inicio, " ms")
+		
 		var mapa_empaquetado = ResourceLoader.load_threaded_get(ruta_siguiente_nivel) as PackedScene
 		get_tree().change_scene_to_packed(mapa_empaquetado)
 		

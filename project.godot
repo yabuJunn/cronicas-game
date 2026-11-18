@@ -40,7 +40,7 @@ run/main_run_args="sdf"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ScatterShot/plugin.cfg", "res://addons/func_godot/plugin.cfg")
+enabled=PackedStringArray("res://addons/ScatterShot/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [global_group]
 

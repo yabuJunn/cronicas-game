@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://di1d1ewmv5vyc"]
 
-[ext_resource type="Script" uid="uid://cmxadr7oulnyw" path="res://scenes/levels/mist_sea_level.gd" id="1_bvfmd"]
+[ext_resource type="Script" uid="uid://cmxadr7oulnyw" path="res://scripts/level_map_manager.gd" id="1_bvfmd"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_qc4ln"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_0abja"]
 [ext_resource type="AudioStream" uid="uid://bjd6itlfpw0xm" path="res://sounds/music/OST - Mist Sea.mp3" id="2_i1rk8"]
-[ext_resource type="CompressedTexture3D" uid="uid://bknn4a6af1nr0" path="res://scenes/levels/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr" id="3_73vye"]
 [ext_resource type="Material" uid="uid://bfvbp485t8l3n" path="res://textures/Stone/Stone_03-256x256.tres" id="3_vww24"]
 [ext_resource type="Material" uid="uid://bs5yd3a0newxm" path="res://textures/Stone/Stone_11-256x256.tres" id="4_cciah"]
 [ext_resource type="Material" uid="uid://bdlb4ujhaa5cx" path="res://textures/Stone/Stone_05-256x256.tres" id="5_klac0"]
@@ -12,7 +11,7 @@
 [ext_resource type="Material" uid="uid://dh1fwdots8woq" path="res://materials/water_shader_material.tres" id="9_eolq4"]
 [ext_resource type="PackedScene" uid="uid://67jifxi3j3k5" path="res://scenes/world/falling_sand_particles.tscn" id="10_4rjc6"]
 [ext_resource type="Shader" uid="uid://cn50v6f24wt27" path="res://shaders/sand_fog_shader.gdshader" id="12_56pc5"]
-[ext_resource type="Script" uid="uid://iat6qmkl1fej" path="res://scenes/levels/sea_sounds.gd" id="13_4mwwv"]
+[ext_resource type="Script" uid="uid://iat6qmkl1fej" path="res://scripts/sea_sounds.gd" id="13_4mwwv"]
 [ext_resource type="AudioStream" uid="uid://dr2cbgdsj0kt6" path="res://sounds/ambient/kokoreli777-sea-waves-169411.mp3" id="13_exndu"]
 [ext_resource type="AudioStream" uid="uid://de3ka7s4b26tf" path="res://sounds/ambient/pouring-sand-onto-sand-8-seconds-291368.mp3" id="14_exndu"]
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="14_qg55o"]
@@ -21,10 +20,20 @@
 [ext_resource type="PackedScene" uid="uid://72dm5ghxynsa" path="res://scenes/objects/world/small_rock.tscn" id="17_edxf3"]
 [ext_resource type="Script" uid="uid://x0yi02cx4yvl" path="res://scenes/objects/Lights/sea_door_light.gd" id="17_pbm7r"]
 [ext_resource type="PackedScene" uid="uid://d2kafqc0wirdv" path="res://scenes/objects/world/rock.tscn" id="18_avg1o"]
+[ext_resource type="Script" uid="uid://codeg0ictt6mp" path="res://addons/proton_scatter/src/scatter.gd" id="19_hqocf"]
 [ext_resource type="PackedScene" uid="uid://c62sk6j3203tb" path="res://scenes/objects/world/tree_1.tscn" id="19_i1rk8"]
+[ext_resource type="Script" uid="uid://ds4uywug4v70q" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="20_j3qji"]
 [ext_resource type="PackedScene" uid="uid://1g8blibkl2ct" path="res://scenes/objects/world/houses/HouseObjects/wall_lamp_1.tscn" id="20_k3r7x"]
+[ext_resource type="Script" uid="uid://ego5fxktsd7v" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="21_4nqri"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="21_qu8ma"]
-[ext_resource type="Script" uid="uid://obxfmef2ovdq" path="res://scenes/levels/next_level_area_sea.gd" id="22_dfwsi"]
+[ext_resource type="Script" uid="uid://d3vkmttgvvmix" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="22_5rx5k"]
+[ext_resource type="Script" uid="uid://obxfmef2ovdq" path="res://scripts/next_level_area.gd" id="22_dfwsi"]
+[ext_resource type="Script" uid="uid://bbhlj45nyvf3a" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="23_qoq38"]
+[ext_resource type="Script" uid="uid://nxvipms7sm0s" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="24_wappt"]
+[ext_resource type="Script" uid="uid://brnepsji0nqad" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="25_hf28e"]
+[ext_resource type="Script" uid="uid://bmy5xgkh26brm" path="res://addons/proton_scatter/src/scatter_item.gd" id="26_0x64c"]
+[ext_resource type="Script" uid="uid://b207nmoowclju" path="res://addons/proton_scatter/src/scatter_shape.gd" id="27_dsn7b"]
+[ext_resource type="Script" uid="uid://cf818fgrlrde" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="28_0bdsm"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i1rk8"]
 _surfaces = [{
@@ -3086,6 +3095,9 @@ emission = Color(0.66821647, 0.6682165, 0.66821647, 1)
 density = 0.2
 emission = Color(0.7784455, 0.7784455, 0.7784455, 1)
 
+[sub_resource type="CompressedTexture3D" id="CompressedTexture3D_kp6iu"]
+load_path = "res://.godot/imported/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr-394285ffac3a59349b66c76be1acdaa2.ctex3d"
+
 [sub_resource type="Gradient" id="Gradient_56pc5"]
 colors = PackedColorArray(0.8879926, 0.88799256, 0.8879925, 1, 0.49747366, 0.49747366, 0.49747366, 1)
 
@@ -3110,6 +3122,67 @@ shader_parameter/emision = Color(0.46221125, 0.36420205, 0.23906821, 1)
 shader_parameter/fog_speed = 0.10000024225000016
 shader_parameter/dust_particles_sharpness = 2.746000082935
 shader_parameter/edge_softness = 0.10000000149012
+
+[sub_resource type="Resource" id="Resource_wm61i"]
+script = ExtResource("22_5rx5k")
+amount = 200
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_0n0i2"]
+script = ExtResource("23_qoq38")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(0.1, 0.1, 0.1)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_1tqcv"]
+script = ExtResource("24_wappt")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_djol6"]
+script = ExtResource("25_hf28e")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_k15cs"]
+script = ExtResource("20_j3qji")
+stack = Array[ExtResource("21_4nqri")]([SubResource("Resource_wm61i"), SubResource("Resource_0n0i2"), SubResource("Resource_1tqcv"), SubResource("Resource_djol6")])
+
+[sub_resource type="Resource" id="Resource_g8bsm"]
+script = ExtResource("28_0bdsm")
+radius = 25.555473
+
+[sub_resource type="Resource" id="Resource_hqocf"]
+script = ExtResource("28_0bdsm")
+radius = 24.550266
+
+[sub_resource type="Resource" id="Resource_j3qji"]
+script = ExtResource("28_0bdsm")
+radius = 18.724548
+
+[sub_resource type="Resource" id="Resource_4nqri"]
+script = ExtResource("28_0bdsm")
+radius = 24.550266
+
+[sub_resource type="Resource" id="Resource_5rx5k"]
+script = ExtResource("28_0bdsm")
+radius = 16.694347
+
+[sub_resource type="Resource" id="Resource_kfcsb"]
+script = ExtResource("28_0bdsm")
+radius = 25.555473
+
+[sub_resource type="Resource" id="Resource_ubbkk"]
+script = ExtResource("28_0bdsm")
+radius = 19.672
+
+[sub_resource type="Resource" id="Resource_qoq38"]
+script = ExtResource("28_0bdsm")
+radius = 32.29366
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qu8ma"]
 size = Vector3(14.315186, 12.039673, 8.999756)
@@ -6125,7 +6198,7 @@ environment = SubResource("Environment_eut8q")
 [node name="Water" type="Node3D" parent="." unique_id=1260659188]
 
 [node name="WaterPlaneTest" type="MeshInstance3D" parent="Water" unique_id=1160406867]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234.676, 1.349, 44.11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234.676, 0.35485935, 44.11)
 mesh = SubResource("PlaneMesh_klac0")
 
 [node name="Borders" type="Node3D" parent="." unique_id=714211157]
@@ -6290,7 +6363,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.870907, 15.612592, 13.0627
 [node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="SandFalling/SandFallingObject" unique_id=189514432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.127262, 7.49331, 11.643755)
 size = Vector3(8.915344, 2.7910156, 11.05835)
-texture = ExtResource("3_73vye")
+texture = SubResource("CompressedTexture3D_kp6iu")
 
 [node name="SandDustVolume" type="FogVolume" parent="SandFalling/SandFallingObject" unique_id=1831795259]
 transform = Transform3D(0.99980235, 0, 0.019877981, 0, 1, 0, -0.019877966, 0, 0.99980253, 33.518505, 8.5296955, 13.884433)
@@ -6898,6 +6971,64 @@ transform = Transform3D(0.5187732, 4.5352593e-08, 0.8549119, 8.742278e-08, -1, 0
 [node name="WallLamp2" parent="Objects" unique_id=1088553362 instance=ExtResource("20_k3r7x")]
 transform = Transform3D(-0.9966801, -8.713254e-08, -0.081416756, 8.742278e-08, -1, 0, -0.081416756, -7.1176807e-09, 0.9966801, 39.955654, 15.442922, -1.3463744)
 
+[node name="ProtonScatter" type="Node3D" parent="Objects" unique_id=1202257657]
+script = ExtResource("19_hqocf")
+keep_static_colliders = true
+modifier_stack = SubResource("Resource_k15cs")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://codeg0ictt6mp"
+
+[node name="ScatterItem" type="Node3D" parent="Objects/ProtonScatter" unique_id=599492728]
+script = ExtResource("26_0x64c")
+proportion = 41
+path = "uid://d2kafqc0wirdv"
+
+[node name="ScatterItem2" type="Node3D" parent="Objects/ProtonScatter" unique_id=1702152935]
+script = ExtResource("26_0x64c")
+proportion = 60
+path = "uid://72dm5ghxynsa"
+
+[node name="ScatterShape" type="Node3D" parent="Objects/ProtonScatter" unique_id=15768178]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 7.2175226, 36.12625)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_g8bsm")
+
+[node name="ScatterShape5" type="Node3D" parent="Objects/ProtonScatter" unique_id=2017515619]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 7.2175226, -36.971947)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_hqocf")
+
+[node name="ScatterShape6" type="Node3D" parent="Objects/ProtonScatter" unique_id=1502638322]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -9.837204, 7.2175226, -90.31163)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_j3qji")
+
+[node name="ScatterShape7" type="Node3D" parent="Objects/ProtonScatter" unique_id=279564219]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 8.28812, 7.2175226, -136.44455)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_4nqri")
+
+[node name="ScatterShape8" type="Node3D" parent="Objects/ProtonScatter" unique_id=906121432]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 39.835754, 7.2175226, -179.33841)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_5rx5k")
+
+[node name="ScatterShape2" type="Node3D" parent="Objects/ProtonScatter" unique_id=1632553263]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 7.2175226, 76.83814)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_kfcsb")
+
+[node name="ScatterShape3" type="Node3D" parent="Objects/ProtonScatter" unique_id=1126069146]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -19.587337, 7.2175226, 111.38462)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_ubbkk")
+
+[node name="ScatterShape4" type="Node3D" parent="Objects/ProtonScatter" unique_id=838872393]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 13.027363, 7.2175226, 171.73788)
+script = ExtResource("27_dsn7b")
+shape = SubResource("Resource_qoq38")
+
 [node name="InteractibleObjects" type="Node3D" parent="." unique_id=1238381481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40187836, 0.9234576, -0.40896606)
 
@@ -6934,7 +7065,7 @@ gizmo_extents = 10.0
 script = ExtResource("21_qu8ma")
 
 [node name="NextLevelArea" type="Area3D" parent="." unique_id=1701596315]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.92251, 13.7847805, -14.176397)
+transform = Transform3D(0.91222024, 0, 0.40970016, 0, 1, 0, -0.40970016, 0, 0.91222024, 45.99868, 13.7847805, -11.502527)
 collision_layer = 16
 script = ExtResource("22_dfwsi")
 siguiente_nivel_ruta = "uid://dx1r5d1kp4lk0"

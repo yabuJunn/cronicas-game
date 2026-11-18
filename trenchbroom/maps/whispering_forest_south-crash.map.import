@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://c8sh7ai1g15i3"
+path="res://.godot/imported/whispering_forest_south-crash.map-3666585aeea33c5cd5071e2595b2fb16.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/whispering_forest_south-crash.map"
+dest_files=["res://.godot/imported/whispering_forest_south-crash.map-3666585aeea33c5cd5071e2595b2fb16.tres"]
+
+[params]
+

@@ -12,9 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://c21x4ng50iman" path="res://scenes/objects/world/houses/ruined_house_1.tscn" id="10_scblg"]
 [ext_resource type="PackedScene" uid="uid://do5k0chm32wdf" path="res://scenes/objects/world/houses/village_house_inside2.tscn" id="11_paxew"]
 [ext_resource type="PackedScene" uid="uid://bkvg0mv2fsciu" path="res://scenes/objects/world/houses/VillageHouse1.tscn" id="12_dt0r1"]
+[ext_resource type="Shader" uid="uid://be1eisotm6l4s" path="res://shaders/dirt_path_simple_shader.gdshader" id="13_3u2dd"]
 [ext_resource type="PackedScene" uid="uid://wwpq12jyjqwf" path="res://scenes/objects/world/houses/ruined_house_2.tscn" id="13_drrr2"]
 [ext_resource type="Script" uid="uid://codeg0ictt6mp" path="res://addons/proton_scatter/src/scatter.gd" id="13_gdxxd"]
 [ext_resource type="Shader" uid="uid://b3fm0ispndsjh" path="res://shaders/river_shader.tres" id="14_4hgjr"]
+[ext_resource type="Texture2D" uid="uid://pmrs1xov0iet" path="res://textures/Dirt/Dirt_11-256x256.png" id="14_fwjku"]
 [ext_resource type="PackedScene" uid="uid://dn4udve851g52" path="res://scenes/objects/world/wooden_info_sign.tscn" id="14_s65kl"]
 [ext_resource type="Script" uid="uid://ds4uywug4v70q" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="14_t37u3"]
 [ext_resource type="Script" uid="uid://ego5fxktsd7v" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="15_8v2dr"]
@@ -727,6 +729,129 @@ indices = PackedInt32Array(0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y2po4"]
 data = PackedVector3Array(57.25, 0.5, -72, -57.25, 0.5, -72, -57.25, -0.5, -72, 57.25, 0.5, -72, -57.25, -0.5, -72, 57.25, -0.5, -72, -57.25, -0.5, 72, -57.25, -0.5, -72, -57.25, 0.5, -72, -57.25, -0.5, 72, -57.25, 0.5, -72, -57.25, 0.5, 72, -57.25, -0.5, 72, 57.25, -0.5, 72, 57.25, -0.5, -72, -57.25, -0.5, 72, 57.25, -0.5, -72, -57.25, -0.5, -72, -57.25, 0.5, 72, -57.25, 0.5, -72, 57.25, 0.5, -72, -57.25, 0.5, 72, 57.25, 0.5, -72, 57.25, 0.5, 72, 57.25, 0.5, 72, 57.25, 0.5, -72, 57.25, -0.5, -72, 57.25, 0.5, 72, 57.25, -0.5, -72, 57.25, -0.5, 72, 57.25, -0.5, 72, -57.25, -0.5, 72, -57.25, 0.5, 72, 57.25, -0.5, 72, -57.25, 0.5, 72, 57.25, 0.5, 72)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_204rb"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dw7gl"]
+noise = SubResource("FastNoiseLite_204rb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j725m"]
+render_priority = 0
+shader = ExtResource("13_3u2dd")
+shader_parameter/path_mode = 2
+shader_parameter/bend_right = false
+shader_parameter/follow_curve_uv = false
+shader_parameter/curve_amplitude = 0.0
+shader_parameter/curve_frequency = 0.1
+shader_parameter/curve_phase = -0.5700003374382696
+shader_parameter/clearing_irregularity = 0.45
+shader_parameter/clearing_lobes = 4.0
+shader_parameter/clearing_seed = 5.70000008493684
+shader_parameter/texture_albedo = ExtResource("14_fwjku")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/global_tint = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/anti_tiling_strength = 0.999999977648
+shader_parameter/macro_noise_scale = 0.15
+shader_parameter/color_variation = 0.12
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dw7gl")
+shader_parameter/noise_scale = 0.05000000074506
+shader_parameter/path_width = 0.75
+shader_parameter/edge_softness = 0.2
+shader_parameter/edge_distortion = 0.12999999709424
+shader_parameter/patch_holes = 0.0999999977648
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3w6qa"]
+material = SubResource("ShaderMaterial_j725m")
+size = Vector2(27, 27)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dw7gl"]
+material = SubResource("ShaderMaterial_j725m")
+size = Vector2(20, 27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwjku"]
+render_priority = 0
+shader = ExtResource("13_3u2dd")
+shader_parameter/path_mode = 2
+shader_parameter/bend_right = false
+shader_parameter/follow_curve_uv = false
+shader_parameter/curve_amplitude = 0.0
+shader_parameter/curve_frequency = 0.1
+shader_parameter/curve_phase = -0.5700003374382696
+shader_parameter/clearing_irregularity = 0.45
+shader_parameter/clearing_lobes = 4.0
+shader_parameter/clearing_seed = 5.70000008493684
+shader_parameter/texture_albedo = ExtResource("14_fwjku")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/global_tint = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/anti_tiling_strength = 0.999999977648
+shader_parameter/macro_noise_scale = 0.15
+shader_parameter/color_variation = 0.12
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dw7gl")
+shader_parameter/noise_scale = 0.10000000149012
+shader_parameter/path_width = 0.75
+shader_parameter/edge_softness = 0.2
+shader_parameter/edge_distortion = 0.4
+shader_parameter/patch_holes = 0.0999999977648
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_140sb"]
+material = SubResource("ShaderMaterial_fwjku")
+size = Vector2(11.215, 15.31)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3u2dd"]
+render_priority = 0
+shader = ExtResource("13_3u2dd")
+shader_parameter/path_mode = 0
+shader_parameter/bend_right = false
+shader_parameter/follow_curve_uv = false
+shader_parameter/curve_amplitude = -0.5499998591836608
+shader_parameter/curve_frequency = 0.16700000723398
+shader_parameter/curve_phase = -0.5700003374382696
+shader_parameter/clearing_irregularity = 0.45
+shader_parameter/clearing_lobes = 3.0
+shader_parameter/clearing_seed = 0.0
+shader_parameter/texture_albedo = ExtResource("14_fwjku")
+shader_parameter/path_color = Color(1, 1, 1, 1)
+shader_parameter/global_tint = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/anti_tiling_strength = 0.999999977648
+shader_parameter/macro_noise_scale = 0.15
+shader_parameter/color_variation = 0.12
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dw7gl")
+shader_parameter/noise_scale = 0.05000000074506
+shader_parameter/path_width = 0.75
+shader_parameter/edge_softness = 0.37999999150624
+shader_parameter/edge_distortion = 0.2999999932944
+shader_parameter/patch_holes = 0.1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fwjku"]
+material = SubResource("ShaderMaterial_3u2dd")
+size = Vector2(4.935, 68.28)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r0x5u"]
+material = SubResource("ShaderMaterial_3u2dd")
+size = Vector2(4.935, 44.355)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ftlw3"]
+material = SubResource("ShaderMaterial_3u2dd")
+size = Vector2(4.935, 33.805)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j725m"]
+material = SubResource("ShaderMaterial_3u2dd")
+size = Vector2(4.935, 40)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3u2dd"]
+material = SubResource("ShaderMaterial_3u2dd")
+size = Vector2(4.935, 25)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_204rb"]
+material = SubResource("ShaderMaterial_3u2dd")
+size = Vector2(4.935, 14.165)
 
 [sub_resource type="Resource" id="Resource_140sb"]
 script = ExtResource("16_avxw1")
@@ -1549,6 +1674,58 @@ transform = Transform3D(-0.15063697, 0.015616989, -0.9884657, -0.046043564, 0.99
 
 [node name="Paths" type="Node3D" parent="WorldObjects/Decorations" unique_id=1957340772]
 
+[node name="PathCircular" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=1618667109]
+transform = Transform3D(0.8861308, 0, -0.46343523, 0, 1, 0, 0.46343523, 0, 0.8861308, 2.4616642, -0.476, 0.649861)
+mesh = SubResource("PlaneMesh_3w6qa")
+
+[node name="PathCircular2" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=1723453752]
+transform = Transform3D(0.9887303, 0, -0.14970794, 0, 1, 0, 0.14970794, 0, 0.9887303, -1.3167963, -0.476, 67.111755)
+mesh = SubResource("PlaneMesh_dw7gl")
+
+[node name="PathCircular3" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=1145926019]
+transform = Transform3D(0.9996384, 0, -0.026892304, 0, 1, 0, 0.026892304, 0, 0.9996384, 2.4616642, -0.476, -48.56343)
+mesh = SubResource("PlaneMesh_140sb")
+
+[node name="PathCircular4" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=991389728]
+transform = Transform3D(0.9996384, 0, -0.026892304, 0, 1, 0, 0.026892304, 0, 0.9996384, 55.1353, -0.476, 1.7200179)
+mesh = SubResource("PlaneMesh_140sb")
+
+[node name="PathCircular5" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=1415711934]
+transform = Transform3D(-0.9993116, 0, -0.03709717, 0, 1, 0, 0.03709717, 0, -0.9993116, 92.11197, -0.476, 0.8492942)
+mesh = SubResource("PlaneMesh_140sb")
+
+[node name="Path" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=1415986144]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -37.46611, -0.476, 1.1595484)
+mesh = SubResource("PlaneMesh_fwjku")
+
+[node name="Path6" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=997061058]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 33.437805, -0.4759981, 1.1595484)
+mesh = SubResource("PlaneMesh_r0x5u")
+
+[node name="Path7" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=1242094214]
+transform = Transform3D(0.034201737, 0, 0.9994149, 0, 1, 0, -0.9994149, 0, 0.034201737, 111.790215, -0.4759981, -0.5153183)
+mesh = SubResource("PlaneMesh_ftlw3")
+
+[node name="Path8" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=191387430]
+transform = Transform3D(-0.059097353, 0, 0.99825233, 0, 1, 0, -0.99825233, 0, -0.059097353, 144.53714, -0.4759981, -0.5153183)
+mesh = SubResource("PlaneMesh_ftlw3")
+
+[node name="Path5" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=527130345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0017204, -0.476, -26.229984)
+mesh = SubResource("PlaneMesh_j725m")
+
+[node name="Path2" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=1550844212]
+transform = Transform3D(-0.98692894, 0, 0.1611559, 0, 1, 0, -0.1611559, 0, -0.98692894, 0.06744337, -0.476, 20.54449)
+mesh = SubResource("PlaneMesh_3u2dd")
+
+[node name="Path3" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=247380673]
+transform = Transform3D(-0.978307, 0, -0.20716059, 0, 1, 0, 0.20716059, 0, -0.978307, -0.21891451, -0.476, 44.127884)
+mesh = SubResource("PlaneMesh_3u2dd")
+
+[node name="Path4" type="MeshInstance3D" parent="WorldObjects/Decorations/Paths" unique_id=2084449672]
+transform = Transform3D(-0.9996402, 0, 0.0268224, 0, 1, 0, -0.0268224, 0, -0.9996402, 1.5990925, -0.476, 62.999847)
+mesh = SubResource("PlaneMesh_204rb")
+
 [node name="ScatterObjects" type="Node3D" parent="WorldObjects/Decorations" unique_id=407356505]
 
 [node name="ProtonScatterTrees" type="Node3D" parent="WorldObjects/Decorations/ScatterObjects" unique_id=1458253296]
@@ -1676,7 +1853,7 @@ titulo_personalizado = "Señal de Madera"
 [node name="Switchs" type="Node3D" parent="InteractibleObjects" unique_id=1864416739]
 
 [node name="MechanismSwitch" parent="InteractibleObjects/Switchs" unique_id=1781407386 instance=ExtResource("26_8v2dr")]
-transform = Transform3D(-0.7249297, 0, 0.68882287, 0, 1, 0, -0.68882287, 0, -0.7249297, 54.038986, -0.54544955, 5.95041)
+transform = Transform3D(-0.7249297, 0, 0.68882287, 0, 1, 0, -0.68882287, 0, -0.7249297, 54.349087, -0.54544955, 4.6697674)
 
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("7_hvkvb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9114, 1.499876, 0)

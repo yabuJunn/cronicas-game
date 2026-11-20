@@ -1,6 +1,5 @@
 shader_type spatial;
-// specular_disabled elimina cualquier reflejo plástico o destello de luz
-render_mode cull_disabled, depth_draw_opaque, specular_disabled; 
+render_mode cull_disabled, depth_draw_opaque, specular_disabled;
 
 uniform sampler2D albedo_tex : source_color, filter_nearest; // Filtro Nearest para el look pixelado PSX
 uniform float alpha_scissor_threshold : hint_range(0.0, 1.0) = 0.5;
@@ -9,58 +8,68 @@ group_uniforms Viento;
 uniform float velocidad_viento = 2.0;
 uniform float fuerza_viento = 0.15;
 uniform float frequency_viento = 0.5;
-uniform bool desincronizar_arboles = true;
+uniform bool desincronizar = true; // Interruptor On/Off para el randomizador
 
 group_uniforms Filtro_Hojas;
-uniform float altura_minima_hojas = 2.0;  
-uniform float radio_minimo_hojas = 0.15;  
+uniform float altura_minima_hojas = 2.0;
+uniform float radio_minimo_hojas = 0.15;
 
-group_uniforms Sombreado_Retro;
-uniform int niveles_sombra : hint_range(2, 6) = 3; 
-uniform float nitidez_sombra : hint_range(0.0, 1.0) = 0.5; // 0.0 = Duro, 1.0 = Difuminado sutil
-uniform vec4 tinte_sombra : source_color = vec4(0.5, 0.55, 0.6, 1.0); // <-- Sube este color para aclarar las sombras
-
-uniform bool activar_depuracion_visual = false; 
+uniform bool activar_depuracion_visual = false;
 
 void vertex() {
 	float distancia_al_centro = length(VERTEX.xz);
 	float mascara_altura = smoothstep(altura_minima_hojas, altura_minima_hojas + 0.5, VERTEX.y);
 	float mascara_radio = smoothstep(radio_minimo_hojas, radio_minimo_hojas + 0.1, distancia_al_centro);
 	float peso_viento = mascara_altura * mascara_radio;
-	
-	float desfase_mundo = 0.0;
+
+	// Posición global del objeto (funciona tanto para nodos individuales como para MultiMesh)
+	vec3 pos_objeto_mundo = MODEL_MATRIX[3].xyz;
+	vec3 pos_vertice_mundo = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+
+	float desfase_tiempo = 0.0;
 	float factor_velocidad = 1.0;
-	
-	if (desincronizar_arboles) {
-		float pseudo_random = fract(sin(dot(NODE_POSITION_WORLD.xz, vec2(12.9898, 78.233))) * 43758.5453);
-		desfase_mundo = pseudo_random * 6.283185;
-		factor_velocidad = 0.8 + (pseudo_random * 0.4);
+	vec2 direccion_viento = vec2(1.0, 0.5);
+
+	if (desincronizar) {
+		// Generamos dos valores pseudoaleatorios únicos basados en la posición global del objeto
+		float rand_1 = fract(sin(dot(pos_objeto_mundo.xz, vec2(12.9898, 78.233))) * 43758.5453);
+		float rand_2 = fract(sin(dot(pos_objeto_mundo.xz, vec2(39.3468, 11.135))) * 24634.6345);
+
+		desfase_tiempo = rand_1 * 6.283185; // Desfase completo de 0 a 360 grados
+		factor_velocidad = 0.75 + (rand_2 * 0.5); // Cada árbol oscila a distinta velocidad (75% - 125%)
+
+		// Variamos ligeramente el ángulo hacia donde se inclina cada objeto
+		float angulo = (rand_1 - 0.5) * 1.5;
+		direccion_viento = vec2(cos(angulo), sin(angulo));
 	}
-	
-	float tiempo_modificado = TIME * velocidad_viento * factor_velocidad;
-	float ola = sin(tiempo_modificado + (VERTEX.y * frequency_viento) + (VERTEX.x * 0.3) + desfase_mundo) * fuerza_viento;
-	
-	VERTEX.x += ola * peso_viento;
-	VERTEX.z += ola * 0.5 * peso_viento;
+
+	float tiempo_modificado = (TIME * velocidad_viento * factor_velocidad) + desfase_tiempo;
+
+	// Onda principal + micro-turbulencia usando coordenadas mundiales para que el viento "viaje" por el escenario
+	float ola_principal = sin(tiempo_modificado + (pos_vertice_mundo.y * frequency_viento) + (pos_vertice_mundo.x * 0.25));
+	float rafaga_secundaria = cos((tiempo_modificado * 0.65) + (pos_vertice_mundo.z * frequency_viento * 0.8)) * 0.35;
+	float desplazamiento = (ola_principal + rafaga_secundaria) * fuerza_viento * peso_viento;
+
+	VERTEX.x += desplazamiento * direccion_viento.x;
+	VERTEX.z += desplazamiento * direccion_viento.y;
 }
 
 void fragment() {
 	vec4 color_textura = texture(albedo_tex, UV);
 	vec3 rgb = color_textura.rgb;
-	
-	// Se asigna el color puro de la textura sin desaturar ni lavar
+
 	ALBEDO = rgb;
-	
-	// Forzamos al material a ser completamente mate en el renderizado base
+
+	// Mantiene la superficie mate para evitar brillos plásticos, pero recibe luces, sombras y Environment del nivel
 	ROUGHNESS = 1.0;
 	METALLIC = 0.0;
 	SPECULAR = 0.0;
-	
+
 	NORMAL = FRONT_FACING ? NORMAL : -NORMAL;
-	
+
 	ALPHA = color_textura.a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
-	
+
 	if (activar_depuracion_visual) {
 		float distancia_al_centro = length(VERTEX.xz);
 		float mascara_altura = smoothstep(altura_minima_hojas, altura_minima_hojas + 0.5, VERTEX.y);
@@ -68,24 +77,4 @@ void fragment() {
 		float peso_viento = mascara_altura * mascara_radio;
 		ALBEDO = mix(rgb, vec3(1.0, 0.0, 0.0), peso_viento * 0.8);
 	}
-}
-
-void light() {
-	// Cálculo Lambert suavizado
-	float lambert = dot(NORMAL, LIGHT) * 0.5 + 0.5;
-	
-	// Cuantización para el look retro escalonado
-	float pasos = float(niveles_sombra);
-	float luz_pixelada = floor(lambert * pasos) / (pasos - 1.0);
-	
-	// Combinación de dureza de la sombra
-	float iluminacion_final = mix(luz_pixelada, lambert, nitidez_sombra);
-	
-	// FACTOR DE SOMBRA PROYECTADA: Evitamos que la atenuación rompa el color multiplicando por 0
-	float factor_luz_total = iluminacion_final * ATTENUATION;
-	
-	// INTERPOLACIÓN LINEAL: Viajamos suavemente entre el Tinte de la Sombra y el color de la luz.
-	vec3 iluminacion_combinada = mix(tinte_sombra.rgb, LIGHT_COLOR, factor_luz_total);
-	
-	DIFFUSE_LIGHT += ALBEDO * iluminacion_combinada;
 }

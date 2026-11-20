@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b2jincu51856c"]
+
+[ext_resource type="PackedScene" uid="uid://b7o51hill7kdx" path="res://objs/retro_nature_pack/models/FBX/grass/grass01.fbx" id="1_putpk"]
+[ext_resource type="Shader" uid="uid://4t0s25cmbpa8" path="res://shaders/retro_wind_shader.gdshader" id="2_u66ql"]
+[ext_resource type="Texture2D" uid="uid://b7kk6xlj774n2" path="res://objs/retro_nature_pack/textures/grass/grass_spring.png" id="3_1fb3y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ndg1"]
+render_priority = 0
+shader = ExtResource("2_u66ql")
+shader_parameter/albedo_tex = ExtResource("3_1fb3y")
+shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/velocidad_viento = 2.0
+shader_parameter/fuerza_viento = 0.15
+shader_parameter/frequency_viento = 0.5
+shader_parameter/desincronizar = true
+shader_parameter/altura_minima_hojas = 0.335
+shader_parameter/radio_minimo_hojas = 0.0
+shader_parameter/activar_depuracion_visual = false
+
+[node name="grass01" unique_id=750848638 instance=ExtResource("1_putpk")]
+
+[node name="grass1" parent="." index="0" unique_id=310355803]
+surface_material_override/0 = SubResource("ShaderMaterial_0ndg1")

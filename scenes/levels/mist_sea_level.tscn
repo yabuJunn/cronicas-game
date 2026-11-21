@@ -7079,18 +7079,34 @@ siguiente_nivel_ruta = "uid://d23e6r07bjv34"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.088379, 2.9402466, 0)
 shape = SubResource("BoxShape3D_qu8ma")
 
-[node name="CheckpointArea" type="Area3D" parent="." unique_id=1090585399 node_paths=PackedStringArray("punto_de_aparicion")]
+[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
+transform = Transform3D(0.1754699, 0, -0.9844848, 0, 1, 0, 0.9844848, 0, 0.1754699, 66.90074, 71.767914, 191.60042)
+
+[node name="CheckpointAreas" type="Node3D" parent="." unique_id=1381716880]
+
+[node name="CheckpointArea" type="Area3D" parent="CheckpointAreas" unique_id=1090585399 node_paths=PackedStringArray("punto_de_aparicion")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.897957, 10.461439, 191.87302)
+script = ExtResource("35_hqocf")
+punto_de_aparicion = NodePath("Marker3D")
+es_spawn_inicial = true
+metadata/_custom_type_script = "uid://b2hmc24838gbt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointAreas/CheckpointArea" unique_id=1477933498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39160156, 3.2724, -0.21362305)
+shape = SubResource("BoxShape3D_j3qji")
+
+[node name="Marker3D" type="Marker3D" parent="CheckpointAreas/CheckpointArea" unique_id=1266203600]
+transform = Transform3D(0.0041713156, 0, -0.9999913, 0, 1, 0, 0.9999913, 0, 0.0041713156, 2.214859, 0, -0.14611816)
+
+[node name="CheckpointArea2" type="Area3D" parent="CheckpointAreas" unique_id=627555763 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(0.83000255, 0, 0.5577596, 0, 1, 0, -0.5577596, 0, 0.83000255, 35.472538, 10.461439, -4.762901)
 script = ExtResource("35_hqocf")
 punto_de_aparicion = NodePath("Marker3D")
 metadata/_custom_type_script = "uid://b2hmc24838gbt"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointArea" unique_id=1477933498]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointAreas/CheckpointArea2" unique_id=185947418]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39160156, 3.2724, -0.21362305)
 shape = SubResource("BoxShape3D_j3qji")
 
-[node name="Marker3D" type="Marker3D" parent="CheckpointArea" unique_id=1266203600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.214859, 0, -0.14611816)
-
-[node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
-transform = Transform3D(0.1754699, 0, -0.9844848, 0, 1, 0, 0.9844848, 0, 0.1754699, 66.90074, 71.767914, 191.60042)
+[node name="Marker3D" type="Marker3D" parent="CheckpointAreas/CheckpointArea2" unique_id=1227099749]
+transform = Transform3D(0.09052825, 0, 0.9958939, 0, 1, 0, -0.9958939, 0, 0.09052825, 1.9782677, 0.5805893, -0.30510902)

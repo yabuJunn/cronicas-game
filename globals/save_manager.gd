@@ -6,6 +6,8 @@ const RUTA_GUARDADO := "user://cronicas_save.sav"
 # Estado en memoria de la partida en curso
 var mapa_actual: String = ""
 var ultima_posicion_guardada: Vector3 = Vector3.ZERO
+var ultima_rotacion_y: float = 0.0
+var spawns_por_mapa: Dictionary = {} # { "res://ruta/nivel.tscn": { "posicion": Vector3, "rotacion_y": float } }
 var world_flags: Dictionary = {}
 
 
@@ -24,6 +26,8 @@ func borrar_partida() -> void:
 func reiniciar_estado() -> void:
 	mapa_actual = ""
 	ultima_posicion_guardada = Vector3.ZERO
+	ultima_rotacion_y = 0.0
+	spawns_por_mapa.clear()
 	world_flags.clear()
 	if Inventory:
 		Inventory.limpiar()
@@ -31,29 +35,60 @@ func reiniciar_estado() -> void:
 		RespawnManager.reiniciar_checkpoint()
 
 
-# --- GUARDAR Y CARGAR ---
+# --- GESTIÓN DE SPAWNS POR MAPA (MEMORIA DE SESIÓN Y GUARDADO) ---
 
-# Guarda en el último checkpoint registrado (o en una posición específica si se pasa por parámetro)
-func guardar_partida(posicion_custom: Variant = null) -> bool:
+func registrar_spawn_mapa(ruta_mapa: String, posicion: Vector3, rotacion_y: float = 0.0) -> void:
+	if ruta_mapa == "":
+		return
+	spawns_por_mapa[ruta_mapa] = {
+		"posicion": posicion,
+		"rotacion_y": rotacion_y
+	}
+
+
+func tiene_spawn_mapa(ruta_mapa: String) -> bool:
+	return spawns_por_mapa.has(ruta_mapa)
+
+
+func obtener_spawn_mapa(ruta_mapa: String) -> Dictionary:
+	return spawns_por_mapa.get(ruta_mapa, {})
+
+
+# --- GUARDAR Y CARGAR EN DISCO ---
+
+func guardar_partida(posicion_custom: Variant = null, rotacion_custom: Variant = null) -> bool:
 	var escena_actual := get_tree().current_scene
 	if escena_actual == null or escena_actual.scene_file_path == "":
 		push_error("SaveManager: No se pudo obtener la ruta del nivel actual.")
 		return false
 
 	mapa_actual = escena_actual.scene_file_path
+	var player := get_tree().get_first_node_in_group("player")
 
 	if posicion_custom is Vector3:
 		ultima_posicion_guardada = posicion_custom
+	elif spawns_por_mapa.has(mapa_actual):
+		ultima_posicion_guardada = spawns_por_mapa[mapa_actual]["posicion"]
 	elif RespawnManager and RespawnManager.tiene_checkpoint:
 		ultima_posicion_guardada = RespawnManager.current_checkpoint
-	else:
-		var player := get_tree().get_first_node_in_group("player")
-		if player:
-			ultima_posicion_guardada = player.global_position
+	elif player:
+		ultima_posicion_guardada = player.global_position
+
+	if rotacion_custom is float or rotacion_custom is int:
+		ultima_rotacion_y = float(rotacion_custom)
+	elif spawns_por_mapa.has(mapa_actual):
+		ultima_rotacion_y = spawns_por_mapa[mapa_actual]["rotacion_y"]
+	elif player:
+		ultima_rotacion_y = player.rotation.y
+
+	# Nos aseguramos de que el mapa actual tenga este punto registrado
+	registrar_spawn_mapa(mapa_actual, ultima_posicion_guardada, ultima_rotacion_y)
 
 	var datos := {
 		"mapa": mapa_actual,
 		"posicion": ultima_posicion_guardada,
+		"rotacion_y": ultima_rotacion_y,
+		"spawns_por_mapa": spawns_por_mapa.duplicate(true),
 		"inventario": Inventory.serializar() if Inventory else [],
 		"world_flags": world_flags.duplicate(true)
 	}
@@ -88,13 +123,18 @@ func cargar_partida() -> bool:
 
 	mapa_actual = datos["mapa"]
 	ultima_posicion_guardada = datos.get("posicion", Vector3.ZERO)
+	ultima_rotacion_y = datos.get("rotacion_y", 0.0)
+	spawns_por_mapa = datos.get("spawns_por_mapa", {}).duplicate(true)
 	world_flags = datos.get("world_flags", {}).duplicate(true)
+
+	# Garantizamos que el punto exacto donde se guardó sea el spawn al cargar ese nivel
+	registrar_spawn_mapa(mapa_actual, ultima_posicion_guardada, ultima_rotacion_y)
 
 	if Inventory:
 		Inventory.deserializar(datos.get("inventario", []))
 
 	if TransicionGlobal:
-		TransicionGlobal.cambiar_de_nivel(mapa_actual, ultima_posicion_guardada)
+		TransicionGlobal.cambiar_de_nivel(mapa_actual)
 	else:
 		push_error("SaveManager: TransicionGlobal no está disponible.")
 		return false
@@ -116,8 +156,6 @@ func set_flag(clave: String, valor) -> void:
 	world_flags[clave] = valor
 
 
-# Genera una clave única y estable usando el nombre del archivo del mapa + ruta del nodo
-# Ejemplo: "item:nivel_playa/Interactuables/LlaveAntigua"
 func generar_clave_nodo(prefijo: String, nodo: Node) -> String:
 	var escena := get_tree().current_scene
 	if escena != null and (escena == nodo or escena.is_ancestor_of(nodo)):

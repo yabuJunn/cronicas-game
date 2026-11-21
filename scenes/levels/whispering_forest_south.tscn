@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://dq4bk6oapdpl4" path="res://textures/Plaster/Plaster_01-256x256.png" id="35_blbl8"]
 [ext_resource type="Script" uid="uid://cau2r3unnyel3" path="res://scenes/objects/interactible_objects/rocks_bridge_to_move.gd" id="43_lcbnw"]
 [ext_resource type="PackedScene" uid="uid://bthajwnrlyacy" path="res://scenes/objects/world/rocks/rock_pillar_1.tscn" id="44_3muws"]
+[ext_resource type="Script" uid="uid://b2hmc24838gbt" path="res://globals/checkpoint_area.gd" id="46_abpvx"]
 [ext_resource type="Script" uid="uid://fbk2erjs31o0" path="res://scenes/objects/cinema_marker.gd" id="47_3muws"]
 
 [sub_resource type="Gradient" id="Gradient_drrr2"]
@@ -1269,6 +1270,9 @@ shader_parameter/density_texture = SubResource("NoiseTexture3D_4p7th")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dw7gl"]
 size = Vector3(3.845459, 9.678101, 8.0047)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c0cpc"]
+size = Vector3(10.1640625, 7.5448, 20.963379)
 
 [node name="WhisperingForestSouth" type="Node3D" unique_id=1812882821]
 script = ExtResource("1_b5bdf")
@@ -2590,8 +2594,25 @@ siguiente_nivel_ruta = "uid://di1d1ewmv5vyc"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37890625, 1.7776489, 0.07003784)
 shape = SubResource("BoxShape3D_dw7gl")
 
+[node name="CheckpointAreas" type="Node3D" parent="." unique_id=2083092157]
+
+[node name="CheckpointArea" type="Area3D" parent="CheckpointAreas" unique_id=706356016 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.542454, -0.45950556, 1.402113)
+script = ExtResource("46_abpvx")
+punto_de_aparicion = NodePath("Marker3D")
+es_spawn_inicial = true
+metadata/_custom_type_script = "uid://b2hmc24838gbt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointAreas/CheckpointArea" unique_id=78786804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39160156, 3.2724, -0.21362305)
+shape = SubResource("BoxShape3D_c0cpc")
+
+[node name="Marker3D" type="Marker3D" parent="CheckpointAreas/CheckpointArea" unique_id=1686491070]
+transform = Transform3D(0.012321712, 0, -0.99992406, 0, 1, 0, 0.99992406, 0, 0.012321712, -2.1139412, 1.2138236, -0.14611816)
+gizmo_extents = 10.0
+
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("7_hvkvb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -40.81187, 0.056143165, 1.578165)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -40.81187, 28.275898, 12.764033)
 
 [node name="CinemaMarkers" type="Node3D" parent="." unique_id=296095985]
 

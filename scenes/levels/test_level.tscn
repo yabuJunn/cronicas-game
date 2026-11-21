@@ -644,34 +644,34 @@ points = PackedVector3Array(25.333334, 33.5, 36, 25.333334, 22, 36, 24.666666, 3
 [sub_resource type="BoxShape3D" id="BoxShape3D_xoou4"]
 size = Vector3(1, 7.673462, 6.057617)
 
-[sub_resource type="Resource" id="Resource_26rt0"]
+[sub_resource type="Resource" id="Resource_rnt0l"]
 script = ExtResource("33_smp8r")
 amount = 75
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_e6x8h"]
+[sub_resource type="Resource" id="Resource_jigj2"]
 script = ExtResource("34_4g8k6")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_4wpc7"]
+[sub_resource type="Resource" id="Resource_smp8r"]
 script = ExtResource("35_y80st")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_ib3ll"]
+[sub_resource type="Resource" id="Resource_4g8k6"]
 script = ExtResource("36_t8w0x")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_yguda"]
+[sub_resource type="Resource" id="Resource_y80st"]
 script = ExtResource("31_ve23l")
-stack = Array[ExtResource("32_jigj2")]([SubResource("Resource_26rt0"), SubResource("Resource_e6x8h"), SubResource("Resource_4wpc7"), SubResource("Resource_ib3ll")])
+stack = Array[ExtResource("32_jigj2")]([SubResource("Resource_rnt0l"), SubResource("Resource_jigj2"), SubResource("Resource_smp8r"), SubResource("Resource_4g8k6")])
 
 [sub_resource type="Resource" id="Resource_ve23l"]
 script = ExtResource("39_rnt0l")
@@ -1339,7 +1339,7 @@ transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, -0.5771694, 1.
 [node name="ProtonScatter" type="Node3D" parent="." unique_id=1912198849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.982544, 22.496157, 42.65602)
 script = ExtResource("30_rnt0l")
-modifier_stack = SubResource("Resource_yguda")
+modifier_stack = SubResource("Resource_y80st")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://codeg0ictt6mp"

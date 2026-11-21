@@ -184,12 +184,36 @@ func sincronizar_slots_dinamicos() -> void:
 			slot.add_child(marco)
 			marco.set_anchors_preset(Control.PRESET_FULL_RECT)
 			
+			# Etiqueta en la esquina inferior derecha para mostrar "x2", "x3", etc.
+			var lbl_cantidad = Label.new()
+			lbl_cantidad.name = "CantidadLabel"
+			lbl_cantidad.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			lbl_cantidad.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+			lbl_cantidad.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+			lbl_cantidad.grow_vertical = Control.GROW_DIRECTION_BEGIN
+			lbl_cantidad.offset_right = -8
+			lbl_cantidad.offset_bottom = -6
+			lbl_cantidad.add_theme_color_override("font_outline_color", Color.BLACK)
+			lbl_cantidad.add_theme_constant_override("outline_size", 4)
+			slot.add_child(lbl_cantidad)
+			
 			items_container.add_child(slot)
 			slots.append(slot)
 			
+	# --- ESTE BLOQUE ASIGNA LA MINIATURA Y LA CANTIDAD ---
 	for i in range(total_items):
 		var nombre_item = Inventory.listado_ordenado[i]
-		slots[i].texture = Inventory.items_recolectados[nombre_item]["icono"]
+		var datos = Inventory.items_recolectados[nombre_item]
+		var cantidad: int = datos.get("cantidad", 1)
+		
+		slots[i].texture = datos["icono"]
+		
+		var lbl_cantidad = slots[i].get_node("CantidadLabel") as Label
+		if cantidad > 1:
+			lbl_cantidad.text = "x%d" % cantidad
+			lbl_cantidad.visible = true
+		else:
+			lbl_cantidad.visible = false
 
 func _exit_tree() -> void:
 	if PauseMenu:
@@ -338,12 +362,17 @@ func mostrar_info_central() -> void:
 	
 	var nombre_seleccionado = Inventory.listado_ordenado[indice_actual]
 	var datos = Inventory.items_recolectados[nombre_seleccionado]
+	var cantidad: int = datos.get("cantidad", 1)
 	
 	if name_tween and name_tween.is_valid(): name_tween.kill()
 	if desc_tween and desc_tween.is_valid(): desc_tween.kill()
 	if desc_flicker_tween and desc_flicker_tween.is_valid(): desc_flicker_tween.kill()
 	
-	name_text.text = nombre_seleccionado.to_upper()
+	if cantidad > 1:
+		name_text.text = "%s (x%d)" % [nombre_seleccionado.to_upper(), cantidad]
+	else:
+		name_text.text = nombre_seleccionado.to_upper()
+		
 	description_text.text = datos["descripcion"]
 	
 	_animar_nombre_flicker(name_text)

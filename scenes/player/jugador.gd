@@ -224,10 +224,6 @@ func _input(event):
 	if controles_bloqueados:
 		return
 
-	if event.is_action_pressed("ui_cancel_custom"):
-		camera_enabled = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			camera_enabled = true

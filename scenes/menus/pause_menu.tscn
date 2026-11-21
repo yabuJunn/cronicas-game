@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dqjq31rx5l2tj"]
+
+[ext_resource type="Script" uid="uid://6y8vqwbkjfif" path="res://scenes/menus/pause_menu.gd" id="1_fwndu"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=480855473]
+layer = 50
+script = ExtResource("1_fwndu")
+ruta_menu_principal = "uid://d4c034u64chjf"
+
+[node name="RootControl" type="Control" parent="." unique_id=1003907736]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FondoOpaco" type="ColorRect" parent="RootControl" unique_id=246006378]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="RootControl" unique_id=657633831]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootControl/CenterContainer" unique_id=1949774915]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TituloLabel" type="Label" parent="RootControl/CenterContainer/VBoxContainer" unique_id=1771378924]
+layout_mode = 2
+text = "Pausa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="RootControl/CenterContainer/VBoxContainer" unique_id=1514246976]
+layout_mode = 2
+text = "¡Partida guardada!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinuarButton" type="Button" parent="RootControl/CenterContainer/VBoxContainer" unique_id=436241927]
+layout_mode = 2
+text = "Continuar"
+
+[node name="GuardarButton" type="Button" parent="RootControl/CenterContainer/VBoxContainer" unique_id=2079527038]
+layout_mode = 2
+text = "Guardar"
+
+[node name="OpcionesButton" type="Button" parent="RootControl/CenterContainer/VBoxContainer" unique_id=630490351]
+layout_mode = 2
+text = "Opciones"
+
+[node name="SalirMenuButton" type="Button" parent="RootControl/CenterContainer/VBoxContainer" unique_id=2133260649]
+layout_mode = 2
+text = "Salir al menú"
+
+[node name="SalirEscritorio" type="Button" parent="RootControl/CenterContainer/VBoxContainer" unique_id=903706656]
+layout_mode = 2
+text = "Salir al escritorio"
+
+[node name="ConfirmacionModal" type="Control" parent="RootControl" unique_id=1258818942]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FondoOscuro" type="ColorRect" parent="RootControl/ConfirmacionModal" unique_id=1544274064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.652)
+
+[node name="CenterContainer" type="CenterContainer" parent="RootControl/ConfirmacionModal" unique_id=169364005]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="RootControl/ConfirmacionModal/CenterContainer" unique_id=898591587]
+custom_minimum_size = Vector2(420, 190)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RootControl/ConfirmacionModal/CenterContainer/PanelContainer" unique_id=165353336]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootControl/ConfirmacionModal/CenterContainer/PanelContainer/MarginContainer" unique_id=968231691]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TituloModalLabel" type="Label" parent="RootControl/ConfirmacionModal/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=720662933]
+layout_mode = 2
+text = "¿Seguro que quieres salir?"
+horizontal_alignment = 1
+
+[node name="MensajeModalLabel" type="Label" parent="RootControl/ConfirmacionModal/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=235946901]
+custom_minimum_size = Vector2(20, 16)
+layout_mode = 2
+text = "El progreso no guardado se perderá"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RootControl/ConfirmacionModal/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=40328728]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CancelarModalButton" type="Button" parent="RootControl/ConfirmacionModal/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1155932385]
+layout_mode = 2
+text = "Cancelar"
+
+[node name="ConfirmarModalButton" type="Button" parent="RootControl/ConfirmacionModal/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1164638311]
+layout_mode = 2
+text = "Salir"

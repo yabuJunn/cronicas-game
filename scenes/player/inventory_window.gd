@@ -191,7 +191,17 @@ func sincronizar_slots_dinamicos() -> void:
 		var nombre_item = Inventory.listado_ordenado[i]
 		slots[i].texture = Inventory.items_recolectados[nombre_item]["icono"]
 
+func _exit_tree() -> void:
+	if PauseMenu:
+		PauseMenu.desbloquear_pausa("inventario")
+
 func abrir_inventario() -> void:
+	if visible:
+		return
+
+	if PauseMenu:
+		PauseMenu.bloquear_pausa("inventario")
+
 	miscellaneousSoundsPlayer.pitch_scale = 1.0
 	miscellaneousSoundsPlayer.stream = openInventorySound
 	miscellaneousSoundsPlayer.play()
@@ -220,6 +230,9 @@ func cerrar_inventario() -> void:
 	arrastrando_modelo = false
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+	if PauseMenu:
+		PauseMenu.desbloquear_pausa("inventario")
 
 func mover_carrusel(direccion: int) -> void:
 	var total_items = Inventory.listado_ordenado.size()

@@ -1,7 +1,9 @@
 extends Node
+#RespawnManager
 
 var current_checkpoint: Vector3 = Vector3.ZERO
 var is_respawning: bool = false
+var tiene_checkpoint: bool = false
 
 var fade_canvas: CanvasLayer
 var fade_rect: ColorRect
@@ -29,7 +31,12 @@ func _registrar_posicion_inicial() -> void:
 # Función que llamarán tus áreas o cinemáticas
 func set_checkpoint(global_pos: Vector3) -> void:
 	current_checkpoint = global_pos
+	tiene_checkpoint = true
 	#print("Checkpoint guardado en: ", current_checkpoint)
+
+func reiniciar_checkpoint() -> void:
+	current_checkpoint = Vector3.ZERO
+	tiene_checkpoint = false
 
 # Función principal para ejecutar la muerte
 func kill_player() -> void:

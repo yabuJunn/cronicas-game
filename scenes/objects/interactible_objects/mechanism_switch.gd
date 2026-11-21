@@ -22,7 +22,6 @@ var ya_activado: bool = false
 
 
 func _ready() -> void:
-	
 	# Configuración de variables heredadas de InteractableItem (Valores por defecto)
 	se_puede_recoger = false
 	es_puerta = true
@@ -36,6 +35,10 @@ func _ready() -> void:
 
 	super._ready()
 	_preparar_esfera_y_audio()
+
+	# Si en la partida cargada este interruptor ya se había activado, restauramos su estado
+	if SaveManager and SaveManager.get_flag(SaveManager.generar_clave_nodo("switch", self), false):
+		_restaurar_estado_activado()
 
 
 func _preparar_esfera_y_audio() -> void:
@@ -60,8 +63,29 @@ func _preparar_esfera_y_audio() -> void:
 		if energySphereAudio:
 			energySphereAudio.playing = false
 		else:
-			# Cambiado a warning por si marcaste "usar_audio" pero olvidaste poner el nodo
 			push_warning("usar_audio está activo, pero no se encontró un AudioStreamPlayer3D en: ", name)
+
+
+# Restaura el interruptor como ya usado al cargar una partida guardada
+func _restaurar_estado_activado() -> void:
+	ya_activado = true
+
+	if placedEnergySphere:
+		placedEnergySphere.visible = true
+
+	if usar_audio and energySphereAudio:
+		energySphereAudio.playing = true
+
+	set_highlight(false)
+	outline_habilitado = false
+
+	if is_in_group("interactibleObjects"):
+		remove_from_group("interactibleObjects")
+
+	# Usamos call_deferred para asegurar que todas las puertas/puentes del nivel
+	# ya ejecutaron su _ready() y entraron a su grupo antes de recibir la orden
+	if target_id != "":
+		get_tree().call_deferred("call_group", target_id, "open", target_id)
 
 
 # --- SOBREESCRITURA DE TEXTOS DE INTERACCIÓN ---
@@ -76,6 +100,7 @@ func _obtener_texto_interaccion() -> String:
 		outline_habilitado = false
 		return texto_sin_objeto
 
+
 # --- LÓGICA DE INTERACCIÓN ---
 func interactuar() -> bool:
 	if ya_activado:
@@ -85,6 +110,11 @@ func interactuar() -> bool:
 		return false
 
 	ya_activado = true
+
+	# Registramos la activación en memoria para el próximo guardado
+	if SaveManager:
+		SaveManager.set_flag(SaveManager.generar_clave_nodo("switch", self), true)
+
 	Inventory.remover_objeto(item_clave_requerido)
 	
 	if placedEnergySphere:
@@ -115,6 +145,7 @@ func interactuar() -> bool:
 	else:
 		push_warning("Advertencia: target_id no está configurado en el switch.")
 	return true
+
 
 # --- FUNCIÓN AUXILIAR PARA BUSCAR EL MARCADOR EN EL MAPA ---
 func _buscar_por_id(id_buscado: String) -> Marker3D:

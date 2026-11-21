@@ -43,6 +43,13 @@ var texto_interaccion: String:
 const RUTA_MATERIAL_BASE = "res://materials/interactible_item_default_material_3d.tres" 
 
 func _ready() -> void:
+	# Si es recogible y ya fue recogido en esta partida, desaparece de inmediato
+	if se_puede_recoger and SaveManager:
+		var clave := SaveManager.generar_clave_nodo("item", self)
+		if SaveManager.get_flag(clave, false):
+			queue_free()
+			return
+			
 	if mesh == null:
 		push_warning("Falta asignar la malla en el objeto interactuable: ", name)
 		return
@@ -117,14 +124,16 @@ func interactuar() -> bool:
 		$InteractibleObjectsLigth.apagar()
 
 	if se_puede_recoger:
+		if SaveManager:
+			var clave := SaveManager.generar_clave_nodo("item", self)
+			SaveManager.set_flag(clave, true)
+
 		var modelo_para_inventario: PackedScene = null
-		
 		if ruta_modelo3d != "":
 			modelo_para_inventario = load(ruta_modelo3d)
-			
+
 		Inventory.agregar_objeto(item_name, item_description, item_icon, modelo_para_inventario)
 		queue_free()
-		return true # Indica que el objeto se ha recogido
+		return true
 	else:
-		#print("Has interactuado con: ", item_name, " (Objeto estático / Puerta)")
-		return false # Indica que NO es un objeto de recogida
+		return false

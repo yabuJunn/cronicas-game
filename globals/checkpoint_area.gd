@@ -1,18 +1,22 @@
 extends Area3D
+class_name CheckpointArea
 
-## Opcional: Asigna un Marker3D interno para decir exactamente dónde aparecerá el jugador.
-## Si lo dejas vacío, usará el centro de esta Area3D.
-@export var punto_de_aparicion: Node3D 
+@export var punto_de_aparicion: Node3D
+@export var guardar_partida_al_tocar: bool = true
+
+var activado: bool = false
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		var posicion_guardada = global_position
-		
-		if punto_de_aparicion != null:
-			posicion_guardada = punto_de_aparicion.global_position
-			
-		# Llamamos al Autoload
-		RespawnManager.set_checkpoint(posicion_guardada)
+	if not body.is_in_group("player"):
+		return
+
+	var posicion_guardada := punto_de_aparicion.global_position if punto_de_aparicion != null else global_position
+	RespawnManager.set_checkpoint(posicion_guardada)
+
+	if guardar_partida_al_tocar and not activado:
+		activado = true
+		if SaveManager:
+			SaveManager.guardar_partida(posicion_guardada)

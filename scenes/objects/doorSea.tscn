@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_6s6qr"]
 [ext_resource type="Material" uid="uid://rtr8qhkd8a26" path="res://materials/fog_shader_material.tres" id="1_7fieb"]
+[ext_resource type="Script" uid="uid://bylb287r2hvr8" path="res://scenes/objects/ancient_door.gd" id="1_karsw"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_7fieb"]
 [ext_resource type="AudioStream" uid="uid://cgcv04k7dtyuf" path="res://sounds/music/OST - Mist Sea Open Door.mp3" id="2_rpd8k"]
 [ext_resource type="AudioStream" uid="uid://dmbdqfkpiequd" path="res://sounds/ambient/Sea Door Opening.mp3" id="2_yvroc"]
@@ -61,6 +62,7 @@ points = PackedVector3Array(0.37267855, 18.90909, 4.9214506, 0.37267855, 0.5, 4.
 points = PackedVector3Array(0.37269595, 19.961039, 3.486873, -0.3445819, 19.961039, 3.4868822, 0.37267974, 18.90909, 4.921453, -0.34459716, 18.90909, 4.9214597, 0.37272024, 20.75, 1.3350013, -0.344559, 20.75, 1.3350099, 0.37274456, 20.75, -0.816833, 0.37278512, 18.90909, -4.4033203, 0.37276888, 19.961052, -2.9687183, -0.34453613, 20.75, -0.81682193, -0.344498, 18.90909, -4.403312, -0.34451324, 19.961052, -2.9687114)
 
 [node name="SeaDoor" type="Node3D" unique_id=2143399838 groups=["interactibleObjects"]]
+script = ExtResource("1_karsw")
 
 [node name="Polvo Puerta" type="GPUParticles3D" parent="." unique_id=1489620657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4921002, 0)

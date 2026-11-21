@@ -16,7 +16,6 @@
 [ext_resource type="AudioStream" uid="uid://de3ka7s4b26tf" path="res://sounds/ambient/pouring-sand-onto-sand-8-seconds-291368.mp3" id="14_exndu"]
 [ext_resource type="PackedScene" uid="uid://qat6org8uyc8" path="res://scenes/objects/energy_sphere.tscn" id="14_qg55o"]
 [ext_resource type="PackedScene" uid="uid://da24ji2bt71f0" path="res://scenes/objects/doorSea.tscn" id="15_qg55o"]
-[ext_resource type="PackedScene" uid="uid://wksl540jqens" path="res://scenes/objects/pedestal.tscn" id="16_ucu88"]
 [ext_resource type="PackedScene" uid="uid://72dm5ghxynsa" path="res://scenes/objects/world/small_rock.tscn" id="17_edxf3"]
 [ext_resource type="Script" uid="uid://x0yi02cx4yvl" path="res://scenes/objects/Lights/sea_door_light.gd" id="17_pbm7r"]
 [ext_resource type="PackedScene" uid="uid://d2kafqc0wirdv" path="res://scenes/objects/world/rock.tscn" id="18_avg1o"]
@@ -34,6 +33,8 @@
 [ext_resource type="Script" uid="uid://bmy5xgkh26brm" path="res://addons/proton_scatter/src/scatter_item.gd" id="26_0x64c"]
 [ext_resource type="Script" uid="uid://b207nmoowclju" path="res://addons/proton_scatter/src/scatter_shape.gd" id="27_dsn7b"]
 [ext_resource type="Script" uid="uid://cf818fgrlrde" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="28_0bdsm"]
+[ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/mechanism_switch.tscn" id="31_j3qji"]
+[ext_resource type="Script" uid="uid://b2hmc24838gbt" path="res://globals/checkpoint_area.gd" id="35_hqocf"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i1rk8"]
 _surfaces = [{
@@ -3096,7 +3097,6 @@ density = 0.2
 emission = Color(0.7784455, 0.7784455, 0.7784455, 1)
 
 [sub_resource type="CompressedTexture3D" id="CompressedTexture3D_kp6iu"]
-load_path = "res://.godot/imported/mist_sea_level.GPUParticlesCollisionSDF3D_data.exr-394285ffac3a59349b66c76be1acdaa2.ctex3d"
 
 [sub_resource type="Gradient" id="Gradient_56pc5"]
 colors = PackedColorArray(0.8879926, 0.88799256, 0.8879925, 1, 0.49747366, 0.49747366, 0.49747366, 1)
@@ -3123,34 +3123,34 @@ shader_parameter/fog_speed = 0.10000024225000016
 shader_parameter/dust_particles_sharpness = 2.746000082935
 shader_parameter/edge_softness = 0.10000000149012
 
-[sub_resource type="Resource" id="Resource_wm61i"]
+[sub_resource type="Resource" id="Resource_wappt"]
 script = ExtResource("22_5rx5k")
 amount = 200
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_0n0i2"]
+[sub_resource type="Resource" id="Resource_hf28e"]
 script = ExtResource("23_qoq38")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_1tqcv"]
+[sub_resource type="Resource" id="Resource_0x64c"]
 script = ExtResource("24_wappt")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_djol6"]
+[sub_resource type="Resource" id="Resource_dsn7b"]
 script = ExtResource("25_hf28e")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_k15cs"]
+[sub_resource type="Resource" id="Resource_0bdsm"]
 script = ExtResource("20_j3qji")
-stack = Array[ExtResource("21_4nqri")]([SubResource("Resource_wm61i"), SubResource("Resource_0n0i2"), SubResource("Resource_1tqcv"), SubResource("Resource_djol6")])
+stack = Array[ExtResource("21_4nqri")]([SubResource("Resource_wappt"), SubResource("Resource_hf28e"), SubResource("Resource_0x64c"), SubResource("Resource_dsn7b")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("28_0bdsm")
@@ -3186,6 +3186,9 @@ radius = 32.29366
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qu8ma"]
 size = Vector3(14.315186, 12.039673, 8.999756)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j3qji"]
+size = Vector3(10.1640625, 7.5448, 20.963379)
 
 [node name="MistSeaLevel" type="Node3D" unique_id=2129789078]
 script = ExtResource("1_bvfmd")
@@ -6974,7 +6977,7 @@ transform = Transform3D(-0.9966801, -8.713254e-08, -0.081416756, 8.742278e-08, -
 [node name="ProtonScatter" type="Node3D" parent="Objects" unique_id=1202257657]
 script = ExtResource("19_hqocf")
 keep_static_colliders = true
-modifier_stack = SubResource("Resource_k15cs")
+modifier_stack = SubResource("Resource_0bdsm")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://codeg0ictt6mp"
@@ -7035,11 +7038,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40187836, 0.9234576, -0.408
 [node name="EnergySphere" parent="InteractibleObjects" unique_id=1256466068 instance=ExtResource("14_qg55o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.216942, 5.6982255, -146.854)
 
+[node name="EnergySphere2" parent="InteractibleObjects" unique_id=623820616 instance=ExtResource("14_qg55o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.482708, 5.6982255, 134.87575)
+
 [node name="SeaDoor" parent="InteractibleObjects" unique_id=2143399838 instance=ExtResource("15_qg55o")]
 transform = Transform3D(0.86032414, 0, 0.5097473, 0, 1, 0, -0.5097473, 0, 0.86032414, 37.8697, 8.497828, -6.2730503)
+puerta_id = "SeaDoor1"
+altura_levantar = -20.0
 
-[node name="Pedestal" parent="InteractibleObjects" unique_id=1043176817 instance=ExtResource("16_ucu88")]
-transform = Transform3D(0.84216076, 0, 0.53922653, 0, 1, 0, -0.53922653, 0, 0.84216076, 36.085953, 8.645523, -5.633914)
+[node name="MechanismSwitch" parent="InteractibleObjects" unique_id=1781407386 instance=ExtResource("31_j3qji")]
+transform = Transform3D(-0.3647956, 0, -0.9310876, 0, 1, 0, 0.9310876, 0, -0.3647956, 34.99553, 9.028469, -7.0664153)
+camera_marker_id = "Door"
+target_id = "SeaDoor1"
 
 [node name="Ligths" type="Node3D" parent="." unique_id=1100282953]
 
@@ -7059,20 +7069,28 @@ gizmo_extents = 10.0
 script = ExtResource("21_qu8ma")
 targetname = "Door"
 
-[node name="MenuCameraMarker" type="Marker3D" parent="CinemaMarkers" unique_id=401572066 groups=["cinemaMarkers"]]
-transform = Transform3D(0.27152693, 0.05119804, -0.9610681, -0.027437031, 0.9985899, 0.045445226, 0.96203965, 0.014029253, 0.27254897, -96.951096, 14.521332, 201.19019)
-gizmo_extents = 10.0
-script = ExtResource("21_qu8ma")
-
 [node name="NextLevelArea" type="Area3D" parent="." unique_id=1701596315]
 transform = Transform3D(0.91222024, 0, 0.40970016, 0, 1, 0, -0.40970016, 0, 0.91222024, 45.99868, 13.7847805, -11.502527)
 collision_layer = 16
 script = ExtResource("22_dfwsi")
-siguiente_nivel_ruta = "uid://dx1r5d1kp4lk0"
+siguiente_nivel_ruta = "uid://d23e6r07bjv34"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NextLevelArea" unique_id=1985903699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.088379, 2.9402466, 0)
 shape = SubResource("BoxShape3D_qu8ma")
 
+[node name="CheckpointArea" type="Area3D" parent="." unique_id=1090585399 node_paths=PackedStringArray("punto_de_aparicion")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.897957, 10.461439, 191.87302)
+script = ExtResource("35_hqocf")
+punto_de_aparicion = NodePath("Marker3D")
+metadata/_custom_type_script = "uid://b2hmc24838gbt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointArea" unique_id=1477933498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39160156, 3.2724, -0.21362305)
+shape = SubResource("BoxShape3D_j3qji")
+
+[node name="Marker3D" type="Marker3D" parent="CheckpointArea" unique_id=1266203600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.214859, 0, -0.14611816)
+
 [node name="Jugador" parent="." unique_id=1311695861 instance=ExtResource("5_sch65")]
-transform = Transform3D(0.1754699, 0, -0.9844848, 0, 1, 0, 0.9844848, 0, 0.1754699, -52.891193, 10.100396, 191.60042)
+transform = Transform3D(0.1754699, 0, -0.9844848, 0, 1, 0, 0.9844848, 0, 0.1754699, 66.90074, 71.767914, 191.60042)

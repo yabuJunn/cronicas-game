@@ -26,6 +26,7 @@ MusicManager="*uid://60pekbby728h"
 TransicionGlobal="*uid://dp7ojkhjkw6i6"
 DialogueSystem="*uid://b4h2v3mc7aneb"
 RespawnManager="*uid://dhkxsov43dwwg"
+SaveManager="*uid://i140s2y0skm4"
 
 [display]
 

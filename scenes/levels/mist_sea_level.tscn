@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://bmy5xgkh26brm" path="res://addons/proton_scatter/src/scatter_item.gd" id="26_0x64c"]
 [ext_resource type="Script" uid="uid://b207nmoowclju" path="res://addons/proton_scatter/src/scatter_shape.gd" id="27_dsn7b"]
 [ext_resource type="Script" uid="uid://cf818fgrlrde" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="28_0bdsm"]
+[ext_resource type="AudioStream" uid="uid://cgcv04k7dtyuf" path="res://sounds/music/OST - Mist Sea Open Door.mp3" id="30_j3qji"]
 [ext_resource type="PackedScene" uid="uid://dsxmo84wi6a08" path="res://scenes/objects/interactible_objects/mechanism_switch.tscn" id="31_j3qji"]
 [ext_resource type="Script" uid="uid://b2hmc24838gbt" path="res://globals/checkpoint_area.gd" id="35_hqocf"]
 
@@ -7044,7 +7045,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.482708, 5.6982255, 134.87
 [node name="SeaDoor" parent="InteractibleObjects" unique_id=2143399838 instance=ExtResource("15_qg55o")]
 transform = Transform3D(0.86032414, 0, 0.5097473, 0, 1, 0, -0.5097473, 0, 0.86032414, 37.8697, 8.497828, -6.2730503)
 puerta_id = "SeaDoor1"
-altura_levantar = -20.0
+musica_evento_puerta = ExtResource("30_j3qji")
+musica_ambiente_siguiente = ExtResource("2_i1rk8")
 
 [node name="MechanismSwitch" parent="InteractibleObjects" unique_id=1781407386 instance=ExtResource("31_j3qji")]
 transform = Transform3D(-0.3647956, 0, -0.9310876, 0, 1, 0, 0.9310876, 0, -0.3647956, 34.99553, 9.028469, -7.0664153)
